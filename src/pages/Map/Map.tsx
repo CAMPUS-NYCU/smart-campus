@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "@nextui-org/react";
 
 import { PropsFromRedux } from "./connector";
 
@@ -19,12 +20,12 @@ const Map: React.FC<Props> = (props: Props) => {
   return (
     <>
       <>Name: [{props.username}]</>
-      <button className="bg-blue-200 p-2 rounded-lg" onClick={handleLogin}>
+      <Button className="bg-blue-200 p-2 rounded-lg" onClick={handleLogin}>
         Login
-      </button>
-      <button className="bg-blue-500 p-2 rounded-lg" onClick={handleLogout}>
+      </Button>
+      <Button className="bg-blue-500 p-2 rounded-lg" onClick={handleLogout}>
         Logout
-      </button>
+      </Button>
     </>
   );
 };
