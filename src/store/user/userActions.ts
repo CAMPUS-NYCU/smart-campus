@@ -1,12 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import UserState from "./userState";
+import { UserAuthState } from "./userState";
 
 type loginPayloadType = { username: string; password: string };
 
 export const login = createAsyncThunk(
   "user/login",
-  async (payload: loginPayloadType): Promise<UserState> => {
-    // TODO: login
+  async (payload: loginPayloadType): Promise<UserAuthState> => {
     return { id: "id", username: payload.username, token: "token" };
   },
 );

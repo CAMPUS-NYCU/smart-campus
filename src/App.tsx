@@ -1,15 +1,12 @@
 import React from "react";
+import { RouterProvider } from "react-router-dom";
 
-import User from "./pages/User";
+import router from "./utils/routes/router";
 
 import "./App.css";
 
 const App: React.FC = () => {
-  return (
-    <>
-      <User />
-    </>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

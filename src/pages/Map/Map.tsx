@@ -4,7 +4,7 @@ import { PropsFromRedux } from "./connector";
 
 type Props = PropsFromRedux;
 
-const User: React.FC<Props> = (props: Props) => {
+const Map: React.FC<Props> = (props: Props) => {
   const handleLogin = () => {
     props.login({
       username: "test",
@@ -25,4 +25,4 @@ const User: React.FC<Props> = (props: Props) => {
   );
 };
 
-export default User;
+export default Map;

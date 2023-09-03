@@ -3,8 +3,8 @@ import { PayloadAction, ValidateSliceCaseReducers } from "@reduxjs/toolkit";
 import UserState, { initialUserState } from "./userState";
 
 const userReducers = {
-  set(_: UserState, action: PayloadAction<UserState>) {
-    return action.payload;
+  set(state: UserState, action: PayloadAction<Partial<UserState>>) {
+    return { ...state, ...action.payload };
   },
   reset() {
     return initialUserState;

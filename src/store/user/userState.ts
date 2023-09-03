@@ -4,6 +4,9 @@ interface UserState {
   token: string | null;
 }
 
+export interface UserAuthState
+  extends Pick<UserState, "id" | "username" | "token"> {}
+
 export const initialUserState: UserState = {
   id: null,
   username: null,
