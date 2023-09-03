@@ -19,8 +19,12 @@ const Map: React.FC<Props> = (props: Props) => {
   return (
     <>
       <>Name: [{props.username}]</>
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={handleLogout}>Logout</button>
+      <button className="bg-blue-200 p-2 rounded-lg" onClick={handleLogin}>
+        Login
+      </button>
+      <button className="bg-blue-500 p-2 rounded-lg" onClick={handleLogout}>
+        Logout
+      </button>
     </>
   );
 };
