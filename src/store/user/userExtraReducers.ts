@@ -9,7 +9,7 @@ const userExtraReducers = (builder: ActionReducerMapBuilder<UserState>) => {
     userActions.login.fulfilled,
     (_: UserState, action: PayloadAction<UserState>) => {
       return userReducers.set(_, action);
-    }
+    },
   );
   builder.addCase(userActions.logout.fulfilled, () => {
     return userReducers.reset();

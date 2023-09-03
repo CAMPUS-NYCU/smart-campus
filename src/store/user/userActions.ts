@@ -8,12 +8,12 @@ export const login = createAsyncThunk(
   async (payload: loginPayloadType): Promise<UserState> => {
     // TODO: login
     return { id: "id", username: payload.username, token: "token" };
-  }
+  },
 );
 
 export const logout = createAsyncThunk(
   "user/logout",
   async (): Promise<void> => {
     // TODO: logout
-  }
+  },
 );

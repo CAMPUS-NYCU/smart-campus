@@ -1,6 +1,6 @@
 import { PayloadAction, ValidateSliceCaseReducers } from "@reduxjs/toolkit";
 
-import UserState, {initialUserState } from "./userState";
+import UserState, { initialUserState } from "./userState";
 
 const userReducers = {
   set(_: UserState, action: PayloadAction<UserState>) {

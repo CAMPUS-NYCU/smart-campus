@@ -10,11 +10,11 @@ const User: React.FC<Props> = (props: Props) => {
       username: "test",
       password: "test",
     });
-  }
+  };
 
   const handleLogout = () => {
     props.logout();
-  }
+  };
 
   return (
     <>

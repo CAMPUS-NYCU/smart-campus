@@ -17,6 +17,6 @@ export type { UserState };
 export const actions = {
   ...userActions,
   ...userSlice.actions,
-}
+};
 
 export const reducer = userSlice.reducer;
