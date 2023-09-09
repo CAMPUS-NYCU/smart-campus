@@ -1,5 +1,8 @@
 import React from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { Button } from "@nextui-org/react";
+
+import { firebaseAuth } from "../../utils/firebase";
 
 import { PropsFromRedux } from "./connector";
 import GoogleMaps from "../../components/Map/GoogleMaps";
@@ -8,10 +11,17 @@ type Props = PropsFromRedux;
 
 const Map: React.FC<Props> = (props: Props) => {
   const handleLogin = () => {
-    props.login({
-      username: "test",
-      password: "test",
-    });
+    signInWithEmailAndPassword(firebaseAuth, "username@a.com", "password")
+      .then((userCredential) => {
+        const user = userCredential.user;
+        props.login({
+          username: user?.email || "",
+          password: "password",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleLogout = () => {

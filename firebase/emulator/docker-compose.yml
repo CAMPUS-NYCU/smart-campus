@@ -1,0 +1,21 @@
+version: '3'
+services:
+  emulator:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "0.0.0.0:9099:9099"
+      - "0.0.0.0:8080:8080"
+      - "0.0.0.0:9199:9199"
+      - "0.0.0.0:4000:4000"
+      - "0.0.0.0:4400:4400"
+      - "0.0.0.0:4500:4500"
+      - "0.0.0.0:9150:9150"
+    volumes:
+      - ../.firebaserc:/app/.firebaserc
+      - ../firebase.json:/app/firebase.json
+      - ../firestore.indexes.json:/app/firestore.indexes.json
+      - ../firestore.rules:/app/firestore.rules
+      - ../storage.rules:/app/storage.rules
+    stdin_open: true
+    tty: true
