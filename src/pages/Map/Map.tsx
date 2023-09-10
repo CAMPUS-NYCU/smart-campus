@@ -32,9 +32,7 @@ const Map: React.FC<Props> = (props: Props) => {
   return (
     <>
       <SwitchTheme />
-      <div className="fixed top-0 left-0 w-screen h-screen z-[-1]">
-        <MapComponent />
-      </div>
+      <MapComponent />
       <>Name: [{props.username}]</>
       <Button
         className="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg"
