@@ -4,7 +4,6 @@ import { Button } from "@nextui-org/react";
 
 import { firebaseAuth } from "../../utils/firebase";
 import { default as MapComponent } from "../../components/Map";
-import SwitchTheme from "../../components/theme/SwitchTheme";
 
 import { PropsFromRedux } from "./connector";
 
@@ -31,7 +30,6 @@ const Map: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      <SwitchTheme />
       <MapComponent />
       <>Name: [{props.username}]</>
       <Button

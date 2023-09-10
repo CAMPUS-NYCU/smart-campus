@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "POI",
-    "User Location Fab"
+    "User Location Fab",
+    "User Fab"
   ]
 }
