@@ -1,24 +1,31 @@
 import React from "react";
-import { loader, mapInstanceRef } from "../../../utils/googlemaps";
-import MapOptions from "../../../constants/googleMaps";
+import { useTheme } from "next-themes";
+
+import {
+  loadMap,
+  mapInstanceRef,
+  setMapTheme,
+} from "../../../utils/map/googleMaps";
 
 const GoogleMaps: React.FC = () => {
   const mapContainerRef = React.useRef<HTMLDivElement>(null);
+  const { resolvedTheme } = useTheme();
 
   React.useEffect(() => {
     if (mapContainerRef.current) {
-      loader.importLibrary("maps").then(() => {
-        mapInstanceRef.current = new google.maps.Map(
-          mapContainerRef.current!,
-          MapOptions,
-        );
-      });
+      if (!mapInstanceRef.current) {
+        loadMap(mapContainerRef.current, resolvedTheme);
+      } else {
+        setMapTheme(resolvedTheme);
+      }
     }
+  }, [resolvedTheme]);
 
+  React.useEffect(() => {
     return () => {
       mapInstanceRef.current = null;
     };
-  }, [mapContainerRef]);
+  }, []);
 
   return (
     <div ref={mapContainerRef} style={{ width: "100%", height: "100%" }} />

@@ -3,9 +3,10 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { Button } from "@nextui-org/react";
 
 import { firebaseAuth } from "../../utils/firebase";
+import { default as MapComponent } from "../../components/Map";
+import SwitchTheme from "../../components/theme/SwitchTheme";
 
 import { PropsFromRedux } from "./connector";
-import { default as MapComponent } from "../../components/Map";
 
 type Props = PropsFromRedux;
 
@@ -30,14 +31,21 @@ const Map: React.FC<Props> = (props: Props) => {
 
   return (
     <>
+      <SwitchTheme />
       <div className="fixed top-0 left-0 w-screen h-screen z-[-1]">
         <MapComponent />
       </div>
       <>Name: [{props.username}]</>
-      <Button className="bg-blue-200 p-2 rounded-lg" onClick={handleLogin}>
+      <Button
+        className="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg"
+        onClick={handleLogin}
+      >
         Login
       </Button>
-      <Button className="bg-blue-500 p-2 rounded-lg" onClick={handleLogout}>
+      <Button
+        className="bg-zinc-100 dark:bg-zinc-800 p-2 rounded-lg"
+        onClick={handleLogout}
+      >
         Logout
       </Button>
     </>

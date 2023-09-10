@@ -1,6 +1,6 @@
 import React from "react";
 
-import { mapInstanceRef } from "../../../../utils/googlemaps";
+import { mapInstanceRef } from "../../../../utils/map/googleMaps";
 import { getUserMarker } from "../../../../utils/map/marker";
 
 const UserPoi: React.FC = () => {
