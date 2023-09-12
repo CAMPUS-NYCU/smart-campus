@@ -21,6 +21,10 @@ const MapOptions: google.maps.MapOptions = {
     lng: 120.9969249,
   },
   zoom: 17,
+  fullscreenControl: false,
+  streetViewControl: false,
+  zoomControl: false,
+  mapTypeControl: false,
 };
 
 export default MapOptions;

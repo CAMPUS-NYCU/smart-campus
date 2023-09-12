@@ -5,7 +5,7 @@ import { Button } from "@nextui-org/react";
 import { firebaseAuth } from "../../utils/firebase";
 
 import { PropsFromRedux } from "./connector";
-import GoogleMaps from "../../components/Map/GoogleMaps";
+import { default as MapComponent } from "../../components/Map";
 
 type Props = PropsFromRedux;
 
@@ -31,7 +31,7 @@ const Map: React.FC<Props> = (props: Props) => {
   return (
     <>
       <div className="fixed top-0 left-0 w-screen h-screen z-[-1]">
-        <GoogleMaps />
+        <MapComponent />
       </div>
       <>Name: [{props.username}]</>
       <Button className="bg-blue-200 p-2 rounded-lg" onClick={handleLogin}>
