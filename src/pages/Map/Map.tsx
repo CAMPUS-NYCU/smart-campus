@@ -16,6 +16,13 @@ const Map: React.FC<Props> = (props: Props) => {
     });
   };
 
+  const handleRegisterWithEmailAndPassword = () => {
+    props.registerWithEmailAndPassword({
+      email: "username@a.com",
+      password: "password",
+    });
+  };
+
   const handleLoginWithFacebook = () => {
     props.loginWithProvider({
       provider: firebaseAuthProviders.facebook,
@@ -53,6 +60,12 @@ const Map: React.FC<Props> = (props: Props) => {
         onClick={handleLoginWithEmailAndPassword}
       >
         Login
+      </Button>
+      <Button
+        className="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg"
+        onClick={handleRegisterWithEmailAndPassword}
+      >
+        Register
       </Button>
       <Button
         className="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg"

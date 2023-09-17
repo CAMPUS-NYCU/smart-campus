@@ -15,6 +15,15 @@ const userExtraReducers = (builder: ActionReducerMapBuilder<UserState>) => {
     return userReducers.reset();
   });
   builder.addCase(
+    userActions.registerWithEmailAndPassword.fulfilled,
+    (_: UserState, action: PayloadAction<UserAuthState>) => {
+      return userReducers.set(_, { ...action });
+    },
+  );
+  builder.addCase(userActions.registerWithEmailAndPassword.rejected, () => {
+    return userReducers.reset();
+  });
+  builder.addCase(
     userActions.loginWithProvider.fulfilled,
     (_: UserState, action: PayloadAction<UserAuthState>) => {
       return userReducers.set(_, { ...action });

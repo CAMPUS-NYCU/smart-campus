@@ -9,6 +9,7 @@ const mapState = (state: ApplicationState) => ({
 
 const mapDispatch = {
   loginWithEmailAndPassword: User.actions.loginWithEmailAndPassword,
+  registerWithEmailAndPassword: User.actions.registerWithEmailAndPassword,
   loginWithProvider: User.actions.loginWithProvider,
   logout: User.actions.logout,
 };

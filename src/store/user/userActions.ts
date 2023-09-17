@@ -4,6 +4,7 @@ import {
   UserCredential,
   signInWithEmailAndPassword,
   signInWithPopup,
+  createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 
@@ -28,6 +29,26 @@ export const loginWithEmailAndPassword = createAsyncThunk(
     let userAuthState = initialUserAuthState;
     try {
       userAuthState = await signInWithEmailAndPassword(
+        firebaseAuth,
+        args.email,
+        args.password,
+      ).then(toUserAuthState);
+    } catch (error) {
+      rejectWithValue(error);
+    }
+    return userAuthState;
+  },
+);
+
+export const registerWithEmailAndPassword = createAsyncThunk(
+  "user/register-with-email-and-password",
+  async (
+    args: { email: string; password: string },
+    { rejectWithValue },
+  ): Promise<UserAuthState> => {
+    let userAuthState = initialUserAuthState;
+    try {
+      userAuthState = await createUserWithEmailAndPassword(
         firebaseAuth,
         args.email,
         args.password,
