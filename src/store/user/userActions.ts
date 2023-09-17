@@ -1,18 +1,39 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { UserAuthState } from "./userState";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
-type loginPayloadType = { username: string; password: string };
+import { firebaseAuth } from "../../utils/firebase";
+import { UserAuthState, initialUserAuthState } from "./userState";
 
-export const login = createAsyncThunk(
-  "user/login",
-  async (payload: loginPayloadType): Promise<UserAuthState> => {
-    return { id: "id", username: payload.username, token: "token" };
+export const loginWithEmailAndPassword = createAsyncThunk(
+  "user/login-with-email-and-password",
+  async (
+    args: { email: string; password: string },
+    { rejectWithValue },
+  ): Promise<UserAuthState> => {
+    let userAuthState = initialUserAuthState;
+    try {
+      const user = await signInWithEmailAndPassword(
+        firebaseAuth,
+        args.email,
+        args.password,
+      ).then((userCredential) => {
+        const user = userCredential.user;
+        return user;
+      });
+
+      userAuthState = {
+        id: user.uid,
+        idToken: await user.getIdToken(),
+        username: user.email,
+        displayName: user.displayName,
+      };
+    } catch (error) {
+      rejectWithValue(error);
+    }
+    return userAuthState;
   },
 );
 
-export const logout = createAsyncThunk(
-  "user/logout",
-  async (): Promise<void> => {
-    // TODO: logout
-  },
+export const logout = createAsyncThunk("user/logout", async () =>
+  signOut(firebaseAuth),
 );

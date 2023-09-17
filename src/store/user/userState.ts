@@ -1,16 +1,25 @@
 interface UserState {
   id: string | null;
+  idToken: string;
   username: string | null;
-  token: string | null;
+  displayName: string | null;
 }
-
-export interface UserAuthState
-  extends Pick<UserState, "id" | "username" | "token"> {}
 
 export const initialUserState: UserState = {
   id: null,
   username: null,
-  token: null,
+  idToken: "",
+  displayName: null,
+};
+
+export interface UserAuthState
+  extends Pick<UserState, "id" | "idToken" | "username" | "displayName"> {}
+
+export const initialUserAuthState: UserState = {
+  id: initialUserState.id,
+  username: initialUserState.username,
+  idToken: initialUserState.idToken,
+  displayName: initialUserState.displayName,
 };
 
 export default UserState;

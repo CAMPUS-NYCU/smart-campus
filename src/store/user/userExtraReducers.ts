@@ -6,11 +6,14 @@ import UserState, { UserAuthState } from "./userState";
 
 const userExtraReducers = (builder: ActionReducerMapBuilder<UserState>) => {
   builder.addCase(
-    userActions.login.fulfilled,
+    userActions.loginWithEmailAndPassword.fulfilled,
     (_: UserState, action: PayloadAction<UserAuthState>) => {
       return userReducers.set(_, { ...action });
     },
   );
+  builder.addCase(userActions.loginWithEmailAndPassword.rejected, () => {
+    return userReducers.reset();
+  });
   builder.addCase(userActions.logout.fulfilled, () => {
     return userReducers.reset();
   });

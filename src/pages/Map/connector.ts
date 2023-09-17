@@ -8,7 +8,7 @@ const mapState = (state: ApplicationState) => ({
 });
 
 const mapDispatch = {
-  login: User.actions.login,
+  loginWithEmailAndPassword: User.actions.loginWithEmailAndPassword,
   logout: User.actions.logout,
 };
 

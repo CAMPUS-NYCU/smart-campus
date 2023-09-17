@@ -11,10 +11,10 @@ const PrivateRoute: React.FC<Props> = (props: Props) => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (!props.token) {
+    if (!props.idToken) {
       navigate(url.map);
     }
-  }, [navigate, props.token]);
+  }, [navigate, props.idToken]);
 
   return <Outlet />;
 };

@@ -3,7 +3,7 @@ import { ConnectedProps, connect } from "react-redux";
 import { ApplicationState } from "../../../store";
 
 const mapState = (state: ApplicationState) => ({
-  token: state.user.token,
+  idToken: state.user.idToken,
 });
 
 const mapDispatch = {};
