@@ -1,6 +1,7 @@
-import connector from "./connector";
-import { default as SettingsComponent } from "./Settings";
+import React from "react";
 
-const Settings = connector(SettingsComponent);
+const Settings: React.FC = () => {
+  return <>Settings Page</>;
+};
 
 export default Settings;
