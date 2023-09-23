@@ -17,11 +17,16 @@ export const FIREBASE_EMULATOR = {
     URL: "http://localhost:9099",
   },
   FIRESTORE: {
-    HOST: "http://localhost",
+    HOST: "localhost",
     PORT: 8080,
   },
   STORAGE: {
-    HOST: "http://localhost",
+    HOST: "localhost",
     PORT: 9199,
   },
+};
+
+export const FIRESTORE_COLLECTIONS = {
+  USER: "User",
+  POI: "Poi",
 };

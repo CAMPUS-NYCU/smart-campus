@@ -1,25 +1,41 @@
 import {
   AuthProvider,
   createUserWithEmailAndPassword,
+  getAdditionalUserInfo,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
-import { firebaseAuth } from "../../utils/firebase";
-import { toUserAuthState, toUserAuthStateOrNull } from "../../utils/user";
-
-import { UserAuthState, UserAuthStateOrNull } from "./model";
+import { FIRESTORE_COLLECTIONS } from "../../constants/firebase";
+import User, { UserOrNull } from "../../models/user";
+import { FirestoreUser } from "../../models/firebase/firestore";
+import { firebaseAuth, firestore } from "../../utils/firebase";
 
 import apiSlice from "..";
 
-const authApiSlice = apiSlice.injectEndpoints({
+const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getUserAuth: builder.query<UserAuthStateOrNull, void>({
+    getUser: builder.query<UserOrNull, void>({
       queryFn: async () => {
-        const user = firebaseAuth.currentUser;
+        const userAuth = firebaseAuth.currentUser;
 
-        return { data: await toUserAuthStateOrNull(user) };
+        if (!userAuth) {
+          return { data: null };
+        }
+
+        const userFromFirestore = await getDoc(
+          doc(firestore, FIRESTORE_COLLECTIONS.USER, userAuth.uid),
+        ).then((doc) => doc.data() as FirestoreUser);
+
+        const user: User = {
+          ...userFromFirestore,
+          idToken: await userAuth.getIdToken(),
+          email: userAuth.email,
+        };
+
+        return { data: user };
       },
       providesTags: ["User"],
     }),
@@ -32,55 +48,63 @@ const authApiSlice = apiSlice.injectEndpoints({
       providesTags: ["User"],
     }),
     loginWithEmailAndPassword: builder.mutation<
-      UserAuthState,
+      string,
       { email: string; password: string }
     >({
       queryFn: async (arg) => {
-        const userAuth = await signInWithEmailAndPassword(
-          firebaseAuth,
-          arg.email,
-          arg.password,
-        )
-          .then((userCredential) => userCredential.user)
-          .then(toUserAuthState)
-          .catch((error) => {
-            throw new Error(error.message);
-          });
+        await signInWithEmailAndPassword(firebaseAuth, arg.email, arg.password);
 
-        return { data: userAuth };
+        return { data: "ok" };
       },
       invalidatesTags: ["User"],
     }),
     registerWithEmailAndPassword: builder.mutation<
-      UserAuthState,
+      string,
       { email: string; password: string }
     >({
       queryFn: async (arg) => {
-        const userAuth = await createUserWithEmailAndPassword(
+        const userCredential = await createUserWithEmailAndPassword(
           firebaseAuth,
           arg.email,
           arg.password,
-        )
-          .then((userCredential) => userCredential.user)
-          .then(toUserAuthState)
-          .catch((error) => {
-            throw new Error(error.message);
-          });
+        );
 
-        return { data: userAuth };
+        const userFromFirestore: FirestoreUser = {
+          id: userCredential.user.uid,
+          username: userCredential.user.email!,
+          displayName: userCredential.user.email!,
+          avatarUrl: null,
+        };
+
+        await setDoc(
+          doc(firestore, FIRESTORE_COLLECTIONS.USER, userCredential.user.uid),
+          userFromFirestore,
+        );
+
+        return { data: "ok" };
       },
       invalidatesTags: ["User"],
     }),
-    loginWithProvider: builder.mutation<UserAuthState, AuthProvider>({
+    loginWithProvider: builder.mutation<string, AuthProvider>({
       queryFn: async (arg) => {
-        const userAuth = await signInWithPopup(firebaseAuth, arg)
-          .then((userCredential) => userCredential.user)
-          .then(toUserAuthState)
-          .catch((error) => {
-            throw new Error(error.message);
-          });
+        const userCredential = await signInWithPopup(firebaseAuth, arg);
 
-        return { data: userAuth };
+        const isNewUser = getAdditionalUserInfo(userCredential)?.isNewUser;
+        if (isNewUser) {
+          const userFromFirestore: FirestoreUser = {
+            id: userCredential.user.uid,
+            username: userCredential.user.email!,
+            displayName: userCredential.user.email!,
+            avatarUrl: null,
+          };
+
+          await setDoc(
+            doc(firestore, FIRESTORE_COLLECTIONS.USER, userCredential.user.uid),
+            userFromFirestore,
+          );
+        }
+
+        return { data: "ok" };
       },
       invalidatesTags: ["User"],
     }),
@@ -96,12 +120,12 @@ const authApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useGetUserAuthQuery,
+  useGetUserQuery,
   useIsLoggedInQuery,
   useLoginWithEmailAndPasswordMutation,
   useRegisterWithEmailAndPasswordMutation,
   useLoginWithProviderMutation,
   useLogoutMutation,
-} = authApiSlice;
+} = userApiSlice;
 
-export default authApiSlice;
+export default userApiSlice;

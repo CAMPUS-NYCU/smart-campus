@@ -2,17 +2,17 @@ import React from "react";
 import { Button } from "@nextui-org/react";
 
 import {
-  useGetUserAuthQuery,
+  useGetUserQuery,
   useLoginWithEmailAndPasswordMutation,
   useLoginWithProviderMutation,
   useLogoutMutation,
   useRegisterWithEmailAndPasswordMutation,
-} from "../../api/auth";
+} from "../../api/user";
 import { default as MapComponent } from "../../components/Map";
 import firebaseAuth, { firebaseAuthProviders } from "../../utils/firebase/auth";
 
 const Map: React.FC = () => {
-  const { data: userAuth } = useGetUserAuthQuery();
+  const { data: userAuth } = useGetUserQuery();
 
   const [
     loginWithEmailAndPassword,

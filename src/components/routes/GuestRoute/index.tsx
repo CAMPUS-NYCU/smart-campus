@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 
-import { useIsLoggedInQuery } from "../../../api/auth";
+import { useIsLoggedInQuery } from "../../../api/user";
 import url from "../../../constants/routes";
 
 const GuestRoute: React.FC = () => {
