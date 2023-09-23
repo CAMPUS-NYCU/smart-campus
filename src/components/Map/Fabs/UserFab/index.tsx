@@ -6,35 +6,42 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
-import SwitchTheme from "../../../theme/SwitchTheme";
+import { useGetUserQuery } from "../../../../api/user";
+import SwitchTheme from "../../../modal/SwitchTheme";
 
 import UserFabMenu from "./UserFabMenu";
+import Login from "../../../modal/Login";
 
 const Trigger: React.FC = () => {
+  const { data: user } = useGetUserQuery();
+
   return (
     <DropdownTrigger>
       <Avatar
         isBordered
-        className="absolute top-0 right-0"
-        src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+        className="absolute top-6 right-4"
+        src={user?.avatarUrl || ""}
+        name={user?.displayName || ""}
       />
     </DropdownTrigger>
   );
 };
 
 const UserFab: React.FC = () => {
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const loginDisclosure = useDisclosure();
+  const switchThemeDisclosure = useDisclosure();
+
   return (
     <>
       <Dropdown>
         <Trigger />
-        <UserFabMenu onOpen={onOpen} />
+        <UserFabMenu
+          loginDisclosure={loginDisclosure}
+          switchThemeDisclosure={switchThemeDisclosure}
+        />
       </Dropdown>
-      <SwitchTheme
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        onClose={onClose}
-      />
+      <Login disclosure={loginDisclosure} />
+      <SwitchTheme disclosure={switchThemeDisclosure} />
     </>
   );
 };

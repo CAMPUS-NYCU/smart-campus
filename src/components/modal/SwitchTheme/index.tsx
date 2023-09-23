@@ -8,6 +8,7 @@ import {
   ModalHeader,
   Tab,
   Tabs,
+  useDisclosure,
 } from "@nextui-org/react";
 import { useTheme } from "next-themes";
 
@@ -18,13 +19,11 @@ import {
 } from "../../../utils/icons/theme";
 
 interface SwitchThemeProps {
-  isOpen: boolean;
-  onOpenChange: () => void;
-  onClose: () => void;
+  disclosure: ReturnType<typeof useDisclosure>;
 }
 
 const SwitchTheme: React.FC<SwitchThemeProps> = (props) => {
-  const { isOpen, onOpenChange, onClose } = props;
+  const { isOpen, onOpenChange, onClose } = props.disclosure;
   const { theme, setTheme, forcedTheme } = useTheme();
   const handleSelectionChange = (key: React.Key) => {
     setTheme(key as string);

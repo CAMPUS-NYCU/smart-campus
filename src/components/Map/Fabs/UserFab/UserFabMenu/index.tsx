@@ -4,27 +4,43 @@ import {
   DropdownMenu,
   DropdownSection,
   User,
+  useDisclosure,
 } from "@nextui-org/react";
 
-const UserSection: React.FC = () => {
+import {
+  useGetUserQuery,
+  useIsLoggedInQuery,
+  useLogoutMutation,
+} from "../../../../../api/user";
+
+const MenuItemUser: React.FC = () => {
+  const { data: user } = useGetUserQuery();
+
   return (
     <User
-      name="Junior Garcia"
-      description="@jrgarciadev"
+      name={user?.displayName}
+      description={user?.username}
       classNames={{
         name: "text-default-600",
         description: "text-default-500",
       }}
       avatarProps={{
         size: "sm",
-        src: "https://avatars.githubusercontent.com/u/30373425?v=4",
+        src: user?.avatarUrl || "",
       }}
     />
   );
 };
 
-const UserFabMenu: React.FC<{ onOpen: () => void }> = (props) => {
-  const { onOpen } = props;
+interface UserFabMenuProps {
+  loginDisclosure: ReturnType<typeof useDisclosure>;
+  switchThemeDisclosure: ReturnType<typeof useDisclosure>;
+}
+
+const UserFabMenu: React.FC<UserFabMenuProps> = (props) => {
+  const { loginDisclosure, switchThemeDisclosure } = props;
+  const { data: isLoggedIn } = useIsLoggedInQuery();
+  const [logout] = useLogoutMutation();
 
   return (
     <DropdownMenu
@@ -50,19 +66,39 @@ const UserFabMenu: React.FC<{ onOpen: () => void }> = (props) => {
           key="profile"
           className="h-14 gap-2 opacity-100"
           textValue="User Section"
+          hidden={!isLoggedIn}
         >
-          <UserSection />
+          <MenuItemUser />
+        </DropdownItem>
+        <DropdownItem
+          key="login"
+          textValue="login"
+          onPress={loginDisclosure.onOpen}
+          style={{ display: isLoggedIn ? "none" : "block" }}
+        >
+          Login
         </DropdownItem>
         <DropdownItem key="dashboard">Dashboard</DropdownItem>
         <DropdownItem key="settings">Settings</DropdownItem>
-        <DropdownItem key="theme" textValue="Theme" onPress={onOpen}>
+        <DropdownItem
+          key="theme"
+          textValue="Theme"
+          onPress={switchThemeDisclosure.onOpen}
+        >
           Change Theme
         </DropdownItem>
       </DropdownSection>
 
       <DropdownSection aria-label="Help & Feedback">
         <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-        <DropdownItem key="logout">Log Out</DropdownItem>
+        <DropdownItem
+          key="logout"
+          textValue="logout"
+          onPress={logout}
+          style={{ display: isLoggedIn ? "block" : "none" }}
+        >
+          logout
+        </DropdownItem>
       </DropdownSection>
     </DropdownMenu>
   );
