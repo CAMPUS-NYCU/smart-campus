@@ -1,11 +1,7 @@
 import React from "react";
 import { useTheme } from "next-themes";
 
-import {
-  loadMap,
-  mapInstanceRef,
-  setMapTheme,
-} from "../../../utils/map/googleMaps";
+import { maps } from "../../../utils/googleMaps";
 
 const GoogleMaps: React.FC = () => {
   const mapContainerRef = React.useRef<HTMLDivElement>(null);
@@ -13,17 +9,17 @@ const GoogleMaps: React.FC = () => {
 
   React.useEffect(() => {
     if (mapContainerRef.current) {
-      if (!mapInstanceRef.current) {
-        loadMap(mapContainerRef.current, resolvedTheme);
+      if (!maps.mapRef.current) {
+        maps.loadMap(mapContainerRef.current, resolvedTheme);
       } else {
-        setMapTheme(resolvedTheme);
+        maps.setTheme(resolvedTheme);
       }
     }
   }, [resolvedTheme]);
 
   React.useEffect(() => {
     return () => {
-      mapInstanceRef.current = null;
+      maps.mapRef.current = null;
     };
   }, []);
 

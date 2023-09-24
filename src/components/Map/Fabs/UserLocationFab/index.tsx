@@ -1,17 +1,12 @@
 import React from "react";
 import { UserLocationFabIcon } from "../../../../utils/icons/map";
 import { Button } from "@nextui-org/react";
-import { mapInstanceRef } from "../../../../utils/map/googleMaps";
+import { maps } from "../../../../utils/googleMaps";
 
 const UserLocationFab: React.FC = () => {
   const handleUserLocationFabClick = () => {
     const handleGetCurrentPositionSuccess = (position: GeolocationPosition) => {
-      mapInstanceRef.current?.panTo(
-        new google.maps.LatLng(
-          position.coords.latitude,
-          position.coords.longitude,
-        ),
-      );
+      maps.panTo(position.coords.latitude, position.coords.longitude);
     };
 
     const handleGetCurrentPositionFail = (error: GeolocationPositionError) =>

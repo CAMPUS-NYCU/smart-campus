@@ -2,7 +2,7 @@ import React from "react";
 
 import GoogleMaps from "./GoogleMaps";
 import Fabs from "./Fabs";
-import Pois from "./Pois";
+import Markers from "./Markers";
 
 const Map: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const Map: React.FC = () => {
         <GoogleMaps />
       </div>
       <Fabs />
-      <Pois />
+      <Markers />
     </>
   );
 };
