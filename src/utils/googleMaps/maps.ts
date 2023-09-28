@@ -45,3 +45,7 @@ export const setTheme = (theme?: string): void => {
 export const panTo = (lat: number, lng: number): void => {
   mapRef.current?.panTo({ lat, lng });
 };
+
+export const getCenter = (): google.maps.LatLng | null => {
+  return mapRef.current?.getCenter() || null;
+};

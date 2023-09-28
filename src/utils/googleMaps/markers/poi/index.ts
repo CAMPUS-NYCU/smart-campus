@@ -5,15 +5,15 @@ export const markerRef = {
   current: [] as google.maps.Marker[],
 };
 
-export const setPois = (
-  pois: { latitude: number; longitude: number }[],
+export const setLatLngs = (
+  latLngs: { latitude: number; longitude: number }[],
 ): void => {
   if (!maps.mapRef.current) {
     return;
   }
 
-  const positions = pois.map(
-    (poi) => new google.maps.LatLng(poi.latitude, poi.longitude),
+  const positions = latLngs.map(
+    ({ latitude, longitude }) => new google.maps.LatLng(latitude, longitude),
   );
 
   const markers = positions.map((position) => {
