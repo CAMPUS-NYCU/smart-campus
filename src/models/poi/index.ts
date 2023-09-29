@@ -1,4 +1,9 @@
 interface Poi {
+  id: string;
+  data: PoiData;
+}
+
+export interface PoiData {
   name: string;
   description: string;
   latlng: {
@@ -7,6 +12,8 @@ interface Poi {
   };
   createBy: string;
 }
+
+export type Pois = Record<string, PoiData>;
 
 export type PoiOrNull = Poi | null;
 

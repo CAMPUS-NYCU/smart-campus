@@ -18,15 +18,15 @@ const MenuItemUser: React.FC = () => {
 
   return (
     <User
-      name={user?.displayName}
-      description={user?.username}
+      name={user?.data.displayName}
+      description={user?.data.username}
       classNames={{
         name: "text-default-600",
         description: "text-default-500",
       }}
       avatarProps={{
         size: "sm",
-        src: user?.avatarUrl || "",
+        src: user?.data.avatarUrl || "",
       }}
     />
   );

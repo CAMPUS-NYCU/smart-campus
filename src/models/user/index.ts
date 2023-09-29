@@ -1,5 +1,9 @@
 interface User {
   id: string;
+  data: UserData;
+}
+
+export interface UserData {
   idToken: string;
   username: string;
   email: string | null;

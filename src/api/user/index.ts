@@ -31,8 +31,11 @@ const userApiSlice = apiSlice.injectEndpoints({
 
         const user: User = {
           ...userFromFirestore,
-          idToken: await userAuth.getIdToken(),
-          email: userAuth.email,
+          data: {
+            ...userFromFirestore.data,
+            idToken: await userAuth.getIdToken(),
+            email: userAuth.email,
+          },
         };
 
         return { data: user };
@@ -71,9 +74,11 @@ const userApiSlice = apiSlice.injectEndpoints({
 
         const userFromFirestore: FirestoreUser = {
           id: userCredential.user.uid,
-          username: userCredential.user.email!,
-          displayName: userCredential.user.email!,
-          avatarUrl: null,
+          data: {
+            username: userCredential.user.email!,
+            displayName: userCredential.user.email!,
+            avatarUrl: null,
+          },
         };
 
         await setDoc(
@@ -93,9 +98,11 @@ const userApiSlice = apiSlice.injectEndpoints({
         if (isNewUser) {
           const userFromFirestore: FirestoreUser = {
             id: userCredential.user.uid,
-            username: userCredential.user.email!,
-            displayName: userCredential.user.email!,
-            avatarUrl: null,
+            data: {
+              username: userCredential.user.email!,
+              displayName: userCredential.user.email!,
+              avatarUrl: null,
+            },
           };
 
           await setDoc(

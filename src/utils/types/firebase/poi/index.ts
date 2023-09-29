@@ -1,8 +1,16 @@
 import { GeoPoint } from "firebase/firestore";
-import { FirestorePoi } from "../../../../models/firebase/firestore";
-import Poi from "../../../../models/poi";
+import {
+  FirestorePoi,
+  FirestorePoiData,
+} from "../../../../models/firebase/firestore";
+import Poi, { PoiData } from "../../../../models/poi";
 
 export const toFirebasePoiByPoi = (poi: Poi): FirestorePoi => ({
+  id: poi.id,
+  data: toFirebasePoiDataByPoiData(poi.data),
+});
+
+export const toFirebasePoiDataByPoiData = (poi: PoiData): FirestorePoiData => ({
   name: poi.name,
   description: poi.description,
   latlng: new GeoPoint(poi.latlng.latitude, poi.latlng.longitude),
@@ -10,6 +18,11 @@ export const toFirebasePoiByPoi = (poi: Poi): FirestorePoi => ({
 });
 
 export const toPoiByFirebasePoi = (poi: FirestorePoi): Poi => ({
+  id: poi.id,
+  data: toPoiDataByFirebasePoiData(poi.data),
+});
+
+export const toPoiDataByFirebasePoiData = (poi: FirestorePoiData): PoiData => ({
   name: poi.name,
   description: poi.description,
   latlng: {
