@@ -2,7 +2,8 @@
   "projects": {
     "default": "smartcampus-prod",
     "prod": "smartcampus-prod",
-    "dev": "smartcampus-dev"
+    "dev": "smartcampus-dev",
+    "research": "smartcampus-research"
   },
   "targets": {},
   "etags": {}
