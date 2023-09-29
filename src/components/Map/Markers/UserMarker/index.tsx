@@ -2,7 +2,7 @@ import React from "react";
 
 import { markers } from "../../../../utils/googleMaps";
 
-const User: React.FC = () => {
+const UserMarker: React.FC = () => {
   React.useEffect(() => {
     const handleWatchPositionSuccess = (position: GeolocationPosition) => {
       markers.user.setLatLng(
@@ -28,4 +28,4 @@ const User: React.FC = () => {
   return <></>;
 };
 
-export default User;
+export default UserMarker;

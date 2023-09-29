@@ -3,7 +3,7 @@ import React from "react";
 import { markers } from "../../../../utils/googleMaps";
 import { useGetPoisQuery } from "../../../../api/poi";
 
-const Poi: React.FC = () => {
+const PoiMarkers: React.FC = () => {
   const { data: pois } = useGetPoisQuery();
 
   React.useEffect(() => {
@@ -18,4 +18,4 @@ const Poi: React.FC = () => {
   return <></>;
 };
 
-export default Poi;
+export default PoiMarkers;

@@ -1,13 +1,13 @@
 import React from "react";
 
-import Poi from "./Poi";
-import User from "./User";
+import PoiMarkers from "./PoiMarkers";
+import UserMarker from "./UserMarker";
 
 const Markers: React.FC = () => {
   return (
     <>
-      <Poi />
-      <User />
+      <PoiMarkers />
+      <UserMarker />
     </>
   );
 };
