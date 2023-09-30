@@ -29,6 +29,12 @@ export const setPois = (pois: Pois): void => {
   markerRef.current = markers;
 };
 
+export const setOnPoiMarkerClick = (onClick: (poiId: string) => void): void => {
+  Object.entries(markerRef.current).forEach(([poiId, marker]) => {
+    marker.addListener("click", () => onClick(poiId));
+  });
+};
+
 export const clear = (): void => {
   Object.values(markerRef.current).forEach((marker) => marker.setMap(null));
 

@@ -40,8 +40,12 @@ const poiApiSlice = apiSlice.injectEndpoints({
       },
       providesTags: ["Poi"],
     }),
-    getPoi: builder.query<Poi, string>({
+    getPoi: builder.query<Poi | null, string | null>({
       queryFn: async (arg) => {
+        if (!arg) {
+          return { data: null };
+        }
+
         const poi = await getDoc(doc(firestore, FIRESTORE_COLLECTIONS.POI, arg))
           .then(
             (snapshot) =>
