@@ -27,6 +27,7 @@ export const FIREBASE_EMULATOR = {
 };
 
 export const FIRESTORE_COLLECTIONS = {
-  USER: "User",
+  CLUSTER: "Cluster",
   POI: "Poi",
+  USER: "User",
 };

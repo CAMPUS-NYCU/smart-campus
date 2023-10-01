@@ -6,6 +6,7 @@
     "User",
     "Google Maps",
     "Marker",
-    "POI Drawer"
+    "POI Drawer",
+    "Cluster Drawer"
   ]
 }

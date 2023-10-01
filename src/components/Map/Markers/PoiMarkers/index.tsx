@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useGetPoisQuery } from "../../../../api/poi";
 import { markers } from "../../../../utils/googleMaps";
 import { setOnPoiMarkerClick } from "../../../../utils/googleMaps/markers/poi";
-import { setCurrentPoiId } from "../../../../store/poiModal";
+import { setCurrentPoiId } from "../../../../store/mapDrawer";
 
 const PoiMarkers: React.FC = () => {
   const dispatch = useDispatch();

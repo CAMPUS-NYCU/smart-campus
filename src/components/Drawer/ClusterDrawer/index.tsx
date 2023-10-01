@@ -2,34 +2,35 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@nextui-org/react";
 
-import { useGetPoiQuery } from "../../../api/poi";
+import { useGetClusterQuery } from "../../../api/cluster";
 import { IRootState } from "../../../store";
-import { resetCurrentPoiId } from "../../../store/mapDrawer";
+import { resetCurrentClusterId } from "../../../store/mapDrawer";
 
 import Drawer from "..";
 
-const PoiDrawer: React.FC = () => {
+const ClusterDrawer: React.FC = () => {
   const dispatch = useDispatch();
-  const poiId = useSelector(
-    (state: IRootState) => state.mapDrawer.currentPoiId,
+  const clusterId = useSelector(
+    (state: IRootState) => state.mapDrawer.currentClusterId,
   );
 
-  const { data: poi } = useGetPoiQuery(poiId);
+  const { data: cluster } = useGetClusterQuery(clusterId);
 
   const handleDrawerClose = React.useCallback(() => {
-    dispatch(resetCurrentPoiId());
+    dispatch(resetCurrentClusterId());
   }, [dispatch]);
 
   return (
     <Drawer
-      open={!!poiId}
+      open={!!clusterId}
       onClose={handleDrawerClose}
-      title={poi?.data.name}
+      title={cluster?.data.name}
       children={
         <div>
-          <div>description: {poi?.data.description}</div>
+          <div>description: {cluster?.data.description}</div>
           <div>
-            latlng: {poi?.data.latlng.latitude}, {poi?.data.latlng.longitude}
+            latlng: {cluster?.data.latlng.latitude},{" "}
+            {cluster?.data.latlng.longitude}
           </div>
         </div>
       }
@@ -39,4 +40,4 @@ const PoiDrawer: React.FC = () => {
   );
 };
 
-export default PoiDrawer;
+export default ClusterDrawer;

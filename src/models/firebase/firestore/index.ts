@@ -1,5 +1,17 @@
 import { GeoPoint } from "firebase/firestore";
 
+export interface FirestoreCluster {
+  id: string;
+  data: FirestoreClusterData;
+}
+
+export interface FirestoreClusterData {
+  name: string;
+  description: string;
+  latlng: GeoPoint;
+  poiIds: string[];
+}
+
 export interface FirestorePoi {
   id: string;
   data: FirestorePoiData;

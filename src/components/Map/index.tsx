@@ -1,8 +1,7 @@
 import React from "react";
 
-import PoiDrawer from "../Drawer/PoiDrawer";
-
 import GoogleMaps from "./GoogleMaps";
+import Drawers from "./Drawers";
 import Fabs from "./Fabs";
 import Markers from "./Markers";
 
@@ -13,7 +12,7 @@ const Map: React.FC = () => {
         <GoogleMaps />
         <Markers />
       </div>
-      <PoiDrawer />
+      <Drawers />
       <Fabs />
     </>
   );

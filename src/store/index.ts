@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import apiSlice from "../api";
-import poiModal from "./poiModal";
+import mapDrawer from "./mapDrawer";
 
 const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
-    poiModal,
+    mapDrawer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),
