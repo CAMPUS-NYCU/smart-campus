@@ -3,26 +3,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@nextui-org/react";
 
 import { useGetClusterQuery } from "../../../api/cluster";
+import DrawerType from "../../../models/drawer";
 import { IRootState } from "../../../store";
-import { resetCurrentClusterId } from "../../../store/mapDrawer";
+import { clearDrawerHistory } from "../../../store/mapDrawer";
 
 import Drawer from "..";
 
 const ClusterDrawer: React.FC = () => {
   const dispatch = useDispatch();
-  const clusterId = useSelector(
-    (state: IRootState) => state.mapDrawer.currentClusterId,
-  );
 
-  const { data: cluster } = useGetClusterQuery(clusterId);
+  const currentDrawer = useSelector(
+    (state: IRootState) => state.mapDrawer.current,
+  );
+  const isDrawerOpen = currentDrawer?.type === DrawerType.ClusterView;
+  const id = currentDrawer?.id || null;
+
+  const { data: cluster } = useGetClusterQuery(id, {
+    skip: !isDrawerOpen,
+  });
 
   const handleDrawerClose = React.useCallback(() => {
-    dispatch(resetCurrentClusterId());
+    dispatch(clearDrawerHistory());
   }, [dispatch]);
 
   return (
     <Drawer
-      open={!!clusterId}
+      open={!!isDrawerOpen}
       onClose={handleDrawerClose}
       title={cluster?.data.name}
       children={

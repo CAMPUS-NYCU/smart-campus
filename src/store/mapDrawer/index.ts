@@ -1,44 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import DrawerType from "../../models/drawer";
+
+interface DrawerInfo {
+  type: DrawerType;
+  id: string;
+}
 
 interface MapDrawerState {
-  currentClusterId: string | null;
-  currentPoiId: string | null;
+  current: DrawerInfo | null;
+  history: DrawerInfo[];
 }
 
 const initialState = {
-  currentClusterId: null,
-  currentPoiId: null,
+  current: null,
+  history: [],
 } as MapDrawerState;
 
 const mapDrawerSlice = createSlice({
   name: "map-view",
   initialState,
   reducers: {
-    reset() {
+    clearDrawerHistory() {
       return initialState;
     },
-    setCurrentClusterId(state, action: PayloadAction<string>) {
-      state.currentClusterId = action.payload;
+    pushDrawer(state, action: PayloadAction<DrawerInfo>) {
+      if (state.current) {
+        state.history = [...state.history, state.current];
+      }
+
+      state.current = action.payload;
     },
-    resetCurrentClusterId(state) {
-      state.currentClusterId = null;
-    },
-    setCurrentPoiId(state, action: PayloadAction<string>) {
-      state.currentPoiId = action.payload;
-    },
-    resetCurrentPoiId(state) {
-      state.currentPoiId = null;
+    popDrawer(state) {
+      state.current = state.history.pop() || null;
     },
   },
 });
 
-export const {
-  reset,
-  setCurrentClusterId,
-  resetCurrentClusterId,
-  setCurrentPoiId,
-  resetCurrentPoiId,
-} = mapDrawerSlice.actions;
+export const { clearDrawerHistory, pushDrawer, popDrawer } =
+  mapDrawerSlice.actions;
 
 export default mapDrawerSlice.reducer;

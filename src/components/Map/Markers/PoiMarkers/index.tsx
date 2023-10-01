@@ -2,9 +2,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { useGetPoisQuery } from "../../../../api/poi";
+import DrawerType from "../../../../models/drawer";
+import { pushDrawer } from "../../../../store/mapDrawer";
 import { markers } from "../../../../utils/googleMaps";
 import { setOnPoiMarkerClick } from "../../../../utils/googleMaps/markers/poi";
-import { setCurrentPoiId } from "../../../../store/mapDrawer";
 
 const PoiMarkers: React.FC = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const PoiMarkers: React.FC = () => {
 
   const handlePoiMarkerClick = React.useCallback(
     (poiId: string) => {
-      dispatch(setCurrentPoiId(poiId));
+      dispatch(pushDrawer({ type: DrawerType.PoiView, id: poiId }));
     },
     [dispatch],
   );

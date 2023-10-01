@@ -3,26 +3,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@nextui-org/react";
 
 import { useGetPoiQuery } from "../../../api/poi";
+import DrawerType from "../../../models/drawer";
 import { IRootState } from "../../../store";
-import { resetCurrentPoiId } from "../../../store/mapDrawer";
+import { clearDrawerHistory } from "../../../store/mapDrawer";
 
 import Drawer from "..";
 
 const PoiDrawer: React.FC = () => {
   const dispatch = useDispatch();
-  const poiId = useSelector(
-    (state: IRootState) => state.mapDrawer.currentPoiId,
-  );
 
-  const { data: poi } = useGetPoiQuery(poiId);
+  const currentDrawer = useSelector(
+    (state: IRootState) => state.mapDrawer.current,
+  );
+  const isDrawerOpen = currentDrawer?.type === DrawerType.PoiView;
+  const id = currentDrawer?.id || null;
+
+  const { data: poi } = useGetPoiQuery(id, {
+    skip: !isDrawerOpen,
+  });
 
   const handleDrawerClose = React.useCallback(() => {
-    dispatch(resetCurrentPoiId());
+    dispatch(clearDrawerHistory());
   }, [dispatch]);
 
   return (
     <Drawer
-      open={!!poiId}
+      open={!!isDrawerOpen}
       onClose={handleDrawerClose}
       title={poi?.data.name}
       children={
