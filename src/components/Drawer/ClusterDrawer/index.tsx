@@ -1,34 +1,33 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 
 import { useGetClusterQuery } from "../../../api/cluster";
-import DrawerType from "../../../models/drawer";
-import { IRootState } from "../../../store";
-import { clearDrawerHistory } from "../../../store/mapDrawer";
+import { routeParams, routeParamsKeys } from "../../../models/route";
 
 import Drawer from "..";
 
 const ClusterDrawer: React.FC = () => {
-  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentDrawer = useSelector(
-    (state: IRootState) => state.mapDrawer.current,
-  );
-  const isDrawerOpen = currentDrawer?.type === DrawerType.ClusterView;
-  const id = currentDrawer?.id || null;
+  const selected =
+    searchParams.get(routeParamsKeys.markerType) ===
+    routeParams.markerType.cluster;
+  const id = selected ? searchParams.get(routeParamsKeys.markerId) : null;
 
   const { data: cluster } = useGetClusterQuery(id, {
-    skip: !isDrawerOpen,
+    skip: !selected,
   });
 
-  const handleDrawerClose = React.useCallback(() => {
-    dispatch(clearDrawerHistory());
-  }, [dispatch]);
+  const handleDrawerClose = () => {
+    searchParams.delete(routeParamsKeys.markerType);
+    searchParams.delete(routeParamsKeys.markerId);
+    setSearchParams(searchParams);
+  };
 
   return (
     <Drawer
-      open={!!isDrawerOpen}
+      open={selected}
       onClose={handleDrawerClose}
       title={cluster?.data.name}
       children={

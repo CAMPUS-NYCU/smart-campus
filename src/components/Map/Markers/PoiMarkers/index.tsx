@@ -1,34 +1,35 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
 import { useGetPoisQuery } from "../../../../api/poi";
-import DrawerType from "../../../../models/drawer";
-import { pushDrawer } from "../../../../store/mapDrawer";
+import { routeParams, routeParamsKeys } from "../../../../models/route";
 import { markers } from "../../../../utils/googleMaps";
 import { setOnPoiMarkerClick } from "../../../../utils/googleMaps/markers/poi";
 
 const PoiMarkers: React.FC = () => {
-  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const { data: pois } = useGetPoisQuery();
 
-  const handlePoiMarkerClick = React.useCallback(
+  const handleClick = React.useCallback(
     (poiId: string) => {
-      dispatch(pushDrawer({ type: DrawerType.PoiView, id: poiId }));
+      searchParams.set(routeParamsKeys.markerType, routeParams.markerType.poi);
+      searchParams.set(routeParamsKeys.markerId, poiId);
+      setSearchParams(searchParams);
     },
-    [dispatch],
+    [searchParams, setSearchParams],
   );
 
   React.useEffect(() => {
     if (pois) {
       markers.poi.setPois(pois);
-      setOnPoiMarkerClick(handlePoiMarkerClick);
+      setOnPoiMarkerClick(handleClick);
     }
 
     return () => {
       markers.poi.clear();
     };
-  }, [handlePoiMarkerClick, pois]);
+  }, [pois, handleClick]);
   return <></>;
 };
 
