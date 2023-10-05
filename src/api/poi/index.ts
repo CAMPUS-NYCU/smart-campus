@@ -59,12 +59,12 @@ const poiApiSlice = apiSlice.injectEndpoints({
     }),
     addPoi: builder.mutation<string, PoiData>({
       queryFn: async (arg) => {
-        await addDoc(
+        const docRef = await addDoc(
           collection(firestore, FIRESTORE_COLLECTIONS.POI),
           toFirebasePoiDataByPoiData(arg),
         );
 
-        return { data: "ok" };
+        return { data: docRef.id };
       },
       invalidatesTags: ["Poi"],
     }),
