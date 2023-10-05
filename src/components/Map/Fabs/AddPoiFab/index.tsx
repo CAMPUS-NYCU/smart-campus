@@ -16,6 +16,7 @@ const AddPoiFab: React.FC = () => {
     }
     addPoi({
       name: "New Poi Name",
+      clusterId: "",
       description: "New Poi Description",
       latlng: {
         latitude: center.lat(),

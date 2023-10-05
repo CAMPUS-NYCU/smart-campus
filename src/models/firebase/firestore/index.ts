@@ -9,7 +9,6 @@ export interface FirestoreClusterData {
   name: string;
   description: string;
   latlng: GeoPoint;
-  poiIds: string[];
 }
 
 export interface FirestorePoi {
@@ -19,6 +18,7 @@ export interface FirestorePoi {
 
 export interface FirestorePoiData {
   name: string;
+  clusterId: string;
   description: string;
   latlng: GeoPoint;
   createBy: string;

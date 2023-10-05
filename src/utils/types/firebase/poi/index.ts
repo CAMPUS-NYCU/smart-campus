@@ -12,6 +12,7 @@ export const toFirebasePoiByPoi = (poi: Poi): FirestorePoi => ({
 
 export const toFirebasePoiDataByPoiData = (poi: PoiData): FirestorePoiData => ({
   name: poi.name,
+  clusterId: poi.clusterId,
   description: poi.description,
   latlng: new GeoPoint(poi.latlng.latitude, poi.latlng.longitude),
   createBy: poi.createBy,
@@ -24,6 +25,7 @@ export const toPoiByFirebasePoi = (poi: FirestorePoi): Poi => ({
 
 export const toPoiDataByFirebasePoiData = (poi: FirestorePoiData): PoiData => ({
   name: poi.name,
+  clusterId: poi.clusterId,
   description: poi.description,
   latlng: {
     latitude: poi.latlng.latitude,

@@ -5,6 +5,7 @@ interface Poi {
 
 export interface PoiData {
   name: string;
+  clusterId: string;
   description: string;
   latlng: {
     latitude: number;

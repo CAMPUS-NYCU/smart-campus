@@ -18,7 +18,6 @@ export const toFirebaseClusterDataByClusterData = (
   name: cluster.name,
   description: cluster.description,
   latlng: new GeoPoint(cluster.latlng.latitude, cluster.latlng.longitude),
-  poiIds: cluster.poiIds,
 });
 
 export const toClusterByFirebaseCluster = (
@@ -37,5 +36,4 @@ export const toClusterDataByFirebaseClusterData = (
     latitude: cluster.latlng.latitude,
     longitude: cluster.latlng.longitude,
   },
-  poiIds: cluster.poiIds,
 });

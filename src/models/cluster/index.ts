@@ -10,7 +10,6 @@ export interface ClusterData {
     latitude: number;
     longitude: number;
   };
-  poiIds: string[];
 }
 
 export type Clusters = Record<string, ClusterData>;
