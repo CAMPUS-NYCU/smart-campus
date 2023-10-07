@@ -10,7 +10,10 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import { FIRESTORE_COLLECTIONS } from "../../constants/firebase";
 import User, { UserOrNull } from "../../models/user";
-import { FirestoreUser } from "../../models/firebase/firestore";
+import {
+  FirestoreUser,
+  FirestoreUserData,
+} from "../../models/firebase/firestore";
 import { firebaseAuth, firestore } from "../../utils/firebase";
 
 import apiSlice from "..";
@@ -27,10 +30,10 @@ const userApiSlice = apiSlice.injectEndpoints({
 
         const userFromFirestore = await getDoc(
           doc(firestore, FIRESTORE_COLLECTIONS.USER, userAuth.uid),
-        ).then((doc) => doc.data() as FirestoreUser);
+        ).then((doc) => ({ id: doc.id, data: doc.data() }) as FirestoreUser);
 
         const user: User = {
-          ...userFromFirestore,
+          id: userFromFirestore.id,
           data: {
             ...userFromFirestore.data,
             idToken: await userAuth.getIdToken(),
@@ -72,18 +75,15 @@ const userApiSlice = apiSlice.injectEndpoints({
           arg.password,
         );
 
-        const userFromFirestore: FirestoreUser = {
-          id: userCredential.user.uid,
-          data: {
-            username: userCredential.user.email!,
-            displayName: userCredential.user.email!,
-            avatarUrl: null,
-          },
+        const userDataFromFirestore: FirestoreUserData = {
+          username: userCredential.user.email!,
+          displayName: userCredential.user.email!,
+          avatarUrl: null,
         };
 
         await setDoc(
           doc(firestore, FIRESTORE_COLLECTIONS.USER, userCredential.user.uid),
-          userFromFirestore,
+          userDataFromFirestore,
         );
 
         return { data: "ok" };
@@ -96,18 +96,15 @@ const userApiSlice = apiSlice.injectEndpoints({
 
         const isNewUser = getAdditionalUserInfo(userCredential)?.isNewUser;
         if (isNewUser) {
-          const userFromFirestore: FirestoreUser = {
-            id: userCredential.user.uid,
-            data: {
-              username: userCredential.user.email!,
-              displayName: userCredential.user.email!,
-              avatarUrl: null,
-            },
+          const userDataFromFirestore: FirestoreUserData = {
+            username: userCredential.user.email!,
+            displayName: userCredential.user.email!,
+            avatarUrl: null,
           };
 
           await setDoc(
             doc(firestore, FIRESTORE_COLLECTIONS.USER, userCredential.user.uid),
-            userFromFirestore,
+            userDataFromFirestore,
           );
         }
 
