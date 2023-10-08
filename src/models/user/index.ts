@@ -1,15 +1,17 @@
 interface User {
   id: string;
+  auth: UserAuth;
   data: UserData;
 }
 
-export interface UserData {
-  idToken: string;
-  username: string;
+export interface UserAuth {
+  displayName: string;
   email: string | null;
-  displayName: string | null;
-  avatarUrl: string | null;
+  idToken: string;
+  photoURL: string | null;
 }
+
+export interface UserData {}
 
 export type UserOrNull = User | null;
 

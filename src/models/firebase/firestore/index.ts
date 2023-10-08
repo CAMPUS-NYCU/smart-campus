@@ -29,8 +29,4 @@ export interface FirestoreUser {
   data: FirestoreUserData;
 }
 
-export interface FirestoreUserData {
-  username: string;
-  displayName: string;
-  avatarUrl: string | null;
-}
+export interface FirestoreUserData {}

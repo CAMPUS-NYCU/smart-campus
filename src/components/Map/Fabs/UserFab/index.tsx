@@ -20,8 +20,8 @@ const Trigger: React.FC = () => {
       <Avatar
         isBordered
         className="absolute top-6 right-4"
-        src={user?.data.avatarUrl || ""}
-        name={user?.data.displayName || ""}
+        src={user?.auth.photoURL || ""}
+        name={user?.auth.displayName || ""}
       />
     </DropdownTrigger>
   );
