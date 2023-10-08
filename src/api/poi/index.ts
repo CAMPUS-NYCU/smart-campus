@@ -5,7 +5,9 @@ import {
   doc,
   getDoc,
   getDocs,
+  query,
   setDoc,
+  where,
 } from "firebase/firestore";
 
 import { FIRESTORE_COLLECTIONS } from "../../constants/firebase";
@@ -21,10 +23,17 @@ import apiSlice from "..";
 
 const poiApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getPois: builder.query<Pois, void>({
-      queryFn: async () => {
+    getPois: builder.query<Pois, string | null>({
+      queryFn: async (arg) => {
+        if (!arg) {
+          return { data: {} };
+        }
+
         const pois = await getDocs(
-          collection(firestore, FIRESTORE_COLLECTIONS.POI),
+          query(
+            collection(firestore, FIRESTORE_COLLECTIONS.POI),
+            where("clusterId", "==", arg),
+          ),
         )
           .then((snapshot) =>
             snapshot.docs.map(

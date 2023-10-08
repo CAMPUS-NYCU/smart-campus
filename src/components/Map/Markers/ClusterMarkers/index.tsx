@@ -4,12 +4,16 @@ import { useSearchParams } from "react-router-dom";
 import { useGetClustersQuery } from "../../../../api/cluster";
 import { markers } from "../../../../utils/googleMaps";
 import { setOnClusterMarkerClick } from "../../../../utils/googleMaps/markers/cluster";
-import { setupDrawerParams } from "../../../../utils/routes/params";
+import {
+  isCurrentDrawerParams,
+  setupDrawerParams,
+} from "../../../../utils/routes/params";
 
 const ClusterMarkers: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { data: clusters } = useGetClustersQuery();
+  const isCurrentSearchParamsPoi = isCurrentDrawerParams("poi", searchParams);
 
   const handleClick = React.useCallback(
     (clusterId: string) =>
@@ -22,7 +26,7 @@ const ClusterMarkers: React.FC = () => {
   );
 
   React.useEffect(() => {
-    if (clusters) {
+    if (!isCurrentSearchParamsPoi && clusters) {
       markers.cluster.setClusters(clusters);
       setOnClusterMarkerClick(handleClick);
     }
@@ -30,7 +34,7 @@ const ClusterMarkers: React.FC = () => {
     return () => {
       markers.cluster.clear();
     };
-  }, [clusters, handleClick]);
+  }, [clusters, handleClick, isCurrentSearchParamsPoi]);
   return <></>;
 };
 
