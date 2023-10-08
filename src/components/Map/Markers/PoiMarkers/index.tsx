@@ -2,9 +2,9 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { useGetPoisQuery } from "../../../../api/poi";
-import { routeParams, routeParamsKeys } from "../../../../models/route";
 import { markers } from "../../../../utils/googleMaps";
 import { setOnPoiMarkerClick } from "../../../../utils/googleMaps/markers/poi";
+import { setupDrawerParams } from "../../../../utils/routes/params";
 
 const PoiMarkers: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -12,11 +12,8 @@ const PoiMarkers: React.FC = () => {
   const { data: pois } = useGetPoisQuery();
 
   const handleClick = React.useCallback(
-    (poiId: string) => {
-      searchParams.set(routeParamsKeys.markerType, routeParams.markerType.poi);
-      searchParams.set(routeParamsKeys.markerId, poiId);
-      setSearchParams(searchParams);
-    },
+    (poiId: string) =>
+      setupDrawerParams<"poi">({ poiId }, searchParams, setSearchParams),
     [searchParams, setSearchParams],
   );
 

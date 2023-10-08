@@ -4,9 +4,13 @@ import { useSearchParams } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 
 import { useGetClusterQuery } from "../../../api/cluster";
-import { routeParams, routeParamsKeys } from "../../../models/route";
 import { IRootState } from "../../../store";
 import { addReport } from "../../../store/report";
+import {
+  getParamsFromDrawer,
+  isCurrentDrawerParams,
+  resetDrawerParams,
+} from "../../../utils/routes/params";
 
 import Drawer from "..";
 
@@ -14,27 +18,20 @@ const ClusterDrawer: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
-  const type = useSelector((state: IRootState) => state.report.type);
+  const reportType = useSelector((state: IRootState) => state.report.type);
 
-  const selected = (() => {
-    if (type) {
-      return false;
-    }
-
-    const routeParamsMarkerType = searchParams.get(routeParamsKeys.markerType);
-    return routeParamsMarkerType === routeParams.markerType.cluster;
-  })();
-
-  const id = selected ? searchParams.get(routeParamsKeys.markerId) : null;
+  const selected =
+    !reportType && isCurrentDrawerParams("cluster", searchParams);
+  const id = selected
+    ? getParamsFromDrawer("cluster", searchParams).clusterId
+    : null;
 
   const { data: cluster } = useGetClusterQuery(id, {
     skip: !selected,
   });
 
   const clearMarkerRouteParams = () => {
-    searchParams.delete(routeParamsKeys.markerType);
-    searchParams.delete(routeParamsKeys.markerId);
-    setSearchParams(searchParams);
+    resetDrawerParams(searchParams, setSearchParams);
   };
 
   const handleDrawerConfirm = () => {

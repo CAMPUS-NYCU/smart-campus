@@ -6,9 +6,13 @@ import { Button, useDisclosure } from "@nextui-org/react";
 import { useGetClusterQuery } from "../../../api/cluster";
 import { useAddPoiMutation } from "../../../api/poi";
 import { useGetUserQuery } from "../../../api/user";
-import { routeParams, routeParamsKeys } from "../../../models/route";
 import { IRootState } from "../../../store";
 import { resetReport } from "../../../store/report";
+import {
+  getParamsFromDrawer,
+  isCurrentDrawerParams,
+  setupDrawerParams,
+} from "../../../utils/routes/params";
 
 import Drawer from "..";
 import AddReportDrawerContent from "./AddReportDrawerContent";
@@ -26,16 +30,9 @@ const AddReportDrawer: React.FC = () => {
 
   const confirmDisclosure = useDisclosure();
 
-  const selected = (() => {
-    if (reportType !== "add") {
-      return false;
-    }
-
-    const routeParamsMarkerType = searchParams.get(routeParamsKeys.markerType);
-    return routeParamsMarkerType === routeParams.markerType.cluster;
-  })();
-
-  const id = selected ? searchParams.get(routeParamsKeys.markerId) : null;
+  const selected =
+    reportType === "add" && isCurrentDrawerParams("cluster", searchParams);
+  const id = getParamsFromDrawer("cluster", searchParams).clusterId;
 
   const { data: cluster } = useGetClusterQuery(id, {
     skip: !selected,
@@ -50,12 +47,11 @@ const AddReportDrawer: React.FC = () => {
       .unwrap()
       .then((poiId) => {
         dispatch(resetReport());
-        searchParams.set(
-          routeParamsKeys.markerType,
-          routeParams.markerType.poi,
+        setupDrawerParams<"poi">(
+          { poiId: poiId },
+          searchParams,
+          setSearchParams,
         );
-        searchParams.set(routeParamsKeys.markerId, poiId);
-        setSearchParams(searchParams);
         confirmDisclosure.onClose();
       });
   };

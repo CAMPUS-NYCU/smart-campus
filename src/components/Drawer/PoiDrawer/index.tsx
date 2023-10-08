@@ -3,25 +3,26 @@ import { useSearchParams } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 
 import { useGetPoiQuery } from "../../../api/poi";
-import { routeParams, routeParamsKeys } from "../../../models/route";
+import {
+  getParamsFromDrawer,
+  isCurrentDrawerParams,
+  resetDrawerParams,
+} from "../../../utils/routes/params";
 
 import Drawer from "..";
 
 const PoiDrawer: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const selected =
-    searchParams.get(routeParamsKeys.markerType) === routeParams.markerType.poi;
-  const id = selected ? searchParams.get(routeParamsKeys.markerId) : null;
+  const selected = isCurrentDrawerParams("poi", searchParams);
+  const id = selected ? getParamsFromDrawer("poi", searchParams).poiId : null;
 
   const { data: poi } = useGetPoiQuery(id, {
     skip: !selected,
   });
 
   const handleDrawerClose = () => {
-    searchParams.delete(routeParamsKeys.markerType);
-    searchParams.delete(routeParamsKeys.markerId);
-    setSearchParams(searchParams);
+    resetDrawerParams(searchParams, setSearchParams);
   };
 
   return (
