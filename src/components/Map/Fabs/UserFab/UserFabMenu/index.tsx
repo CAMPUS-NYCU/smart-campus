@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   DropdownItem,
   DropdownMenu,
@@ -34,11 +35,16 @@ const MenuItemUser: React.FC = () => {
 
 interface UserFabMenuProps {
   loginDisclosure: ReturnType<typeof useDisclosure>;
+  switchLanguageDisclosure: ReturnType<typeof useDisclosure>;
   switchThemeDisclosure: ReturnType<typeof useDisclosure>;
 }
 
 const UserFabMenu: React.FC<UserFabMenuProps> = (props) => {
-  const { loginDisclosure, switchThemeDisclosure } = props;
+  const { loginDisclosure, switchLanguageDisclosure, switchThemeDisclosure } =
+    props;
+
+  const { t } = useTranslation();
+
   const { data: isLoggedIn } = useIsLoggedInQuery();
   const [logout] = useLogoutMutation();
 
@@ -76,28 +82,41 @@ const UserFabMenu: React.FC<UserFabMenuProps> = (props) => {
           onPress={loginDisclosure.onOpen}
           style={{ display: isLoggedIn ? "none" : "block" }}
         >
-          Login
+          {t("fabs.user.menu.options.login", { ns: ["map"] })}
         </DropdownItem>
-        <DropdownItem key="dashboard">Dashboard</DropdownItem>
-        <DropdownItem key="settings">Settings</DropdownItem>
+        <DropdownItem key="dashboard">
+          {t("fabs.user.menu.options.dashboard", { ns: ["map"] })}
+        </DropdownItem>
+        <DropdownItem key="settings">
+          {t("fabs.user.menu.options.settings", { ns: ["map"] })}
+        </DropdownItem>
+        <DropdownItem
+          key="language"
+          textValue="Language"
+          onPress={switchLanguageDisclosure.onOpen}
+        >
+          {t("fabs.user.menu.options.language", { ns: ["map"] })}
+        </DropdownItem>
         <DropdownItem
           key="theme"
           textValue="Theme"
           onPress={switchThemeDisclosure.onOpen}
         >
-          Change Theme
+          {t("fabs.user.menu.options.theme", { ns: ["map"] })}
         </DropdownItem>
       </DropdownSection>
 
       <DropdownSection aria-label="Help & Feedback">
-        <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
+        <DropdownItem key="help_and_feedback">
+          {t("fabs.user.menu.options.helpAndFeedback", { ns: ["map"] })}
+        </DropdownItem>
         <DropdownItem
           key="logout"
           textValue="logout"
           onPress={logout}
           style={{ display: isLoggedIn ? "block" : "none" }}
         >
-          logout
+          {t("fabs.user.menu.options.logout", { ns: ["map"] })}
         </DropdownItem>
       </DropdownSection>
     </DropdownMenu>

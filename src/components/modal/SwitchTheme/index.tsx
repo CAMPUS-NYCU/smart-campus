@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Button,
   Modal,
@@ -24,6 +25,8 @@ interface SwitchThemeProps {
 
 const SwitchTheme: React.FC<SwitchThemeProps> = (props) => {
   const { isOpen, onOpenChange, onClose } = props.disclosure;
+
+  const { t } = useTranslation();
   const { theme, setTheme, forcedTheme } = useTheme();
   const handleSelectionChange = (key: React.Key) => {
     setTheme(key as string);
@@ -31,7 +34,9 @@ const SwitchTheme: React.FC<SwitchThemeProps> = (props) => {
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">Change Theme</ModalHeader>
+        <ModalHeader className="flex flex-col gap-1">
+          {t("switchTheme.title", { ns: ["modal"] })}
+        </ModalHeader>
         <ModalBody className="items-center">
           <Tabs
             aria-label="Options"
@@ -44,7 +49,9 @@ const SwitchTheme: React.FC<SwitchThemeProps> = (props) => {
               title={
                 <div className="flex items-center space-x-2">
                   <LightThemeIcon />
-                  <span>Light</span>
+                  <span>
+                    {t("switchTheme.options.light", { ns: ["modal"] })}
+                  </span>
                 </div>
               }
             />
@@ -53,7 +60,9 @@ const SwitchTheme: React.FC<SwitchThemeProps> = (props) => {
               title={
                 <div className="flex items-center space-x-2">
                   <DarkThemeIcon />
-                  <span>Dark</span>
+                  <span>
+                    {t("switchTheme.options.dark", { ns: ["modal"] })}
+                  </span>
                 </div>
               }
             />
@@ -62,7 +71,9 @@ const SwitchTheme: React.FC<SwitchThemeProps> = (props) => {
               title={
                 <div className="flex items-center space-x-2">
                   <SystemThemeIcon />
-                  <span>System</span>
+                  <span>
+                    {t("switchTheme.options.system", { ns: ["modal"] })}
+                  </span>
                 </div>
               }
             />
@@ -70,7 +81,7 @@ const SwitchTheme: React.FC<SwitchThemeProps> = (props) => {
         </ModalBody>
         <ModalFooter>
           <Button color="danger" variant="light" onPress={onClose}>
-            Close
+            {t("switchTheme.buttons.close", { ns: ["modal"] })}
           </Button>
         </ModalFooter>
       </ModalContent>

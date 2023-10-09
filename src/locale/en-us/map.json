@@ -1,0 +1,17 @@
+{
+  "fabs": {
+    "user": {
+      "menu": {
+        "options": {
+          "dashboard": "Dashboard",
+          "helpAndFeedback": "Help & Feedback",
+          "language": "Language",
+          "login": "Login",
+          "logout": "Logout",
+          "settings": "Settings",
+          "theme": "Theme"
+        }
+      }
+    }
+  }
+}

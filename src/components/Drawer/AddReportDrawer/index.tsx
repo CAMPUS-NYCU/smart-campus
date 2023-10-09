@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { Button, useDisclosure } from "@nextui-org/react";
@@ -19,6 +20,8 @@ import AddReportDrawerContent from "./AddReportDrawerContent";
 import AddReportDrawerConfirm from "./AddReportDrawerConfirm";
 
 const AddReportDrawer: React.FC = () => {
+  const { t } = useTranslation();
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
@@ -69,7 +72,14 @@ const AddReportDrawer: React.FC = () => {
     <Drawer
       open={selected}
       onClose={handleDrawerDismiss}
-      title={<span>Add a report for {cluster?.data.name}</span>}
+      title={
+        <span>
+          {t("addReport.title", {
+            cluster: cluster?.data.name,
+            ns: ["drawer"],
+          })}
+        </span>
+      }
       children={
         <>
           <AddReportDrawerContent />
@@ -79,8 +89,16 @@ const AddReportDrawer: React.FC = () => {
           />
         </>
       }
-      primaryButton={<Button onClick={handleDrawerConfirm}>Add</Button>}
-      secondaryButton={<button onClick={handleDrawerDismiss}>Dismiss</button>}
+      primaryButton={
+        <Button onClick={handleDrawerConfirm}>
+          {t("addReport.buttons.add", { ns: ["drawer"] })}
+        </Button>
+      }
+      secondaryButton={
+        <button onClick={handleDrawerDismiss}>
+          {t("addReport.buttons.cancel", { ns: ["drawer"] })}
+        </button>
+      }
     />
   );
 };

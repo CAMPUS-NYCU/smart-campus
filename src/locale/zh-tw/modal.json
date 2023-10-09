@@ -1,0 +1,42 @@
+{
+  "login": {
+    "content": {
+      "inputs": {
+        "email": {
+          "label": "電子郵件",
+          "placeholder": "輸入電子郵件"
+        },
+        "password": {
+          "label": "密碼",
+          "placeholder": "輸入密碼"
+        }
+      },
+      "buttons": {
+        "login": "登入",
+        "register": "註冊",
+        "loginWithFacebook": "透過 Facebook 登入",
+        "loginWithGitHub": "透過 GitHub 登入",
+        "loginWithGoogle": "透過 Google 登入",
+        "loginWithTwitter": "透過 Twitter 登入"
+      }
+    },
+    "title": "登入"
+  },
+  "switchLanguage": {
+    "buttons": {
+      "close": "關閉"
+    },
+    "title": "語言設定"
+  },
+  "switchTheme": {
+    "buttons": {
+      "close": "關閉"
+    },
+    "options": {
+      "dark": "深色",
+      "light": "淺色",
+      "system": "系統"
+    },
+    "title": "主題設定"
+  }
+}

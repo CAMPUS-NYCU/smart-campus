@@ -1,0 +1,61 @@
+{
+  "addReport": {
+    "buttons": {
+      "add": "Add",
+      "cancel": "Cancel"
+    },
+    "confirm": {
+      "buttons": {
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+      },
+      "content": "Are you sure to add this report?",
+      "title": "Add a report?"
+    },
+    "content": {
+      "inputs": {
+        "description": {
+          "label": "Description",
+          "placeholder": "Enter the description"
+        },
+        "name": {
+          "label": "Name",
+          "placeholder": "Enter the name"
+        }
+      },
+      "textWithButton": {
+        "setLocation": {
+          "button": "Mark",
+          "text": "Location"
+        }
+      }
+    },
+    "title": "Add a report for {{cluster}}"
+  },
+  "cluster": {
+    "buttons": {
+      "add": "Add",
+      "cancel": "Cancel"
+    },
+    "content": {
+      "texts": {
+        "description": "Description: {{description}}",
+        "latlng": "Latitude & Longitude: {{latitude}}, {{longitude}}"
+      }
+    },
+    "title": "{{name}}"
+  },
+  "poi": {
+    "buttons": {
+      "edit": "Edit",
+      "cancel": "Cancel"
+    },
+    "content": {
+      "texts": {
+        "description": "Description: {{description}}",
+        "latlng": "Latitude & Longitude: {{latitude}}, {{longitude}}"
+      }
+    },
+    "title": "{{name}}"
+  }
+}

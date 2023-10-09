@@ -6,7 +6,9 @@ import { ThemeProvider as NextThemeProvider } from "next-themes";
 
 import App from "./App.tsx";
 import store from "./store";
+
 import "./index.css";
+import "./locale";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

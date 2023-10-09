@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Button,
   Modal,
@@ -19,6 +20,8 @@ const AddReportDrawerConfirm: React.FC<AddReportDrawerConfirmProps> = (
 ) => {
   const { disclosure, onSubmit } = props;
 
+  const { t } = useTranslation();
+
   const handleSubmit = () => {
     onSubmit();
     disclosure.onClose();
@@ -26,16 +29,18 @@ const AddReportDrawerConfirm: React.FC<AddReportDrawerConfirmProps> = (
   return (
     <Modal isOpen={disclosure.isOpen} onOpenChange={disclosure.onOpenChange}>
       <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">Confirm</ModalHeader>
+        <ModalHeader className="flex flex-col gap-1">
+          {t("addReport.confirm.title", { ns: ["drawer"] })}
+        </ModalHeader>
         <ModalBody className="items-center">
-          Are you sure to add this report?
+          {t("addReport.confirm.content", { ns: ["drawer"] })}
         </ModalBody>
         <ModalFooter>
           <Button color="danger" variant="light" onPress={disclosure.onClose}>
-            Cancel
+            {t("addReport.confirm.buttons.cancel", { ns: ["drawer"] })}
           </Button>
           <Button color="primary" onPress={handleSubmit}>
-            Confirm
+            {t("addReport.confirm.buttons.confirm", { ns: ["drawer"] })}
           </Button>
         </ModalFooter>
       </ModalContent>

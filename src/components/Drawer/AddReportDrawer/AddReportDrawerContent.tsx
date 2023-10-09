@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Input } from "@nextui-org/react";
 
@@ -6,6 +7,8 @@ import { AddReportData, updateAddReportData } from "../../../store/report";
 import { maps } from "../../../utils/googleMaps";
 
 const AddReportDrawerContent: React.FC = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
 
@@ -31,8 +34,10 @@ const AddReportDrawerContent: React.FC = () => {
     <div>
       <Input
         autoFocus
-        label="Name"
-        placeholder="Enter the name"
+        label={t("addReport.content.inputs.name.label", { ns: ["drawer"] })}
+        placeholder={t("addReport.content.inputs.name.placeholder", {
+          ns: ["drawer"],
+        })}
         autoComplete="text"
         value={reportData.name || ""}
         isInvalid={!reportData.name}
@@ -40,8 +45,12 @@ const AddReportDrawerContent: React.FC = () => {
         variant="bordered"
       />
       <Input
-        label="Description"
-        placeholder="Enter the description"
+        label={t("addReport.content.inputs.description.label", {
+          ns: ["drawer"],
+        })}
+        placeholder={t("addReport.content.inputs.description.placeholder", {
+          ns: ["drawer"],
+        })}
         autoComplete="text"
         value={reportData.description || ""}
         isInvalid={!reportData.description}
@@ -49,8 +58,16 @@ const AddReportDrawerContent: React.FC = () => {
         variant="bordered"
       />
       <div className="flex justify-between items-center">
-        <h1>Location</h1>
-        <Button onClick={handleSetLatLng}>Mark</Button>
+        <h1>
+          {t("addReport.content.textWithButton.setLocation.text", {
+            ns: ["drawer"],
+          })}
+        </h1>
+        <Button onClick={handleSetLatLng}>
+          {t("addReport.content.textWithButton.setLocation.button", {
+            ns: ["drawer"],
+          })}
+        </Button>
       </div>
     </div>
   );

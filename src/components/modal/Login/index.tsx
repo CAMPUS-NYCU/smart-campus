@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Button,
   Input,
@@ -27,6 +28,8 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = (props) => {
   const { disclosure } = props;
+
+  const { t } = useTranslation();
 
   const initInputLoginInfo = { email: "", password: "" };
 
@@ -84,13 +87,19 @@ const Login: React.FC<LoginProps> = (props) => {
   return (
     <Modal isOpen={disclosure.isOpen} onOpenChange={disclosure.onOpenChange}>
       <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">Login</ModalHeader>
+        <ModalHeader className="flex flex-col gap-1">
+          {t("login.title", { ns: ["modal"] })}
+        </ModalHeader>
         <ModalBody>
           <form className="flex flex-col gap-3">
             <Input
               autoFocus
-              label="Email"
-              placeholder="Enter your email"
+              label={t("login.content.inputs.email.label", {
+                ns: ["modal"],
+              })}
+              placeholder={t("login.content.inputs.email.placeholder", {
+                ns: ["modal"],
+              })}
               autoComplete="email"
               value={inputloginInfo.email}
               onValueChange={(value) =>
@@ -99,8 +108,12 @@ const Login: React.FC<LoginProps> = (props) => {
               variant="bordered"
             />
             <Input
-              label="Password"
-              placeholder="Enter your password"
+              label={t("login.content.inputs.password.label", {
+                ns: ["modal"],
+              })}
+              placeholder={t("login.content.inputs.password.placeholder", {
+                ns: ["modal"],
+              })}
               autoComplete="current-password"
               type={isPasswordVisible ? "text" : "password"}
               value={inputloginInfo.password}
@@ -126,14 +139,18 @@ const Login: React.FC<LoginProps> = (props) => {
               onClick={handleLoginWithEmailAndPassword}
               onTouchEnd={handleLoginWithEmailAndPassword}
             >
-              Login
+              {t("login.content.buttons.login", {
+                ns: ["modal"],
+              })}
             </Button>
             <Button
               className="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg"
               onClick={handleRegisterWithEmailAndPassword}
               onTouchEnd={handleRegisterWithEmailAndPassword}
             >
-              Register
+              {t("login.content.buttons.register", {
+                ns: ["modal"],
+              })}
             </Button>
           </form>
           <Button
@@ -141,28 +158,36 @@ const Login: React.FC<LoginProps> = (props) => {
             onClick={handleLoginWithFacebook}
             onTouchEnd={handleLoginWithFacebook}
           >
-            Login with Facebook
+            {t("login.content.buttons.loginWithFacebook", {
+              ns: ["modal"],
+            })}
           </Button>
           <Button
             className="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg"
             onClick={handleLoginWithGitHub}
             onTouchEnd={handleLoginWithGitHub}
           >
-            Login with GitHub
+            {t("login.content.buttons.loginWithGitHub", {
+              ns: ["modal"],
+            })}
           </Button>
           <Button
             className="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg"
             onClick={handleLoginWithGoogle}
             onTouchEnd={handleLoginWithGoogle}
           >
-            Login with Google
+            {t("login.content.buttons.loginWithGoogle", {
+              ns: ["modal"],
+            })}
           </Button>
           <Button
             className="bg-slate-100 dark:bg-slate-800 p-2 rounded-lg"
             onClick={handleLoginWithTwitter}
             onTouchEnd={handleLoginWithTwitter}
           >
-            Login with Twitter
+            {t("login.content.buttons.loginWithTwitter", {
+              ns: ["modal"],
+            })}
           </Button>
         </ModalBody>
       </ModalContent>

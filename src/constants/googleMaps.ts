@@ -11,7 +11,7 @@ export enum LoadedLibrary {
 
 export const loaderOptions: LoaderOptions = {
   apiKey: env.GOOGLE_MAP_API_KEY,
-  language: "zh-TW",
+  language: "en-US",
 };
 
 /**

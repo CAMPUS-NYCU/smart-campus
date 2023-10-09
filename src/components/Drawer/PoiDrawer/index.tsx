@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 
@@ -12,6 +13,8 @@ import {
 import Drawer from "..";
 
 const PoiDrawer: React.FC = () => {
+  const { t } = useTranslation();
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const selected = isCurrentDrawerParams("poi", searchParams);
@@ -29,17 +32,37 @@ const PoiDrawer: React.FC = () => {
     <Drawer
       open={selected}
       onClose={handleDrawerClose}
-      title={poi?.data.name}
+      title={t("poi.title", {
+        name: poi?.data.name,
+        ns: ["drawer"],
+      })}
       children={
         <div>
-          <div>description: {poi?.data.description}</div>
           <div>
-            latlng: {poi?.data.latlng.latitude}, {poi?.data.latlng.longitude}
+            {t("poi.content.texts.description", {
+              description: poi?.data.description,
+              ns: ["drawer"],
+            })}
+          </div>
+          <div>
+            {t("poi.content.texts.latlng", {
+              latitude: poi?.data.latlng.latitude,
+              longitude: poi?.data.latlng.longitude,
+              ns: ["drawer"],
+            })}
           </div>
         </div>
       }
-      primaryButton={<Button onClick={handleDrawerClose}>primary</Button>}
-      secondaryButton={<button onClick={handleDrawerClose}>secondary</button>}
+      primaryButton={
+        <Button onClick={handleDrawerClose}>
+          {t("poi.buttons.edit", { ns: ["drawer"] })}
+        </Button>
+      }
+      secondaryButton={
+        <button onClick={handleDrawerClose}>
+          {t("poi.buttons.cancel", { ns: ["drawer"] })}
+        </button>
+      }
     />
   );
 };

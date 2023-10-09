@@ -1,0 +1,61 @@
+{
+  "addReport": {
+    "buttons": {
+      "add": "新增",
+      "cancel": "取消"
+    },
+    "confirm": {
+      "buttons": {
+        "cancel": "取消",
+        "confirm": "确认"
+      },
+      "content": "确认新增回报？",
+      "title": "新增回报"
+    },
+    "content": {
+      "inputs": {
+        "description": {
+          "label": "叙述",
+          "placeholder": "输入叙述"
+        },
+        "name": {
+          "label": "名称",
+          "placeholder": "输入名称"
+        }
+      },
+      "textWithButton": {
+        "setLocation": {
+          "button": "标记",
+          "text": "位置"
+        }
+      }
+    },
+    "title": "新增位于 {{cluster}} 的回报"
+  },
+  "cluster": {
+    "buttons": {
+      "add": "新增",
+      "cancel": "取消"
+    },
+    "content": {
+      "texts": {
+        "description": "叙述: {{description}}",
+        "latlng": "经纬度: {{latitude}}, {{longitude}}"
+      }
+    },
+    "title": "{{name}}"
+  },
+  "poi": {
+    "buttons": {
+      "edit": "更改",
+      "cancel": "取消"
+    },
+    "content": {
+      "texts": {
+        "description": "叙述: {{description}}",
+        "latlng": "经纬度: {{latitude}}, {{longitude}}"
+      }
+    },
+    "title": "{{name}}"
+  }
+}

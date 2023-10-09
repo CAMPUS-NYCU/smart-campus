@@ -1,0 +1,42 @@
+{
+  "login": {
+    "content": {
+      "inputs": {
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "Enter your password"
+        }
+      },
+      "buttons": {
+        "login": "Login",
+        "register": "Register",
+        "loginWithFacebook": "Login with Facebook",
+        "loginWithGitHub": "Login with GitHub",
+        "loginWithGoogle": "Login with Google",
+        "loginWithTwitter": "Login with Twitter"
+      }
+    },
+    "title": "Login"
+  },
+  "switchLanguage": {
+    "buttons": {
+      "close": "Close"
+    },
+    "title": "Switch Language"
+  },
+  "switchTheme": {
+    "buttons": {
+      "close": "Close"
+    },
+    "options": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System"
+    },
+    "title": "Switch Theme"
+  }
+}

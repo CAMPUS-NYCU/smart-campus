@@ -7,6 +7,7 @@ import {
 } from "@nextui-org/react";
 
 import { useGetUserQuery } from "../../../../api/user";
+import SwitchLanguage from "../../../modal/SwitchLanguage";
 import SwitchTheme from "../../../modal/SwitchTheme";
 
 import UserFabMenu from "./UserFabMenu";
@@ -29,6 +30,7 @@ const Trigger: React.FC = () => {
 
 const UserFab: React.FC = () => {
   const loginDisclosure = useDisclosure();
+  const switchLanguageDisclosure = useDisclosure();
   const switchThemeDisclosure = useDisclosure();
 
   return (
@@ -37,10 +39,12 @@ const UserFab: React.FC = () => {
         <Trigger />
         <UserFabMenu
           loginDisclosure={loginDisclosure}
+          switchLanguageDisclosure={switchLanguageDisclosure}
           switchThemeDisclosure={switchThemeDisclosure}
         />
       </Dropdown>
       <Login disclosure={loginDisclosure} />
+      <SwitchLanguage disclosure={switchLanguageDisclosure} />
       <SwitchTheme disclosure={switchThemeDisclosure} />
     </>
   );

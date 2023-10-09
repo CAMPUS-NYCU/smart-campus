@@ -1,0 +1,42 @@
+{
+  "login": {
+    "content": {
+      "inputs": {
+        "email": {
+          "label": "邮箱",
+          "placeholder": "输入邮箱"
+        },
+        "password": {
+          "label": "密码",
+          "placeholder": "输入密码"
+        }
+      },
+      "buttons": {
+        "login": "登录",
+        "register": "注册",
+        "loginWithFacebook": "透过 Facebook 登录",
+        "loginWithGitHub": "透过 GitHub 登录",
+        "loginWithGoogle": "透过 Google 登录",
+        "loginWithTwitter": "透过 Twitter 登录"
+      }
+    },
+    "title": "登录"
+  },
+  "switchLanguage": {
+    "buttons": {
+      "close": "关闭"
+    },
+    "title": "语言设置"
+  },
+  "switchTheme": {
+    "buttons": {
+      "close": "关闭"
+    },
+    "options": {
+      "dark": "深色",
+      "light": "浅色",
+      "system": "系统"
+    },
+    "title": "主题设置"
+  }
+}

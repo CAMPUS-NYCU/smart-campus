@@ -1,0 +1,61 @@
+{
+  "addReport": {
+    "buttons": {
+      "add": "新增",
+      "cancel": "取消"
+    },
+    "confirm": {
+      "buttons": {
+        "cancel": "取消",
+        "confirm": "確認"
+      },
+      "content": "確認新增回報？",
+      "title": "新增回報"
+    },
+    "content": {
+      "inputs": {
+        "description": {
+          "label": "敘述",
+          "placeholder": "輸入敘述"
+        },
+        "name": {
+          "label": "名稱",
+          "placeholder": "輸入名稱"
+        }
+      },
+      "textWithButton": {
+        "setLocation": {
+          "button": "標記",
+          "text": "位置"
+        }
+      }
+    },
+    "title": "新增位於 {{cluster}} 的回報"
+  },
+  "cluster": {
+    "buttons": {
+      "add": "新增",
+      "cancel": "取消"
+    },
+    "content": {
+      "texts": {
+        "description": "敘述: {{description}}",
+        "latlng": "經緯度: {{latitude}}, {{longitude}}"
+      }
+    },
+    "title": "{{name}}"
+  },
+  "poi": {
+    "buttons": {
+      "edit": "更改",
+      "cancel": "取消"
+    },
+    "content": {
+      "texts": {
+        "description": "敘述: {{description}}",
+        "latlng": "經緯度: {{latitude}}, {{longitude}}"
+      }
+    },
+    "title": "{{name}}"
+  }
+}

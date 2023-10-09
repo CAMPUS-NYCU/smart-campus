@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "@nextui-org/react";
@@ -15,6 +16,8 @@ import {
 import Drawer from "..";
 
 const ClusterDrawer: React.FC = () => {
+  const { t } = useTranslation();
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
@@ -50,18 +53,37 @@ const ClusterDrawer: React.FC = () => {
     <Drawer
       open={selected}
       onClose={handleDrawerDismiss}
-      title={cluster?.data.name}
+      title={t("cluster.title", {
+        name: cluster?.data.name,
+        ns: ["drawer"],
+      })}
       children={
         <div>
-          <div>description: {cluster?.data.description}</div>
           <div>
-            latlng: {cluster?.data.latlng.latitude},{" "}
-            {cluster?.data.latlng.longitude}
+            {t("cluster.content.texts.description", {
+              description: cluster?.data.description,
+              ns: ["drawer"],
+            })}
+          </div>
+          <div>
+            {t("cluster.content.texts.latlng", {
+              latitude: cluster?.data.latlng.latitude,
+              longitude: cluster?.data.latlng.longitude,
+              ns: ["drawer"],
+            })}
           </div>
         </div>
       }
-      primaryButton={<Button onClick={handleDrawerConfirm}>Add</Button>}
-      secondaryButton={<button onClick={handleDrawerDismiss}>Dismiss</button>}
+      primaryButton={
+        <Button onClick={handleDrawerConfirm}>
+          {t("cluster.buttons.add", { ns: ["drawer"] })}
+        </Button>
+      }
+      secondaryButton={
+        <button onClick={handleDrawerDismiss}>
+          {t("cluster.buttons.cancel", { ns: ["drawer"] })}
+        </button>
+      }
     />
   );
 };
