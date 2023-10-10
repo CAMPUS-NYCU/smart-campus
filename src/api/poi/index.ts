@@ -19,7 +19,6 @@ import Poi, { PoiData, PoiMedia, Pois } from "../../models/poi";
 import { firestore } from "../../utils/firebase";
 import {
   toFirebasePoiDataByPoiData,
-  toPoiByFirebasePoi,
   toPoiDataByFirebasePoiData,
 } from "../../utils/types/firebase/poi";
 
@@ -49,9 +48,10 @@ const poiApiSlice = apiSlice.injectEndpoints({
               (doc) => ({ id: doc.id, data: doc.data() }) as FirestorePoi,
             ),
           )
-          .then((pois) => pois.map(toPoiByFirebasePoi))
           .then((pois) =>
-            Object.fromEntries(pois.map((poi) => [poi.id, poi.data])),
+            Object.fromEntries(
+              pois.map((poi) => [poi.id, toPoiDataByFirebasePoiData(poi.data)]),
+            ),
           );
 
         return { data: pois };

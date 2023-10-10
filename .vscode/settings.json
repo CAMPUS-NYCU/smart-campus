@@ -1,13 +1,14 @@
 {
   "conventionalCommits.scopes": [
-    "POI",
-    "User Location Fab",
-    "User Fab",
-    "User",
+    "Cluster Drawer",
+    "Drawer",
     "Google Maps",
     "Marker",
+    "POI",
     "POI Drawer",
-    "Cluster Drawer",
-    "Drawer"
+    "POI Report",
+    "User",
+    "User Fab",
+    "User Location Fab"
   ]
 }

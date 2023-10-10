@@ -5,7 +5,7 @@ import { Button, Image, Input } from "@nextui-org/react";
 
 import { IRootState } from "../../../store";
 import {
-  AddReportData,
+  ReportData,
   updateAddReportData,
   updateAddReportMedia,
 } from "../../../store/report";
@@ -45,7 +45,7 @@ const AddReportDrawerContent: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
 
-  const handleUpdataData = (key: keyof AddReportData) => {
+  const handleUpdataData = (key: keyof ReportData) => {
     const oldValue = reportData[key];
     return (value: typeof oldValue) => {
       dispatch(updateAddReportData({ [key]: value }));

@@ -15,14 +15,19 @@ const AddPoiFab: React.FC = () => {
       throw new Error("LatLng not found");
     }
     addPoi({
-      name: "New Poi Name",
-      clusterId: "",
-      description: "New Poi Description",
-      latlng: {
-        latitude: center.lat(),
-        longitude: center.lng(),
+      data: {
+        name: "New Poi Name",
+        clusterId: "",
+        description: "New Poi Description",
+        latlng: {
+          latitude: center.lat(),
+          longitude: center.lng(),
+        },
+        createBy: user?.id || "",
       },
-      createBy: user?.id || "",
+      media: {
+        photoUrls: [],
+      },
     });
   };
 

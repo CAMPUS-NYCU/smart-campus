@@ -1,33 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { PoiData, PoiMedia } from "../../models/poi";
 
-type ReportData = {
-  name: string;
-  poiId: string;
-  clusterId: string;
-  description: string;
-  latlng: {
-    latitude: number;
-    longitude: number;
-  };
-};
-
-type ReportMedia = {
-  photoUrls: string[];
-};
-
-interface ReportState {
-  type: "add" | "edit" | null;
-  data: ReportData;
-  media: ReportMedia;
-}
-
-export type AddReportData = Pick<
-  ReportData,
+export type ReportData = Pick<
+  PoiData,
   "name" | "clusterId" | "description" | "latlng"
 >;
 
-export const initialAddReportData: AddReportData = {
+interface ReportState {
+  type: "add" | "edit" | null;
+  id: string | null;
+  data: ReportData;
+  media: PoiMedia;
+}
+
+export const initialReportPoiData: ReportData = {
   name: "",
   description: "",
   latlng: {
@@ -37,41 +24,15 @@ export const initialAddReportData: AddReportData = {
   clusterId: "",
 };
 
-export const initialReportMedia: ReportMedia = {
+export const initialReportMedia: PoiMedia = {
   photoUrls: [],
-};
-
-export type EditReportData = Pick<
-  ReportData,
-  "name" | "poiId" | "clusterId" | "description" | "latlng"
->;
-
-export const initialEditReportData: EditReportData = {
-  name: "",
-  poiId: "",
-  description: "",
-  latlng: {
-    latitude: 0,
-    longitude: 0,
-  },
-  clusterId: "",
 };
 
 const initialState: ReportState = {
   type: null,
-  data: {
-    name: "",
-    poiId: "",
-    clusterId: "",
-    description: "",
-    latlng: {
-      latitude: 0,
-      longitude: 0,
-    },
-  },
-  media: {
-    photoUrls: [],
-  },
+  id: null,
+  data: initialReportPoiData,
+  media: initialReportMedia,
 };
 
 const reportSlice = createSlice({
@@ -87,12 +48,12 @@ const reportSlice = createSlice({
     },
     editReport(state, action: PayloadAction<string>) {
       state.type = "edit";
-      state.data.poiId = action.payload;
+      state.id = action.payload;
     },
     updateName(state, action: PayloadAction<string>) {
       state.data.name = action.payload;
     },
-    updateAddReportData(state, action: PayloadAction<Partial<AddReportData>>) {
+    updateAddReportData(state, action: PayloadAction<Partial<ReportData>>) {
       return {
         ...state,
         data: {
@@ -101,7 +62,7 @@ const reportSlice = createSlice({
         },
       };
     },
-    updateAddReportMedia(state, action: PayloadAction<Partial<ReportMedia>>) {
+    updateAddReportMedia(state, action: PayloadAction<Partial<PoiMedia>>) {
       return {
         ...state,
         media: {
@@ -110,10 +71,7 @@ const reportSlice = createSlice({
         },
       };
     },
-    updateEditReportData(
-      state,
-      action: PayloadAction<Partial<EditReportData>>,
-    ) {
+    updateEditPoiData(state, action: PayloadAction<Partial<ReportData>>) {
       return {
         ...state,
         data: {
@@ -132,7 +90,7 @@ export const {
   updateName,
   updateAddReportData,
   updateAddReportMedia,
-  updateEditReportData,
+  updateEditPoiData,
 } = reportSlice.actions;
 
 export default reportSlice.reducer;
