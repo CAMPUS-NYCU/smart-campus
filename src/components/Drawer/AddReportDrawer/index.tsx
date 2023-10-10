@@ -27,6 +27,7 @@ const AddReportDrawer: React.FC = () => {
   const dispatch = useDispatch();
   const reportType = useSelector((state: IRootState) => state.report.type);
   const reportData = useSelector((state: IRootState) => state.report.data);
+  const reportMedia = useSelector((state: IRootState) => state.report.media);
 
   const { data: user } = useGetUserQuery();
   const [addPoi] = useAddPoiMutation();
@@ -46,7 +47,7 @@ const AddReportDrawer: React.FC = () => {
       throw new Error("AddReportDrawer: user id not found");
     }
 
-    addPoi({ ...reportData, createBy: user?.id })
+    addPoi({ data: { ...reportData, createBy: user?.id }, media: reportMedia })
       .unwrap()
       .then((poiId) => {
         dispatch(resetReport());

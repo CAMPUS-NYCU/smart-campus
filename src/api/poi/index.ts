@@ -11,15 +11,24 @@ import {
 } from "firebase/firestore";
 
 import { FIRESTORE_COLLECTIONS } from "../../constants/firebase";
-import { FirestorePoi } from "../../models/firebase/firestore";
-import Poi, { PoiData, Pois } from "../../models/poi";
+import {
+  FirestorePoi,
+  FirestorePoiData,
+} from "../../models/firebase/firestore";
+import Poi, { PoiData, PoiMedia, Pois } from "../../models/poi";
 import { firestore } from "../../utils/firebase";
 import {
   toFirebasePoiDataByPoiData,
   toPoiByFirebasePoi,
+  toPoiDataByFirebasePoiData,
 } from "../../utils/types/firebase/poi";
 
 import apiSlice from "..";
+import {
+  generateImageStorageRef,
+  getImageStorageDirectoryRef,
+} from "../../utils/firebase/storage";
+import { getDownloadURL, listAll, uploadBytes } from "firebase/storage";
 
 const poiApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -55,23 +64,43 @@ const poiApiSlice = apiSlice.injectEndpoints({
           return { data: null };
         }
 
-        const poi = await getDoc(doc(firestore, FIRESTORE_COLLECTIONS.POI, arg))
-          .then(
-            (snapshot) =>
-              ({ id: snapshot.id, data: snapshot.data() }) as FirestorePoi,
-          )
-          .then(toPoiByFirebasePoi);
+        const poiData = await getDoc(
+          doc(firestore, FIRESTORE_COLLECTIONS.POI, arg),
+        )
+          .then((snapshot) => snapshot.data() as FirestorePoiData)
+          .then(toPoiDataByFirebasePoiData);
+
+        const refs = await listAll(getImageStorageDirectoryRef("poi", arg));
+        const downloadPromises = refs.items.map((item) => getDownloadURL(item));
+        const poiMedia = {
+          photoUrls: await Promise.all(downloadPromises),
+        };
+
+        const poi: Poi = {
+          id: arg,
+          data: poiData,
+          media: poiMedia,
+        };
 
         return { data: poi };
       },
       providesTags: ["Poi"],
     }),
-    addPoi: builder.mutation<string, PoiData>({
+    addPoi: builder.mutation<string, { data: PoiData; media: PoiMedia }>({
       queryFn: async (arg) => {
         const docRef = await addDoc(
           collection(firestore, FIRESTORE_COLLECTIONS.POI),
-          toFirebasePoiDataByPoiData(arg),
+          toFirebasePoiDataByPoiData(arg.data),
         );
+
+        const uploadPromises = arg.media.photoUrls.map((url) =>
+          fetch(url)
+            .then((res) => res.blob())
+            .then((blob) =>
+              uploadBytes(generateImageStorageRef("poi", docRef.id), blob),
+            ),
+        );
+        await Promise.all(uploadPromises);
 
         return { data: docRef.id };
       },

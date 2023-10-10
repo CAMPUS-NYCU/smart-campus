@@ -1,10 +1,43 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Image, Input } from "@nextui-org/react";
 
 import { IRootState } from "../../../store";
-import { AddReportData, updateAddReportData } from "../../../store/report";
+import {
+  AddReportData,
+  updateAddReportData,
+  updateAddReportMedia,
+} from "../../../store/report";
 import { maps } from "../../../utils/googleMaps";
+
+const AddReportDrawerContentPhotos: React.FC = () => {
+  const dispatch = useDispatch();
+  const reportMedia = useSelector((state: IRootState) => state.report.media);
+
+  const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files) {
+      return;
+    }
+
+    const blobUrls = Array.from(files).map((file) => URL.createObjectURL(file));
+    dispatch(
+      updateAddReportMedia({
+        photoUrls: [...reportMedia.photoUrls, ...blobUrls],
+      }),
+    );
+  };
+
+  return (
+    <div className="flex flex-row">
+      {reportMedia.photoUrls.map((url) => (
+        <Image key={url} src={url} alt="" />
+      ))}
+      <input type="file" multiple onChange={handleUpload} />
+    </div>
+  );
+};
 
 const AddReportDrawerContent: React.FC = () => {
   const { t } = useTranslation();
@@ -69,6 +102,7 @@ const AddReportDrawerContent: React.FC = () => {
           })}
         </Button>
       </div>
+      <AddReportDrawerContentPhotos />
     </div>
   );
 };

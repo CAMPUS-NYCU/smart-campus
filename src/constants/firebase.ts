@@ -31,3 +31,10 @@ export const FIRESTORE_COLLECTIONS = {
   POI: "Poi",
   USER: "User",
 };
+
+export const firebaseStorageUrl = {
+  images: {
+    cluster: "images/cluster",
+    poi: "images/poi",
+  },
+};

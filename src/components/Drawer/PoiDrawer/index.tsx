@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { Button } from "@nextui-org/react";
+import { Button, Image } from "@nextui-org/react";
 
 import { useGetPoiQuery } from "../../../api/poi";
 import {
@@ -50,6 +50,11 @@ const PoiDrawer: React.FC = () => {
               longitude: poi?.data.latlng.longitude,
               ns: ["drawer"],
             })}
+          </div>
+          <div className="flex flex-row">
+            {poi?.media.photoUrls.map((url) => (
+              <Image key={url} src={url} alt="" />
+            ))}
           </div>
         </div>
       }

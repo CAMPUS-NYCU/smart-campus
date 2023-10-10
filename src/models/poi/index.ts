@@ -1,6 +1,7 @@
 interface Poi {
   id: string;
   data: PoiData;
+  media: PoiMedia;
 }
 
 export interface PoiData {
@@ -12,6 +13,10 @@ export interface PoiData {
     longitude: number;
   };
   createBy: string;
+}
+
+export interface PoiMedia {
+  photoUrls: string[];
 }
 
 export type Pois = Record<string, PoiData>;

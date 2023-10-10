@@ -12,9 +12,14 @@ type ReportData = {
   };
 };
 
+type ReportMedia = {
+  photoUrls: string[];
+};
+
 interface ReportState {
   type: "add" | "edit" | null;
   data: ReportData;
+  media: ReportMedia;
 }
 
 export type AddReportData = Pick<
@@ -30,6 +35,10 @@ export const initialAddReportData: AddReportData = {
     longitude: 0,
   },
   clusterId: "",
+};
+
+export const initialReportMedia: ReportMedia = {
+  photoUrls: [],
 };
 
 export type EditReportData = Pick<
@@ -60,6 +69,9 @@ const initialState: ReportState = {
       longitude: 0,
     },
   },
+  media: {
+    photoUrls: [],
+  },
 };
 
 const reportSlice = createSlice({
@@ -89,6 +101,15 @@ const reportSlice = createSlice({
         },
       };
     },
+    updateAddReportMedia(state, action: PayloadAction<Partial<ReportMedia>>) {
+      return {
+        ...state,
+        media: {
+          ...state.media,
+          ...action.payload,
+        },
+      };
+    },
     updateEditReportData(
       state,
       action: PayloadAction<Partial<EditReportData>>,
@@ -110,6 +131,7 @@ export const {
   editReport,
   updateName,
   updateAddReportData,
+  updateAddReportMedia,
   updateEditReportData,
 } = reportSlice.actions;
 
