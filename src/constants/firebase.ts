@@ -2,7 +2,7 @@ import { FirebaseOptions } from "firebase/app";
 
 import env from "./env";
 
-export const FIREBASE_OPTIONS: FirebaseOptions = {
+export const firebaseOptions: FirebaseOptions = {
   apiKey: env.FIREBASE_API_KEY,
   authDomain: env.FIREBASE_AUTH_DOMAIN,
   projectId: env.FIREBASE_PROJECT_ID,
@@ -12,7 +12,7 @@ export const FIREBASE_OPTIONS: FirebaseOptions = {
   measurementId: env.FIREBASE_MEASUREMENT_ID,
 };
 
-export const FIREBASE_EMULATOR = {
+export const firebaseEmulatorConfig = {
   AUTH: {
     URL: "http://localhost:9099",
   },
@@ -26,10 +26,12 @@ export const FIREBASE_EMULATOR = {
   },
 };
 
-export const FIRESTORE_COLLECTIONS = {
-  CLUSTER: "Cluster",
-  POI: "Poi",
-  USER: "User",
+export const firestoreConfig = {
+  collection: {
+    cluster: "Cluster",
+    poi: "Poi",
+    user: "User",
+  },
 };
 
 export const firebaseStorageUrl = {

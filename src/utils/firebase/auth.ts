@@ -9,12 +9,12 @@ import {
 
 import { firebaseApp } from ".";
 import env from "../../constants/env";
-import { FIREBASE_EMULATOR } from "../../constants/firebase";
+import { firebaseEmulatorConfig } from "../../constants/firebase";
 
 const firebaseAuth = getAuth(firebaseApp);
 
 if (env.ENABLE_FIREBASE_EMULATOR) {
-  connectAuthEmulator(firebaseAuth, FIREBASE_EMULATOR.AUTH.URL, {
+  connectAuthEmulator(firebaseAuth, firebaseEmulatorConfig.AUTH.URL, {
     disableWarnings: true,
   });
 }

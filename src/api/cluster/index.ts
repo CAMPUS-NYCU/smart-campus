@@ -1,6 +1,6 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 
-import { FIRESTORE_COLLECTIONS } from "../../constants/firebase";
+import { firestoreConfig } from "../../constants/firebase";
 import { FirestoreCluster } from "../../models/firebase/firestore";
 import Cluster, { Clusters } from "../../models/cluster";
 import { firestore } from "../../utils/firebase";
@@ -13,7 +13,7 @@ const clusterApiSlice = apiSlice.injectEndpoints({
     getClusters: builder.query<Clusters, void>({
       queryFn: async () => {
         const clusters = await getDocs(
-          collection(firestore, FIRESTORE_COLLECTIONS.CLUSTER),
+          collection(firestore, firestoreConfig.collection.cluster),
         )
           .then((snapshot) =>
             snapshot.docs.map(
@@ -38,7 +38,7 @@ const clusterApiSlice = apiSlice.injectEndpoints({
         }
 
         const cluster = await getDoc(
-          doc(firestore, FIRESTORE_COLLECTIONS.CLUSTER, arg),
+          doc(firestore, firestoreConfig.collection.cluster, arg),
         )
           .then(
             (snapshot) =>

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { firebaseApp } from ".";
 import env from "../../constants/env";
 import {
-  FIREBASE_EMULATOR,
+  firebaseEmulatorConfig,
   firebaseStorageUrl,
 } from "../../constants/firebase";
 
@@ -13,8 +13,8 @@ const firebaseStorage = getStorage(firebaseApp);
 if (env.ENABLE_FIREBASE_EMULATOR) {
   connectStorageEmulator(
     firebaseStorage,
-    FIREBASE_EMULATOR.STORAGE.HOST,
-    FIREBASE_EMULATOR.STORAGE.PORT,
+    firebaseEmulatorConfig.STORAGE.HOST,
+    firebaseEmulatorConfig.STORAGE.PORT,
   );
 }
 

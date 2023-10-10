@@ -10,7 +10,7 @@ import {
   where,
 } from "firebase/firestore";
 
-import { FIRESTORE_COLLECTIONS } from "../../constants/firebase";
+import { firestoreConfig } from "../../constants/firebase";
 import {
   FirestorePoi,
   FirestorePoiData,
@@ -39,7 +39,7 @@ const poiApiSlice = apiSlice.injectEndpoints({
 
         const pois = await getDocs(
           query(
-            collection(firestore, FIRESTORE_COLLECTIONS.POI),
+            collection(firestore, firestoreConfig.collection.poi),
             where("clusterId", "==", arg),
           ),
         )
@@ -65,7 +65,7 @@ const poiApiSlice = apiSlice.injectEndpoints({
         }
 
         const poiData = await getDoc(
-          doc(firestore, FIRESTORE_COLLECTIONS.POI, arg),
+          doc(firestore, firestoreConfig.collection.poi, arg),
         )
           .then((snapshot) => snapshot.data() as FirestorePoiData)
           .then(toPoiDataByFirebasePoiData);
@@ -89,7 +89,7 @@ const poiApiSlice = apiSlice.injectEndpoints({
     addPoi: builder.mutation<string, { data: PoiData; media: PoiMedia }>({
       queryFn: async (arg) => {
         const docRef = await addDoc(
-          collection(firestore, FIRESTORE_COLLECTIONS.POI),
+          collection(firestore, firestoreConfig.collection.poi),
           toFirebasePoiDataByPoiData(arg.data),
         );
 
@@ -109,7 +109,7 @@ const poiApiSlice = apiSlice.injectEndpoints({
     updatePoi: builder.mutation<string, Poi>({
       queryFn: async (arg) => {
         await setDoc(
-          doc(firestore, FIRESTORE_COLLECTIONS.POI, arg.id),
+          doc(firestore, firestoreConfig.collection.poi, arg.id),
           toFirebasePoiDataByPoiData(arg.data),
         );
 
@@ -119,7 +119,7 @@ const poiApiSlice = apiSlice.injectEndpoints({
     }),
     deletePoi: builder.mutation<string, string>({
       queryFn: async (arg) => {
-        await deleteDoc(doc(firestore, FIRESTORE_COLLECTIONS.POI, arg));
+        await deleteDoc(doc(firestore, firestoreConfig.collection.poi, arg));
 
         return { data: "ok" };
       },

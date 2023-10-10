@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
-import { FIRESTORE_COLLECTIONS } from "../../constants/firebase";
+import { firestoreConfig } from "../../constants/firebase";
 import User, { UserOrNull } from "../../models/user";
 import { FirestoreUserData } from "../../models/firebase/firestore";
 import { firebaseAuth, firestore } from "../../utils/firebase";
@@ -26,7 +26,7 @@ const userApiSlice = apiSlice.injectEndpoints({
         }
 
         const userDataFromFirestore = await getDoc(
-          doc(firestore, FIRESTORE_COLLECTIONS.USER, userAuth.uid),
+          doc(firestore, firestoreConfig.collection.user, userAuth.uid),
         ).then((doc) => doc.data() as FirestoreUserData);
 
         const user: User = {
@@ -79,7 +79,11 @@ const userApiSlice = apiSlice.injectEndpoints({
         const userDataFromFirestore: FirestoreUserData = {};
 
         await setDoc(
-          doc(firestore, FIRESTORE_COLLECTIONS.USER, userCredential.user.uid),
+          doc(
+            firestore,
+            firestoreConfig.collection.user,
+            userCredential.user.uid,
+          ),
           userDataFromFirestore,
         );
 
@@ -96,7 +100,11 @@ const userApiSlice = apiSlice.injectEndpoints({
           const userDataFromFirestore: FirestoreUserData = {};
 
           await setDoc(
-            doc(firestore, FIRESTORE_COLLECTIONS.USER, userCredential.user.uid),
+            doc(
+              firestore,
+              firestoreConfig.collection.user,
+              userCredential.user.uid,
+            ),
             userDataFromFirestore,
           );
         }

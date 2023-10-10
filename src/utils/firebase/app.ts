@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 
-import { FIREBASE_OPTIONS } from "../../constants/firebase";
+import { firebaseOptions } from "../../constants/firebase";
 
-const firebaseApp = initializeApp(FIREBASE_OPTIONS);
+const firebaseApp = initializeApp(firebaseOptions);
 
 export default firebaseApp;
