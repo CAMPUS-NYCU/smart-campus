@@ -1,8 +1,12 @@
+import { poiStatus } from "../../constants/model/poi";
+
 interface Poi {
   id: string;
   data: PoiData;
   media: PoiMedia;
 }
+
+export type PoiStatus = keyof typeof poiStatus;
 
 export interface PoiData {
   name: string;
@@ -12,6 +16,7 @@ export interface PoiData {
     latitude: number;
     longitude: number;
   };
+  status: PoiStatus;
   createBy: string;
 }
 

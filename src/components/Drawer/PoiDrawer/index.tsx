@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { Button, Image } from "@nextui-org/react";
+import { Button, Chip, Image } from "@nextui-org/react";
 
 import { useGetPoiQuery } from "../../../api/poi";
 import {
@@ -10,7 +10,22 @@ import {
   resetDrawerParams,
 } from "../../../utils/routes/params";
 
+import { poiStatus, poiStatusMessageKeys } from "../../../constants/model/poi";
+import { PoiStatus } from "../../../models/poi";
+
 import Drawer from "..";
+
+const PoiDrawerStatus: React.FC<{ status?: PoiStatus }> = ({ status }) => {
+  const { t } = useTranslation();
+
+  return (
+    <Chip>
+      {t(poiStatusMessageKeys[status || poiStatus.unknown] || "", {
+        ns: ["drawer"],
+      })}
+    </Chip>
+  );
+};
 
 const PoiDrawer: React.FC = () => {
   const { t } = useTranslation();
@@ -51,6 +66,7 @@ const PoiDrawer: React.FC = () => {
               ns: ["drawer"],
             })}
           </div>
+          <PoiDrawerStatus status={poi?.data.status} />
           <div className="flex flex-row">
             {poi?.media.photoUrls.map((url) => (
               <Image key={url} src={url} alt="" />

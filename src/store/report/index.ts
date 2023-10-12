@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { PoiData, PoiMedia } from "../../models/poi";
+import { PoiData, PoiMedia, PoiStatus } from "../../models/poi";
+import { poiStatus } from "../../constants/model/poi";
 
 export type ReportData = Pick<
   PoiData,
-  "name" | "clusterId" | "description" | "latlng"
+  "name" | "clusterId" | "description" | "latlng" | "status"
 >;
 
 interface ReportState {
@@ -22,6 +23,7 @@ export const initialReportPoiData: ReportData = {
     longitude: 0,
   },
   clusterId: "",
+  status: poiStatus.unknown as PoiStatus,
 };
 
 export const initialReportMedia: PoiMedia = {

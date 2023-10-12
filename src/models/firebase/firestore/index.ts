@@ -21,6 +21,7 @@ export interface FirestorePoiData {
   clusterId: string;
   description: string;
   latlng: GeoPoint;
+  status: string;
   createBy: string;
 }
 

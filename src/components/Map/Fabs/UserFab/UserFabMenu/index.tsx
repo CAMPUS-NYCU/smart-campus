@@ -50,7 +50,7 @@ const UserFabMenu: React.FC<UserFabMenuProps> = (props) => {
 
   return (
     <DropdownMenu
-      aria-label="Custom item styles"
+      aria-label="User Fab Menu"
       className="p-3"
       itemClasses={{
         base: [

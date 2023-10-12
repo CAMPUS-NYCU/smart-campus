@@ -23,10 +23,23 @@
           "placeholder": "输入名称"
         }
       },
-      "textWithButton": {
-        "setLocation": {
-          "button": "标记",
-          "text": "位置"
+      "text": {
+        "setLocation": "位置"
+      },
+      "button": {
+        "setLocation": "标记"
+      },
+      "select": {
+        "setStatus": {
+          "label": "状态",
+          "options": {
+            "excellent": "极佳",
+            "good": "良好",
+            "normal": "一般",
+            "bad": "差",
+            "terrible": "极差",
+            "unknown": "未知"
+          }
         }
       }
     },

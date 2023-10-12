@@ -15,18 +15,29 @@
     "content": {
       "inputs": {
         "description": {
-          "label": "Description",
-          "placeholder": "Enter the description"
+          "label": "Description"
         },
         "name": {
-          "label": "Name",
-          "placeholder": "Enter the name"
+          "label": "Name"
         }
       },
-      "textWithButton": {
-        "setLocation": {
-          "button": "Mark",
-          "text": "Location"
+      "text": {
+        "setLocation": "Location"
+      },
+      "button": {
+        "setLocation": "Mark"
+      },
+      "select": {
+        "setStatus": {
+          "label": "Status",
+          "options": {
+            "excellent": "Excellent",
+            "good": "Good",
+            "normal": "Normal",
+            "bad": "Bad",
+            "terrible": "Terrible",
+            "unknown": "Unknown"
+          }
         }
       }
     },

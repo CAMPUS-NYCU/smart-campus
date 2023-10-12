@@ -1,8 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Image, Input } from "@nextui-org/react";
+import { Button, Image, Input, Select, SelectItem } from "@nextui-org/react";
 
+import { poiStatus, poiStatusMessageKeys } from "../../../constants/model/poi";
+import { PoiStatus } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import {
   ReportData,
@@ -10,6 +12,38 @@ import {
   updateAddReportMedia,
 } from "../../../store/report";
 import { maps } from "../../../utils/googleMaps";
+
+const StatusSelect: React.FC = () => {
+  const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const reportData = useSelector((state: IRootState) => state.report.data);
+  const status = reportData.status;
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value) {
+      dispatch(updateAddReportData({ status: e.target.value as PoiStatus }));
+    }
+  };
+
+  return (
+    <Select
+      label={t("addReport.content.select.setStatus.label", {
+        ns: ["drawer"],
+      })}
+      selectedKeys={new Set([status])}
+      onChange={handleSelectChange}
+    >
+      {Object.keys(poiStatus).map((s) => (
+        <SelectItem key={s} value={s}>
+          {t(poiStatusMessageKeys[s] || "", {
+            ns: ["drawer"],
+          })}
+        </SelectItem>
+      ))}
+    </Select>
+  );
+};
 
 const AddReportDrawerContentPhotos: React.FC = () => {
   const dispatch = useDispatch();
@@ -45,7 +79,7 @@ const AddReportDrawerContent: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
 
-  const handleUpdataData = (key: keyof ReportData) => {
+  const handleUpdateData = (key: keyof ReportData) => {
     const oldValue = reportData[key];
     return (value: typeof oldValue) => {
       dispatch(updateAddReportData({ [key]: value }));
@@ -58,7 +92,7 @@ const AddReportDrawerContent: React.FC = () => {
       throw new Error("LatLng not found");
     }
 
-    const updateLatLng = handleUpdataData("latlng");
+    const updateLatLng = handleUpdateData("latlng");
     const newLagLng = { latitude: center.lat(), longitude: center.lng() };
     updateLatLng(newLagLng);
   };
@@ -68,40 +102,35 @@ const AddReportDrawerContent: React.FC = () => {
       <Input
         autoFocus
         label={t("addReport.content.inputs.name.label", { ns: ["drawer"] })}
-        placeholder={t("addReport.content.inputs.name.placeholder", {
-          ns: ["drawer"],
-        })}
         autoComplete="text"
         value={reportData.name || ""}
         isInvalid={!reportData.name}
-        onValueChange={handleUpdataData("name")}
+        onValueChange={handleUpdateData("name")}
         variant="bordered"
       />
       <Input
         label={t("addReport.content.inputs.description.label", {
           ns: ["drawer"],
         })}
-        placeholder={t("addReport.content.inputs.description.placeholder", {
-          ns: ["drawer"],
-        })}
         autoComplete="text"
         value={reportData.description || ""}
         isInvalid={!reportData.description}
-        onValueChange={handleUpdataData("description")}
+        onValueChange={handleUpdateData("description")}
         variant="bordered"
       />
       <div className="flex justify-between items-center">
         <h1>
-          {t("addReport.content.textWithButton.setLocation.text", {
+          {t("addReport.content.text.setLocation", {
             ns: ["drawer"],
           })}
         </h1>
         <Button onClick={handleSetLatLng}>
-          {t("addReport.content.textWithButton.setLocation.button", {
+          {t("addReport.content.button.setLocation", {
             ns: ["drawer"],
           })}
         </Button>
       </div>
+      <StatusSelect />
       <AddReportDrawerContentPhotos />
     </div>
   );
