@@ -15,3 +15,5 @@
 - [ ] Any changes to strings have been published to our translation tool
 - [ ] I conducted basic QA to assure all features are working
 - [ ] I requested code review from other team members
+
+# Resolved Issues
