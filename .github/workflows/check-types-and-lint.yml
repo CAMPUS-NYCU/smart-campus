@@ -1,0 +1,20 @@
+name: Check Types and Lint
+'on':
+  pull_request:
+    branches:
+      - prod
+      - dev
+      - research
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Create Production Build
+        run: yarn install --frozen-lockfile && yarn run build
+      - name: Check Types
+        run: yarn type-check
+      - name: Lint
+        run: yarn lint
