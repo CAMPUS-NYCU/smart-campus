@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "Cluster Drawer",
+    "Documentation",
     "Drawer",
     "Google Maps",
     "Marker",
