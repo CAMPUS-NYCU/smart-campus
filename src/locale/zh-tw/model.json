@@ -1,0 +1,14 @@
+{
+  "poi": {
+    "data": {
+      "status": {
+        "excellent": "極佳",
+        "good": "良好",
+        "normal": "普通",
+        "bad": "差",
+        "terrible": "極差",
+        "unknown": "未知"
+      }
+    }
+  }
+}

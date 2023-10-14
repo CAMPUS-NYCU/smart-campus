@@ -1,9 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { Button, Chip, Image } from "@nextui-org/react";
 
 import { useGetPoiQuery } from "../../../api/poi";
+import { IRootState } from "../../../store";
+import { editReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
@@ -21,7 +24,7 @@ const PoiDrawerStatus: React.FC<{ status?: PoiStatus }> = ({ status }) => {
   return (
     <Chip>
       {t(poiStatusMessageKeys[status || poiStatus.unknown] || "", {
-        ns: ["drawer"],
+        ns: ["model"],
       })}
     </Chip>
   );
@@ -32,35 +35,46 @@ const PoiDrawer: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const selected = isCurrentDrawerParams("poi", searchParams);
+  const dispatch = useDispatch();
+  const reportType = useSelector((state: IRootState) => state.report.type);
+
+  const selected = !reportType && isCurrentDrawerParams("poi", searchParams);
   const id = selected ? getParamsFromDrawer("poi", searchParams).poiId : null;
 
   const { data: poi } = useGetPoiQuery(id, {
     skip: !selected,
   });
 
-  const handleDrawerClose = () => {
+  const handleDrawerConfirm = () => {
+    if (!poi) {
+      throw new Error("ClusterDrawer: poi not found");
+    }
+
+    dispatch(editReport(poi));
+  };
+
+  const handleDrawerDismiss = () => {
     resetDrawerParams(searchParams, setSearchParams);
   };
 
   return (
     <Drawer
       open={selected}
-      onClose={handleDrawerClose}
-      title={t("poi.title", {
+      onClose={handleDrawerDismiss}
+      title={t("poiDrawer.title", {
         name: poi?.data.name,
         ns: ["drawer"],
       })}
       children={
         <div>
           <div>
-            {t("poi.content.texts.description", {
+            {t("poiDrawer.content.texts.description", {
               description: poi?.data.description,
               ns: ["drawer"],
             })}
           </div>
           <div>
-            {t("poi.content.texts.latlng", {
+            {t("poiDrawer.content.texts.latlng", {
               latitude: poi?.data.latlng.latitude,
               longitude: poi?.data.latlng.longitude,
               ns: ["drawer"],
@@ -75,13 +89,13 @@ const PoiDrawer: React.FC = () => {
         </div>
       }
       primaryButton={
-        <Button onClick={handleDrawerClose}>
-          {t("poi.buttons.edit", { ns: ["drawer"] })}
+        <Button onClick={handleDrawerConfirm}>
+          {t("poiDrawer.buttons.edit", { ns: ["drawer"] })}
         </Button>
       }
       secondaryButton={
-        <button onClick={handleDrawerClose}>
-          {t("poi.buttons.cancel", { ns: ["drawer"] })}
+        <button onClick={handleDrawerDismiss}>
+          {t("poiDrawer.buttons.cancel", { ns: ["drawer"] })}
         </button>
       }
     />

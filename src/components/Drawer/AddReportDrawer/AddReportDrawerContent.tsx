@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Image, Input, Select, SelectItem } from "@nextui-org/react";
 
 import { poiStatus, poiStatusMessageKeys } from "../../../constants/model/poi";
-import { PoiStatus } from "../../../models/poi";
+import { PoiData, PoiStatus } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import {
-  ReportData,
   updateAddReportData,
   updateAddReportMedia,
 } from "../../../store/report";
@@ -37,7 +36,7 @@ const StatusSelect: React.FC = () => {
       {Object.keys(poiStatus).map((s) => (
         <SelectItem key={s} value={s}>
           {t(poiStatusMessageKeys[s] || "", {
-            ns: ["drawer"],
+            ns: ["model"],
           })}
         </SelectItem>
       ))}
@@ -79,7 +78,7 @@ const AddReportDrawerContent: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
 
-  const handleUpdateData = (key: keyof ReportData) => {
+  const handleUpdateData = (key: keyof PoiData) => {
     const oldValue = reportData[key];
     return (value: typeof oldValue) => {
       dispatch(updateAddReportData({ [key]: value }));

@@ -31,21 +31,43 @@
       },
       "select": {
         "setStatus": {
-          "label": "状态",
-          "options": {
-            "excellent": "极佳",
-            "good": "良好",
-            "normal": "一般",
-            "bad": "差",
-            "terrible": "极差",
-            "unknown": "未知"
-          }
+          "label": "状态"
         }
       }
     },
     "title": "新增位于 {{cluster}} 的回报"
   },
-  "cluster": {
+  "editReport": {
+    "buttons": {
+      "edit": "更改",
+      "cancel": "取消"
+    },
+    "confirm": {
+      "buttons": {
+        "cancel": "取消",
+        "confirm": "确认"
+      },
+      "content": "确认更改回报？",
+      "title": "更改回报"
+    },
+    "content": {
+      "inputs": {
+        "description": {
+          "label": "叙述"
+        },
+        "name": {
+          "label": "名称"
+        }
+      },
+      "select": {
+        "setStatus": {
+          "label": "状态"
+        }
+      }
+    },
+    "title": "更改回报 {{poi}}"
+  },
+  "clusterDrawer": {
     "buttons": {
       "add": "新增",
       "cancel": "取消"
@@ -58,7 +80,7 @@
     },
     "title": "{{name}}"
   },
-  "poi": {
+  "poiDrawer": {
     "buttons": {
       "edit": "更改",
       "cancel": "取消"

@@ -1,0 +1,14 @@
+{
+  "poi": {
+    "data": {
+      "status": {
+        "excellent": "Excellent",
+        "good": "Good",
+        "normal": "Normal",
+        "bad": "Bad",
+        "terrible": "Terrible",
+        "unknown": "Unknown"
+      }
+    }
+  }
+}

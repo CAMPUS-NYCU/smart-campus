@@ -31,21 +31,43 @@
       },
       "select": {
         "setStatus": {
-          "label": "狀態",
-          "options": {
-            "excellent": "極佳",
-            "good": "良好",
-            "normal": "普通",
-            "bad": "差",
-            "terrible": "極差",
-            "unknown": "未知"
-          }
+          "label": "狀態"
         }
       }
     },
     "title": "新增位於 {{cluster}} 的回報"
   },
-  "cluster": {
+  "editReport": {
+    "buttons": {
+      "edit": "更改",
+      "cancel": "取消"
+    },
+    "confirm": {
+      "buttons": {
+        "cancel": "取消",
+        "confirm": "確認"
+      },
+      "content": "確認更改回報？",
+      "title": "更改回報"
+    },
+    "content": {
+      "inputs": {
+        "description": {
+          "label": "敘述"
+        },
+        "name": {
+          "label": "名稱"
+        }
+      },
+      "select": {
+        "setStatus": {
+          "label": "狀態"
+        }
+      }
+    },
+    "title": "更改回報 {{poi}}"
+  },
+  "clusterDrawer": {
     "buttons": {
       "add": "新增",
       "cancel": "取消"
@@ -58,7 +80,7 @@
     },
     "title": "{{name}}"
   },
-  "poi": {
+  "poiDrawer": {
     "buttons": {
       "edit": "更改",
       "cancel": "取消"
