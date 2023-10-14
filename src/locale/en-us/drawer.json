@@ -10,15 +10,17 @@
         "confirm": "Confirm"
       },
       "content": "Are you sure to add this report?",
-      "title": "Add a report?"
+      "title": "Add a report"
     },
     "content": {
       "inputs": {
         "description": {
-          "label": "Description"
+          "label": "Description",
+          "placeholder": "Enter description"
         },
         "name": {
-          "label": "Name"
+          "label": "Name",
+          "placeholder": "Enter name"
         }
       },
       "text": {
@@ -29,21 +31,43 @@
       },
       "select": {
         "setStatus": {
-          "label": "Status",
-          "options": {
-            "excellent": "Excellent",
-            "good": "Good",
-            "normal": "Normal",
-            "bad": "Bad",
-            "terrible": "Terrible",
-            "unknown": "Unknown"
-          }
+          "label": "Status"
         }
       }
     },
     "title": "Add a report for {{cluster}}"
   },
-  "cluster": {
+  "editReport": {
+    "buttons": {
+      "edit": "Edit",
+      "cancel": "Cancel"
+    },
+    "confirm": {
+      "buttons": {
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+      },
+      "content": "Are you sure to edit this report?",
+      "title": "Edit report"
+    },
+    "content": {
+      "inputs": {
+        "description": {
+          "label": "Description"
+        },
+        "name": {
+          "label": "Name"
+        }
+      },
+      "select": {
+        "setStatus": {
+          "label": "Status"
+        }
+      }
+    },
+    "title": "Edit report {{poi}}"
+  },
+  "clusterDrawer": {
     "buttons": {
       "add": "Add",
       "cancel": "Cancel"
@@ -56,7 +80,7 @@
     },
     "title": "{{name}}"
   },
-  "poi": {
+  "poiDrawer": {
     "buttons": {
       "edit": "Edit",
       "cancel": "Cancel"

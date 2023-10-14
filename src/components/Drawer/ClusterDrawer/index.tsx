@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 
 import { useGetClusterQuery } from "../../../api/cluster";
+import { useGetUserQuery } from "../../../api/user";
 import { IRootState } from "../../../store";
 import { addReport } from "../../../store/report";
 import {
@@ -32,41 +33,40 @@ const ClusterDrawer: React.FC = () => {
   const { data: cluster } = useGetClusterQuery(id, {
     skip: !selected,
   });
-
-  const clearMarkerRouteParams = () => {
-    resetDrawerParams(searchParams, setSearchParams);
-  };
+  const { data: user } = useGetUserQuery();
 
   const handleDrawerConfirm = () => {
     if (!id) {
       throw new Error("ClusterDrawer: id is null");
+    } else if (!user?.id) {
+      throw new Error("ClusterDrawer: user id not found");
     }
 
-    dispatch(addReport(id));
+    dispatch(addReport({ clusterId: id, createBy: user?.id }));
   };
 
   const handleDrawerDismiss = () => {
-    clearMarkerRouteParams();
+    resetDrawerParams(searchParams, setSearchParams);
   };
 
   return (
     <Drawer
       open={selected}
       onClose={handleDrawerDismiss}
-      title={t("cluster.title", {
+      title={t("clusterDrawer.title", {
         name: cluster?.data.name,
         ns: ["drawer"],
       })}
       children={
         <div>
           <div>
-            {t("cluster.content.texts.description", {
+            {t("clusterDrawer.content.texts.description", {
               description: cluster?.data.description,
               ns: ["drawer"],
             })}
           </div>
           <div>
-            {t("cluster.content.texts.latlng", {
+            {t("clusterDrawer.content.texts.latlng", {
               latitude: cluster?.data.latlng.latitude,
               longitude: cluster?.data.latlng.longitude,
               ns: ["drawer"],
@@ -76,12 +76,12 @@ const ClusterDrawer: React.FC = () => {
       }
       primaryButton={
         <Button onClick={handleDrawerConfirm}>
-          {t("cluster.buttons.add", { ns: ["drawer"] })}
+          {t("clusterDrawer.buttons.add", { ns: ["drawer"] })}
         </Button>
       }
       secondaryButton={
         <button onClick={handleDrawerDismiss}>
-          {t("cluster.buttons.cancel", { ns: ["drawer"] })}
+          {t("clusterDrawer.buttons.cancel", { ns: ["drawer"] })}
         </button>
       }
     />

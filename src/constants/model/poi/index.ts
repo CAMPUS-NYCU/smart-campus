@@ -8,10 +8,10 @@ export const poiStatus = {
 };
 
 export const poiStatusMessageKeys = {
-  [poiStatus.excellent]: "addReport.content.select.setStatus.options.excellent",
-  [poiStatus.good]: "addReport.content.select.setStatus.options.good",
-  [poiStatus.normal]: "addReport.content.select.setStatus.options.normal",
-  [poiStatus.bad]: "addReport.content.select.setStatus.options.bad",
-  [poiStatus.terrible]: "addReport.content.select.setStatus.options.terrible",
-  [poiStatus.unknown]: "addReport.content.select.setStatus.options.unknown",
+  [poiStatus.excellent]: "poi.data.status.excellent",
+  [poiStatus.good]: "poi.data.status.good",
+  [poiStatus.normal]: "poi.data.status.normal",
+  [poiStatus.bad]: "poi.data.status.bad",
+  [poiStatus.terrible]: "poi.data.status.terrible",
+  [poiStatus.unknown]: "poi.data.status.unknown",
 };
