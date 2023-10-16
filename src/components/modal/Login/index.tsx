@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
   Input,
@@ -7,7 +8,6 @@ import {
   ModalBody,
   ModalContent,
   ModalHeader,
-  useDisclosure,
 } from "@nextui-org/react";
 
 import {
@@ -16,19 +16,15 @@ import {
   useLoginWithProviderMutation,
   useRegisterWithEmailAndPasswordMutation,
 } from "../../../api/user";
+import { IRootState } from "../../../store";
+import { closeModal, toggleModal } from "../../../store/modal";
 import { firebaseAuthProviders } from "../../../utils/firebase/auth";
 import {
   PasswordInvisibleButtonIcon,
   PasswordVisibleButtonIcon,
 } from "../../../utils/icons/login";
 
-interface LoginProps {
-  disclosure: ReturnType<typeof useDisclosure>;
-}
-
-const Login: React.FC<LoginProps> = (props) => {
-  const { disclosure } = props;
-
+const Login: React.FC = () => {
   const { t } = useTranslation();
 
   const initInputLoginInfo = { email: "", password: "" };
@@ -38,6 +34,16 @@ const Login: React.FC<LoginProps> = (props) => {
   const resetInputLoginInfo = () => setInputloginInfo(initInputLoginInfo);
 
   const [isPasswordVisible, setPasswordVisible] = React.useState(false);
+
+  const modalOpen = useSelector(
+    (state: IRootState) => state.modal.open["login"],
+  );
+
+  const dispatch = useDispatch();
+
+  const handleToggleModal = () => {
+    dispatch(toggleModal("login"));
+  };
 
   const { data: isLoggedIn } = useIsLoggedInQuery();
 
@@ -80,12 +86,12 @@ const Login: React.FC<LoginProps> = (props) => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      disclosure.onClose();
+      dispatch(closeModal("login"));
     }
-  }, [isLoggedIn, disclosure]);
+  }, [isLoggedIn, dispatch]);
 
   return (
-    <Modal isOpen={disclosure.isOpen} onOpenChange={disclosure.onOpenChange}>
+    <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1">
           {t("login.title", { ns: ["modal"] })}

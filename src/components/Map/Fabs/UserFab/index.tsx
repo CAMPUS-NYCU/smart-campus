@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Avatar,
-  Dropdown,
-  DropdownTrigger,
-  useDisclosure,
-} from "@nextui-org/react";
+import { Avatar, Dropdown, DropdownTrigger } from "@nextui-org/react";
 
 import { useGetUserQuery } from "../../../../api/user";
 import SwitchLanguage from "../../../modal/SwitchLanguage";
@@ -29,23 +24,15 @@ const Trigger: React.FC = () => {
 };
 
 const UserFab: React.FC = () => {
-  const loginDisclosure = useDisclosure();
-  const switchLanguageDisclosure = useDisclosure();
-  const switchThemeDisclosure = useDisclosure();
-
   return (
     <>
       <Dropdown>
         <Trigger />
-        <UserFabMenu
-          loginDisclosure={loginDisclosure}
-          switchLanguageDisclosure={switchLanguageDisclosure}
-          switchThemeDisclosure={switchThemeDisclosure}
-        />
+        <UserFabMenu />
       </Dropdown>
-      <Login disclosure={loginDisclosure} />
-      <SwitchLanguage disclosure={switchLanguageDisclosure} />
-      <SwitchTheme disclosure={switchThemeDisclosure} />
+      <Login />
+      <SwitchLanguage />
+      <SwitchTheme />
     </>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { Button, useDisclosure } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 import { useGetPoiQuery } from "../../../api/poi";
 import { useUpdatePoiMutation } from "../../../api/poi";
@@ -16,6 +16,7 @@ import {
 import Drawer from "..";
 import AddReportDrawerContent from "./EditReportDrawerContent";
 import AddReportDrawerConfirm from "./EditReportDrawerConfirm";
+import { closeModal, openModal } from "../../../store/modal";
 
 const AddReportDrawer: React.FC = () => {
   const { t } = useTranslation();
@@ -29,8 +30,6 @@ const AddReportDrawer: React.FC = () => {
   const reportMedia = useSelector((state: IRootState) => state.report.media);
 
   const [editPoi] = useUpdatePoiMutation();
-
-  const confirmDisclosure = useDisclosure();
 
   const selected =
     reportType === "edit" && isCurrentDrawerParams("poi", searchParams);
@@ -53,12 +52,12 @@ const AddReportDrawer: React.FC = () => {
       .unwrap()
       .then(() => {
         dispatch(resetReport());
-        confirmDisclosure.onClose();
+        dispatch(closeModal("confirmEditReport"));
       });
   };
 
   const handleDrawerConfirm = () => {
-    confirmDisclosure.onOpen();
+    dispatch(openModal("confirmEditReport"));
   };
 
   const handleDrawerDismiss = () => {
@@ -81,10 +80,7 @@ const AddReportDrawer: React.FC = () => {
       children={
         <>
           <AddReportDrawerContent />
-          <AddReportDrawerConfirm
-            disclosure={confirmDisclosure}
-            onSubmit={handleSubmit}
-          />
+          <AddReportDrawerConfirm onSubmit={handleSubmit} />
         </>
       }
       primaryButton={

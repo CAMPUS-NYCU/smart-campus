@@ -2,11 +2,12 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { Button, useDisclosure } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 import { useGetClusterQuery } from "../../../api/cluster";
 import { useAddPoiMutation } from "../../../api/poi";
 import { IRootState } from "../../../store";
+import { closeModal, openModal } from "../../../store/modal";
 import { resetReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
@@ -30,8 +31,6 @@ const AddReportDrawer: React.FC = () => {
 
   const [addPoi] = useAddPoiMutation();
 
-  const confirmDisclosure = useDisclosure();
-
   const selected =
     reportType === "add" && isCurrentDrawerParams("cluster", searchParams);
   const id = getParamsFromDrawer("cluster", searchParams).clusterId;
@@ -50,16 +49,15 @@ const AddReportDrawer: React.FC = () => {
           searchParams,
           setSearchParams,
         );
-        confirmDisclosure.onClose();
+        dispatch(closeModal("confirmAddReport"));
       });
   };
 
   const handleDrawerConfirm = () => {
-    confirmDisclosure.onOpen();
+    dispatch(openModal("confirmAddReport"));
   };
 
   const handleDrawerDismiss = () => {
-    resetReport();
     dispatch(resetReport());
   };
 
@@ -78,10 +76,7 @@ const AddReportDrawer: React.FC = () => {
       children={
         <>
           <AddReportDrawerContent />
-          <AddReportDrawerConfirm
-            disclosure={confirmDisclosure}
-            onSubmit={handleSubmit}
-          />
+          <AddReportDrawerConfirm onSubmit={handleSubmit} />
         </>
       }
       primaryButton={

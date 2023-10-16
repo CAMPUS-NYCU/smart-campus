@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
   Modal,
@@ -9,30 +10,42 @@ import {
   ModalHeader,
   Tab,
   Tabs,
-  useDisclosure,
 } from "@nextui-org/react";
 import { useTheme } from "next-themes";
 
+import { IRootState } from "../../../store";
+import { closeModal, toggleModal } from "../../../store/modal";
 import {
   DarkThemeIcon,
   LightThemeIcon,
   SystemThemeIcon,
 } from "../../../utils/icons/theme";
 
-interface SwitchThemeProps {
-  disclosure: ReturnType<typeof useDisclosure>;
-}
-
-const SwitchTheme: React.FC<SwitchThemeProps> = (props) => {
-  const { isOpen, onOpenChange, onClose } = props.disclosure;
-
+const SwitchTheme: React.FC = () => {
   const { t } = useTranslation();
+
   const { theme, setTheme, forcedTheme } = useTheme();
+
+  const modalOpen = useSelector(
+    (state: IRootState) => state.modal.open["switchTheme"],
+  );
+
+  const dispatch = useDispatch();
+
+  const handleCloseModal = () => {
+    dispatch(closeModal("switchTheme"));
+  };
+
+  const handleToggleModal = () => {
+    dispatch(toggleModal("switchTheme"));
+  };
+
   const handleSelectionChange = (key: React.Key) => {
     setTheme(key as string);
   };
+
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1">
           {t("switchTheme.title", { ns: ["modal"] })}
@@ -80,7 +93,7 @@ const SwitchTheme: React.FC<SwitchThemeProps> = (props) => {
           </Tabs>
         </ModalBody>
         <ModalFooter>
-          <Button color="danger" variant="light" onPress={onClose}>
+          <Button color="danger" variant="light" onPress={handleCloseModal}>
             {t("switchTheme.buttons.close", { ns: ["modal"] })}
           </Button>
         </ModalFooter>

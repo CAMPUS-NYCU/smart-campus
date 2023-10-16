@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
   Modal,
@@ -9,24 +10,35 @@ import {
   ModalHeader,
   Tab,
   Tabs,
-  useDisclosure,
 } from "@nextui-org/react";
 
 import { languageConfigs } from "../../../locale/config";
+import { IRootState } from "../../../store";
+import { closeModal, toggleModal } from "../../../store/modal";
 
-interface SwitchLanguageProps {
-  disclosure: ReturnType<typeof useDisclosure>;
-}
-
-const SwitchLanguage: React.FC<SwitchLanguageProps> = (props) => {
-  const { isOpen, onOpenChange, onClose } = props.disclosure;
-
+const SwitchLanguage: React.FC = () => {
   const { t, i18n } = useTranslation();
+
+  const modalOpen = useSelector(
+    (state: IRootState) => state.modal.open["switchLanguage"],
+  );
+
+  const dispatch = useDispatch();
+
+  const handleCloseModal = () => {
+    dispatch(closeModal("switchLanguage"));
+  };
+
+  const handleToggleModal = () => {
+    dispatch(toggleModal("switchLanguage"));
+  };
+
   const handleSelectionChange = (key: React.Key) => {
     i18n.changeLanguage(key as string);
   };
+
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1">
           {t("switchLanguage.title", { ns: ["modal"] })}
@@ -50,7 +62,7 @@ const SwitchLanguage: React.FC<SwitchLanguageProps> = (props) => {
           </Tabs>
         </ModalBody>
         <ModalFooter>
-          <Button color="danger" variant="light" onPress={onClose}>
+          <Button color="danger" variant="light" onPress={handleCloseModal}>
             {t("switchLanguage.buttons.close", { ns: ["modal"] })}
           </Button>
         </ModalFooter>

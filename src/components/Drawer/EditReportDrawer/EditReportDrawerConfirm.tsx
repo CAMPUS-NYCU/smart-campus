@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
   Modal,
@@ -7,27 +8,43 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  useDisclosure,
 } from "@nextui-org/react";
 
+import { IRootState } from "../../../store";
+import { closeModal, toggleModal } from "../../../store/modal";
+
 interface EditReportDrawerConfirmProps {
-  disclosure: ReturnType<typeof useDisclosure>;
   onSubmit: () => void;
 }
 
 const EditReportDrawerConfirm: React.FC<EditReportDrawerConfirmProps> = (
   props,
 ) => {
-  const { disclosure, onSubmit } = props;
+  const { onSubmit } = props;
 
   const { t } = useTranslation();
 
+  const modalOpen = useSelector(
+    (state: IRootState) => state.modal.open["confirmEditReport"],
+  );
+
+  const dispatch = useDispatch();
+
   const handleSubmit = () => {
     onSubmit();
-    disclosure.onClose();
+    dispatch(closeModal("confirmEditReport"));
   };
+
+  const handleCloseModal = () => {
+    dispatch(closeModal("confirmEditReport"));
+  };
+
+  const handleToggleModal = () => {
+    dispatch(toggleModal("confirmEditReport"));
+  };
+
   return (
-    <Modal isOpen={disclosure.isOpen} onOpenChange={disclosure.onOpenChange}>
+    <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1">
           {t("editReport.confirm.title", { ns: ["drawer"] })}
@@ -36,7 +53,7 @@ const EditReportDrawerConfirm: React.FC<EditReportDrawerConfirmProps> = (
           {t("editReport.confirm.content", { ns: ["drawer"] })}
         </ModalBody>
         <ModalFooter>
-          <Button color="danger" variant="light" onPress={disclosure.onClose}>
+          <Button color="danger" variant="light" onPress={handleCloseModal}>
             {t("editReport.confirm.buttons.cancel", { ns: ["drawer"] })}
           </Button>
           <Button color="primary" onPress={handleSubmit}>

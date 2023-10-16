@@ -1,11 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import {
   DropdownItem,
   DropdownMenu,
   DropdownSection,
   User,
-  useDisclosure,
 } from "@nextui-org/react";
 
 import {
@@ -13,6 +13,7 @@ import {
   useIsLoggedInQuery,
   useLogoutMutation,
 } from "../../../../../api/user";
+import { openModal } from "../../../../../store/modal";
 
 const MenuItemUser: React.FC = () => {
   const { data: user } = useGetUserQuery();
@@ -33,17 +34,22 @@ const MenuItemUser: React.FC = () => {
   );
 };
 
-interface UserFabMenuProps {
-  loginDisclosure: ReturnType<typeof useDisclosure>;
-  switchLanguageDisclosure: ReturnType<typeof useDisclosure>;
-  switchThemeDisclosure: ReturnType<typeof useDisclosure>;
-}
-
-const UserFabMenu: React.FC<UserFabMenuProps> = (props) => {
-  const { loginDisclosure, switchLanguageDisclosure, switchThemeDisclosure } =
-    props;
-
+const UserFabMenu: React.FC = () => {
   const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+
+  const handleOpenLoginModal = () => {
+    dispatch(openModal("login"));
+  };
+
+  const handleOpenSwitchLanguageModal = () => {
+    dispatch(openModal("switchLanguage"));
+  };
+
+  const handleOpenSwitchThemeModal = () => {
+    dispatch(openModal("switchTheme"));
+  };
 
   const { data: isLoggedIn } = useIsLoggedInQuery();
   const [logout] = useLogoutMutation();
@@ -79,7 +85,7 @@ const UserFabMenu: React.FC<UserFabMenuProps> = (props) => {
         <DropdownItem
           key="login"
           textValue="login"
-          onPress={loginDisclosure.onOpen}
+          onPress={handleOpenLoginModal}
           style={{ display: isLoggedIn ? "none" : "block" }}
         >
           {t("fabs.user.menu.options.login", { ns: ["map"] })}
@@ -93,14 +99,14 @@ const UserFabMenu: React.FC<UserFabMenuProps> = (props) => {
         <DropdownItem
           key="language"
           textValue="Language"
-          onPress={switchLanguageDisclosure.onOpen}
+          onPress={handleOpenSwitchLanguageModal}
         >
           {t("fabs.user.menu.options.language", { ns: ["map"] })}
         </DropdownItem>
         <DropdownItem
           key="theme"
           textValue="Theme"
-          onPress={switchThemeDisclosure.onOpen}
+          onPress={handleOpenSwitchThemeModal}
         >
           {t("fabs.user.menu.options.theme", { ns: ["map"] })}
         </DropdownItem>
