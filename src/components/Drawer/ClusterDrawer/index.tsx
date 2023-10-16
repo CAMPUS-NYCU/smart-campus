@@ -7,6 +7,7 @@ import { Button } from "@nextui-org/react";
 import { useGetClusterQuery } from "../../../api/cluster";
 import { useGetUserQuery } from "../../../api/user";
 import { IRootState } from "../../../store";
+import { openModal } from "../../../store/modal";
 import { addReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
@@ -21,8 +22,9 @@ const ClusterDrawer: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const dispatch = useDispatch();
   const reportType = useSelector((state: IRootState) => state.report.type);
+
+  const dispatch = useDispatch();
 
   const selected =
     !reportType && isCurrentDrawerParams("cluster", searchParams);
@@ -39,10 +41,10 @@ const ClusterDrawer: React.FC = () => {
     if (!id) {
       throw new Error("ClusterDrawer: id is null");
     } else if (!user?.id) {
-      throw new Error("ClusterDrawer: user id not found");
+      dispatch(openModal("login"));
+    } else {
+      dispatch(addReport({ clusterId: id, createBy: user?.id }));
     }
-
-    dispatch(addReport({ clusterId: id, createBy: user?.id }));
   };
 
   const handleDrawerDismiss = () => {

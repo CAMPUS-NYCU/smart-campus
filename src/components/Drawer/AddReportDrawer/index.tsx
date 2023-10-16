@@ -24,10 +24,11 @@ const AddReportDrawer: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const dispatch = useDispatch();
   const reportType = useSelector((state: IRootState) => state.report.type);
   const reportData = useSelector((state: IRootState) => state.report.data);
   const reportMedia = useSelector((state: IRootState) => state.report.media);
+
+  const dispatch = useDispatch();
 
   const [addPoi] = useAddPoiMutation();
 

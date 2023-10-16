@@ -5,7 +5,9 @@ import { useSearchParams } from "react-router-dom";
 import { Button, Chip, Image } from "@nextui-org/react";
 
 import { useGetPoiQuery } from "../../../api/poi";
+import { useGetUserQuery } from "../../../api/user";
 import { IRootState } from "../../../store";
+import { openModal } from "../../../store/modal";
 import { editReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
@@ -35,8 +37,9 @@ const PoiDrawer: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const dispatch = useDispatch();
   const reportType = useSelector((state: IRootState) => state.report.type);
+
+  const dispatch = useDispatch();
 
   const selected = !reportType && isCurrentDrawerParams("poi", searchParams);
   const id = selected ? getParamsFromDrawer("poi", searchParams).poiId : null;
@@ -44,13 +47,16 @@ const PoiDrawer: React.FC = () => {
   const { data: poi } = useGetPoiQuery(id, {
     skip: !selected,
   });
+  const { data: user } = useGetUserQuery();
 
   const handleDrawerConfirm = () => {
     if (!poi) {
       throw new Error("ClusterDrawer: poi not found");
+    } else if (!user?.id) {
+      dispatch(openModal("login"));
+    } else {
+      dispatch(editReport(poi));
     }
-
-    dispatch(editReport(poi));
   };
 
   const handleDrawerDismiss = () => {
