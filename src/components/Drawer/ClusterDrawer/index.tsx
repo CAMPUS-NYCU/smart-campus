@@ -8,7 +8,7 @@ import { useGetClusterQuery } from "../../../api/cluster";
 import { useGetUserQuery } from "../../../api/user";
 import { IRootState } from "../../../store";
 import { openModal } from "../../../store/modal";
-import { addReport } from "../../../store/report";
+import { addReport, resetReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
@@ -50,6 +50,12 @@ const ClusterDrawer: React.FC = () => {
   const handleDrawerDismiss = () => {
     resetDrawerParams(searchParams, setSearchParams);
   };
+
+  React.useEffect(() => {
+    if (!isCurrentDrawerParams("cluster", searchParams)) {
+      dispatch(resetReport());
+    }
+  }, [dispatch, searchParams]);
 
   return (
     <Drawer
