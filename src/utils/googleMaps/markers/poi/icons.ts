@@ -1,6 +1,6 @@
 import { PoiData } from "../../../../models/poi";
 
-import poiMarkerClean from "../../../../assets/images/poiMarkerClean.svg"; // 清潔狀態
+import poiMarkerCleanliness from "../../../../assets/images/poiMarkerCleanliness.svg"; // 清潔狀態
 import poiMarkerCrowd from "../../../../assets/images/poiMarkerCrowd.svg"; // 人潮狀態
 import poiMarkerFunction from "../../../../assets/images/poiMarkerFunction.svg"; // 功能狀態
 import poiMarkerMaintenance from "../../../../assets/images/poiMarkerMaintenance.svg"; // 保養狀態
@@ -8,14 +8,14 @@ import poiMarkerNoise from "../../../../assets/images/poiMarkerNoise.svg"; // �
 import poiMarkerOccupation from "../../../../assets/images/poiMarkerOccupation.svg"; // 占用狀態
 import poiMarkerOutlook from "../../../../assets/images/poiMarkerOutlook.svg"; // 外觀狀態
 import poiMarkerThermalComfort from "../../../../assets/images/poiMarkerThermalComfort.svg"; // 體感狀態
-import poiMarkerUsage from "../../../../assets/images/poiMarkerUsage.svg"; // 使用狀態
+import poiMarkerSpaceUsage from "../../../../assets/images/poiMarkerSpaceUsage.svg"; // 使用狀態
 import poiMarkerUnknown from "../../../../assets/images/poiMarkerUnknown.svg"; // 未知
 
 export const getIcon = (poiData: PoiData) => {
   let thisUrl: string;
   switch (poiData.status) {
-    case "clean":
-      thisUrl = poiMarkerClean;
+    case "cleanliness":
+      thisUrl = poiMarkerCleanliness;
       break;
     case "crowd":
       thisUrl = poiMarkerCrowd;
@@ -35,11 +35,11 @@ export const getIcon = (poiData: PoiData) => {
     case "outlook":
       thisUrl = poiMarkerOutlook;
       break;
-    case "thermalcomfort":
+    case "thermalComfort":
       thisUrl = poiMarkerThermalComfort;
       break;
-    case "usage":
-      thisUrl = poiMarkerUsage;
+    case "spaceUsage":
+      thisUrl = poiMarkerSpaceUsage;
       break;
     default:
       thisUrl = poiMarkerUnknown;

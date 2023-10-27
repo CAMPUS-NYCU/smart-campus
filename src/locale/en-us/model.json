@@ -3,15 +3,15 @@
     "data": {
       "status": {
         "unknown": "Unknown",
-        "clean": "Clean",
+        "cleanliness": "Cleanliness",
         "crowd": "Crowd",
         "function": "Function",
         "maintenance": "Maintenance",
         "noise": "Noise",
         "occupation": "Occupation",
         "outlook": "Outlook",
-        "thermalcomfort": "Thermalcomfort",
-        "usage": "Usage"
+        "thermalComfort": "Thermal Comfort",
+        "spaceUsage": "Space Usage"
       }
     }
   }

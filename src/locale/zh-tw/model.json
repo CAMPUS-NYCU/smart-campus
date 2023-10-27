@@ -3,15 +3,15 @@
     "data": {
       "status": {
         "unknown": "未知",
-        "clean": "清潔狀態",
+        "cleanliness": "清潔狀態",
         "crowd": "人潮狀態",
         "function": "功能狀態",
         "maintenance": "保養狀態",
         "noise": "噪音狀態",
         "occupation": "占用狀態",
         "outlook": "外觀狀態",
-        "thermalcomfort": "體感狀態",
-        "usage": "使用狀態"
+        "thermalComfort": "體感狀態",
+        "spaceUsage": "使用狀態"
       }
     }
   }
