@@ -40,7 +40,7 @@ export const poiStatusDescription = {
   maintenanceCompleted: "maintenanceCompleted", // 保養完成
   underMaintenance: "underMaintenance", // 保養中
   // 功能狀態 function
-  functaional: "functaional", // 功能正常
+  functional: "functional", // 功能正常
   remainsFuntional: "remainsFuntional", // 尚可使用
   nonFunctional: "nonFunctional", // 無法使用
   // 外觀狀態 outlook
@@ -69,8 +69,64 @@ export const poiStatusDescription = {
   uncomfortable: "uncomfortable", // 不適
 
   // 物體空間共用狀態描述
-  // 整潔狀態 cleanliness
+  // 清潔狀態 cleanliness
   highCleanliness: "highCleanliness", // 整潔
   normalCleanliness: "normalCleanliness", // 普通
   lowCleanliness: "lowCleanliness", // 髒亂
+};
+
+export const poiStatusDescriptionMessageKeys = {
+  // 物體的回報狀態描述
+  // 保養狀態
+  [poiStatusDescription.maintenanceCompleted]:
+    "poi.data.statusDescription.maintenanceCompleted",
+  [poiStatusDescription.underMaintenance]:
+    "poi.data.statusDescription.underMaintenance",
+  // 功能狀態
+  [poiStatusDescription.functional]: "poi.data.statusDescription.functional",
+  [poiStatusDescription.remainsFuntional]:
+    "poi.data.statusDescription.remainsFunctional",
+  [poiStatusDescription.nonFunctional]:
+    "poi.data.statusDescription.nonFunctional",
+  // 外觀狀態
+  [poiStatusDescription.outlookFlawless]:
+    "poi.data.statusDescription.outlookFlawless",
+  [poiStatusDescription.outlookDeteriorated]:
+    "poi.data.statusDescription.outlookDeteriorated",
+  // 占用狀態
+  [poiStatusDescription.occupied]: "poi.data.statusDescription.occupied",
+  [poiStatusDescription.unoccupied]: "poi.data.statusDescription.unoccipied",
+
+  // 空間的回報狀態描述
+  // 使用狀態
+  [poiStatusDescription.spacesAvailable]:
+    "poi.data.statusDescription.spacesAvailable",
+  [poiStatusDescription.limitedSpaces]:
+    "poi.data.statusDescription.limitedSpaces",
+  [poiStatusDescription.noSpaces]: "poi.data.statusDescription.noSpaces",
+  // 人潮狀態
+  [poiStatusDescription.crowded]: "poi.data.statusDescription.crowded",
+  [poiStatusDescription.normalCrowded]:
+    "poi.data.statusDescription.normalCrowded",
+  [poiStatusDescription.noSpaces]: "poi.data.statusDescription.noSpaces",
+  // 噪音狀態
+  [poiStatusDescription.quiet]: "poi.data.statusDescription.quiet",
+  [poiStatusDescription.normalNoiseLevel]:
+    "poi.data.statusDescription.normalNoiseLevel",
+  [poiStatusDescription.noisy]: "poi.data.statusDescription.noisy",
+  // 體感狀態
+  [poiStatusDescription.comfortable]: "poi.data.statusDescription.comfortable",
+  [poiStatusDescription.normalComfort]:
+    "poi.data.statusDescription.normalComfort",
+  [poiStatusDescription.uncomfortable]:
+    "poi.data.statusDescription.uncomfortable",
+
+  // 物體空間共用狀態描述
+  // 清潔狀態
+  [poiStatusDescription.highCleanliness]:
+    "poi.data.statusDescription.highCleanliness",
+  [poiStatusDescription.normalCleanliness]:
+    "poi.data.statusDescription.normalCleanliness",
+  [poiStatusDescription.lowCleanliness]:
+    "poi.data.statusDescription.lowCleanliness",
 };

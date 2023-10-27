@@ -12,6 +12,32 @@
         "outlook": "外觀狀態",
         "thermalComfort": "體感狀態",
         "spaceUsage": "使用狀態"
+      },
+      "statusDescription": {
+        "maintenanceCompleted": "保養完成",
+        "underMaintenance": "保養中",
+        "functional": "功能正常",
+        "remainsFuntional": "尚可使用",
+        "nonFunctional": "無法使用",
+        "outlookFlawless": "完好無損",
+        "outlookDeteriorated": "外觀破損",
+        "unoccupied": "無人使用",
+        "occupied": "有人占用",
+        "spacesAvailable": "尚有空位",
+        "limitedSpaces": "空位有限",
+        "noSpaces": "已無空位",
+        "crowded": "擁擠",
+        "normalCrowded": "普通",
+        "notCrowded": "沒人",
+        "quiet": "安靜",
+        "normalNoiseLevel": "普通",
+        "noisy": "吵雜",
+        "comfortable": "舒適",
+        "normalComfort": "普通",
+        "uncomfortable": "不適",
+        "highCleanliness": "整潔",
+        "normalCleanliness": "普通",
+        "lowCleanliness": "髒亂"
       }
     }
   }

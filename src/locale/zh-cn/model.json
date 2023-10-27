@@ -12,6 +12,32 @@
         "outlook": "外观状态",
         "thermalComfort": "体感状态",
         "spaceUsage": "使用状态"
+      },
+      "statusDescription": {
+        "maintenanceCompleted": "保养完成",
+        "underMaintenance": "保养中",
+        "functional": "功能正常",
+        "remainsFuntional": "尚可使用",
+        "nonFunctional": "无法使用",
+        "outlookFlawless": "完好无损",
+        "outlookDeteriorated": "外观破损",
+        "unoccupied": "无人使用",
+        "occupied": "有人占用",
+        "spacesAvailable": "尚有空位",
+        "limitedSpaces": "空位有限",
+        "noSpaces": "已无空位",
+        "crowded": "拥挤",
+        "normalCrowded": "普通",
+        "notCrowded": "没人",
+        "quiet": "安静",
+        "normalNoiseLevel": "普通",
+        "noisy": "吵杂",
+        "comfortable": "舒适",
+        "normalComfort": "普通",
+        "uncomfortable": "不适",
+        "highCleanliness": "整洁",
+        "normalCleanliness": "普通",
+        "lowCleanliness": "髒乱"
       }
     }
   }

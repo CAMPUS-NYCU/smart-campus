@@ -12,6 +12,32 @@
         "outlook": "Outlook",
         "thermalComfort": "Thermal Comfort",
         "spaceUsage": "Space Usage"
+      },
+      "statusDescription": {
+        "maintenanceCompleted": "Maintenance Completed",
+        "underMaintenance": "Under Maintenance",
+        "functional": "Functional",
+        "remainsFuntional": "Remains Funtional",
+        "nonFunctional": "Non-Functional",
+        "outlookFlawless": "Flawless Outlook",
+        "outlookDeteriorated": "Deteriorated Outlook",
+        "unoccupied": "Unoccupied",
+        "occupied": "Occupied",
+        "spacesAvailable": "Spaces Available",
+        "limitedSpaces": "Limited Spaces",
+        "noSpaces": "No Spaces",
+        "crowded": "Crowded",
+        "normalCrowded": "Normal Crowded",
+        "notCrowded": "Not Crowded",
+        "quiet": "Quiet",
+        "normalNoiseLevel": "Normal Noise Level",
+        "noisy": "Noisy",
+        "comfortable": "Comfortable",
+        "normalComfort": "Normal Comfort",
+        "uncomfortable": "Uncomfortable",
+        "highCleanliness": "Flawless Cleanliness",
+        "normalCleanliness": "Normal Cleanliness",
+        "lowCleanliness": "Subpar Cleanliness"
       }
     }
   }
