@@ -14,6 +14,10 @@ const ClusterMarkers: React.FC = () => {
 
   const { data: clusters } = useGetClustersQuery();
   const isCurrentSearchParamsPoi = isCurrentDrawerParams("poi", searchParams);
+  const isCurrentSearchParamsCluster = isCurrentDrawerParams(
+    "cluster",
+    searchParams,
+  );
 
   const handleClick = React.useCallback(
     (clusterId: string) =>
@@ -31,10 +35,19 @@ const ClusterMarkers: React.FC = () => {
       setOnClusterMarkerClick(handleClick);
     }
 
+    if (isCurrentSearchParamsCluster) {
+      markers.cluster.clear();
+    }
+
     return () => {
       markers.cluster.clear();
     };
-  }, [clusters, handleClick, isCurrentSearchParamsPoi]);
+  }, [
+    clusters,
+    handleClick,
+    isCurrentSearchParamsPoi,
+    isCurrentSearchParamsCluster,
+  ]);
   return <></>;
 };
 
