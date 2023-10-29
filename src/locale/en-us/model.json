@@ -2,11 +2,15 @@
   "poi": {
     "data": {
       "status": {
-        "excellent": "Excellent",
-        "good": "Good",
-        "normal": "Normal",
-        "bad": "Bad",
-        "terrible": "Terrible",
+        "clean": "Clean",
+        "crowd": "Crowd",
+        "function": "Function",
+        "maintenance": "Maintenance",
+        "noise": "Noise",
+        "occupation": "Occupation",
+        "outlook": "Outlook",
+        "thermalcomfort": "Thermalcomfort",
+        "usage": "Usage",
         "unknown": "Unknown"
       }
     }
