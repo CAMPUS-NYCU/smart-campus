@@ -1,5 +1,4 @@
 export const poiStatus = {
-  unknown: "unknown",
   clean: "clean",
   crowd: "crowd",
   function: "function",
@@ -9,10 +8,10 @@ export const poiStatus = {
   outlook: "outlook",
   thermalcomfort: "thermalcomfort",
   usage: "usage",
+  unknown: "unknown",
 };
 
 export const poiStatusMessageKeys = {
-  [poiStatus.unknown]: "poi.data.status.unknown",
   [poiStatus.clean]: "poi.data.status.clean",
   [poiStatus.crowd]: "poi.data.status.crowd",
   [poiStatus.function]: "poi.data.status.function",
@@ -22,4 +21,5 @@ export const poiStatusMessageKeys = {
   [poiStatus.outlook]: "poi.data.status.outlook",
   [poiStatus.thermalcomfort]: "poi.data.status.thermalcomfort",
   [poiStatus.usage]: "poi.data.status.usage",
+  [poiStatus.unknown]: "poi.data.status.unknown",
 };
