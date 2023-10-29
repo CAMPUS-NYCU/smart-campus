@@ -41,6 +41,7 @@ export const getIcon = (poiData: PoiData) => {
     case "usage":
       thisUrl = poiMarkerUsage;
       break;
+    case "unknown":
     default:
       thisUrl = poiMarkerUnknown;
       break;
