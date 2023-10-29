@@ -11,7 +11,7 @@ import poiMarkerThermalComfort from "../../../../assets/images/poiMarkerThermalC
 import poiMarkerUsage from "../../../../assets/images/poiMarkerUsage.svg"; // 使用狀態
 import poiMarkerUnknown from "../../../../assets/images/poiMarkerUnknown.svg"; // 未知
 
-export const getIcon = (poiData: PoiData) => {
+export const getIcon = (status: PoiStatus): google.maps.Icon => {
   let thisUrl: string;
   switch (poiData.status) {
     case "clean":
