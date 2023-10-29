@@ -12,7 +12,7 @@ import { editReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
-  resetDrawerParams,
+  setupDrawerParams,
 } from "../../../utils/routes/params";
 
 import { poiStatus, poiStatusMessageKeys } from "../../../constants/model/poi";
@@ -60,7 +60,15 @@ const PoiDrawer: React.FC = () => {
   };
 
   const handleDrawerDismiss = () => {
-    resetDrawerParams(searchParams, setSearchParams);
+    if (!poi) {
+      throw new Error("PoiDrawer: poi not found");
+    } else {
+      setupDrawerParams<"cluster">(
+        { clusterId: poi?.data.clusterId },
+        searchParams,
+        setSearchParams,
+      );
+    }
   };
 
   return (
