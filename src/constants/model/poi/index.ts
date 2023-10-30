@@ -1,5 +1,4 @@
 export const poiStatus = {
-  unknown: "unknown",
   // 物體的回報狀態
   maintenance: "maintenance",
   function: "function",
@@ -14,10 +13,12 @@ export const poiStatus = {
 
   // 物體空間共用
   cleanliness: "cleanliness",
+
+  // for debug
+  unknown: "unknown",
 };
 
 export const poiStatusMessageKeys = {
-  [poiStatus.unknown]: "poi.data.status.unknown",
   // 物體的回報狀態
   [poiStatus.maintenance]: "poi.data.status.maintenance",
   [poiStatus.function]: "poi.data.status.function",
@@ -32,6 +33,9 @@ export const poiStatusMessageKeys = {
 
   // 物體空間共用
   [poiStatus.cleanliness]: "poi.data.status.cleanliness",
+
+  // for debug
+  [poiStatus.unknown]: "poi.data.status.unknown",
 };
 
 export const poiStatusDescription = {

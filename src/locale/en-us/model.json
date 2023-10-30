@@ -2,7 +2,6 @@
   "poi": {
     "data": {
       "status": {
-        "unknown": "Unknown",
         "cleanliness": "Cleanliness",
         "crowd": "Crowd",
         "function": "Function",
@@ -11,7 +10,8 @@
         "occupation": "Occupation",
         "outlook": "Outlook",
         "thermalComfort": "Thermal Comfort",
-        "spaceUsage": "Space Usage"
+        "spaceUsage": "Space Usage",
+        "unknown": "Unknown"
       },
       "statusDescription": {
         "maintenanceCompleted": "Maintenance Completed",

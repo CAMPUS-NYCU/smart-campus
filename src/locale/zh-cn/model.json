@@ -2,7 +2,6 @@
   "poi": {
     "data": {
       "status": {
-        "unknown": "未知",
         "cleanliness": "清洁状态",
         "crowd": "人潮状态",
         "function": "功能状态",
@@ -11,7 +10,8 @@
         "occupation": "占用状态",
         "outlook": "外观状态",
         "thermalComfort": "体感状态",
-        "spaceUsage": "使用状态"
+        "spaceUsage": "使用状态",
+        "unknown": "未知"
       },
       "statusDescription": {
         "maintenanceCompleted": "保养完成",
