@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import { poiStatus, poiStatusDescription } from "../../constants/model/poi";
 
 interface Poi {
@@ -10,15 +11,22 @@ export type PoiStatus = keyof typeof poiStatus;
 export type PoiStatusDescription = keyof typeof poiStatusDescription;
 
 export interface PoiData {
-  name: string;
-  clusterId: string;
-  description: string;
+  clusterId: string; // 所屬 cluster Id
+  floor: string; // e.g. 7F, B1
   latlng: {
     latitude: number;
     longitude: number;
   };
-  status: PoiStatus;
-  statusDescription: PoiStatusDescription;
+  target: {
+    type: string; // 回報項目類型 e.g. 物體
+    name: string; // 回報項目名稱 e.g. 飲水機
+    description: string; // 回報項目敘述 e.g. 飲水機1
+  };
+  status: {
+    name: PoiStatus; // 回報狀態類型 e.g. 清潔狀態
+    description: PoiStatusDescription; // e.g. 回報狀態描述 e.g. 整潔(清潔狀態)
+  };
+  lastUpdatedTime: Timestamp;
   createBy: string;
 }
 
