@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Image, Input, Select, SelectItem } from "@nextui-org/react";
 
 import { poiStatus, poiStatusMessageKeys } from "../../../constants/model/poi";
-import { PoiData, PoiStatus } from "../../../models/poi";
+import { PoiStatus } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import {
   updateAddReportData,
@@ -78,22 +78,14 @@ const AddReportDrawerContent: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
 
-  const handleUpdateData = (key: keyof PoiData) => {
-    const oldValue = reportData[key];
-    return (value: typeof oldValue) => {
-      dispatch(updateAddReportData({ [key]: value }));
-    };
-  };
-
   const handleSetLatLng = () => {
     const center = maps.getCenter();
     if (!center) {
       throw new Error("LatLng not found");
     }
 
-    const updateLatLng = handleUpdateData("latlng");
-    const newLagLng = { latitude: center.lat(), longitude: center.lng() };
-    updateLatLng(newLagLng);
+    const latlng = { latitude: center.lat(), longitude: center.lng() };
+    dispatch(updateAddReportData({ latlng }));
   };
 
   return (
@@ -104,7 +96,9 @@ const AddReportDrawerContent: React.FC = () => {
         autoComplete="text"
         value={reportData.name || ""}
         isInvalid={!reportData.name}
-        onValueChange={handleUpdateData("name")}
+        onValueChange={(value) =>
+          dispatch(updateAddReportData({ name: value }))
+        }
         variant="bordered"
       />
       <Input
@@ -114,7 +108,9 @@ const AddReportDrawerContent: React.FC = () => {
         autoComplete="text"
         value={reportData.description || ""}
         isInvalid={!reportData.description}
-        onValueChange={handleUpdateData("description")}
+        onValueChange={(value) =>
+          dispatch(updateAddReportData({ description: value }))
+        }
         variant="bordered"
       />
       <div className="flex justify-between items-center">
