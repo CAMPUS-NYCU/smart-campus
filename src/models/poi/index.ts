@@ -1,4 +1,3 @@
-import { Timestamp } from "firebase/firestore";
 import { poiStatus, poiStatusDescription } from "../../constants/model/poi";
 
 interface Poi {
@@ -26,7 +25,7 @@ export interface PoiData {
     name: PoiStatus; // 回報狀態類型 e.g. 清潔狀態
     description: PoiStatusDescription; // e.g. 回報狀態描述 e.g. 整潔(清潔狀態)
   };
-  lastUpdatedTime: Timestamp;
+  lastUpdatedTime: string;
   createBy: string;
 }
 

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import Poi, { PoiData, PoiMedia, PoiStatus } from "../../models/poi";
 import { poiStatus } from "../../constants/model/poi";
+import moment from "moment";
 
 interface ReportState extends Poi {
   type: "add" | "edit" | null;
@@ -17,6 +18,7 @@ export const initialReportPoiData: PoiData = {
   clusterId: "",
   status: poiStatus.unknown as PoiStatus,
   createBy: "",
+  lastUpdatedTime: moment().toISOString(),
 };
 
 export const initialReportMedia: PoiMedia = {

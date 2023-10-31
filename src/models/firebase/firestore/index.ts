@@ -1,4 +1,4 @@
-import { GeoPoint, Timestamp } from "firebase/firestore";
+import { GeoPoint } from "firebase/firestore";
 import { PoiStatus, PoiStatusDescription } from "../../poi";
 
 export interface FirestoreCluster {
@@ -30,7 +30,7 @@ export interface FirestorePoiData {
     name: PoiStatus;
     description: PoiStatusDescription;
   };
-  lastUpdatedTime: Timestamp;
+  lastUpdatedTime: string;
   createBy: string;
 }
 
