@@ -73,7 +73,7 @@ const AddReportDrawer: React.FC = () => {
       title={
         <span>
           {t("editReport.title", {
-            poi: poi?.data.name,
+            poi: poi?.data.target.name,
             ns: ["drawer"],
           })}
         </span>
