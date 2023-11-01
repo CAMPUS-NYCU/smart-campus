@@ -1,4 +1,4 @@
-export const poiStatus = {
+export const poiStatusName = {
   // 物體的回報狀態
   maintenance: "maintenance",
   function: "function",
@@ -18,24 +18,24 @@ export const poiStatus = {
   unknown: "unknown",
 };
 
-export const poiStatusMessageKeys = {
+export const poiStatusNameMessageKeys = {
   // 物體的回報狀態
-  [poiStatus.maintenance]: "poi.data.status.maintenance",
-  [poiStatus.function]: "poi.data.status.function",
-  [poiStatus.outlook]: "poi.data.status.outlook",
-  [poiStatus.occupation]: "poi.data.status.occupation",
+  [poiStatusName.maintenance]: "poi.data.status.maintenance",
+  [poiStatusName.function]: "poi.data.status.function",
+  [poiStatusName.outlook]: "poi.data.status.outlook",
+  [poiStatusName.occupation]: "poi.data.status.occupation",
 
   // 空間的回報狀態
-  [poiStatus.spaceUsage]: "poi.data.status.spaceUsage",
-  [poiStatus.crowd]: "poi.data.status.crowd",
-  [poiStatus.noise]: "poi.data.status.noise",
-  [poiStatus.thermalComfort]: "poi.data.status.thermalComfort",
+  [poiStatusName.spaceUsage]: "poi.data.status.spaceUsage",
+  [poiStatusName.crowd]: "poi.data.status.crowd",
+  [poiStatusName.noise]: "poi.data.status.noise",
+  [poiStatusName.thermalComfort]: "poi.data.status.thermalComfort",
 
   // 物體空間共用
-  [poiStatus.cleanliness]: "poi.data.status.cleanliness",
+  [poiStatusName.cleanliness]: "poi.data.status.cleanliness",
 
   // for debug
-  [poiStatus.unknown]: "poi.data.status.unknown",
+  [poiStatusName.unknown]: "poi.data.status.unknown",
 };
 
 export const poiStatusDescription = {

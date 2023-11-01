@@ -1,4 +1,4 @@
-import { poiStatus, poiStatusDescription } from "../../constants/model/poi";
+import { poiStatusName, poiStatusDescription } from "../../constants/model/poi";
 
 interface Poi {
   id: string;
@@ -6,7 +6,7 @@ interface Poi {
   media: PoiMedia;
 }
 
-export type PoiStatus = keyof typeof poiStatus;
+export type PoiStatusName = keyof typeof poiStatusName;
 export type PoiStatusDescription = keyof typeof poiStatusDescription;
 
 export interface PoiData {
@@ -22,7 +22,7 @@ export interface PoiData {
     description: string; // 回報項目敘述 e.g. 飲水機1
   };
   status: {
-    name: PoiStatus; // 回報狀態類型 e.g. 清潔狀態
+    name: PoiStatusName; // 回報狀態類型 e.g. 清潔狀態
     description: PoiStatusDescription; // e.g. 回報狀態描述 e.g. 整潔(清潔狀態)
   };
   lastUpdatedTime: string;

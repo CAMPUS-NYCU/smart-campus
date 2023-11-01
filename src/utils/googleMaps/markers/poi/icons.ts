@@ -1,4 +1,4 @@
-import { PoiStatus } from "../../../../models/poi";
+import { PoiStatusName } from "../../../../models/poi";
 
 import poiMarkerCleanliness from "../../../../assets/images/poiMarkerCleanliness.svg"; // 清潔狀態
 import poiMarkerCrowd from "../../../../assets/images/poiMarkerCrowd.svg"; // 人潮狀態
@@ -11,7 +11,7 @@ import poiMarkerThermalComfort from "../../../../assets/images/poiMarkerThermalC
 import poiMarkerSpaceUsage from "../../../../assets/images/poiMarkerSpaceUsage.svg"; // 使用狀態
 import poiMarkerUnknown from "../../../../assets/images/poiMarkerUnknown.svg"; // 未知
 
-export const getIcon = (status: PoiStatus): google.maps.Icon => {
+export const getIcon = (status: PoiStatusName): google.maps.Icon => {
   let thisUrl: string;
   switch (status) {
     case "cleanliness":

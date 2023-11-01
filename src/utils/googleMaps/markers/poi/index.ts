@@ -16,7 +16,7 @@ export const setPois = (pois: Pois): void => {
     Object.entries(pois).map(([poiId, poiData]) => [
       poiId,
       new google.maps.Marker({
-        icon: getIcon(poiData.status),
+        icon: getIcon(poiData.status.name),
         map: maps.mapRef.current,
         position: new google.maps.LatLng(
           poiData.latlng.latitude,

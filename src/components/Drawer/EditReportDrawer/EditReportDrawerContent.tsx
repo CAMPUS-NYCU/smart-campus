@@ -3,8 +3,11 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Image, Input, Select, SelectItem } from "@nextui-org/react";
 
-import { poiStatus, poiStatusMessageKeys } from "../../../constants/model/poi";
-import { PoiStatus } from "../../../models/poi";
+import {
+  poiStatusName,
+  poiStatusNameMessageKeys,
+} from "../../../constants/model/poi";
+import { PoiStatusName } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
 
@@ -13,11 +16,18 @@ const StatusSelect: React.FC = () => {
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
-  const status = reportData.status;
+  const status = reportData.status.name;
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
-      dispatch(updateAddReportData({ status: e.target.value as PoiStatus }));
+      dispatch(
+        updateAddReportData({
+          status: {
+            ...reportData.status,
+            name: e.target.value as PoiStatusName,
+          },
+        }),
+      );
     }
   };
 
@@ -29,9 +39,9 @@ const StatusSelect: React.FC = () => {
       selectedKeys={new Set([status])}
       onChange={handleSelectChange}
     >
-      {Object.keys(poiStatus).map((s) => (
+      {Object.keys(poiStatusName).map((s) => (
         <SelectItem key={s} value={s}>
-          {t(poiStatusMessageKeys[s] || "", {
+          {t(poiStatusNameMessageKeys[s] || "", {
             ns: ["model"],
           })}
         </SelectItem>
@@ -62,8 +72,8 @@ const AddReportDrawerContent: React.FC = () => {
       <Input
         disabled
         label={t("editReport.content.inputs.name.label", { ns: ["drawer"] })}
-        value={reportData.name || ""}
-        isInvalid={!reportData.name}
+        value={reportData.target.name || ""}
+        isInvalid={!reportData.target.name}
         variant="bordered"
       />
       <Input
@@ -71,8 +81,8 @@ const AddReportDrawerContent: React.FC = () => {
         label={t("editReport.content.inputs.description.label", {
           ns: ["drawer"],
         })}
-        value={reportData.description || ""}
-        isInvalid={!reportData.description}
+        value={reportData.target.description || ""}
+        isInvalid={!reportData.target.description}
         variant="bordered"
       />
       <StatusSelect />

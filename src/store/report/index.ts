@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import Poi, { PoiData, PoiMedia, PoiStatus } from "../../models/poi";
-import { poiStatus } from "../../constants/model/poi";
+import Poi, {
+  PoiData,
+  PoiMedia,
+  PoiStatusDescription,
+  PoiStatusName,
+} from "../../models/poi";
+import { poiStatusDescription, poiStatusName } from "../../constants/model/poi";
 import moment from "moment";
 
 interface ReportState extends Poi {
@@ -9,15 +14,22 @@ interface ReportState extends Poi {
 }
 
 export const initialReportPoiData: PoiData = {
-  name: "",
-  description: "",
+  target: {
+    type: "",
+    name: "",
+    description: "",
+  },
   latlng: {
     latitude: 0,
     longitude: 0,
   },
   clusterId: "",
-  status: poiStatus.unknown as PoiStatus,
+  status: {
+    name: poiStatusName.unknown as PoiStatusName,
+    description: poiStatusDescription.comfortable as PoiStatusDescription,
+  },
   createBy: "",
+  floor: "",
   lastUpdatedTime: moment().toISOString(),
 };
 

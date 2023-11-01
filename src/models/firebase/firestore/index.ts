@@ -1,5 +1,5 @@
 import { GeoPoint } from "firebase/firestore";
-import { PoiStatus, PoiStatusDescription } from "../../poi";
+import { PoiStatusName, PoiStatusDescription } from "../../poi";
 
 export interface FirestoreCluster {
   id: string;
@@ -27,7 +27,7 @@ export interface FirestorePoiData {
     description: string;
   };
   status: {
-    name: PoiStatus;
+    name: PoiStatusName;
     description: PoiStatusDescription;
   };
   lastUpdatedTime: string;
