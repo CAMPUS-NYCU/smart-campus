@@ -38,3 +38,14 @@ export type Pois = Record<string, PoiData>;
 export type PoiOrNull = Poi | null;
 
 export default Poi;
+
+export interface PoiCategory {
+  type: string;
+  name: string;
+  descname: string;
+}
+
+export interface PoiStatus {
+  name: string;
+  descname: string;
+}
