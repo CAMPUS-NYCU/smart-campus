@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Image, Input, Select, SelectItem } from "@nextui-org/react";
 
 import {
-  poiStatusName,
-  poiStatusNameMessageKeys,
+  poiStatusType,
+  poiStatusTypeMessageKeys,
 } from "../../../constants/model/poi";
-import { PoiStatusName } from "../../../models/poi";
+import { PoiStatusType } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import {
   updateAddReportData,
@@ -20,7 +20,7 @@ const StatusSelect: React.FC = () => {
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
-  const status = reportData.status.name;
+  const status = reportData.status.type;
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -28,7 +28,7 @@ const StatusSelect: React.FC = () => {
         updateAddReportData({
           status: {
             ...reportData.status,
-            name: e.target.value as PoiStatusName,
+            type: e.target.value as PoiStatusType,
           },
         }),
       );
@@ -43,9 +43,9 @@ const StatusSelect: React.FC = () => {
       selectedKeys={new Set([status])}
       onChange={handleSelectChange}
     >
-      {Object.keys(poiStatusName).map((s) => (
+      {Object.keys(poiStatusType).map((s) => (
         <SelectItem key={s} value={s}>
-          {t(poiStatusNameMessageKeys[s] || "", {
+          {t(poiStatusTypeMessageKeys[s] || "", {
             ns: ["model"],
           })}
         </SelectItem>
@@ -120,12 +120,12 @@ const AddReportDrawerContent: React.FC = () => {
           ns: ["drawer"],
         })}
         autoComplete="text"
-        value={reportData.target.description || ""}
-        isInvalid={!reportData.target.description}
+        value={reportData.target.serial || ""}
+        isInvalid={!reportData.target.serial}
         onValueChange={(value) =>
           dispatch(
             updateAddReportData({
-              target: { ...reportData.target, description: value },
+              target: { ...reportData.target, serial: value },
             }),
           )
         }

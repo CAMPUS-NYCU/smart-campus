@@ -1,5 +1,5 @@
 import { GeoPoint } from "firebase/firestore";
-import { PoiStatusName, PoiStatusDescription } from "../../poi";
+import { PoiStatusType, PoiStatusValue } from "../../poi";
 
 export interface FirestoreCluster {
   id: string;
@@ -20,18 +20,23 @@ export interface FirestorePoi {
 export interface FirestorePoiData {
   clusterId: string;
   floor: string;
-  latlng: GeoPoint;
+  latlng: {
+    latitude: number;
+    longitude: number;
+  };
   target: {
-    type: string;
+    category: string;
     name: string;
-    description: string;
+    serial: string;
   };
   status: {
-    name: PoiStatusName;
-    description: PoiStatusDescription;
+    type: PoiStatusType;
+    value: PoiStatusValue;
   };
-  lastUpdatedTime: string;
-  createBy: string;
+  createdAt: string;
+  createdBy: string;
+  updatedAt: string | null;
+  updatedBy: string | null;
 }
 
 export interface FirestoreUser {

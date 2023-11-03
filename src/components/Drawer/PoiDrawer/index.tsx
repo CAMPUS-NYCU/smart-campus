@@ -16,19 +16,19 @@ import {
 } from "../../../utils/routes/params";
 
 import {
-  poiStatusName,
-  poiStatusNameMessageKeys,
+  poiStatusType,
+  poiStatusTypeMessageKeys,
 } from "../../../constants/model/poi";
-import { PoiStatusName } from "../../../models/poi";
+import { PoiStatusType } from "../../../models/poi";
 
 import Drawer from "..";
 
-const PoiDrawerStatus: React.FC<{ status?: PoiStatusName }> = ({ status }) => {
+const PoiDrawerStatus: React.FC<{ status?: PoiStatusType }> = ({ status }) => {
   const { t } = useTranslation();
 
   return (
     <Chip>
-      {t(poiStatusNameMessageKeys[status || poiStatusName.unknown] || "", {
+      {t(poiStatusTypeMessageKeys[status || poiStatusType.unknown] || "", {
         ns: ["model"],
       })}
     </Chip>
@@ -86,7 +86,7 @@ const PoiDrawer: React.FC = () => {
         <div>
           <div>
             {t("poiDrawer.content.texts.description", {
-              description: poi?.data.target.description,
+              description: poi?.data.target.serial,
               ns: ["drawer"],
             })}
           </div>
@@ -97,7 +97,7 @@ const PoiDrawer: React.FC = () => {
               ns: ["drawer"],
             })}
           </div>
-          <PoiDrawerStatus status={poi?.data.status.name} />
+          <PoiDrawerStatus status={poi?.data.status.type} />
           <div className="flex flex-row">
             {poi?.media.photoUrls.map((url) => (
               <Image key={url} src={url} alt="" />

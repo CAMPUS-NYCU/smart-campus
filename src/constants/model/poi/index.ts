@@ -1,12 +1,12 @@
-export const poiStatusName = {
+export const poiStatusType = {
   // 物體的回報狀態
   maintenance: "maintenance",
   function: "function",
-  outlook: "outlook",
+  appearance: "appearance",
   occupation: "occupation",
 
   // 空間的回報狀態
-  spaceUsage: "spaceUsage",
+  usage: "usage",
   crowd: "crowd",
   noise: "noise",
   thermalComfort: "thermalComfort",
@@ -18,27 +18,27 @@ export const poiStatusName = {
   unknown: "unknown",
 };
 
-export const poiStatusNameMessageKeys = {
+export const poiStatusTypeMessageKeys = {
   // 物體的回報狀態
-  [poiStatusName.maintenance]: "poi.data.status.maintenance",
-  [poiStatusName.function]: "poi.data.status.function",
-  [poiStatusName.outlook]: "poi.data.status.outlook",
-  [poiStatusName.occupation]: "poi.data.status.occupation",
+  [poiStatusType.maintenance]: "poi.data.status.maintenance.name",
+  [poiStatusType.function]: "poi.data.status.function.name",
+  [poiStatusType.appearance]: "poi.data.status.appearance.name",
+  [poiStatusType.occupation]: "poi.data.status.occupation.name",
 
   // 空間的回報狀態
-  [poiStatusName.spaceUsage]: "poi.data.status.spaceUsage",
-  [poiStatusName.crowd]: "poi.data.status.crowd",
-  [poiStatusName.noise]: "poi.data.status.noise",
-  [poiStatusName.thermalComfort]: "poi.data.status.thermalComfort",
+  [poiStatusType.usage]: "poi.data.status.usage.name",
+  [poiStatusType.crowd]: "poi.data.status.crowd.name",
+  [poiStatusType.noise]: "poi.data.status.noise.name",
+  [poiStatusType.thermalComfort]: "poi.data.status.thermalComfort.name",
 
   // 物體空間共用
-  [poiStatusName.cleanliness]: "poi.data.status.cleanliness",
+  [poiStatusType.cleanliness]: "poi.data.status.cleanliness.name",
 
   // for debug
-  [poiStatusName.unknown]: "poi.data.status.unknown",
+  [poiStatusType.unknown]: "poi.data.status.unknown.name",
 };
 
-export const poiStatusDescription = {
+export const poiStatusValue = {
   // 物體的回報狀態描述
   // 保養狀態 maintenance
   maintenanceCompleted: "maintenanceCompleted", // 保養完成
@@ -47,15 +47,15 @@ export const poiStatusDescription = {
   functional: "functional", // 功能正常
   remainsFuntional: "remainsFuntional", // 尚可使用
   nonFunctional: "nonFunctional", // 無法使用
-  // 外觀狀態 outlook
-  outlookFlawless: "outlookFlawless", // 完好無損
-  outlookDeteriorated: "outlookDeteriorated", // 外觀破損
+  // 外觀狀態 appearance
+  appearanceGood: "appearanceGood", // 完好無損
+  appearanceBad: "appearanceBad", // 外觀破損
   // 占用狀態 occupation
   unoccupied: "unoccupied", // 無人使用
   occupied: "occupied", // 有人占用
 
   // 空間的回報狀態描述
-  // 使用狀態 spaceUsage
+  // 使用狀態 usage
   spacesAvailable: "spacesAvailable", // 尚有空位
   limitedSpaces: "limitedSpaces", // 空位有限
   noSpaces: "noSpaces", // 已無空位
@@ -74,63 +74,57 @@ export const poiStatusDescription = {
 
   // 物體空間共用狀態描述
   // 清潔狀態 cleanliness
-  highCleanliness: "highCleanliness", // 整潔
+  goodCleanliness: "goodCleanliness", // 整潔
   normalCleanliness: "normalCleanliness", // 普通
-  lowCleanliness: "lowCleanliness", // 髒亂
+  badCleanliness: "badCleanliness", // 髒亂
+
+  // for debug
+  unknown: "unknown",
 };
 
-export const poiStatusDescriptionMessageKeys = {
+export const poiStatusValueMessageKeys = {
   // 物體的回報狀態描述
   // 保養狀態
-  [poiStatusDescription.maintenanceCompleted]:
-    "poi.data.statusDescription.maintenanceCompleted",
-  [poiStatusDescription.underMaintenance]:
-    "poi.data.statusDescription.underMaintenance",
+  [poiStatusValue.maintenanceCompleted]:
+    "poi.data.status.maintenance.value.completed",
+  [poiStatusValue.underMaintenance]:
+    "poi.data.status.maintenance.value.processing",
   // 功能狀態
-  [poiStatusDescription.functional]: "poi.data.statusDescription.functional",
-  [poiStatusDescription.remainsFuntional]:
-    "poi.data.statusDescription.remainsFunctional",
-  [poiStatusDescription.nonFunctional]:
-    "poi.data.statusDescription.nonFunctional",
+  [poiStatusValue.functional]: "poi.data.staus.function.value.good",
+  [poiStatusValue.remainsFuntional]: "poi.data.status.function.value.ok",
+  [poiStatusValue.nonFunctional]: "poi.data.status.function.value.bad",
   // 外觀狀態
-  [poiStatusDescription.outlookFlawless]:
-    "poi.data.statusDescription.outlookFlawless",
-  [poiStatusDescription.outlookDeteriorated]:
-    "poi.data.statusDescription.outlookDeteriorated",
+  [poiStatusValue.appearanceGood]: "poi.data.status.appearance.value.good",
+  [poiStatusValue.appearanceBad]: "poi.data.status.appearance.value.bad",
   // 占用狀態
-  [poiStatusDescription.occupied]: "poi.data.statusDescription.occupied",
-  [poiStatusDescription.unoccupied]: "poi.data.statusDescription.unoccipied",
+  [poiStatusValue.occupied]: "poi.data.status.occupation.value.occupied",
+  [poiStatusValue.unoccupied]: "poi.data.status.occupation.value.unoccipied",
 
   // 空間的回報狀態描述
   // 使用狀態
-  [poiStatusDescription.spacesAvailable]:
-    "poi.data.statusDescription.spacesAvailable",
-  [poiStatusDescription.limitedSpaces]:
-    "poi.data.statusDescription.limitedSpaces",
-  [poiStatusDescription.noSpaces]: "poi.data.statusDescription.noSpaces",
+  [poiStatusValue.spacesAvailable]: "poi.data.status.usage.available",
+  [poiStatusValue.limitedSpaces]: "poi.data.status.usage.limited",
+  [poiStatusValue.noSpaces]: "poi.data.status.usage.noSpaces",
   // 人潮狀態
-  [poiStatusDescription.crowded]: "poi.data.statusDescription.crowded",
-  [poiStatusDescription.normalCrowded]:
-    "poi.data.statusDescription.normalCrowded",
-  [poiStatusDescription.noSpaces]: "poi.data.statusDescription.noSpaces",
+  [poiStatusValue.crowded]: "poi.data.status.crowd.dense",
+  [poiStatusValue.normalCrowded]: "poi.data.status.crowd.normal",
+  [poiStatusValue.noSpaces]: "poi.data.status.crowd.sparse",
   // 噪音狀態
-  [poiStatusDescription.quiet]: "poi.data.statusDescription.quiet",
-  [poiStatusDescription.normalNoiseLevel]:
-    "poi.data.statusDescription.normalNoiseLevel",
-  [poiStatusDescription.noisy]: "poi.data.statusDescription.noisy",
+  [poiStatusValue.quiet]: "poi.data.status.noise.quiet",
+  [poiStatusValue.normalNoiseLevel]: "poi.data.status.noise.normal",
+  [poiStatusValue.noisy]: "poi.data.status.noise.noisy",
   // 體感狀態
-  [poiStatusDescription.comfortable]: "poi.data.statusDescription.comfortable",
-  [poiStatusDescription.normalComfort]:
-    "poi.data.statusDescription.normalComfort",
-  [poiStatusDescription.uncomfortable]:
-    "poi.data.statusDescription.uncomfortable",
+  [poiStatusValue.comfortable]: "poi.data.status.thermalComfort.comfortable",
+  [poiStatusValue.normalComfort]: "poi.data.status.thermalComfort.normal",
+  [poiStatusValue.uncomfortable]:
+    "poi.data.status.thermalComfort.uncomfortable",
 
   // 物體空間共用狀態描述
   // 清潔狀態
-  [poiStatusDescription.highCleanliness]:
-    "poi.data.statusDescription.highCleanliness",
-  [poiStatusDescription.normalCleanliness]:
-    "poi.data.statusDescription.normalCleanliness",
-  [poiStatusDescription.lowCleanliness]:
-    "poi.data.statusDescription.lowCleanliness",
+  [poiStatusValue.goodCleanliness]: "poi.data.status.cleanliness.good",
+  [poiStatusValue.normalCleanliness]: "poi.data.status.cleanliness.normal",
+  [poiStatusValue.goodCleanliness]: "poi.data.status.cleanliness.bad",
+
+  // for debug
+  [poiStatusValue.unknown]: "poi.data.status.unknown.value.unknown",
 };

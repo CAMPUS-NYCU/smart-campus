@@ -1,26 +1,24 @@
 import { GeoPoint } from "firebase/firestore";
 import { FirestorePoiData } from "../../../../models/firebase/firestore";
-import {
-  PoiData,
-  PoiStatusDescription,
-  PoiStatusName,
-} from "../../../../models/poi";
+import { PoiData } from "../../../../models/poi";
 
 export const toFirebasePoiDataByPoiData = (poi: PoiData): FirestorePoiData => ({
   clusterId: poi.clusterId,
   floor: poi.floor,
   latlng: new GeoPoint(poi.latlng.latitude, poi.latlng.longitude),
   target: {
-    type: poi.target.type,
+    category: poi.target.category,
     name: poi.target.name,
-    description: poi.target.description,
+    serial: poi.target.serial,
   },
   status: {
-    name: poi.status.name,
-    description: poi.status.description,
+    type: poi.status.type,
+    value: poi.status.value,
   },
-  lastUpdatedTime: poi.lastUpdatedTime,
-  createBy: poi.createBy,
+  createdAt: poi.createdAt,
+  createdBy: poi.createdBy,
+  updatedAt: poi.updatedAt,
+  updatedBy: poi.updatedBy,
 });
 
 export const toPoiDataByFirebasePoiData = (poi: FirestorePoiData): PoiData => ({
@@ -31,14 +29,16 @@ export const toPoiDataByFirebasePoiData = (poi: FirestorePoiData): PoiData => ({
     longitude: poi.latlng.longitude,
   },
   target: {
-    type: poi.target.type,
+    category: poi.target.category,
     name: poi.target.name,
-    description: poi.target.description,
+    serial: poi.target.serial,
   },
   status: {
-    name: poi.status.name as PoiStatusName,
-    description: poi.status.description as PoiStatusDescription,
+    type: poi.status.type,
+    value: poi.status.value,
   },
-  lastUpdatedTime: poi.lastUpdatedTime,
-  createBy: poi.createBy,
+  createdAt: poi.createdAt,
+  createdBy: poi.createdBy,
+  updatedAt: poi.updatedAt,
+  updatedBy: poi.updatedBy,
 });

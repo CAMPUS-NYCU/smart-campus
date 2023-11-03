@@ -2,42 +2,81 @@
   "poi": {
     "data": {
       "status": {
-        "cleanliness": "Cleanliness",
-        "crowd": "Crowd",
-        "function": "Function",
-        "maintenance": "Maintenance",
-        "noise": "Noise",
-        "occupation": "Occupation",
-        "outlook": "Outlook",
-        "thermalComfort": "Thermal Comfort",
-        "spaceUsage": "Space Usage",
-        "unknown": "Unknown"
-      },
-      "statusDescription": {
-        "maintenanceCompleted": "Maintenance Completed",
-        "underMaintenance": "Under Maintenance",
-        "functional": "Functional",
-        "remainsFuntional": "Remains Funtional",
-        "nonFunctional": "Non-Functional",
-        "outlookFlawless": "Flawless Outlook",
-        "outlookDeteriorated": "Deteriorated Outlook",
-        "unoccupied": "Unoccupied",
-        "occupied": "Occupied",
-        "spacesAvailable": "Spaces Available",
-        "limitedSpaces": "Limited Spaces",
-        "noSpaces": "No Spaces",
-        "crowded": "Crowded",
-        "normalCrowded": "Normal Crowded",
-        "notCrowded": "Not Crowded",
-        "quiet": "Quiet",
-        "normalNoiseLevel": "Normal Noise Level",
-        "noisy": "Noisy",
-        "comfortable": "Comfortable",
-        "normalComfort": "Normal Comfort",
-        "uncomfortable": "Uncomfortable",
-        "highCleanliness": "Flawless Cleanliness",
-        "normalCleanliness": "Normal Cleanliness",
-        "lowCleanliness": "Subpar Cleanliness"
+        "maintenance": {
+          "name": "Maintenance",
+          "value": {
+            "completed": "Maintenance completed",
+            "processing": "Under maintenance"
+          }
+        },
+        "function": {
+          "name": "Function",
+          "value": {
+            "good": "Functional",
+            "ok": "Remains funtional",
+            "broken": "Non-Functional"
+          }
+        },
+        "appearance": {
+          "name": "Appearance",
+          "value": {
+            "good": "Appearance is good",
+            "bad": "Appearance is bad"
+          }
+        },
+        "occupation": {
+          "name": "Occupation",
+          "value": {
+            "unoccupied": "Unoccupied",
+            "occupied": "Occupied"
+          }
+        },
+        "usage": {
+          "name": "Space Usage",
+          "value": {
+            "available": "Spaces are available",
+            "limited": "Spaces are limited",
+            "noSpaces": "No spaces"
+          }
+        },
+        "crowd": {
+          "name": "Crowd",
+          "value": {
+            "dense": "Crowded",
+            "normal": "Normal",
+            "sparse": "Not crowded"
+          }
+        },
+        "noise": {
+          "name": "Noise",
+          "value": {
+            "quiet": "Quiet",
+            "normal": "Normal",
+            "noisy": "Noisy"
+          }
+        },
+        "thermalComfort": {
+          "name": "Thermal Comfort",
+          "value": {
+            "comfortable": "Comfortable",
+            "normal": "Normal",
+            "uncomfortable": "Uncomfortable"
+          }
+        },
+        "cleanliness": {
+          "name": "Cleanliness",
+          "value": {
+            "good": "clean",
+            "normal": "normal",
+            "bad": "dirty"
+          }
+        },
+        "unknown": {
+          "name": "Unknown",
+          "value": {
+            "unknown": "Unknown"
+          }
+        }
       }
     }
   }

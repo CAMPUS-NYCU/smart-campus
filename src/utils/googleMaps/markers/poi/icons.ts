@@ -1,4 +1,4 @@
-import { PoiStatusName } from "../../../../models/poi";
+import { PoiStatusType } from "../../../../models/poi";
 
 import poiMarkerCleanliness from "../../../../assets/images/poiMarkerCleanliness.svg"; // 清潔狀態
 import poiMarkerCrowd from "../../../../assets/images/poiMarkerCrowd.svg"; // 人潮狀態
@@ -6,12 +6,12 @@ import poiMarkerFunction from "../../../../assets/images/poiMarkerFunction.svg";
 import poiMarkerMaintenance from "../../../../assets/images/poiMarkerMaintenance.svg"; // 保養狀態
 import poiMarkerNoise from "../../../../assets/images/poiMarkerNoise.svg"; // 噪音狀態
 import poiMarkerOccupation from "../../../../assets/images/poiMarkerOccupation.svg"; // 占用狀態
-import poiMarkerOutlook from "../../../../assets/images/poiMarkerOutlook.svg"; // 外觀狀態
+import poiMarkerAppearance from "../../../../assets/images/poiMarkerAppearance.svg"; // 外觀狀態
 import poiMarkerThermalComfort from "../../../../assets/images/poiMarkerThermalComfort.svg"; // 體感狀態
-import poiMarkerSpaceUsage from "../../../../assets/images/poiMarkerSpaceUsage.svg"; // 使用狀態
+import poiMarkerUsage from "../../../../assets/images/poiMarkerUsage.svg"; // 使用狀態
 import poiMarkerUnknown from "../../../../assets/images/poiMarkerUnknown.svg"; // 未知
 
-export const getIcon = (status: PoiStatusName): google.maps.Icon => {
+export const getIcon = (status: PoiStatusType): google.maps.Icon => {
   let thisUrl: string;
   switch (status) {
     case "cleanliness":
@@ -32,14 +32,14 @@ export const getIcon = (status: PoiStatusName): google.maps.Icon => {
     case "occupation":
       thisUrl = poiMarkerOccupation;
       break;
-    case "outlook":
-      thisUrl = poiMarkerOutlook;
+    case "appearance":
+      thisUrl = poiMarkerAppearance;
       break;
     case "thermalComfort":
       thisUrl = poiMarkerThermalComfort;
       break;
-    case "spaceUsage":
-      thisUrl = poiMarkerSpaceUsage;
+    case "usage":
+      thisUrl = poiMarkerUsage;
       break;
     default:
       thisUrl = poiMarkerUnknown;

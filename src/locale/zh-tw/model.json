@@ -2,42 +2,81 @@
   "poi": {
     "data": {
       "status": {
-        "cleanliness": "清潔狀態",
-        "crowd": "人潮狀態",
-        "function": "功能狀態",
-        "maintenance": "保養狀態",
-        "noise": "噪音狀態",
-        "occupation": "占用狀態",
-        "outlook": "外觀狀態",
-        "thermalComfort": "體感狀態",
-        "spaceUsage": "使用狀態",
-        "unknown": "未知"
-      },
-      "statusDescription": {
-        "maintenanceCompleted": "保養完成",
-        "underMaintenance": "保養中",
-        "functional": "功能正常",
-        "remainsFuntional": "尚可使用",
-        "nonFunctional": "無法使用",
-        "outlookFlawless": "完好無損",
-        "outlookDeteriorated": "外觀破損",
-        "unoccupied": "無人使用",
-        "occupied": "有人占用",
-        "spacesAvailable": "尚有空位",
-        "limitedSpaces": "空位有限",
-        "noSpaces": "已無空位",
-        "crowded": "擁擠",
-        "normalCrowded": "普通",
-        "notCrowded": "沒人",
-        "quiet": "安靜",
-        "normalNoiseLevel": "普通",
-        "noisy": "吵雜",
-        "comfortable": "舒適",
-        "normalComfort": "普通",
-        "uncomfortable": "不適",
-        "highCleanliness": "整潔",
-        "normalCleanliness": "普通",
-        "lowCleanliness": "髒亂"
+        "maintenance": {
+          "name": "保養狀態",
+          "value": {
+            "completed": "保養完成",
+            "processing": "保養中"
+          }
+        },
+        "function": {
+          "name": "功能狀態",
+          "value": {
+            "good": "功能正常",
+            "ok": "尚可使用",
+            "broken": "無法使用"
+          }
+        },
+        "appearance": {
+          "name": "外觀狀態",
+          "value": {
+            "good": "完好無損",
+            "bad": "外觀破損"
+          }
+        },
+        "occupation": {
+          "name": "占用狀態",
+          "value": {
+            "unoccupied": "無人使用",
+            "occupied": "有人占用"
+          }
+        },
+        "usage": {
+          "name": "使用狀態",
+          "value": {
+            "available": "尚有空位",
+            "limited": "空位有限",
+            "noSpaces": "已無空位"
+          }
+        },
+        "crowd": {
+          "name": "人潮狀態",
+          "value": {
+            "dense": "擁擠",
+            "normal": "普通",
+            "sparse": "沒人"
+          }
+        },
+        "noise": {
+          "name": "噪音狀態",
+          "value": {
+            "quiet": "安靜",
+            "normal": "普通",
+            "noisy": "吵雜"
+          }
+        },
+        "thermalComfort": {
+          "name": "體感狀態",
+          "value": {
+            "comfortable": "舒適",
+            "normal": "普通",
+            "uncomfortable": "不適"
+          }
+        },
+        "cleanliness": {
+          "name": "清潔狀態",
+          "value": {
+            "good": "整潔",
+            "normal": "普通",
+            "bad": "髒亂"
+          }
+        },
+        "unknown": {
+          "name": "未知",
+          "value": {
+            "unknown": "未知"
+          }
+        }
       }
     }
   }
