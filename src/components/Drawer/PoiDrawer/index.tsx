@@ -15,17 +15,20 @@ import {
   setupDrawerParams,
 } from "../../../utils/routes/params";
 
-import { poiStatus, poiStatusMessageKeys } from "../../../constants/model/poi";
-import { PoiStatus } from "../../../models/poi";
+import {
+  poiStatusType,
+  poiStatusTypeMessageKeys,
+} from "../../../constants/model/poi";
+import { PoiStatusType } from "../../../models/poi";
 
 import Drawer from "..";
 
-const PoiDrawerStatus: React.FC<{ status?: PoiStatus }> = ({ status }) => {
+const PoiDrawerStatus: React.FC<{ status?: PoiStatusType }> = ({ status }) => {
   const { t } = useTranslation();
 
   return (
     <Chip>
-      {t(poiStatusMessageKeys[status || poiStatus.unknown] || "", {
+      {t(poiStatusTypeMessageKeys[status || poiStatusType.unknown] || "", {
         ns: ["model"],
       })}
     </Chip>
@@ -76,14 +79,14 @@ const PoiDrawer: React.FC = () => {
       open={selected}
       onClose={handleDrawerDismiss}
       title={t("poiDrawer.title", {
-        name: poi?.data.name,
+        name: poi?.data.target.name,
         ns: ["drawer"],
       })}
       children={
         <div>
           <div>
             {t("poiDrawer.content.texts.description", {
-              description: poi?.data.description,
+              description: poi?.data.target.serial,
               ns: ["drawer"],
             })}
           </div>
@@ -94,7 +97,7 @@ const PoiDrawer: React.FC = () => {
               ns: ["drawer"],
             })}
           </div>
-          <PoiDrawerStatus status={poi?.data.status} />
+          <PoiDrawerStatus status={poi?.data.status.type} />
           <div className="flex flex-row">
             {poi?.media.photoUrls.map((url) => (
               <Image key={url} src={url} alt="" />

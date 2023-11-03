@@ -2,16 +2,81 @@
   "poi": {
     "data": {
       "status": {
-        "clean": "清洁状态",
-        "crowd": "人潮状态",
-        "function": "功能状态",
-        "maintenance": "保养状态",
-        "noise": "噪音状态",
-        "occupation": "占用状态",
-        "outlook": "外观状态",
-        "thermalcomfort": "体感状态",
-        "usage": "使用状态",
-        "unknown": "未知"
+        "maintenance": {
+          "name": "保养状态",
+          "value": {
+            "completed": "保养完成",
+            "processing": "保养中"
+          }
+        },
+        "function": {
+          "name": "功能状态",
+          "value": {
+            "good": "功能正常",
+            "ok": "尚可使用",
+            "broken": "无法使用"
+          }
+        },
+        "appearance": {
+          "name": "外观状态",
+          "value": {
+            "good": "完好无损",
+            "bad": "外观破损"
+          }
+        },
+        "occupation": {
+          "name": "占用状态",
+          "value": {
+            "unoccupied": "无人使用",
+            "occupied": "有人占用"
+          }
+        },
+        "usage": {
+          "name": "使用状态",
+          "value": {
+            "available": "尚有空位",
+            "limited": "空位有限",
+            "noSpaces": "已无空位"
+          }
+        },
+        "crowd": {
+          "name": "人潮状态",
+          "value": {
+            "dense": "拥挤",
+            "normal": "普通",
+            "sparse": "没人"
+          }
+        },
+        "noise": {
+          "name": "噪音状态",
+          "value": {
+            "quiet": "安静",
+            "normal": "普通",
+            "noisy": "吵杂"
+          }
+        },
+        "thermalComfort": {
+          "name": "体感状态",
+          "value": {
+            "comfortable": "舒适",
+            "normal": "普通",
+            "uncomfortable": "不适"
+          }
+        },
+        "cleanliness": {
+          "name": "清洁状态",
+          "value": {
+            "good": "整洁",
+            "normal": "普通",
+            "bad": "髒乱"
+          }
+        },
+        "unknown": {
+          "name": "未知",
+          "value": {
+            "unknown": "未知"
+          }
+        }
       }
     }
   }

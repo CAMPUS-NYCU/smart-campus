@@ -1,4 +1,4 @@
-import { poiStatus } from "../../constants/model/poi";
+import { poiStatusType, poiStatusValue } from "../../constants/model/poi";
 
 interface Poi {
   id: string;
@@ -6,18 +6,29 @@ interface Poi {
   media: PoiMedia;
 }
 
-export type PoiStatus = keyof typeof poiStatus;
+export type PoiStatusType = keyof typeof poiStatusType;
+export type PoiStatusValue = keyof typeof poiStatusValue;
 
 export interface PoiData {
-  name: string;
-  clusterId: string;
-  description: string;
+  clusterId: string; // 所屬 cluster Id
+  floor: string; // e.g. 7F, B1
   latlng: {
     latitude: number;
     longitude: number;
   };
-  status: PoiStatus;
-  createBy: string;
+  target: {
+    category: string; // 回報項目類型 e.g. 物體
+    name: string; // 回報項目名稱 e.g. 飲水機
+    serial: string; // 回報項目敘述 e.g. 飲水機1-2
+  };
+  status: {
+    type: PoiStatusType; // 狀態 e.g. 清潔狀態
+    value: PoiStatusValue; // 狀態的狀態(?) e.g. 整潔(清潔狀態的其中一種描述)
+  };
+  createdAt: string;
+  createdBy: string;
+  updatedAt: string | null;
+  updatedBy: string | null;
 }
 
 export interface PoiMedia {

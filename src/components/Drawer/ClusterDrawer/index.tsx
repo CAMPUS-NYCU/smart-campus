@@ -68,12 +68,6 @@ const ClusterDrawer: React.FC = () => {
       children={
         <div>
           <div>
-            {t("clusterDrawer.content.texts.description", {
-              description: cluster?.data.description,
-              ns: ["drawer"],
-            })}
-          </div>
-          <div>
             {t("clusterDrawer.content.texts.latlng", {
               latitude: cluster?.data.latlng.latitude,
               longitude: cluster?.data.latlng.longitude,

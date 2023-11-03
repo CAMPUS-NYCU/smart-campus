@@ -1,22 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import Poi, { PoiData, PoiMedia, PoiStatus } from "../../models/poi";
-import { poiStatus } from "../../constants/model/poi";
+import Poi, {
+  PoiData,
+  PoiMedia,
+  PoiStatusValue,
+  PoiStatusType,
+} from "../../models/poi";
+import { poiStatusValue, poiStatusType } from "../../constants/model/poi";
 
 interface ReportState extends Poi {
   type: "add" | "edit" | null;
 }
 
 export const initialReportPoiData: PoiData = {
-  name: "",
-  description: "",
+  clusterId: "",
+  floor: "",
   latlng: {
     latitude: 0,
     longitude: 0,
   },
-  clusterId: "",
-  status: poiStatus.unknown as PoiStatus,
-  createBy: "",
+  target: {
+    category: "",
+    name: "",
+    serial: "",
+  },
+  status: {
+    type: poiStatusType.unknown as PoiStatusType,
+    value: poiStatusValue.unknown as PoiStatusValue,
+  },
+  createdAt: "",
+  createdBy: "",
+  updatedAt: "",
+  updatedBy: "",
 };
 
 export const initialReportMedia: PoiMedia = {
