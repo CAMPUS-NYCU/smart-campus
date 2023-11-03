@@ -1,4 +1,5 @@
 import {
+  Timestamp,
   addDoc,
   collection,
   deleteDoc,
@@ -88,9 +89,13 @@ const poiApiSlice = apiSlice.injectEndpoints({
     }),
     addPoi: builder.mutation<string, { data: PoiData; media: PoiMedia }>({
       queryFn: async (arg) => {
+        const firebaseData = {
+          ...toFirebasePoiDataByPoiData(arg.data),
+          createdAt: Timestamp.now(),
+        };
         const docRef = await addDoc(
           collection(firestore, firestoreConfig.collection.poi),
-          toFirebasePoiDataByPoiData(arg.data),
+          firebaseData,
         );
 
         const uploadPromises = arg.media.photoUrls.map((url) =>

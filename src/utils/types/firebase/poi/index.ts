@@ -1,4 +1,4 @@
-import { GeoPoint } from "firebase/firestore";
+import { GeoPoint, Timestamp } from "firebase/firestore";
 import { FirestorePoiData } from "../../../../models/firebase/firestore";
 import { PoiData } from "../../../../models/poi";
 
@@ -15,9 +15,9 @@ export const toFirebasePoiDataByPoiData = (poi: PoiData): FirestorePoiData => ({
     type: poi.status.type,
     value: poi.status.value,
   },
-  createdAt: poi.createdAt,
+  createdAt: Timestamp.fromDate(new Date(poi.createdAt)),
   createdBy: poi.createdBy,
-  updatedAt: poi.updatedAt,
+  updatedAt: poi.updatedAt ? Timestamp.fromDate(new Date(poi.updatedAt)) : null,
   updatedBy: poi.updatedBy,
 });
 
@@ -37,8 +37,8 @@ export const toPoiDataByFirebasePoiData = (poi: FirestorePoiData): PoiData => ({
     type: poi.status.type,
     value: poi.status.value,
   },
-  createdAt: poi.createdAt,
+  createdAt: poi.createdAt?.toDate().toDateString(),
   createdBy: poi.createdBy,
-  updatedAt: poi.updatedAt,
+  updatedAt: poi.updatedAt?.toDate().toDateString() || null,
   updatedBy: poi.updatedBy,
 });

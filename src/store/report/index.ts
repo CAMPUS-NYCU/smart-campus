@@ -54,7 +54,7 @@ const reportSlice = createSlice({
     },
     addReport(
       state,
-      action: PayloadAction<{ clusterId: string; createBy: string }>,
+      action: PayloadAction<{ clusterId: string; createdBy: string }>,
     ) {
       return {
         ...state,

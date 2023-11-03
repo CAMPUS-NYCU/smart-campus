@@ -43,7 +43,7 @@ const ClusterDrawer: React.FC = () => {
     } else if (!user?.id) {
       dispatch(openModal("login"));
     } else {
-      dispatch(addReport({ clusterId: id, createBy: user?.id }));
+      dispatch(addReport({ clusterId: id, createdBy: user?.id }));
     }
   };
 
