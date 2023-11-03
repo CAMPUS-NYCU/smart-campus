@@ -8,7 +8,6 @@ export interface FirestoreCluster {
 
 export interface FirestoreClusterData {
   name: string;
-  description: string;
   latlng: GeoPoint;
 }
 

@@ -16,7 +16,6 @@ export const toFirebaseClusterDataByClusterData = (
   cluster: ClusterData,
 ): FirestoreClusterData => ({
   name: cluster.name,
-  description: cluster.description,
   latlng: new GeoPoint(cluster.latlng.latitude, cluster.latlng.longitude),
 });
 
@@ -31,7 +30,6 @@ export const toClusterDataByFirebaseClusterData = (
   cluster: FirestoreClusterData,
 ): ClusterData => ({
   name: cluster.name,
-  description: cluster.description,
   latlng: {
     latitude: cluster.latlng.latitude,
     longitude: cluster.latlng.longitude,
