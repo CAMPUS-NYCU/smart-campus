@@ -7,7 +7,6 @@ import Poi, {
   PoiStatusType,
 } from "../../models/poi";
 import { poiStatusValue, poiStatusType } from "../../constants/model/poi";
-import moment from "moment";
 
 interface ReportState extends Poi {
   type: "add" | "edit" | null;
@@ -27,11 +26,11 @@ export const initialReportPoiData: PoiData = {
   },
   status: {
     type: poiStatusType.unknown as PoiStatusType,
-    value: poiStatusValue.comfortable as PoiStatusValue,
+    value: poiStatusValue.unknown as PoiStatusValue,
   },
   createdAt: "",
   createdBy: "",
-  updatedAt: moment().toISOString(),
+  updatedAt: "",
   updatedBy: "",
 };
 
