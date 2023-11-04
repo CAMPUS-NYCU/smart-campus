@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { useGetClustersQuery } from "../../../../api/cluster";
 import { markers } from "../../../../utils/googleMaps";
 import { setOnClusterMarkerClick } from "../../../../utils/googleMaps/markers/cluster";
+import { getResourceId } from "../../../../utils/resources";
 import {
   isCurrentDrawerParams,
   setupDrawerParams,
@@ -12,7 +13,11 @@ import {
 const ClusterMarkers: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { data: clusters } = useGetClustersQuery();
+  const resourceId = getResourceId();
+
+  const { data: clusters } = useGetClustersQuery(resourceId, {
+    skip: !resourceId,
+  });
   const isCurrentSearchParamsPoi = isCurrentDrawerParams("poi", searchParams);
   const isCurrentSearchParamsCluster = isCurrentDrawerParams(
     "cluster",

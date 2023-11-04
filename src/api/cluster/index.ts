@@ -1,4 +1,11 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 
 import { firestoreConfig } from "../../constants/firebase";
 import { FirestoreCluster } from "../../models/firebase/firestore";
@@ -10,10 +17,13 @@ import apiSlice from "..";
 
 const clusterApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getClusters: builder.query<Clusters, void>({
-      queryFn: async () => {
+    getClusters: builder.query<Clusters, string | null>({
+      queryFn: async (arg) => {
         const clusters = await getDocs(
-          collection(firestore, firestoreConfig.collection.cluster),
+          query(
+            collection(firestore, firestoreConfig.collection.cluster),
+            where("resourceId", "==", arg),
+          ),
         )
           .then((snapshot) =>
             snapshot.docs.map(

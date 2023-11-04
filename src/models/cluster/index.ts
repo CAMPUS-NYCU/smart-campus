@@ -5,6 +5,7 @@ interface Cluster {
 
 export interface ClusterData {
   name: string;
+  resourceId: string;
   latlng: {
     latitude: number;
     longitude: number;
