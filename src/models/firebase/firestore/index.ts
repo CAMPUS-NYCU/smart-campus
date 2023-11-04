@@ -38,6 +38,25 @@ export interface FirestorePoiData {
   updatedBy: string | null;
 }
 
+export interface FirestoreResource {
+  id: string;
+  data: FirestoreResourceData;
+}
+
+export interface FirestoreResourceData {
+  name: string;
+  groupId: string;
+}
+
+export interface FirestoreResourceGroup {
+  id: string;
+  data: FirestoreResourceGroupData;
+}
+
+export interface FirestoreResourceGroupData {
+  name: string;
+}
+
 export interface FirestoreUser {
   id: string;
   data: FirestoreUserData;

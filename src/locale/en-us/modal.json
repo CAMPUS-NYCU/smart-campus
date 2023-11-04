@@ -28,6 +28,23 @@
     },
     "title": "Switch Language"
   },
+  "switchResource": {
+    "buttons": {
+      "cancel": "Cancel",
+      "confirm": "Confirm"
+    },
+    "select": {
+      "setResource": {
+        "label": "Resource",
+        "placeholder": "Set a resource"
+      },
+      "setResourceGroup": {
+        "label": "Resource Group",
+        "placeholder": "Set a resource group"
+      }
+    },
+    "title": "Switch Resource"
+  },
   "switchTheme": {
     "buttons": {
       "close": "Close"

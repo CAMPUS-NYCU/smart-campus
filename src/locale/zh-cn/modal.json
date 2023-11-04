@@ -28,6 +28,23 @@
     },
     "title": "语言设置"
   },
+  "switchResource": {
+    "buttons": {
+      "cancel": "取消",
+      "confirm": "确认"
+    },
+    "select": {
+      "setResource": {
+        "label": "资源",
+        "placeholder": "设置资源"
+      },
+      "setResourceGroup": {
+        "label": "资源组",
+        "placeholder": "设置资源组"
+      }
+    },
+    "title": "资源"
+  },
   "switchTheme": {
     "buttons": {
       "close": "关闭"

@@ -6,6 +6,7 @@ const modal = {
   confirmEditReport: "confirmEditReport",
   login: "login",
   switchLanguage: "switchLanguage",
+  switchResource: "switchResource",
   switchTheme: "switchTheme",
 };
 

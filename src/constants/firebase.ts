@@ -30,6 +30,8 @@ export const firestoreConfig = {
   collection: {
     cluster: "Cluster",
     poi: "Poi",
+    resource: "Resource",
+    resourceGroup: "ResourceGroup",
     user: "User",
   },
 };

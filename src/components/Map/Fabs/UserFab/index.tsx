@@ -3,6 +3,7 @@ import { Avatar, Dropdown, DropdownTrigger } from "@nextui-org/react";
 
 import { useGetUserQuery } from "../../../../api/user";
 import SwitchLanguage from "../../../modal/SwitchLanguage";
+import SwitchResource from "../../../modal/SwitchResource";
 import SwitchTheme from "../../../modal/SwitchTheme";
 
 import UserFabMenu from "./UserFabMenu";
@@ -32,6 +33,7 @@ const UserFab: React.FC = () => {
       </Dropdown>
       <Login />
       <SwitchLanguage />
+      <SwitchResource />
       <SwitchTheme />
     </>
   );
