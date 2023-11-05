@@ -1,0 +1,343 @@
+{
+  "0": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.78912759293131,
+      "longitude": 120.99711075885095
+    },
+    "target": {
+      "name": "ATM",
+      "description": "ATM1-1"
+    }
+  },
+  "1": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.78923717069016,
+      "longitude": 120.99700615269937
+    },
+    "target": {
+      "name": "ATM",
+      "description": "ATM1-2"
+    }
+  },
+  "2": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789274914118018,
+      "longitude": 120.99725962145128
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-1"
+    }
+  },
+  "3": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.78916777145412,
+      "longitude": 120.99704504473009
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-2"
+    }
+  },
+  "4": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789260316556827,
+      "longitude": 120.9972817778665
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區1-1"
+    }
+  },
+  "5": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.78931084403693,
+      "longitude": 120.99723148644748
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區1-2"
+    }
+  },
+  "6": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789322867145387,
+      "longitude": 120.99718549180594
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區1-3"
+    }
+  },
+  "7": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789267211849687,
+      "longitude": 120.99715989565279
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區1-4"
+    }
+  },
+  "8": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789355879819674,
+      "longitude": 120.9973260061244
+    },
+    "target": {
+      "name": "沙發區",
+      "description": "沙發區1-1"
+    }
+  },
+  "9": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789220734032483,
+      "longitude": 120.9971114294032
+    },
+    "target": {
+      "name": "沙發區",
+      "description": "沙發區1-2"
+    }
+  },
+  "10": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789230474274337,
+      "longitude": 120.9974695043067
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台1-1"
+    }
+  },
+  "11": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789181773057507,
+      "longitude": 120.99743731779851
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台1-2"
+    }
+  },
+  "12": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.78912698416572,
+      "longitude": 120.99738367361822
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台1-3"
+    }
+  },
+  "13": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.78906489005912,
+      "longitude": 120.99726833863058
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台1-4"
+    }
+  },
+  "14": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789124758036436,
+      "longitude": 120.99720126282591
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台1-5"
+    }
+  },
+  "15": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.78916838021954,
+      "longitude": 120.99714093370237
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台1-6"
+    }
+  },
+  "16": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.78918055552685,
+      "longitude": 120.99771001617628
+    },
+    "target": {
+      "name": "教職員停車區",
+      "description": "教職員停車區1-1"
+    }
+  },
+  "17": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789256422883618,
+      "longitude": 120.99733053235211
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區2-1"
+    }
+  },
+  "18": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.78925155276381,
+      "longitude": 120.99709315685429
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區2-2"
+    }
+  },
+  "19": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789261293003246,
+      "longitude": 120.99695368198552
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區2-3"
+    }
+  },
+  "20": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789078663386917,
+      "longitude": 120.99732852069535
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台2-1"
+    }
+  },
+  "21": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.78912858217542,
+      "longitude": 120.99718166975178
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台2-2"
+    }
+  },
+  "22": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789169369463288,
+      "longitude": 120.99713137833275
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台2-3"
+    }
+  },
+  "23": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789350172652583,
+      "longitude": 120.99718770472207
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台2-4"
+    }
+  },
+  "24": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789304515306426,
+      "longitude": 120.99706164089837
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台2-5"
+    }
+  },
+  "25": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789205286616138,
+      "longitude": 120.99697379855313
+    },
+    "target": {
+      "name": "櫃台",
+      "description": "櫃台2-6"
+    }
+  },
+  "26": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789177283413107,
+      "longitude": 120.99739624647297
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區3-1"
+    }
+  },
+  "27": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789273468301424,
+      "longitude": 120.9969858684937
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區3-2"
+    }
+  },
+  "28": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789236942403257,
+      "longitude": 120.99704253015913
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區3-1"
+    }
+  },
+  "29": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.789362347942053,
+      "longitude": 120.99739557592072
+    },
+    "target": {
+      "name": "沙發區",
+      "description": "沙發區3-1"
+    }
+  },
+  "30": {
+    "name": "二餐&停車場",
+    "latlng": {
+      "latitude": 24.78935078141708,
+      "longitude": 120.99720916239419
+    },
+    "target": {
+      "name": "沙發區",
+      "description": "沙發區3-2"
+    }
+  }
+}
