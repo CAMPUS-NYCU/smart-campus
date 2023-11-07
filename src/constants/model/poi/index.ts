@@ -92,7 +92,7 @@ export const poiStatusValueMessageKeys = {
   // 功能狀態
   [poiStatusValue.functional]: "poi.data.staus.function.value.good",
   [poiStatusValue.remainsFuntional]: "poi.data.status.function.value.ok",
-  [poiStatusValue.nonFunctional]: "poi.data.status.function.value.bad",
+  [poiStatusValue.nonFunctional]: "poi.data.status.function.value.broken",
   // 外觀狀態
   [poiStatusValue.appearanceGood]: "poi.data.status.appearance.value.good",
   [poiStatusValue.appearanceBad]: "poi.data.status.appearance.value.bad",
