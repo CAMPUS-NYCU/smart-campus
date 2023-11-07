@@ -34,34 +34,21 @@ function getLocations(clusterName: string): Facilities {
     case /^圖書館/.test(clusterName):
       return libraryData;
 
-    case /^活動中心&一餐/.test(clusterName):
-      facilities = caCafe1Data;
-      break;
-
-    case /^二餐&停車場/.test(clusterName):
-      facilities = parkingLotCafe2Data;
-      break;
-
-    case /^游泳館&綜合球館/.test(clusterName):
-      facilities = swimMultiGymData;
-      break;
-
-    case /^室外球場/.test(clusterName):
-      facilities = outdoorFieldData;
-      break;
-
-    case /^舊體育館/.test(clusterName):
-      facilities = oldGymData;
-      break;
-
-    case /^圖書館/.test(clusterName):
-      facilities = libraryData;
-      break;
-
     default:
       console.error("未知的地點:", clusterName);
       return {};
   }
 }
 
-export { getLocations };
+function getLocationCategories(clusterName: string) {
+  const facilities: Facilities = getLocations(clusterName);
+  const categories = new Set<string>();
+
+  for (const facility of Object.values(facilities)) {
+    categories.add(facility.target.name);
+  }
+
+  return Array.from(categories);
+}
+
+export { getLocations, getLocationCategories };
