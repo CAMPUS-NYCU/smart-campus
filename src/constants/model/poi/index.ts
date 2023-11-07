@@ -108,7 +108,7 @@ export const poiStatusValueMessageKeys = {
   // 人潮狀態
   [poiStatusValue.crowded]: "poi.data.status.crowd.value.dense",
   [poiStatusValue.normalCrowded]: "poi.data.status.crowd.value.normal",
-  [poiStatusValue.noSpaces]: "poi.data.status.crowd.value.sparse",
+  [poiStatusValue.notCrowded]: "poi.data.status.crowd.value.sparse",
   // 噪音狀態
   [poiStatusValue.quiet]: "poi.data.status.noise.value.quiet",
   [poiStatusValue.normalNoiseLevel]: "poi.data.status.noise.value.normal",
