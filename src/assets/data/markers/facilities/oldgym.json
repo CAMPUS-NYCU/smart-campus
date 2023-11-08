@@ -1,0 +1,222 @@
+{
+  "0": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.788559799677053,
+      "longitude": 120.99600929176862
+    },
+    "target": {
+      "name": "飲水機",
+      "description": "飲水機1-1"
+    }
+  },
+  "1": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.78852692618008,
+      "longitude": 120.99600929176862
+    },
+    "target": {
+      "name": "飲水機",
+      "description": "飲水機1-2"
+    }
+  },
+  "2": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.788565887360722,
+      "longitude": 120.99565926349217
+    },
+    "target": {
+      "name": "飲水機",
+      "description": "飲水機1-3"
+    }
+  },
+  "3": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.788539101550363,
+      "longitude": 120.99566194570119
+    },
+    "target": {
+      "name": "飲水機",
+      "description": "飲水機1-4"
+    }
+  },
+  "4": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.788607283601763,
+      "longitude": 120.99596235311085
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-1"
+    }
+  },
+  "5": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.788604848529125,
+      "longitude": 120.99574643528516
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-2"
+    }
+  },
+  "6": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.788838615282625,
+      "longitude": 120.99564853465611
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-3"
+    }
+  },
+  "7": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.78868155329368,
+      "longitude": 120.99564853465611
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-4"
+    }
+  },
+  "8": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.789220920378206,
+      "longitude": 120.99616687154824
+    },
+    "target": {
+      "name": "教職員停車區",
+      "description": "教職員停車區1-1"
+    }
+  },
+  "9": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.78921970284793,
+      "longitude": 120.99606226539666
+    },
+    "target": {
+      "name": "教職員停車區",
+      "description": "教職員停車區1-2"
+    }
+  },
+  "10": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.78921726778733,
+      "longitude": 120.99600191569382
+    },
+    "target": {
+      "name": "教職員停車區",
+      "description": "教職員停車區1-3"
+    }
+  },
+  "11": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.789214832726678,
+      "longitude": 120.9959080383783
+    },
+    "target": {
+      "name": "教職員停車區",
+      "description": "教職員停車區1-4"
+    }
+  },
+  "12": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.78921970284793,
+      "longitude": 120.9958356187349
+    },
+    "target": {
+      "name": "教職員停車區",
+      "description": "教職員停車區1-5"
+    }
+  },
+  "13": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.788772868427746,
+      "longitude": 120.99596503531987
+    },
+    "target": {
+      "name": "室內排球場",
+      "description": "室內排球場1-1"
+    }
+  },
+  "14": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.788774085962398,
+      "longitude": 120.99577459847981
+    },
+    "target": {
+      "name": "室內籃球場",
+      "description": "室內籃球場1-1"
+    }
+  },
+  "15": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.789224572968983,
+      "longitude": 120.99575179970319
+    },
+    "target": {
+      "name": "一般停車區",
+      "description": "一般停車區1-1"
+    }
+  },
+  "16": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.789224572968983,
+      "longitude": 120.99568742668683
+    },
+    "target": {
+      "name": "一般停車區",
+      "description": "一般停車區1-2"
+    }
+  },
+  "17": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.78923066062003,
+      "longitude": 120.99558282053525
+    },
+    "target": {
+      "name": "一般停車區",
+      "description": "一般停車區1-3"
+    }
+  },
+  "18": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.78923066062003,
+      "longitude": 120.99550771868283
+    },
+    "target": {
+      "name": "一般停車區",
+      "description": "一般停車區1-4"
+    }
+  },
+  "19": {
+    "name": "舊體育館",
+    "latlng": {
+      "latitude": 24.78923066062003,
+      "longitude": 120.99542188799435
+    },
+    "target": {
+      "name": "一般停車區",
+      "description": "一般停車區1-5"
+    }
+  }
+}
