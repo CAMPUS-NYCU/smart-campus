@@ -47,7 +47,7 @@ const FacilityFilterFabs: React.FC = () => {
                       shadow-sm shadow-zinc-300 dark:shadow-zinc-800 
                       ${
                         selectedCategories.includes(category)
-                          ? "bg-primary text-white"
+                          ? "bg-primary dark:bg-primary text-white dark:text-white"
                           : ""
                       }`}
             color="primary"

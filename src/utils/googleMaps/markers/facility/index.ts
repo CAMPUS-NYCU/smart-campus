@@ -20,7 +20,7 @@ export const setFacilities = (facilities: Facilities): void => {
         label: {
           text: FacilityData.target.description,
           fontFamily: "'Helvetica', 'Arial', 'sans-serif'",
-          fontSize: "14px",
+          fontSize: "10px",
           color: "#97948E",
         },
         map: maps.mapRef.current,
