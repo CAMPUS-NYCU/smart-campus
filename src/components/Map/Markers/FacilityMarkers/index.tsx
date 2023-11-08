@@ -30,7 +30,9 @@ const FacilityMarkers: React.FC = () => {
   React.useEffect(() => {
     if (isCurrentSearchParamsCluster)
       markers.facility.setFacilities(facilities);
-    else markers.facility.clear();
+    else {
+      markers.facility.clear();
+    }
 
     return () => {
       markers.facility.clear();
