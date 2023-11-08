@@ -22,6 +22,8 @@ import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
+import statusColor from "../../../constants/statusColor";
+import noImage from "../../../assets/images/noImage.svg";
 
 interface PoiListItemProps {
   poi: {
@@ -36,14 +38,25 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
   const { t } = useTranslation();
 
   return (
-    <Listbox aria-label="Actions" onAction={(key) => alert(key)}>
-      <ListboxItem key={poi.id} textValue={`list item of ${poi.id}`}>
+    <Listbox
+      aria-label="Actions"
+      onAction={(key) => alert(`TODO: highlight poi id: ${key}`)}
+    >
+      <ListboxItem
+        key={poi.id}
+        textValue={`list item of ${poi.id}`}
+        classNames={{
+          base: "border-1 border-secondary/50",
+        }}
+      >
         <div className="container flex flex-row justify-between space-x-0.5">
           {/* 主要資訊列 */}
           <div className="flex flex-col shrink justify-evenly basis-6.5/12">
             <div className="flex flex-wrap flex-row space-x-1">
               <p className="font-bold whitespace-normal">{`${poi.data.target.category}/${poi.data.target.name}`}</p>
-              <p className="whitespace-normal">{poi.data.target.serial}</p>
+              <p className="whitespace-normal text-secondary">
+                {poi.data.target.serial}
+              </p>
             </div>
             <div className="flex flex-row space-x-1">
               <Chip radius="sm" classNames={{ content: "px-1" }}>
@@ -51,7 +64,10 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
               </Chip>
               <Chip
                 radius="sm"
-                classNames={{ content: "px-1 whitespace-normal" }}
+                classNames={{
+                  content: "px-1 whitespace-normal",
+                  base: statusColor(poi.data.status.type),
+                }}
               >
                 {t(poiStatusTypeMessageKeys[poi.data.status.type], {
                   ns: ["model"],
@@ -77,7 +93,10 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
             <Button
               radius="full"
               size="sm"
-              className="min-w-fit h-fit px-2 py-1"
+              className="bg-primary min-w-fit h-fit px-2 py-1"
+              onClick={() => {
+                alert(`TODO: open poi drawer: ${poi.id}`);
+              }}
             >
               {t("clusterDrawer.buttons.edit", { ns: ["drawer"] })}
             </Button>
@@ -85,11 +104,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
 
           {/* 圖片 */}
           <div className="flex flex-col justify-center basis-2/12">
-            <Image
-              width={240}
-              src="https://nextui-docs-v2.vercel.app/images/album-cover.png"
-              alt="poi image in list"
-            />
+            <Image src={noImage} alt="poi image in list" />
           </div>
         </div>
       </ListboxItem>
@@ -149,13 +164,6 @@ const ClusterDrawer: React.FC = () => {
       })}
       children={
         <div>
-          <div>
-            {t("clusterDrawer.content.texts.latlng", {
-              latitude: cluster?.data.latlng.latitude,
-              longitude: cluster?.data.latlng.longitude,
-              ns: ["drawer"],
-            })}
-          </div>
           {poiList ? (
             Object.keys(poiList).map((poiId) => {
               const poiData = poiList[poiId];
@@ -169,7 +177,11 @@ const ClusterDrawer: React.FC = () => {
         </div>
       }
       primaryButton={
-        <Button onClick={handleDrawerConfirm}>
+        <Button
+          radius="full"
+          className="bg-primary"
+          onClick={handleDrawerConfirm}
+        >
           {t("clusterDrawer.buttons.add", { ns: ["drawer"] })}
         </Button>
       }
