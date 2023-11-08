@@ -41,10 +41,10 @@ function getLocations(clusterName: string): Facilities {
 }
 
 function getLocationCategories(clusterName: string) {
-  const facilities: Facilities = getLocations(clusterName);
+  const allFacilities: Facilities = getLocations(clusterName);
   const categories = new Set<string>();
 
-  for (const facility of Object.values(facilities)) {
+  for (const facility of Object.values(allFacilities)) {
     categories.add(facility.target.name);
   }
 
