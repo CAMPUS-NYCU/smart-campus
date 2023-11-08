@@ -2,10 +2,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { Button } from "@nextui-org/react";
+import { Button, Listbox, ListboxItem, Chip, Image } from "@nextui-org/react";
 
 import { useGetClusterQuery } from "../../../api/cluster";
 import { useGetUserQuery } from "../../../api/user";
+import { useGetPoisQuery } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { openModal } from "../../../store/modal";
 import { addReport, resetReport } from "../../../store/report";
@@ -16,6 +17,85 @@ import {
 } from "../../../utils/routes/params";
 
 import Drawer from "..";
+import { PoiData } from "../../../models/poi";
+import {
+  poiStatusTypeMessageKeys,
+  poiStatusValueMessageKeys,
+} from "../../../constants/model/poi";
+
+interface PoiListItemProps {
+  poi: {
+    id: string;
+    data: PoiData;
+  };
+}
+
+const PoiListItem: React.FC<PoiListItemProps> = (props) => {
+  const { poi } = props;
+
+  const { t } = useTranslation();
+
+  return (
+    <Listbox aria-label="Actions" onAction={(key) => alert(key)}>
+      <ListboxItem key={poi.id} textValue={`list item of ${poi.id}`}>
+        <div className="container flex flex-row justify-between space-x-0.5">
+          {/* 主要資訊列 */}
+          <div className="flex flex-col shrink justify-evenly basis-6.5/12">
+            <div className="flex flex-wrap flex-row space-x-1">
+              <p className="font-bold whitespace-normal">{`${poi.data.target.category}/${poi.data.target.name}`}</p>
+              <p className="whitespace-normal">{poi.data.target.serial}</p>
+            </div>
+            <div className="flex flex-row space-x-1">
+              <Chip radius="sm" classNames={{ content: "px-1" }}>
+                {poi.data.floor}
+              </Chip>
+              <Chip
+                radius="sm"
+                classNames={{ content: "px-1 whitespace-normal" }}
+              >
+                {t(poiStatusTypeMessageKeys[poi.data.status.type], {
+                  ns: ["model"],
+                })}
+                :
+                {t(poiStatusValueMessageKeys[poi.data.status.value], {
+                  ns: ["model"],
+                })}
+              </Chip>
+            </div>
+            <div className="flex flex-row space-x-1">
+              {t("clusterDrawer.content.texts.updatedAt", {
+                updatedAt: poi?.data.updatedAt
+                  ? poi.data.updatedAt
+                  : poi.data.createdAt,
+                ns: ["drawer"],
+              })}
+            </div>
+          </div>
+
+          {/* 編輯按鈕 */}
+          <div className="flex flex-col justify-end basis-1/12">
+            <Button
+              radius="full"
+              size="sm"
+              className="min-w-fit h-fit px-2 py-1"
+            >
+              {t("clusterDrawer.buttons.edit", { ns: ["drawer"] })}
+            </Button>
+          </div>
+
+          {/* 圖片 */}
+          <div className="flex flex-col justify-center basis-2/12">
+            <Image
+              width={240}
+              src="https://nextui-docs-v2.vercel.app/images/album-cover.png"
+              alt="poi image in list"
+            />
+          </div>
+        </div>
+      </ListboxItem>
+    </Listbox>
+  );
+};
 
 const ClusterDrawer: React.FC = () => {
   const { t } = useTranslation();
@@ -36,6 +116,8 @@ const ClusterDrawer: React.FC = () => {
     skip: !selected,
   });
   const { data: user } = useGetUserQuery();
+
+  const { data: poiList } = useGetPoisQuery(id);
 
   const handleDrawerConfirm = () => {
     if (!id) {
@@ -74,6 +156,16 @@ const ClusterDrawer: React.FC = () => {
               ns: ["drawer"],
             })}
           </div>
+          {poiList ? (
+            Object.keys(poiList).map((poiId) => {
+              const poiData = poiList[poiId];
+              return (
+                <PoiListItem key={poiId} poi={{ id: poiId, data: poiData }} />
+              );
+            })
+          ) : (
+            <></>
+          )}
         </div>
       }
       primaryButton={

@@ -70,15 +70,17 @@
   "clusterDrawer": {
     "buttons": {
       "add": "新增",
-      "cancel": "取消"
+      "cancel": "取消",
+      "edit": "更改"
     },
     "content": {
       "texts": {
         "description": "敘述: {{description}}",
-        "latlng": "經緯度: {{latitude}}, {{longitude}}"
+        "latlng": "經緯度: {{latitude}}, {{longitude}}",
+        "updatedAt": "更新於 {{updatedAt}}"
       }
     },
-    "title": "{{name}}"
+    "title": "{{name}}現有回報資訊"
   },
   "poiDrawer": {
     "buttons": {

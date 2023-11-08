@@ -70,15 +70,17 @@
   "clusterDrawer": {
     "buttons": {
       "add": "新增",
-      "cancel": "取消"
+      "cancel": "取消",
+      "edit": "更改"
     },
     "content": {
       "texts": {
         "description": "叙述: {{description}}",
-        "latlng": "经纬度: {{latitude}}, {{longitude}}"
+        "latlng": "经纬度: {{latitude}}, {{longitude}}",
+        "updatedAt": "更新于 {{updatedAt}}"
       }
     },
-    "title": "{{name}}"
+    "title": "{{name}}现有回报资讯"
   },
   "poiDrawer": {
     "buttons": {
