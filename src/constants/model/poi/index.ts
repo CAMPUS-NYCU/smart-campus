@@ -125,7 +125,7 @@ export const poiStatusValueMessageKeys = {
   [poiStatusValue.goodCleanliness]: "poi.data.status.cleanliness.value.good",
   [poiStatusValue.normalCleanliness]:
     "poi.data.status.cleanliness.value.normal",
-  [poiStatusValue.goodCleanliness]: "poi.data.status.cleanliness.value.bad",
+  [poiStatusValue.badCleanliness]: "poi.data.status.cleanliness.value.bad",
 
   // for debug
   [poiStatusValue.unknown]: "poi.data.status.unknown.value.unknown",
