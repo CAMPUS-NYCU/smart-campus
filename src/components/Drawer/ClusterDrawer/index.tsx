@@ -46,26 +46,26 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
         key={poi.id}
         textValue={`list item of ${poi.id}`}
         classNames={{
-          base: "border-1 border-secondary/50",
+          base: "border-1 border-secondary/50 h-[calc((50vh-100px)/4)] py-0",
         }}
       >
-        <div className="container flex flex-row justify-between space-x-0.5">
+        <div className="container flex flex-row justify-around space-x-0.5 py-0 h-[calc((50vh-100px)/4)]">
           {/* 主要資訊列 */}
-          <div className="flex flex-col shrink-0 justify-evenly basis-7/12">
+          <div className="flex flex-col shrink-0 justify-around basis-7/12">
             <div className="flex flex-wrap flex-row space-x-1">
-              <p className="font-bold whitespace-normal">{`${poi.data.target.category}/${poi.data.target.name}`}</p>
-              <p className="whitespace-normal text-secondary">
+              <p className="text-xs font-bold whitespace-normal">{`${poi.data.target.category}/${poi.data.target.name}`}</p>
+              <p className="text-xs whitespace-normal text-secondary">
                 {poi.data.target.serial}
               </p>
             </div>
             <div className="flex flex-row space-x-1">
-              <Chip radius="sm" classNames={{ content: "px-1" }}>
+              <Chip radius="sm" classNames={{ content: "text-xs px-0.5" }}>
                 {poi.data.floor}
               </Chip>
               <Chip
                 radius="sm"
                 classNames={{
-                  content: "px-1 whitespace-normal",
+                  content: "px-0.5 whitespace-normal text-xs",
                   base: statusColor(poi.data.status.type),
                 }}
               >
@@ -78,7 +78,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
                 })}
               </Chip>
             </div>
-            <div className="flex flex-row space-x-1">
+            <div className="flex flex-row space-x-1 text-xs">
               {t("clusterDrawer.content.texts.updatedAt", {
                 updatedAt: poi?.data.updatedAt
                   ? poi.data.updatedAt
@@ -89,7 +89,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
           </div>
 
           {/* 編輯按鈕 */}
-          <div className="flex flex-col justify-end basis-1/12">
+          <div className="flex flex-col justify-end basis-1/12 py-1.5">
             <Button
               radius="full"
               size="sm"
@@ -104,7 +104,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
 
           {/* 圖片 */}
           <div className="flex flex-col justify-center basis-2/12">
-            <Image src={noImage} alt="poi image in list" />
+            <Image radius="none" src={noImage} alt="poi image in list" />
           </div>
         </div>
       </ListboxItem>
@@ -179,7 +179,7 @@ const ClusterDrawer: React.FC = () => {
       primaryButton={
         <Button
           radius="full"
-          className="bg-primary"
+          className="bg-primary h-fit px-2 py-1.5"
           onClick={handleDrawerConfirm}
         >
           {t("clusterDrawer.buttons.add", { ns: ["drawer"] })}
