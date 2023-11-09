@@ -35,7 +35,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
             <CloseIcon />
           </button>
         </div>
-        <div className="max-h-[calc(50vh-64px)] overflow-y-scroll">
+        <div className="max-h-[calc(50vh-64px)] overflow-y-auto">
           {children}
         </div>
         <div className="fixed bottom-0 left-0 right-0 flex w-full z-10 px-4 py-1 rounded items-center bg-white">
