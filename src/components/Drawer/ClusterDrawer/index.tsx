@@ -51,7 +51,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
       >
         <div className="container flex flex-row justify-between space-x-0.5">
           {/* 主要資訊列 */}
-          <div className="flex flex-col shrink justify-evenly basis-6.5/12">
+          <div className="flex flex-col shrink-0 justify-evenly basis-7/12">
             <div className="flex flex-wrap flex-row space-x-1">
               <p className="font-bold whitespace-normal">{`${poi.data.target.category}/${poi.data.target.name}`}</p>
               <p className="whitespace-normal text-secondary">
