@@ -2,6 +2,7 @@ interface Facility {
   id: string;
   data: FacilityData;
 }
+
 export interface FacilityData {
   name: string;
   latlng: {
@@ -15,9 +16,5 @@ export interface FacilityData {
 }
 
 export type Facilities = Record<string, FacilityData>;
-
-export type FacilityMarkersProps = {
-  selectedCategories: string[];
-};
 
 export default Facility;

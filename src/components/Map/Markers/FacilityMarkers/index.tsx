@@ -8,11 +8,12 @@ import {
   getParamsFromDrawer,
 } from "../../../../utils/routes/params";
 import { getLocations } from "../../../../constants/facility";
-import { Facilities, FacilityMarkersProps } from "../../../../models/facility";
+import { Facilities } from "../../../../models/facility";
 
-const FacilityMarkers: React.FC<FacilityMarkersProps> = ({
-  selectedCategories,
-}) => {
+import { IRootState } from "../../../../store";
+import { useSelector } from "react-redux";
+
+const FacilityMarkers: React.FC = () => {
   const [searchParams] = useSearchParams();
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: cluster } = useGetClusterQuery(clusterId);
@@ -24,8 +25,14 @@ const FacilityMarkers: React.FC<FacilityMarkersProps> = ({
   const allFacilities: Facilities = useMemo(() => {
     if (cluster) {
       return getLocations(cluster.data.name);
-    } else return {};
+    } else {
+      return {};
+    }
   }, [cluster]);
+
+  const selectedCategories = useSelector(
+    (state: IRootState) => state.facility.selectedCategories,
+  );
 
   // Filter facilities based on selectedCategories
   const filteredFacilities: Facilities = useMemo(() => {
