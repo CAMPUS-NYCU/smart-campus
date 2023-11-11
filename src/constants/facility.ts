@@ -40,4 +40,20 @@ function getLocations(clusterName: string): Facilities {
   }
 }
 
-export { getLocations };
+function getLocationCategories(clusterName: string) {
+  const facilities: Facilities = getLocations(clusterName);
+
+  const categories = Object.values(facilities).reduce(
+    (unique: string[], facility) => {
+      if (!unique.includes(facility.target.name)) {
+        unique.push(facility.target.name);
+      }
+      return unique;
+    },
+    [],
+  );
+
+  return Array.from(categories);
+}
+
+export { getLocations, getLocationCategories };

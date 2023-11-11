@@ -10,9 +10,11 @@ import {
 import { getLocations } from "../../../../constants/facility";
 import { Facilities } from "../../../../models/facility";
 
+import { IRootState } from "../../../../store";
+import { useSelector } from "react-redux";
+
 const FacilityMarkers: React.FC = () => {
   const [searchParams] = useSearchParams();
-
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: cluster } = useGetClusterQuery(clusterId);
   const isCurrentSearchParamsCluster = isCurrentDrawerParams(
@@ -20,16 +22,30 @@ const FacilityMarkers: React.FC = () => {
     searchParams,
   );
 
-  const facilities: Facilities = useMemo(() => {
+  const allFacilities: Facilities = useMemo(() => {
     if (cluster) {
       return getLocations(cluster.data.name);
+    } else {
+      return {};
     }
-    return {};
   }, [cluster]);
+
+  const selectedCategories = useSelector(
+    (state: IRootState) => state.facility.selectedCategories,
+  );
+
+  // Filter facilities based on selectedCategories
+  const filteredFacilities: Facilities = useMemo(() => {
+    return Object.fromEntries(
+      Object.entries(allFacilities).filter(([, facility]) =>
+        selectedCategories.includes(facility.target.name),
+      ),
+    );
+  }, [allFacilities, selectedCategories]);
 
   React.useEffect(() => {
     if (isCurrentSearchParamsCluster)
-      markers.facility.setFacilities(facilities);
+      markers.facility.setFacilities(filteredFacilities);
     else {
       markers.facility.clear();
     }
@@ -37,7 +53,7 @@ const FacilityMarkers: React.FC = () => {
     return () => {
       markers.facility.clear();
     };
-  }, [isCurrentSearchParamsCluster, facilities]);
+  }, [isCurrentSearchParamsCluster, filteredFacilities]);
   return <></>;
 };
 
