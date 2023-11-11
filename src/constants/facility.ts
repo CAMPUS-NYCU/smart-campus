@@ -42,11 +42,16 @@ function getLocations(clusterName: string): Facilities {
 
 function getLocationCategories(clusterName: string) {
   const facilities: Facilities = getLocations(clusterName);
-  const categories = new Set<string>();
 
-  for (const facility of Object.values(facilities)) {
-    categories.add(facility.target.name);
-  }
+  const categories = Object.values(facilities).reduce(
+    (unique: string[], facility) => {
+      if (!unique.includes(facility.target.name)) {
+        unique.push(facility.target.name);
+      }
+      return unique;
+    },
+    [],
+  );
 
   return Array.from(categories);
 }
