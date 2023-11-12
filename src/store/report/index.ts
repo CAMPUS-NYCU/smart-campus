@@ -32,6 +32,7 @@ export const initialReportPoiData: PoiData = {
   createdBy: "",
   updatedAt: "",
   updatedBy: "",
+  photoUrls: [],
 };
 
 export const initialReportMedia: PoiMedia = {

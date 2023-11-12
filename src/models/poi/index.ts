@@ -29,6 +29,7 @@ export interface PoiData {
   createdBy: string;
   updatedAt: string | null;
   updatedBy: string | null;
+  photoUrls: string[];
 }
 
 export interface PoiMedia {

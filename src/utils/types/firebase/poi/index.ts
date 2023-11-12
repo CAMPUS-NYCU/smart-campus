@@ -19,6 +19,7 @@ export const toFirebasePoiDataByPoiData = (poi: PoiData): FirestorePoiData => ({
   createdBy: poi.createdBy,
   updatedAt: poi.updatedAt ? Timestamp.fromDate(new Date(poi.updatedAt)) : null,
   updatedBy: poi.updatedBy,
+  photoUrls: poi.photoUrls,
 });
 
 export const toPoiDataByFirebasePoiData = (poi: FirestorePoiData): PoiData => ({
@@ -41,4 +42,5 @@ export const toPoiDataByFirebasePoiData = (poi: FirestorePoiData): PoiData => ({
   createdBy: poi.createdBy,
   updatedAt: poi.updatedAt?.toDate().toDateString() || null,
   updatedBy: poi.updatedBy,
+  photoUrls: poi.photoUrls,
 });
