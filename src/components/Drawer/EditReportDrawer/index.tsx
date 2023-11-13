@@ -26,7 +26,6 @@ const AddReportDrawer: React.FC = () => {
   const reportType = useSelector((state: IRootState) => state.report.type);
   const reportId = useSelector((state: IRootState) => state.report.id);
   const reportData = useSelector((state: IRootState) => state.report.data);
-  const reportMedia = useSelector((state: IRootState) => state.report.media);
 
   const dispatch = useDispatch();
 
@@ -48,7 +47,6 @@ const AddReportDrawer: React.FC = () => {
     editPoi({
       id: reportId,
       data: { ...reportData },
-      media: reportMedia,
     })
       .unwrap()
       .then(() => {

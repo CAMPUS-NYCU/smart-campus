@@ -26,7 +26,6 @@ const AddReportDrawer: React.FC = () => {
 
   const reportType = useSelector((state: IRootState) => state.report.type);
   const reportData = useSelector((state: IRootState) => state.report.data);
-  const reportMedia = useSelector((state: IRootState) => state.report.media);
 
   const dispatch = useDispatch();
 
@@ -41,7 +40,7 @@ const AddReportDrawer: React.FC = () => {
   });
 
   const handleSubmit = () => {
-    addPoi({ data: reportData, media: reportMedia })
+    addPoi({ data: reportData })
       .unwrap()
       .then((poiId) => {
         dispatch(resetReport());

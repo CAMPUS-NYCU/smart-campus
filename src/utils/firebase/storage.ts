@@ -20,12 +20,10 @@ if (env.ENABLE_FIREBASE_EMULATOR) {
 
 type imageStorageType = keyof typeof firebaseStorageUrl.images;
 
-export const getImageStorageDirectoryRef = (
-  type: imageStorageType,
-  id: string,
-) => ref(firebaseStorage, `${firebaseStorageUrl.images[type]}/${id}`);
+export const getImageStorageDirectoryRef = (type: imageStorageType) =>
+  ref(firebaseStorage, `${firebaseStorageUrl.images[type]}`);
 
-export const generateImageStorageRef = (type: imageStorageType, id: string) =>
-  ref(firebaseStorage, `${firebaseStorageUrl.images[type]}/${id}/${uuidv4()}`);
+export const generateImageStorageRef = (type: imageStorageType) =>
+  ref(firebaseStorage, `${firebaseStorageUrl.images[type]}/${uuidv4()}`);
 
 export default firebaseStorage;

@@ -51,11 +51,11 @@ const StatusSelect: React.FC = () => {
 };
 
 const AddReportDrawerContentPhotos: React.FC = () => {
-  const reportMedia = useSelector((state: IRootState) => state.report.media);
+  const reportData = useSelector((state: IRootState) => state.report.data);
 
   return (
     <div className="flex flex-row">
-      {reportMedia.photoUrls.map((url) => (
+      {reportData.photoUrls.map((url) => (
         <Image key={url} src={url} alt="" />
       ))}
     </div>
