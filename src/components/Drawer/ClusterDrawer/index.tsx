@@ -2,10 +2,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { Button } from "@nextui-org/react";
+import { Button, Listbox, ListboxItem, Chip, Image } from "@nextui-org/react";
 
 import { useGetClusterQuery } from "../../../api/cluster";
 import { useGetUserQuery } from "../../../api/user";
+import { useGetPoisQuery } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { openModal } from "../../../store/modal";
 import { addReport, resetReport } from "../../../store/report";
@@ -16,6 +17,100 @@ import {
 } from "../../../utils/routes/params";
 
 import Drawer from "..";
+import { PoiData } from "../../../models/poi";
+import {
+  poiStatusTypeMessageKeys,
+  poiStatusValueMessageKeys,
+} from "../../../constants/model/poi";
+import statusColor from "../../../constants/statusColor";
+import noImage from "../../../assets/images/noImage.svg";
+
+interface PoiListItemProps {
+  poi: {
+    id: string;
+    data: PoiData;
+  };
+}
+
+const PoiListItem: React.FC<PoiListItemProps> = (props) => {
+  const { poi } = props;
+
+  const { t } = useTranslation();
+
+  return (
+    <Listbox
+      aria-label="Actions"
+      onAction={(key) => alert(`TODO: highlight poi id: ${key}`)}
+    >
+      <ListboxItem
+        key={poi.id}
+        textValue={`list item of ${poi.id}`}
+        classNames={{
+          base: "border-1 border-secondary/50 h-fit py-0",
+        }}
+      >
+        <div className="container flex flex-row justify-around space-x-0.5 py-0 h-max-[calc((50vh-100px)/4)]">
+          {/* 主要資訊列 */}
+          <div className="flex flex-col shrink-0 justify-around basis-7/12">
+            <div className="flex text-left flex-wrap flex-row">
+              <p className="text-xs font-bold whitespace-normal mr-1">{`${poi.data.target.category}/${poi.data.target.name}`}</p>
+              <p className="text-xs whitespace-normal text-secondary">
+                {poi.data.target.serial}
+              </p>
+            </div>
+            <div className="flex flex-row space-x-1">
+              <Chip radius="sm" classNames={{ content: "text-xs px-0.5" }}>
+                {poi.data.floor}
+              </Chip>
+              <Chip
+                radius="sm"
+                classNames={{
+                  content: "px-0.5 whitespace-normal text-xs",
+                  base: statusColor(poi.data.status.type),
+                }}
+              >
+                {t(poiStatusTypeMessageKeys[poi.data.status.type], {
+                  ns: ["model"],
+                })}
+                :
+                {t(poiStatusValueMessageKeys[poi.data.status.value], {
+                  ns: ["model"],
+                })}
+              </Chip>
+            </div>
+            <div className="flex flex-row space-x-1 text-xs">
+              {t("clusterDrawer.content.texts.updatedAt", {
+                updatedAt: poi?.data.updatedAt
+                  ? poi.data.updatedAt
+                  : poi.data.createdAt,
+                ns: ["drawer"],
+              })}
+            </div>
+          </div>
+
+          {/* 編輯按鈕 */}
+          <div className="flex flex-col justify-end basis-1/12 py-1.5">
+            <Button
+              radius="full"
+              size="sm"
+              className="bg-primary min-w-fit h-fit px-2 py-1"
+              onClick={() => {
+                alert(`TODO: open poi drawer: ${poi.id}`);
+              }}
+            >
+              {t("clusterDrawer.buttons.edit", { ns: ["drawer"] })}
+            </Button>
+          </div>
+
+          {/* 圖片 */}
+          <div className="flex flex-col justify-center basis-2/12">
+            <Image radius="none" src={noImage} alt="poi image in list" />
+          </div>
+        </div>
+      </ListboxItem>
+    </Listbox>
+  );
+};
 
 const ClusterDrawer: React.FC = () => {
   const { t } = useTranslation();
@@ -36,6 +131,8 @@ const ClusterDrawer: React.FC = () => {
     skip: !selected,
   });
   const { data: user } = useGetUserQuery();
+
+  const { data: poiList } = useGetPoisQuery(id);
 
   const handleDrawerConfirm = () => {
     if (!id) {
@@ -67,17 +164,24 @@ const ClusterDrawer: React.FC = () => {
       })}
       children={
         <div>
-          <div>
-            {t("clusterDrawer.content.texts.latlng", {
-              latitude: cluster?.data.latlng.latitude,
-              longitude: cluster?.data.latlng.longitude,
-              ns: ["drawer"],
-            })}
-          </div>
+          {poiList ? (
+            Object.keys(poiList).map((poiId) => {
+              const poiData = poiList[poiId];
+              return (
+                <PoiListItem key={poiId} poi={{ id: poiId, data: poiData }} />
+              );
+            })
+          ) : (
+            <></>
+          )}
         </div>
       }
       primaryButton={
-        <Button onClick={handleDrawerConfirm}>
+        <Button
+          radius="full"
+          className="bg-primary h-fit px-2 py-1.5"
+          onClick={handleDrawerConfirm}
+        >
           {t("clusterDrawer.buttons.add", { ns: ["drawer"] })}
         </Button>
       }

@@ -70,15 +70,15 @@
   "clusterDrawer": {
     "buttons": {
       "add": "Add",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "edit": "Edit"
     },
     "content": {
       "texts": {
-        "description": "Description: {{description}}",
-        "latlng": "Latitude & Longitude: {{latitude}}, {{longitude}}"
+        "updatedAt": "Updated at {{updatedAt}}"
       }
     },
-    "title": "{{name}}"
+    "title": "Reports of {{name}}"
   },
   "poiDrawer": {
     "buttons": {

@@ -21,23 +21,27 @@ const Drawer: React.FC<DrawerProps> = (props) => {
   return (
     <motion.div
       className="fixed bottom-0 left-0 w-screen \
-                 rounded-t-3xl px-6 py-4 z-10 \
-               bg-slate-100 dark:bg-slate-800"
+                 rounded-t-3xl px-4 py-1 z-10 \
+               bg-white dark:bg-slate-800 h-[50vh]"
       variants={drawerVariants}
       animate={open ? "open" : "closed"}
       initial="closed"
       exit="closed"
     >
-      <div className="flex justify-between">
-        <h1>{title}</h1>
-        <button onClick={onClose}>
-          <CloseIcon />
-        </button>
-      </div>
-      {children}
-      <div className="flex items-center">
-        <div className="flex-1 text-left">{secondaryButton}</div>
-        <div className="flex-1 text-right">{primaryButton}</div>
+      <div className="flex flex-col">
+        <div className="flex justify-between">
+          <h1 className="font-bold">{title}</h1>
+          <button onClick={onClose}>
+            <CloseIcon />
+          </button>
+        </div>
+        <div className="max-h-[calc(50vh-64px)] overflow-y-auto">
+          {children}
+        </div>
+        <div className="fixed bottom-0 left-0 right-0 flex w-full z-10 px-4 py-1 rounded items-center bg-white">
+          <div className="flex-1 text-left">{secondaryButton}</div>
+          <div className="flex-1 text-right">{primaryButton}</div>
+        </div>
       </div>
     </motion.div>
   );
