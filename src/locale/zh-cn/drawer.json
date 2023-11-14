@@ -75,8 +75,6 @@
     },
     "content": {
       "texts": {
-        "description": "叙述: {{description}}",
-        "latlng": "经纬度: {{latitude}}, {{longitude}}",
         "updatedAt": "更新于 {{updatedAt}}"
       }
     },
