@@ -53,7 +53,6 @@ const StatusSelect: React.FC = () => {
 
 const AddReportDrawerContentPhotos: React.FC = () => {
   const dispatch = useDispatch();
-  // get origin PoiData photoUrls
   const reportData = useSelector((state: IRootState) => state.report.data);
 
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +62,7 @@ const AddReportDrawerContentPhotos: React.FC = () => {
     }
 
     const blobUrls = Array.from(files).map((file) => URL.createObjectURL(file));
-    // store blob urls to reportData
+
     dispatch(
       updateAddReportData({
         photoUrls: [...reportData.photoUrls, ...blobUrls],

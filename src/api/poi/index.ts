@@ -91,7 +91,6 @@ const poiApiSlice = apiSlice.injectEndpoints({
         );
         const photoPaths = await Promise.all(uploadPromises);
 
-        // Convert photoPaths into URLs
         const storage = getStorage(firebaseApp);
 
         const photoUrls = await Promise.all(
