@@ -46,7 +46,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
         key={poi.id}
         textValue={`list item of ${poi.id}`}
         classNames={{
-          base: "border-1 border-secondary/50 h-[calc((50vh-100px)/4)] py-0",
+          base: "border-1 border-secondary/50 h-fit py-0",
         }}
       >
         <div className="container flex flex-row justify-around space-x-0.5 py-0 h-[calc((50vh-100px)/4)]">
