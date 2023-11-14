@@ -16,7 +16,7 @@ import {
   FirestorePoi,
   FirestorePoiData,
 } from "../../models/firebase/firestore";
-import Poi, { PoiData, PoiMedia, Pois } from "../../models/poi";
+import Poi, { PoiData, Pois } from "../../models/poi";
 import { firestore } from "../../utils/firebase";
 import {
   toFirebasePoiDataByPoiData,
@@ -24,11 +24,9 @@ import {
 } from "../../utils/types/firebase/poi";
 
 import apiSlice from "..";
-import {
-  generateImageStorageRef,
-  getImageStorageDirectoryRef,
-} from "../../utils/firebase/storage";
-import { getDownloadURL, listAll, uploadBytes } from "firebase/storage";
+import { generateImageStorageRef } from "../../utils/firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { firebaseApp } from "../../utils/firebase";
 
 const poiApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -71,41 +69,48 @@ const poiApiSlice = apiSlice.injectEndpoints({
           .then((snapshot) => snapshot.data() as FirestorePoiData)
           .then(toPoiDataByFirebasePoiData);
 
-        const refs = await listAll(getImageStorageDirectoryRef("poi", arg));
-        const downloadPromises = refs.items.map((item) => getDownloadURL(item));
-        const poiMedia = {
-          photoUrls: await Promise.all(downloadPromises),
-        };
-
         const poi: Poi = {
           id: arg,
           data: poiData,
-          media: poiMedia,
         };
 
         return { data: poi };
       },
       providesTags: ["Poi"],
     }),
-    addPoi: builder.mutation<string, { data: PoiData; media: PoiMedia }>({
+    addPoi: builder.mutation<string, { data: PoiData }>({
       queryFn: async (arg) => {
+        const uploadPromises = arg.data.photoUrls.map((url) =>
+          fetch(url)
+            .then((res) => res.blob())
+            .then(async (blob) => {
+              const ref = generateImageStorageRef("poi");
+              await uploadBytes(ref, blob);
+              return ref.fullPath;
+            }),
+        );
+        const photoPaths = await Promise.all(uploadPromises);
+
+        const storage = getStorage(firebaseApp);
+
+        const photoUrls = await Promise.all(
+          photoPaths.map(async (path) => {
+            const url = await getDownloadURL(ref(storage, path));
+            // if we force it to store https here, it will cause error net::ERR_SSL_PROTOCOL_ERROR in local
+            return url;
+          }),
+        );
+
         const firebaseData = {
           ...toFirebasePoiDataByPoiData(arg.data),
+          photoUrls,
           createdAt: Timestamp.now(),
         };
+
         const docRef = await addDoc(
           collection(firestore, firestoreConfig.collection.poi),
           firebaseData,
         );
-
-        const uploadPromises = arg.media.photoUrls.map((url) =>
-          fetch(url)
-            .then((res) => res.blob())
-            .then((blob) =>
-              uploadBytes(generateImageStorageRef("poi", docRef.id), blob),
-            ),
-        );
-        await Promise.all(uploadPromises);
 
         return { data: docRef.id };
       },

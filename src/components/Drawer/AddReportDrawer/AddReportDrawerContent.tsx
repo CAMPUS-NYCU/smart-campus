@@ -9,10 +9,7 @@ import {
 } from "../../../constants/model/poi";
 import { PoiStatusType } from "../../../models/poi";
 import { IRootState } from "../../../store";
-import {
-  updateAddReportData,
-  updateAddReportMedia,
-} from "../../../store/report";
+import { updateAddReportData } from "../../../store/report";
 import { maps } from "../../../utils/googleMaps";
 
 const StatusSelect: React.FC = () => {
@@ -56,7 +53,7 @@ const StatusSelect: React.FC = () => {
 
 const AddReportDrawerContentPhotos: React.FC = () => {
   const dispatch = useDispatch();
-  const reportMedia = useSelector((state: IRootState) => state.report.media);
+  const reportData = useSelector((state: IRootState) => state.report.data);
 
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -65,16 +62,17 @@ const AddReportDrawerContentPhotos: React.FC = () => {
     }
 
     const blobUrls = Array.from(files).map((file) => URL.createObjectURL(file));
+
     dispatch(
-      updateAddReportMedia({
-        photoUrls: [...reportMedia.photoUrls, ...blobUrls],
+      updateAddReportData({
+        photoUrls: [...reportData.photoUrls, ...blobUrls],
       }),
     );
   };
 
   return (
     <div className="flex flex-row">
-      {reportMedia.photoUrls.map((url) => (
+      {reportData.photoUrls.map((url) => (
         <Image key={url} src={url} alt="" />
       ))}
       <input type="file" multiple onChange={handleUpload} />

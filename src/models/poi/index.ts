@@ -3,7 +3,6 @@ import { poiStatusType, poiStatusValue } from "../../constants/model/poi";
 interface Poi {
   id: string;
   data: PoiData;
-  media: PoiMedia;
 }
 
 export type PoiStatusType = keyof typeof poiStatusType;
@@ -29,9 +28,6 @@ export interface PoiData {
   createdBy: string;
   updatedAt: string | null;
   updatedBy: string | null;
-}
-
-export interface PoiMedia {
   photoUrls: string[];
 }
 

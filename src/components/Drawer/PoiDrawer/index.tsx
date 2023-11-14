@@ -99,7 +99,7 @@ const PoiDrawer: React.FC = () => {
           </div>
           <PoiDrawerStatus status={poi?.data.status.type} />
           <div className="flex flex-row">
-            {poi?.media.photoUrls.map((url) => (
+            {poi?.data.photoUrls.map((url) => (
               <Image key={url} src={url} alt="" />
             ))}
           </div>

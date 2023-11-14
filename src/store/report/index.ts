@@ -1,11 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import Poi, {
-  PoiData,
-  PoiMedia,
-  PoiStatusValue,
-  PoiStatusType,
-} from "../../models/poi";
+import Poi, { PoiData, PoiStatusValue, PoiStatusType } from "../../models/poi";
 import { poiStatusValue, poiStatusType } from "../../constants/model/poi";
 
 interface ReportState extends Poi {
@@ -32,9 +27,6 @@ export const initialReportPoiData: PoiData = {
   createdBy: "",
   updatedAt: "",
   updatedBy: "",
-};
-
-export const initialReportMedia: PoiMedia = {
   photoUrls: [],
 };
 
@@ -42,7 +34,6 @@ const initialState: ReportState = {
   type: null,
   id: "",
   data: initialReportPoiData,
-  media: initialReportMedia,
 };
 
 const reportSlice = createSlice({
@@ -81,15 +72,6 @@ const reportSlice = createSlice({
         },
       };
     },
-    updateAddReportMedia(state, action: PayloadAction<Partial<PoiMedia>>) {
-      return {
-        ...state,
-        media: {
-          ...state.media,
-          ...action.payload,
-        },
-      };
-    },
     updateEditPoiData(state, action: PayloadAction<Partial<PoiData>>) {
       return {
         ...state,
@@ -107,7 +89,6 @@ export const {
   addReport,
   editReport,
   updateAddReportData,
-  updateAddReportMedia,
   updateEditPoiData,
 } = reportSlice.actions;
 
