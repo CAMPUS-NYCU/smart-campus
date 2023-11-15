@@ -9,12 +9,11 @@ import { useGetUserQuery } from "../../../api/user";
 import { useGetPoisQuery } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { openModal } from "../../../store/modal";
-import { addReport, resetReport } from "../../../store/report";
+import { addReport, resetReport, editReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
   resetDrawerParams,
-  setupDrawerParams,
 } from "../../../utils/routes/params";
 
 import Drawer from "..";
@@ -38,13 +37,19 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
 
   const { t } = useTranslation();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { data: user } = useGetUserQuery();
 
-  const handleClick = React.useCallback(
-    (poiId: string) =>
-      setupDrawerParams<"poi">({ poiId }, searchParams, setSearchParams),
-    [searchParams, setSearchParams],
-  );
+  const dispatch = useDispatch();
+
+  const handleDrawerConfirm = () => {
+    if (!poi) {
+      throw new Error("ClusterDrawer: poi not found");
+    } else if (!user?.id) {
+      dispatch(openModal("login"));
+    } else {
+      dispatch(editReport(poi));
+    }
+  };
 
   return (
     <Listbox
@@ -103,9 +108,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
               radius="full"
               size="sm"
               className="bg-primary min-w-fit h-fit px-2 py-1"
-              onClick={() => {
-                handleClick(poi.id);
-              }}
+              onClick={handleDrawerConfirm}
             >
               {t("clusterDrawer.buttons.edit", { ns: ["drawer"] })}
             </Button>
