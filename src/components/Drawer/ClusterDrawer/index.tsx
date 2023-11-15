@@ -14,6 +14,7 @@ import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
   resetDrawerParams,
+  setupDrawerParams,
 } from "../../../utils/routes/params";
 
 import Drawer from "..";
@@ -36,6 +37,14 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
   const { poi } = props;
 
   const { t } = useTranslation();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleClick = React.useCallback(
+    (poiId: string) =>
+      setupDrawerParams<"poi">({ poiId }, searchParams, setSearchParams),
+    [searchParams, setSearchParams],
+  );
 
   return (
     <Listbox
@@ -95,7 +104,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
               size="sm"
               className="bg-primary min-w-fit h-fit px-2 py-1"
               onClick={() => {
-                alert(`TODO: open poi drawer: ${poi.id}`);
+                handleClick(poi.id);
               }}
             >
               {t("clusterDrawer.buttons.edit", { ns: ["drawer"] })}

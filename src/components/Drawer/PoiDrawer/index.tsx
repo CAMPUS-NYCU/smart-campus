@@ -24,6 +24,7 @@ import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
 import Drawer from "..";
+import noImage from "../../../assets/images/noImage.svg";
 
 const PoiDrawerStatus: React.FC<{ status?: PoiStatusType }> = ({ status }) => {
   const { t } = useTranslation();
@@ -118,9 +119,11 @@ const PoiDrawer: React.FC = () => {
           </div>
           <PoiDrawerStatus status={poi?.data.status.type} />
           <div className="flex flex-row">
-            {urls.map((url) => (
-              <Image key={url} src={url} alt="" />
-            ))}
+            {urls.length > 0 ? (
+              urls.map((url) => <Image key={url} src={url} alt="" />)
+            ) : (
+              <Image src={noImage} alt="No image available" />
+            )}
           </div>
         </div>
       }
