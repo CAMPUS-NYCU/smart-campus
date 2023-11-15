@@ -31,11 +31,8 @@ const AddReportDrawer: React.FC = () => {
 
   const [editPoi] = useUpdatePoiMutation();
 
-  // const selected =
-  //   reportType === "edit" && isCurrentDrawerParams("poi", searchParams);
-  const selected = reportType === "edit";
-
-  // const id = getParamsFromDrawer("cluster", searchParams).clusterId;
+  const selected =
+    reportType === "edit" && isCurrentDrawerParams("poi", searchParams);
 
   const id = isCurrentDrawerParams("cluster", searchParams)
     ? getParamsFromDrawer("cluster", searchParams).clusterId
@@ -72,7 +69,7 @@ const AddReportDrawer: React.FC = () => {
 
   return (
     <Drawer
-      open={selected}
+      open={reportType === "edit"}
       onClose={handleDrawerDismiss}
       title={
         <span>
