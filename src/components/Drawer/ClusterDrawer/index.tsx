@@ -104,7 +104,13 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
 
           {/* 圖片 */}
           <div className="flex flex-col justify-center basis-2/12">
-            <Image radius="none" src={noImage} alt="poi image in list" />
+            <Image
+              radius="none"
+              src={
+                poi?.data.photoUrls[poi.data.photoUrls.length - 1] || noImage
+              }
+              alt="poi image in list"
+            />
           </div>
         </div>
       </ListboxItem>
