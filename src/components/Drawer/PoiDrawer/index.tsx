@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
@@ -20,6 +20,8 @@ import {
   poiStatusTypeMessageKeys,
 } from "../../../constants/model/poi";
 import { PoiStatusType } from "../../../models/poi";
+import { getDownloadURL, ref, getStorage } from "firebase/storage";
+import { firebaseApp } from "../../../utils/firebase";
 
 import Drawer from "..";
 
@@ -74,6 +76,23 @@ const PoiDrawer: React.FC = () => {
     }
   };
 
+  const [urls, setUrls] = useState<string[]>([]);
+  const storage = getStorage(firebaseApp);
+
+  useEffect(() => {
+    if (poi?.data.photoUrls) {
+      const fetchUrls = async () => {
+        const urlPromises = poi.data.photoUrls.map((path) =>
+          getDownloadURL(ref(storage, path)),
+        );
+        const resolvedUrls = await Promise.all(urlPromises);
+        setUrls(resolvedUrls);
+      };
+
+      fetchUrls();
+    }
+  }, [poi, storage]);
+
   return (
     <Drawer
       open={selected}
@@ -99,7 +118,7 @@ const PoiDrawer: React.FC = () => {
           </div>
           <PoiDrawerStatus status={poi?.data.status.type} />
           <div className="flex flex-row">
-            {poi?.data.photoUrls.map((url) => (
+            {urls.map((url) => (
               <Image key={url} src={url} alt="" />
             ))}
           </div>
