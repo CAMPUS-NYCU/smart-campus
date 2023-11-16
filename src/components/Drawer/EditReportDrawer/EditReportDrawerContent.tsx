@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Image, Input, Select, SelectItem } from "@nextui-org/react";
@@ -10,6 +10,8 @@ import {
 import { PoiStatusType } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
+import { getDownloadURL, ref, getStorage } from "firebase/storage";
+import { firebaseApp } from "../../../utils/firebase";
 
 const StatusSelect: React.FC = () => {
   const { t } = useTranslation();
@@ -17,8 +19,6 @@ const StatusSelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const status = reportData.status.type;
-
-  console.log(reportData);
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -54,10 +54,26 @@ const StatusSelect: React.FC = () => {
 
 const AddReportDrawerContentPhotos: React.FC = () => {
   const reportData = useSelector((state: IRootState) => state.report.data);
+  const [urls, setUrls] = useState<string[]>([]);
+  const storage = getStorage(firebaseApp);
+
+  useEffect(() => {
+    if (reportData?.photoPaths) {
+      const fetchUrls = async () => {
+        const urlPromises = reportData.photoPaths.map((path) =>
+          getDownloadURL(ref(storage, path)),
+        );
+        const resolvedUrls = await Promise.all(urlPromises);
+        setUrls(resolvedUrls);
+      };
+
+      fetchUrls();
+    }
+  }, [reportData, storage]);
 
   return (
     <div className="flex flex-row">
-      {reportData.photoPaths.map((url) => (
+      {urls.map((url) => (
         <Image key={url} src={url} alt="" />
       ))}
     </div>
