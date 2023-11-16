@@ -80,9 +80,9 @@ const PoiDrawer: React.FC = () => {
   const storage = getStorage(firebaseApp);
 
   useEffect(() => {
-    if (poi?.data.photoUrls) {
+    if (poi?.data.photoPaths) {
       const fetchUrls = async () => {
-        const urlPromises = poi.data.photoUrls.map((path) =>
+        const urlPromises = poi.data.photoPaths.map((path) =>
           getDownloadURL(ref(storage, path)),
         );
         const resolvedUrls = await Promise.all(urlPromises);

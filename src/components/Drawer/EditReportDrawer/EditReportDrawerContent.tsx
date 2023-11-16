@@ -18,6 +18,8 @@ const StatusSelect: React.FC = () => {
   const reportData = useSelector((state: IRootState) => state.report.data);
   const status = reportData.status.type;
 
+  console.log(reportData);
+
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
       dispatch(
@@ -55,7 +57,7 @@ const AddReportDrawerContentPhotos: React.FC = () => {
 
   return (
     <div className="flex flex-row">
-      {reportData.photoUrls.map((url) => (
+      {reportData.photoPaths.map((url) => (
         <Image key={url} src={url} alt="" />
       ))}
     </div>

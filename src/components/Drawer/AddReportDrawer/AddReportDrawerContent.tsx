@@ -65,14 +65,14 @@ const AddReportDrawerContentPhotos: React.FC = () => {
 
     dispatch(
       updateAddReportData({
-        photoUrls: [...reportData.photoUrls, ...blobUrls],
+        photoPaths: [...reportData.photoPaths, ...blobUrls],
       }),
     );
   };
 
   return (
     <div className="flex flex-row">
-      {reportData.photoUrls.map((url) => (
+      {reportData.photoPaths.map((url) => (
         <Image key={url} src={url} alt="" />
       ))}
       <input type="file" multiple onChange={handleUpload} />

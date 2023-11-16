@@ -79,7 +79,7 @@ const poiApiSlice = apiSlice.injectEndpoints({
     }),
     addPoi: builder.mutation<string, { data: PoiData }>({
       queryFn: async (arg) => {
-        const uploadPromises = arg.data.photoUrls.map((url) =>
+        const uploadPromises = arg.data.photoPaths.map((url) =>
           fetch(url)
             .then((res) => res.blob())
             .then(async (blob) => {
@@ -88,11 +88,11 @@ const poiApiSlice = apiSlice.injectEndpoints({
               return ref.fullPath;
             }),
         );
-        const photoUrls = await Promise.all(uploadPromises);
+        const photoPaths = await Promise.all(uploadPromises);
 
         const firebaseData = {
           ...toFirebasePoiDataByPoiData(arg.data),
-          photoUrls,
+          photoPaths,
           createdAt: Timestamp.now(),
         };
 

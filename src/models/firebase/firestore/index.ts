@@ -37,7 +37,7 @@ export interface FirestorePoiData {
   createdBy: string;
   updatedAt: Timestamp | null;
   updatedBy: string | null;
-  photoUrls: string[];
+  photoPaths: string[];
 }
 
 export interface FirestoreResource {
