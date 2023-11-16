@@ -20,7 +20,7 @@ import {
   poiStatusTypeMessageKeys,
 } from "../../../constants/model/poi";
 import { PoiStatusType } from "../../../models/poi";
-import { getDownloadURL, ref, getStorage } from "firebase/storage";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
 import Drawer from "..";

@@ -10,7 +10,7 @@ import {
 import { PoiStatusType } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
-import { getDownloadURL, ref, getStorage } from "firebase/storage";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
 const StatusSelect: React.FC = () => {
