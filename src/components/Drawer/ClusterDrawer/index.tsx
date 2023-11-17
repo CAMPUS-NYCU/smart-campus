@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
@@ -24,6 +24,8 @@ import {
 } from "../../../constants/model/poi";
 import statusColor from "../../../constants/statusColor";
 import noImage from "../../../assets/images/noImage.svg";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { firebaseApp } from "../../../utils/firebase";
 
 interface PoiListItemProps {
   poi: {
@@ -50,6 +52,23 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
       dispatch(editReport(poi));
     }
   };
+
+  const [urls, setUrls] = useState<string[]>([]);
+  const storage = getStorage(firebaseApp);
+
+  useEffect(() => {
+    if (poi?.data.photoPaths) {
+      const fetchUrls = async () => {
+        const urlPromises = poi.data.photoPaths.map((path) =>
+          getDownloadURL(ref(storage, path)),
+        );
+        const resolvedUrls = await Promise.all(urlPromises);
+        setUrls(resolvedUrls);
+      };
+
+      fetchUrls();
+    }
+  }, [poi, storage]);
 
   return (
     <Listbox
@@ -118,9 +137,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
           <div className="flex flex-col justify-center basis-2/12">
             <Image
               radius="none"
-              src={
-                poi?.data.photoUrls[poi.data.photoUrls.length - 1] || noImage
-              }
+              src={urls[urls.length - 1] || noImage}
               alt="poi image in list"
             />
           </div>
