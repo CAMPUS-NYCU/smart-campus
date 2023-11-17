@@ -10,6 +10,7 @@ import {
 import { PoiStatusType } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
+import noImage from "../../../assets/images/noImage.svg";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
@@ -73,9 +74,11 @@ const AddReportDrawerContentPhotos: React.FC = () => {
 
   return (
     <div className="flex flex-row">
-      {urls.map((url) => (
-        <Image key={url} src={url} alt="" />
-      ))}
+      {urls.length > 0 ? (
+        urls.map((url) => <Image key={url} src={url} alt="" />)
+      ) : (
+        <Image src={noImage} alt="No image available" />
+      )}
     </div>
   );
 };
