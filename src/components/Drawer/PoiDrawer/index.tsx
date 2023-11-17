@@ -15,6 +15,7 @@ import {
   setupDrawerParams,
 } from "../../../utils/routes/params";
 
+import noImage from "../../../assets/images/noImage.svg";
 import {
   poiStatusType,
   poiStatusTypeMessageKeys,
@@ -118,9 +119,11 @@ const PoiDrawer: React.FC = () => {
           </div>
           <PoiDrawerStatus status={poi?.data.status.type} />
           <div className="flex flex-row">
-            {urls.map((url) => (
-              <Image key={url} src={url} alt="" />
-            ))}
+            {urls.length > 0 ? (
+              urls.map((url) => <Image key={url} src={url} alt="" />)
+            ) : (
+              <Image src={noImage} alt="No image available" />
+            )}
           </div>
         </div>
       }

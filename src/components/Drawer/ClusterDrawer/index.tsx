@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
@@ -9,13 +9,14 @@ import { useGetUserQuery } from "../../../api/user";
 import { useGetPoisQuery } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { openModal } from "../../../store/modal";
-import { addReport, resetReport } from "../../../store/report";
+import { addReport, editReport, resetReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
   resetDrawerParams,
 } from "../../../utils/routes/params";
 
+import noImage from "../../../assets/images/noImage.svg";
 import Drawer from "..";
 import { PoiData } from "../../../models/poi";
 import {
@@ -23,7 +24,8 @@ import {
   poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
 import statusColor from "../../../constants/statusColor";
-import noImage from "../../../assets/images/noImage.svg";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { firebaseApp } from "../../../utils/firebase";
 
 interface PoiListItemProps {
   poi: {
@@ -36,6 +38,37 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
   const { poi } = props;
 
   const { t } = useTranslation();
+
+  const { data: user } = useGetUserQuery();
+
+  const dispatch = useDispatch();
+
+  const handleDrawerConfirm = () => {
+    if (!poi) {
+      throw new Error("ClusterDrawer: poi not found");
+    } else if (!user?.id) {
+      dispatch(openModal("login"));
+    } else {
+      dispatch(editReport(poi));
+    }
+  };
+
+  const [urls, setUrls] = useState<string[]>([]);
+  const storage = getStorage(firebaseApp);
+
+  useEffect(() => {
+    if (poi?.data.photoPaths) {
+      const fetchUrls = async () => {
+        const urlPromises = poi.data.photoPaths.map((path) =>
+          getDownloadURL(ref(storage, path)),
+        );
+        const resolvedUrls = await Promise.all(urlPromises);
+        setUrls(resolvedUrls);
+      };
+
+      fetchUrls();
+    }
+  }, [poi, storage]);
 
   return (
     <Listbox
@@ -94,9 +127,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
               radius="full"
               size="sm"
               className="bg-primary min-w-fit h-fit px-2 py-1"
-              onClick={() => {
-                alert(`TODO: open poi drawer: ${poi.id}`);
-              }}
+              onClick={handleDrawerConfirm}
             >
               {t("clusterDrawer.buttons.edit", { ns: ["drawer"] })}
             </Button>
@@ -104,7 +135,11 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
 
           {/* 圖片 */}
           <div className="flex flex-col justify-center basis-2/12">
-            <Image radius="none" src={noImage} alt="poi image in list" />
+            <Image
+              radius="none"
+              src={urls[urls.length - 1] || noImage}
+              alt="poi image in list"
+            />
           </div>
         </div>
       </ListboxItem>

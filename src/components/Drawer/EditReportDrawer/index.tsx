@@ -1,17 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 
 import { useGetPoiQuery } from "../../../api/poi";
 import { useUpdatePoiMutation } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { resetReport } from "../../../store/report";
-import {
-  getParamsFromDrawer,
-  isCurrentDrawerParams,
-} from "../../../utils/routes/params";
 
 import Drawer from "..";
 import AddReportDrawerContent from "./EditReportDrawerContent";
@@ -21,8 +16,6 @@ import { closeModal, openModal } from "../../../store/modal";
 const AddReportDrawer: React.FC = () => {
   const { t } = useTranslation();
 
-  const [searchParams] = useSearchParams();
-
   const reportType = useSelector((state: IRootState) => state.report.type);
   const reportId = useSelector((state: IRootState) => state.report.id);
   const reportData = useSelector((state: IRootState) => state.report.data);
@@ -31,11 +24,9 @@ const AddReportDrawer: React.FC = () => {
 
   const [editPoi] = useUpdatePoiMutation();
 
-  const selected =
-    reportType === "edit" && isCurrentDrawerParams("poi", searchParams);
-  const id = getParamsFromDrawer("cluster", searchParams).clusterId;
+  const selected = reportType === "edit";
 
-  const { data: poi } = useGetPoiQuery(id, {
+  const { data: poi } = useGetPoiQuery(reportId, {
     skip: !selected,
   });
 
