@@ -15,6 +15,7 @@ import {
   setupDrawerParams,
 } from "../../../utils/routes/params";
 
+import noImage from "../../../assets/images/noImage.svg";
 import {
   poiStatusType,
   poiStatusTypeMessageKeys,
@@ -24,7 +25,6 @@ import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
 import Drawer from "..";
-import noImage from "../../../assets/images/noImage.svg";
 
 const PoiDrawerStatus: React.FC<{ status?: PoiStatusType }> = ({ status }) => {
   const { t } = useTranslation();

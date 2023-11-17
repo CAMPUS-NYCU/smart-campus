@@ -9,13 +9,14 @@ import { useGetUserQuery } from "../../../api/user";
 import { useGetPoisQuery } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { openModal } from "../../../store/modal";
-import { addReport, resetReport, editReport } from "../../../store/report";
+import { addReport, editReport, resetReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
   resetDrawerParams,
 } from "../../../utils/routes/params";
 
+import noImage from "../../../assets/images/noImage.svg";
 import Drawer from "..";
 import { PoiData } from "../../../models/poi";
 import {
@@ -23,7 +24,6 @@ import {
   poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
 import statusColor from "../../../constants/statusColor";
-import noImage from "../../../assets/images/noImage.svg";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
