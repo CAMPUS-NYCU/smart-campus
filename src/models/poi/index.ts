@@ -28,7 +28,7 @@ export interface PoiData {
   createdBy: string;
   updatedAt: string | null;
   updatedBy: string | null;
-  photoUrls: string[];
+  photoPaths: string[];
 }
 
 export type Pois = Record<string, PoiData>;

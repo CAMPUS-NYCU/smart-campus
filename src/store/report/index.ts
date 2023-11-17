@@ -27,7 +27,7 @@ export const initialReportPoiData: PoiData = {
   createdBy: "",
   updatedAt: "",
   updatedBy: "",
-  photoUrls: [],
+  photoPaths: [],
 };
 
 const initialState: ReportState = {

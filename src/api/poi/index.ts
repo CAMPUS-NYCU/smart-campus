@@ -25,8 +25,7 @@ import {
 
 import apiSlice from "..";
 import { generateImageStorageRef } from "../../utils/firebase/storage";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { firebaseApp } from "../../utils/firebase";
+import { uploadBytes } from "firebase/storage";
 
 const poiApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -80,7 +79,7 @@ const poiApiSlice = apiSlice.injectEndpoints({
     }),
     addPoi: builder.mutation<string, { data: PoiData }>({
       queryFn: async (arg) => {
-        const uploadPromises = arg.data.photoUrls.map((url) =>
+        const uploadPromises = arg.data.photoPaths.map((url) =>
           fetch(url)
             .then((res) => res.blob())
             .then(async (blob) => {
@@ -91,19 +90,9 @@ const poiApiSlice = apiSlice.injectEndpoints({
         );
         const photoPaths = await Promise.all(uploadPromises);
 
-        const storage = getStorage(firebaseApp);
-
-        const photoUrls = await Promise.all(
-          photoPaths.map(async (path) => {
-            const url = await getDownloadURL(ref(storage, path));
-            // if we force it to store https here, it will cause error net::ERR_SSL_PROTOCOL_ERROR in local
-            return url;
-          }),
-        );
-
         const firebaseData = {
           ...toFirebasePoiDataByPoiData(arg.data),
-          photoUrls,
+          photoPaths,
           createdAt: Timestamp.now(),
         };
 
