@@ -119,61 +119,73 @@ const PoiDrawer: React.FC = () => {
         ns: ["drawer"],
       })}
       children={
-        <div className="max-h-[calc(50vh-100px)]">
-          <div className="flex flex-row justify-center">
+        <div className="flex flex-col max-h-[calc(50vh-100px)]">
+          <div className="flex flex-row justify-center basis-6/12 overflow-y-hidden">
             {urls.length > 0 ? (
-              urls.map((url) => <Image key={url} src={url} alt="" />)
+              urls.map((url) => (
+                <Image
+                  key={url}
+                  src={url}
+                  alt="Images of this report"
+                  classNames={{
+                    wrapper: "justify-center flex",
+                    img: "h-[100%]",
+                  }}
+                />
+              ))
             ) : (
               <Image
                 src={noImage}
                 alt="No image available"
                 classNames={{
                   wrapper: "justify-center flex",
-                  img: "max-w-[65%]",
+                  img: "h-[100%]",
                 }}
               />
             )}
           </div>
 
-          {/* 第一行：location & floor */}
-          <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12">
-              <Image src={poiDrawerLocation} alt="location and floor" />
+          <div className="basis-6/12">
+            {/* 第一行：location & floor */}
+            <div className="flex flex-row space-x-1 mt-1 items-center">
+              <div className="basis-0.5/12">
+                <Image src={poiDrawerLocation} alt="location and floor" />
+              </div>
+              <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
+                {t("poiDrawer.content.texts.description", {
+                  description: cluster?.data.name || "",
+                  ns: ["drawer"],
+                })}
+              </Chip>
+              <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
+                {poi?.data.floor}
+              </Chip>
             </div>
-            <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
-              {t("poiDrawer.content.texts.description", {
-                description: cluster?.data.name || "",
-                ns: ["drawer"],
-              })}
-            </Chip>
-            <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
-              {poi?.data.floor}
-            </Chip>
-          </div>
 
-          {/* 第二行：target serial */}
-          <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12">
-              <Image
-                src={poiDrawerTargetSerial}
-                alt="target serial of this report"
-              />
+            {/* 第二行：target serial */}
+            <div className="flex flex-row space-x-1 mt-1 items-center">
+              <div className="basis-0.5/12">
+                <Image
+                  src={poiDrawerTargetSerial}
+                  alt="target serial of this report"
+                />
+              </div>
+              <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
+                {poi?.data.target.serial}
+              </Chip>
             </div>
-            <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
-              {poi?.data.target.serial}
-            </Chip>
-          </div>
 
-          {/* 第三行：status */}
-          <PoiDrawerStatus status={poi?.data.status.type} />
+            {/* 第三行：status */}
+            <PoiDrawerStatus status={poi?.data.status.type} />
 
-          {/* 第四行：updatedBy &updatedAt */}
-          <div className="flex flex-row space-x-1 mt-1 items-center justify-end">
-            <p className="text-xs text-secondary">
-              {poi?.data.updatedBy ? poi.data.updatedBy : poi?.data.createdBy}
-              編輯於
-              {poi?.data.updatedAt ? poi.data.updatedAt : poi?.data.createdAt}
-            </p>
+            {/* 第四行：updatedBy &updatedAt */}
+            <div className="flex flex-row space-x-1 mt-1 items-center justify-end">
+              <p className="text-xs text-secondary">
+                {poi?.data.updatedBy ? poi.data.updatedBy : poi?.data.createdBy}
+                編輯於
+                {poi?.data.updatedAt ? poi.data.updatedAt : poi?.data.createdAt}
+              </p>
+            </div>
           </div>
         </div>
       }
