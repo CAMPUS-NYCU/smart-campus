@@ -87,8 +87,7 @@
     },
     "content": {
       "texts": {
-        "description": "叙述: {{description}}",
-        "latlng": "经纬度: {{latitude}}, {{longitude}}"
+        "description": "{{description}}"
       }
     },
     "title": "{{name}}"
