@@ -62,7 +62,9 @@ const AddReportDrawerContentPhotos: React.FC = () => {
     if (reportData?.photoPaths) {
       const fetchUrls = async () => {
         const urlPromises = reportData.photoPaths.map((path) =>
-          getDownloadURL(ref(storage, path)),
+          path.startsWith("blob:")
+            ? Promise.resolve(path)
+            : getDownloadURL(ref(storage, path)),
         );
         const resolvedUrls = await Promise.all(urlPromises);
         setUrls(resolvedUrls);
