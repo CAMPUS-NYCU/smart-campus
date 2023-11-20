@@ -90,7 +90,7 @@ export const poiStatusValueMessageKeys = {
   [poiStatusValue.underMaintenance]:
     "poi.data.status.maintenance.value.processing",
   // 功能狀態
-  [poiStatusValue.functional]: "poi.data.staus.function.value.good",
+  [poiStatusValue.functional]: "poi.data.status.function.value.good",
   [poiStatusValue.remainsFuntional]: "poi.data.status.function.value.ok",
   [poiStatusValue.nonFunctional]: "poi.data.status.function.value.broken",
   // 外觀狀態
@@ -98,7 +98,7 @@ export const poiStatusValueMessageKeys = {
   [poiStatusValue.appearanceBad]: "poi.data.status.appearance.value.bad",
   // 占用狀態
   [poiStatusValue.occupied]: "poi.data.status.occupation.value.occupied",
-  [poiStatusValue.unoccupied]: "poi.data.status.occupation.value.unoccipied",
+  [poiStatusValue.unoccupied]: "poi.data.status.occupation.value.unoccupied",
 
   // 空間的回報狀態描述
   // 使用狀態
