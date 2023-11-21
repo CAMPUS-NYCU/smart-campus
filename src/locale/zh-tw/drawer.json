@@ -51,17 +51,14 @@
       "title": "更改回報"
     },
     "content": {
-      "inputs": {
-        "description": {
-          "label": "敘述"
-        },
-        "name": {
-          "label": "名稱"
-        }
+      "texts": {
+        "targetName": "回報項目",
+        "targetSerial": "項目描述",
+        "statusType": "回報狀態"
       },
       "select": {
-        "setStatus": {
-          "label": "狀態"
+        "setStatusValue": {
+          "label": "狀態描述"
         }
       }
     },

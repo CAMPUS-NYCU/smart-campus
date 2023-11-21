@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Image, Input, Select, SelectItem } from "@nextui-org/react";
+import { Image, Input, Select, SelectItem, Chip } from "@nextui-org/react";
 
 import {
-  poiStatusType,
+  poiStatusValue,
   poiStatusTypeMessageKeys,
+  poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
-import { PoiStatusType } from "../../../models/poi";
+import { PoiStatusValue } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
 import noImage from "../../../assets/images/noImage.svg";
+import poiEditDrawerTargetName from "../../../assets/images/poiEditDrawerTargetName.svg";
+import poiEditDrawerTargetSerial from "../../../assets/images/poiEditDrawerTargetSerial.svg";
+import poiEditDrawerStatusType from "../../../assets/images/poiEditDrawerStatusType.svg";
+import poiEditDrawerStatusValue from "../../../assets/images/poiEditDrawerStatusValue.svg";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
@@ -19,7 +24,7 @@ const StatusSelect: React.FC = () => {
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
-  const status = reportData.status.type;
+  const statusValue = reportData.status.value;
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -27,7 +32,7 @@ const StatusSelect: React.FC = () => {
         updateAddReportData({
           status: {
             ...reportData.status,
-            type: e.target.value as PoiStatusType,
+            value: e.target.value as PoiStatusValue,
           },
         }),
       );
@@ -36,15 +41,15 @@ const StatusSelect: React.FC = () => {
 
   return (
     <Select
-      label={t("editReport.content.select.setStatus.label", {
+      label={t("editReport.content.select.setStatusValue.label", {
         ns: ["drawer"],
       })}
-      selectedKeys={new Set([status])}
+      selectedKeys={new Set([statusValue])}
       onChange={handleSelectChange}
     >
-      {Object.keys(poiStatusType).map((s) => (
+      {Object.keys(poiStatusValue).map((s) => (
         <SelectItem key={s} value={s}>
-          {t(poiStatusTypeMessageKeys[s] || "", {
+          {t(poiStatusValueMessageKeys[s] || "", {
             ns: ["model"],
           })}
         </SelectItem>
@@ -75,11 +80,28 @@ const AddReportDrawerContentPhotos: React.FC = () => {
   }, [reportData, storage]);
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row justify-center basis-6/12 overflow-y-hidden">
       {urls.length > 0 ? (
-        urls.map((url) => <Image key={url} src={url} alt="" />)
+        urls.map((url) => (
+          <Image
+            key={url}
+            src={url}
+            alt="report images"
+            classNames={{
+              img: "h-[100%]",
+              wrapper: "justify-center flex",
+            }}
+          />
+        ))
       ) : (
-        <Image src={noImage} alt="No image available" />
+        <Image
+          src={noImage}
+          alt="No image available"
+          classNames={{
+            img: "h-[100%]",
+            wrapper: "justify-center flex",
+          }}
+        />
       )}
     </div>
   );
@@ -91,25 +113,80 @@ const AddReportDrawerContent: React.FC = () => {
   const reportData = useSelector((state: IRootState) => state.report.data);
 
   return (
-    <div>
-      <Input
-        disabled
-        label={t("editReport.content.inputs.name.label", { ns: ["drawer"] })}
-        value={reportData.target.name || ""}
-        isInvalid={!reportData.target.name}
-        variant="bordered"
-      />
-      <Input
-        disabled
-        label={t("editReport.content.inputs.description.label", {
-          ns: ["drawer"],
-        })}
-        value={reportData.target.serial || ""}
-        isInvalid={!reportData.target.serial}
-        variant="bordered"
-      />
-      <StatusSelect />
+    <div className="flex flex-col max-h-[calc(50vh-100px)]">
       <AddReportDrawerContentPhotos />
+      <div className="flex flex-col basis-6/12">
+        {/* 回報項目 */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image
+              radius="none"
+              src={poiEditDrawerTargetName}
+              alt="target name"
+            />
+          </div>
+          <p className="text-xs font-bold">
+            {t("editReport.content.texts.targetName", { ns: ["drawer"] })}
+          </p>
+          <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
+            {reportData.target.name}
+          </Chip>
+        </div>
+        {/* 項目描述 */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image
+              radius="none"
+              src={poiEditDrawerTargetSerial}
+              alt="target serial"
+            />
+          </div>
+          <p className="text-xs font-bold">
+            {t("editReport.content.texts.targetSerial", { ns: ["drawer"] })}
+          </p>
+          <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
+            {reportData.target.serial}
+          </Chip>
+        </div>
+        {/* 回報狀態 */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image
+              radius="none"
+              src={poiEditDrawerStatusType}
+              alt="status type"
+            />
+          </div>
+          <p className="text-xs font-bold">
+            {t("editReport.content.texts.statusType", { ns: ["drawer"] })}
+          </p>
+          <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
+            {t(poiStatusTypeMessageKeys[reportData.status.type], {
+              ns: ["model"],
+            })}
+          </Chip>
+        </div>
+        {/* 狀態描述 */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image
+              radius="none"
+              src={poiEditDrawerStatusValue}
+              alt="status value"
+            />
+          </div>
+          <p className="text-xs font-bold">
+            {t("editReport.content.select.setStatusValue.label", {
+              ns: ["drawer"],
+            })}
+          </p>
+          <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
+            {t(poiStatusValueMessageKeys[reportData.status.value], {
+              ns: ["model"],
+            })}
+          </Chip>
+        </div>
+      </div>
     </div>
   );
 };

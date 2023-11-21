@@ -51,17 +51,14 @@
       "title": "更改回报"
     },
     "content": {
-      "inputs": {
-        "description": {
-          "label": "叙述"
-        },
-        "name": {
-          "label": "名称"
-        }
+      "texts": {
+        "targetName": "回报项目",
+        "targetSerial": "项目描述",
+        "statusType": "回报状态"
       },
       "select": {
-        "setStatus": {
-          "label": "状态"
+        "setStatusValue": {
+          "label": "状态描述"
         }
       }
     },
