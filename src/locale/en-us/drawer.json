@@ -84,8 +84,7 @@
     },
     "content": {
       "texts": {
-        "description": "Description: {{description}}",
-        "latlng": "Latitude & Longitude: {{latitude}}, {{longitude}}"
+        "description": "{{description}}"
       }
     },
     "title": "{{name}}"
