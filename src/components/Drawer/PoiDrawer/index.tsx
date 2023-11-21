@@ -190,7 +190,11 @@ const PoiDrawer: React.FC = () => {
         </div>
       }
       primaryButton={
-        <Button onClick={handleDrawerConfirm}>
+        <Button
+          radius="full"
+          className="bg-primary h-fit px-2 py-1.5"
+          onClick={handleDrawerConfirm}
+        >
           {t("poiDrawer.buttons.edit", { ns: ["drawer"] })}
         </Button>
       }
