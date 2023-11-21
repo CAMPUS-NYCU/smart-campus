@@ -68,7 +68,11 @@ const AddReportDrawer: React.FC = () => {
         </>
       }
       primaryButton={
-        <Button onClick={handleDrawerConfirm}>
+        <Button
+          radius="full"
+          className="bg-primary h-fit px-2 py-1.5"
+          onClick={handleDrawerConfirm}
+        >
           {t("editReport.buttons.edit", { ns: ["drawer"] })}
         </Button>
       }
