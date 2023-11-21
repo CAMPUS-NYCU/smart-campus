@@ -130,3 +130,49 @@ export const poiStatusValueMessageKeys = {
   // for debug
   [poiStatusValue.unknown]: "poi.data.status.unknown.value.unknown",
 };
+
+export const poiStatusValueSelect = {
+  [poiStatusType.maintenance]: [
+    poiStatusValue.maintenanceCompleted,
+    poiStatusValue.underMaintenance,
+  ],
+  [poiStatusType.function]: [
+    poiStatusValue.functional,
+    poiStatusValue.remainsFuntional,
+    poiStatusValue.nonFunctional,
+  ],
+  [poiStatusType.appearance]: [
+    poiStatusValue.appearanceGood,
+    poiStatusValue.appearanceBad,
+  ],
+  [poiStatusType.occupation]: [
+    poiStatusValue.occupied,
+    poiStatusValue.unoccupied,
+  ],
+  [poiStatusType.usage]: [
+    poiStatusValue.spacesAvailable,
+    poiStatusValue.limitedSpaces,
+    poiStatusValue.noSpaces,
+  ],
+  [poiStatusType.crowd]: [
+    poiStatusValue.crowded,
+    poiStatusValue.normalCrowded,
+    poiStatusValue.notCrowded,
+  ],
+  [poiStatusType.noise]: [
+    poiStatusValue.quiet,
+    poiStatusValue.normalNoiseLevel,
+    poiStatusValue.noisy,
+  ],
+  [poiStatusType.thermalComfort]: [
+    poiStatusValue.comfortable,
+    poiStatusValue.normalComfort,
+    poiStatusValue.uncomfortable,
+  ],
+  [poiStatusType.cleanliness]: [
+    poiStatusValue.goodCleanliness,
+    poiStatusValue.normalCleanliness,
+    poiStatusValue.badCleanliness,
+  ],
+  [poiStatusType.unknown]: [poiStatusValue.unknown],
+};

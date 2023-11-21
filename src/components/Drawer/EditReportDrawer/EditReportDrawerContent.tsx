@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Image, Input, Select, SelectItem, Chip } from "@nextui-org/react";
+import { Image, Select, SelectItem, Chip } from "@nextui-org/react";
 
 import {
-  poiStatusValue,
+  poiStatusValueSelect,
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
@@ -19,12 +19,13 @@ import poiEditDrawerStatusValue from "../../../assets/images/poiEditDrawerStatus
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
-const StatusSelect: React.FC = () => {
+const StatusValueSelect: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const statusValue = reportData.status.value;
+  const statusValueOption = poiStatusValueSelect[reportData.status.type];
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -41,13 +42,18 @@ const StatusSelect: React.FC = () => {
 
   return (
     <Select
-      label={t("editReport.content.select.setStatusValue.label", {
-        ns: ["drawer"],
-      })}
       selectedKeys={new Set([statusValue])}
       onChange={handleSelectChange}
+      radius="sm"
+      aria-label="select status value"
+      classNames={{
+        value: "text-xs",
+        innerWrapper: "pt-0",
+        trigger: "py-0 h-7 min-h-fit bg-primary",
+        base: "min-w-fit w-[50%]",
+      }}
     >
-      {Object.keys(poiStatusValue).map((s) => (
+      {statusValueOption.map((s) => (
         <SelectItem key={s} value={s}>
           {t(poiStatusValueMessageKeys[s] || "", {
             ns: ["model"],
@@ -180,11 +186,7 @@ const AddReportDrawerContent: React.FC = () => {
               ns: ["drawer"],
             })}
           </p>
-          <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
-            {t(poiStatusValueMessageKeys[reportData.status.value], {
-              ns: ["model"],
-            })}
-          </Chip>
+          <StatusValueSelect />
         </div>
       </div>
     </div>
