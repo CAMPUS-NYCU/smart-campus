@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@nextui-org/react";
 
-import { useGetPoiQuery } from "../../../api/poi";
 import { useUpdatePoiMutation } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { resetReport } from "../../../store/report";
@@ -25,10 +24,6 @@ const AddReportDrawer: React.FC = () => {
   const [editPoi] = useUpdatePoiMutation();
 
   const selected = reportType === "edit";
-
-  const { data: poi } = useGetPoiQuery(reportId, {
-    skip: !selected,
-  });
 
   const handleSubmit = () => {
     if (!reportId) {
@@ -62,7 +57,6 @@ const AddReportDrawer: React.FC = () => {
       title={
         <span>
           {t("editReport.title", {
-            poi: poi?.data.target.name,
             ns: ["drawer"],
           })}
         </span>
@@ -74,7 +68,11 @@ const AddReportDrawer: React.FC = () => {
         </>
       }
       primaryButton={
-        <Button onClick={handleDrawerConfirm}>
+        <Button
+          radius="full"
+          className="bg-primary h-fit px-2 py-1.5"
+          onClick={handleDrawerConfirm}
+        >
           {t("editReport.buttons.edit", { ns: ["drawer"] })}
         </Button>
       }

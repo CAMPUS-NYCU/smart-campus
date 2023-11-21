@@ -51,17 +51,14 @@
       "title": "更改回报"
     },
     "content": {
-      "inputs": {
-        "description": {
-          "label": "叙述"
-        },
-        "name": {
-          "label": "名称"
-        }
+      "texts": {
+        "targetName": "回报项目",
+        "targetSerial": "项目描述",
+        "statusType": "回报状态"
       },
       "select": {
-        "setStatus": {
-          "label": "状态"
+        "setStatusValue": {
+          "label": "状态描述"
         }
       }
     },
@@ -78,7 +75,7 @@
         "updatedAt": "更新于 {{updatedAt}}"
       }
     },
-    "title": "{{name}}现有回报资讯"
+    "title": "更新回报资讯"
   },
   "poiDrawer": {
     "buttons": {

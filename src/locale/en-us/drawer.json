@@ -51,21 +51,18 @@
       "title": "Edit report"
     },
     "content": {
-      "inputs": {
-        "description": {
-          "label": "Description"
-        },
-        "name": {
-          "label": "Name"
-        }
+      "texts": {
+        "targetName": "Target Name",
+        "targetSerial": "Target Serial",
+        "statusType": "Status Type"
       },
       "select": {
-        "setStatus": {
-          "label": "Status"
+        "setStatusValue": {
+          "label": "Status Description"
         }
       }
     },
-    "title": "Edit report {{poi}}"
+    "title": "Update report"
   },
   "clusterDrawer": {
     "buttons": {
