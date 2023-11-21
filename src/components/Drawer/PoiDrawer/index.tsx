@@ -181,7 +181,6 @@ const PoiDrawer: React.FC = () => {
             {/* 第四行：updatedBy &updatedAt */}
             <div className="flex flex-row space-x-1 mt-1 items-center justify-end">
               <p className="text-xs text-secondary">
-                {poi?.data.updatedBy ? poi.data.updatedBy : poi?.data.createdBy}
                 編輯於
                 {poi?.data.updatedAt ? poi.data.updatedAt : poi?.data.createdAt}
               </p>
