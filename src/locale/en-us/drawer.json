@@ -62,7 +62,7 @@
         }
       }
     },
-    "title": "Edit report {{poi}}"
+    "title": "Update report"
   },
   "clusterDrawer": {
     "buttons": {
