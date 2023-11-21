@@ -1,0 +1,32 @@
+[
+  {
+    "floor": "1F",
+    "category": "物體",
+    "name": "ATM"
+  },
+  {
+    "floor": "1F",
+    "category": "空間",
+    "name": "一般座位區"
+  },
+  {
+    "floor": "1F",
+    "category": "物體",
+    "name": "販賣機"
+  },
+  {
+    "floor": "1F",
+    "category": "物體",
+    "name": "櫃台"
+  },
+  {
+    "floor": "1F",
+    "category": "物體",
+    "name": "路邊無障礙停車位"
+  },
+  {
+    "floor": "1F",
+    "category": "物體",
+    "name": "路邊一般停車位"
+  }
+]

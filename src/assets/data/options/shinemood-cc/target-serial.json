@@ -1,0 +1,182 @@
+[
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "一般座位區",
+      "serial": "一般座位區1-1",
+      "category": "空間"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "一般座位區",
+      "serial": "一般座位區1-2",
+      "category": "空間"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "一般座位區",
+      "serial": "一般座位區1-3",
+      "category": "空間"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "一般座位區",
+      "serial": "一般座位區1-4",
+      "category": "空間"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "櫃台",
+      "serial": "小木屋點餐櫃台1-1",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "櫃台",
+      "serial": "小木屋取餐櫃台1-1",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "公用電腦",
+      "serial": "公用電腦1-1",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "公用電腦",
+      "serial": "公用電腦1-2",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "公用電腦",
+      "serial": "公用電腦1-3",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "公用電腦",
+      "serial": "公用電腦1-4",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "公用電腦",
+      "serial": "公用電腦1-5",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "公用電腦",
+      "serial": "公用電腦1-6",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "公用電腦",
+      "serial": "公用電腦1-7",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "公用電腦",
+      "serial": "公用電腦1-8",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "飲水機",
+      "serial": "飲水機1-1",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "路邊教職員停車位",
+      "serial": "路邊教職員停車位1-1",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "路邊教職員停車位",
+      "serial": "路邊教職員停車位1-2",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "路邊教職員停車位",
+      "serial": "路邊教職員停車位1-3",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "路邊教職員停車位",
+      "serial": "路邊教職員停車位1-4",
+      "category": "物體"
+    },
+    "floor": "1F"
+  },
+  {
+    "locationName": "小木屋和校計中",
+    "target": {
+      "name": "路邊殘障停車位",
+      "serial": "路邊殘障停車位1-1",
+      "category": "物體"
+    },
+    "floor": "1F"
+  }
+]

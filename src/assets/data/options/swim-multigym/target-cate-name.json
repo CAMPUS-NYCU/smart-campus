@@ -1,0 +1,62 @@
+[
+  {
+    "floor": "2F",
+    "category": "物體",
+    "name": "飲水機"
+  },
+  {
+    "floor": "2F",
+    "category": "空間",
+    "name": "一般座位區"
+  },
+  {
+    "floor": "2F",
+    "category": "物體",
+    "name": "置物櫃"
+  },
+  {
+    "floor": "2F",
+    "category": "物體",
+    "name": "櫃台"
+  },
+  {
+    "floor": "2F",
+    "category": "物體",
+    "name": "跑步機"
+  },
+  {
+    "floor": "2F",
+    "category": "物體",
+    "name": "轉體機"
+  },
+  {
+    "floor": "1F",
+    "category": "物體",
+    "name": "飲水機"
+  },
+  {
+    "floor": "1F",
+    "category": "空間",
+    "name": "一般座位區"
+  },
+  {
+    "floor": "1F",
+    "category": "物體",
+    "name": "置物櫃"
+  },
+  {
+    "floor": "1F",
+    "category": "物體",
+    "name": "櫃台"
+  },
+  {
+    "floor": "1F",
+    "category": "空間",
+    "name": "沙發區"
+  },
+  {
+    "floor": "1F",
+    "category": "空間",
+    "name": "桌球場"
+  }
+]

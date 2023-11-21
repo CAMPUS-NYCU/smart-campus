@@ -1,0 +1,28 @@
+[
+  {
+    "floor": "1F",
+    "categorys": [
+      "空間"
+    ]
+  },
+  {
+    "floor": "2F",
+    "categorys": [
+      "空間",
+      "物體"
+    ]
+  },
+  {
+    "floor": "3F",
+    "categorys": [
+      "物體",
+      "空間"
+    ]
+  },
+  {
+    "floor": "B1",
+    "categorys": [
+      "物體"
+    ]
+  }
+]
