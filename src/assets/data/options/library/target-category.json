@@ -8,18 +8,21 @@
   {
     "floor": "B1",
     "category": [
+      "",
       "物體"
     ]
   },
   {
     "floor": "1F",
     "category": [
+      "",
       "空間"
     ]
   },
   {
     "floor": "2F",
     "category": [
+      "",
       "空間",
       "物體"
     ]
@@ -27,6 +30,7 @@
   {
     "floor": "3F",
     "category": [
+      "",
       "物體",
       "空間"
     ]
