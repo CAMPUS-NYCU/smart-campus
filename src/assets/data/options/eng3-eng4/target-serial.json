@@ -1,128 +1,66 @@
 [
   {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機1-1",
-      "category": "物體"
-    },
-    "floor": "1F"
+    "floor": "",
+    "category": "",
+    "name": "",
+    "serial": [
+      ""
+    ]
   },
   {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機1-2",
-      "category": "物體"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "物體",
+    "name": "飲水機",
+    "serial": [
+      "飲水機1-1",
+      "飲水機1-2",
+      "飲水機1-3",
+      "飲水機1-4"
+    ]
   },
   {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機1-3",
-      "category": "物體"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "一般座位區",
+    "serial": [
+      "一般座位區1-1"
+    ]
   },
   {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機1-4",
-      "category": "物體"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "物體",
+    "name": "販賣機",
+    "serial": [
+      "販賣機1-1",
+      "販賣機1-2",
+      "販賣機1-3",
+      "販賣機1-4",
+      "販賣機1-5"
+    ]
   },
   {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "無障礙停車區",
+    "serial": [
+      "無障礙停車區1-1"
+    ]
   },
   {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "販賣機",
-      "serial": "販賣機1-1",
-      "category": "物體"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "沙發區",
+    "serial": [
+      "沙發區1-1"
+    ]
   },
   {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "販賣機",
-      "serial": "販賣機1-2",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "販賣機",
-      "serial": "販賣機1-3",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "販賣機",
-      "serial": "販賣機1-4",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "販賣機",
-      "serial": "販賣機1-5",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "無障礙停車區",
-      "serial": "無障礙停車區1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "沙發區",
-      "serial": "沙發區1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "腳踏車停車區",
-      "serial": "腳踏車停車區1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "工三&工四",
-    "target": {
-      "name": "腳踏車停車區",
-      "serial": "腳踏車停車區1-2",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "腳踏車停車區",
+    "serial": [
+      "腳踏車停車區1-1",
+      "腳踏車停車區1-2"
+    ]
   }
 ]

@@ -1,281 +1,118 @@
 [
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "ATM",
-      "serial": "ATM1-1",
-      "category": "物體"
-    },
-    "floor": "1F"
+    "floor": "",
+    "category": "",
+    "name": "",
+    "serial": [
+      ""
+    ]
   },
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "ATM",
-      "serial": "ATM1-2",
-      "category": "物體"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "物體",
+    "name": "ATM",
+    "serial": [
+      "ATM1-1",
+      "ATM1-2"
+    ]
   },
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "一般座位區",
+    "serial": [
+      "一般座位區1-1",
+      "一般座位區1-2"
+    ]
   },
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區1-2",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "高腳椅區",
+    "serial": [
+      "高腳椅區1-1",
+      "高腳椅區1-2",
+      "高腳椅區1-3",
+      "高腳椅區1-4"
+    ]
   },
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "高腳椅區",
-      "serial": "高腳椅區1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "沙發區",
+    "serial": [
+      "沙發區1-1",
+      "沙發區1-2"
+    ]
   },
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "高腳椅區",
-      "serial": "高腳椅區1-2",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "物體",
+    "name": "櫃台",
+    "serial": [
+      "櫃台1-1",
+      "櫃台1-2",
+      "櫃台1-3",
+      "櫃台1-4",
+      "櫃台1-5",
+      "櫃台1-6"
+    ]
   },
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "高腳椅區",
-      "serial": "高腳椅區1-3",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "教職員停車區",
+    "serial": [
+      "教職員停車區1-1"
+    ]
   },
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "高腳椅區",
-      "serial": "高腳椅區1-4",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "2F",
+    "category": "空間",
+    "name": "一般座位區",
+    "serial": [
+      "一般座位區2-1",
+      "一般座位區2-2",
+      "一般座位區2-3"
+    ]
   },
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "沙發區",
-      "serial": "沙發區1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "2F",
+    "category": "物體",
+    "name": "櫃台",
+    "serial": [
+      "櫃台2-1",
+      "櫃台2-2",
+      "櫃台2-3",
+      "櫃台2-4",
+      "櫃台2-5",
+      "櫃台2-6"
+    ]
   },
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "沙發區",
-      "serial": "沙發區1-2",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "3F",
+    "category": "空間",
+    "name": "一般座位區",
+    "serial": [
+      "一般座位區3-1",
+      "一般座位區3-2"
+    ]
   },
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台1-1",
-      "category": "物體"
-    },
-    "floor": "1F"
+    "floor": "3F",
+    "category": "空間",
+    "name": "高腳椅區",
+    "serial": [
+      "高腳椅區3-1"
+    ]
   },
   {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台1-2",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台1-3",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台1-4",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台1-5",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台1-6",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "教職員停車區",
-      "serial": "教職員停車區1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區2-1",
-      "category": "空間"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區2-2",
-      "category": "空間"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區2-3",
-      "category": "空間"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台2-1",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台2-2",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台2-3",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台2-4",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台2-5",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台2-6",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區3-1",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區3-2",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "高腳椅區",
-      "serial": "高腳椅區3-1",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "沙發區",
-      "serial": "沙發區3-1",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "二餐&停車場",
-    "target": {
-      "name": "沙發區",
-      "serial": "沙發區3-2",
-      "category": "空間"
-    },
-    "floor": "3F"
+    "floor": "3F",
+    "category": "空間",
+    "name": "沙發區",
+    "serial": [
+      "沙發區3-1",
+      "沙發區3-2"
+    ]
   }
 ]

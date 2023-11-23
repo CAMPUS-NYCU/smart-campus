@@ -1,5 +1,11 @@
 [
   {
+    "floor": "",
+    "categorys": [
+      ""
+    ]
+  },
+  {
     "floor": "1F",
     "categorys": [
       "物體",
@@ -9,13 +15,7 @@
   {
     "floor": "2F",
     "categorys": [
-      "空間",
-      "物體"
-    ]
-  },
-  {
-    "floor": "3F",
-    "categorys": [
+      "物體",
       "空間"
     ]
   }

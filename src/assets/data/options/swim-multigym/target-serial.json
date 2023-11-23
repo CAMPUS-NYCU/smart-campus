@@ -1,389 +1,137 @@
 [
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機2-1",
-      "category": "物體"
-    },
-    "floor": "2F"
+    "floor": "",
+    "category": "",
+    "name": "",
+    "serial": [
+      ""
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區2-1",
-      "category": "空間"
-    },
-    "floor": "2F"
+    "floor": "1F",
+    "category": "物體",
+    "name": "飲水機",
+    "serial": [
+      "飲水機1-1",
+      "飲水機1-2"
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區2-2",
-      "category": "空間"
-    },
-    "floor": "2F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "一般座位區",
+    "serial": [
+      "一般座位區1-1",
+      "一般座位區1-2",
+      "一般座位區1-3"
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區2-3",
-      "category": "空間"
-    },
-    "floor": "2F"
+    "floor": "1F",
+    "category": "物體",
+    "name": "置物櫃",
+    "serial": [
+      "置物櫃1-1"
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區2-4",
-      "category": "空間"
-    },
-    "floor": "2F"
+    "floor": "1F",
+    "category": "物體",
+    "name": "櫃台",
+    "serial": [
+      "櫃台1-1"
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區2-5",
-      "category": "空間"
-    },
-    "floor": "2F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "沙發區",
+    "serial": [
+      "沙發區1-1"
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "置物櫃",
-      "serial": "置物櫃2-1",
-      "category": "物體"
-    },
-    "floor": "2F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "桌球場",
+    "serial": [
+      "桌球場1-1",
+      "桌球場1-2",
+      "桌球場1-3",
+      "桌球場1-4",
+      "桌球場1-5",
+      "桌球場1-6",
+      "桌球場1-7",
+      "桌球場1-8",
+      "桌球場1-9",
+      "桌球場1-10",
+      "桌球場1-11",
+      "桌球場1-12",
+      "桌球場1-13",
+      "桌球場1-14"
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "置物櫃",
-      "serial": "置物櫃2-2",
-      "category": "物體"
-    },
-    "floor": "2F"
+    "floor": "2F",
+    "category": "物體",
+    "name": "飲水機",
+    "serial": [
+      "飲水機2-1"
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "置物櫃",
-      "serial": "置物櫃2-3",
-      "category": "物體"
-    },
-    "floor": "2F"
+    "floor": "2F",
+    "category": "空間",
+    "name": "一般座位區",
+    "serial": [
+      "一般座位區2-1",
+      "一般座位區2-2",
+      "一般座位區2-3",
+      "一般座位區2-4",
+      "一般座位區2-5"
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台2-1",
-      "category": "物體"
-    },
-    "floor": "2F"
+    "floor": "2F",
+    "category": "物體",
+    "name": "置物櫃",
+    "serial": [
+      "置物櫃2-1",
+      "置物櫃2-2",
+      "置物櫃2-3"
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "跑步機",
-      "serial": "跑步機2-1",
-      "category": "物體"
-    },
-    "floor": "2F"
+    "floor": "2F",
+    "category": "物體",
+    "name": "櫃台",
+    "serial": [
+      "櫃台2-1"
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "跑步機",
-      "serial": "跑步機2-2",
-      "category": "物體"
-    },
-    "floor": "2F"
+    "floor": "2F",
+    "category": "物體",
+    "name": "跑步機",
+    "serial": [
+      "跑步機2-1",
+      "跑步機2-2",
+      "跑步機2-3",
+      "跑步機2-4",
+      "跑步機2-5",
+      "跑步機2-6",
+      "跑步機2-7",
+      "跑步機2-8",
+      "跑步機2-9",
+      "跑步機2-10"
+    ]
   },
   {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "跑步機",
-      "serial": "跑步機2-3",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "跑步機",
-      "serial": "跑步機2-4",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "跑步機",
-      "serial": "跑步機2-5",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "跑步機",
-      "serial": "跑步機2-6",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "跑步機",
-      "serial": "跑步機2-7",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "跑步機",
-      "serial": "跑步機2-8",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "跑步機",
-      "serial": "跑步機2-9",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "跑步機",
-      "serial": "跑步機2-10",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "轉體機",
-      "serial": "轉體機2-1",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機1-1",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機1-2",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區1-2",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區1-3",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "置物櫃",
-      "serial": "置物櫃1-1",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台1-1",
-      "category": "物體"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "沙發區",
-      "serial": "沙發區1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-2",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-3",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-4",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-5",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-6",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-7",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-8",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-9",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-10",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-11",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-12",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-13",
-      "category": "空間"
-    },
-    "floor": "1F"
-  },
-  {
-    "locationName": "游泳館&綜合球館",
-    "target": {
-      "name": "桌球場",
-      "serial": "桌球場1-14",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "2F",
+    "category": "物體",
+    "name": "轉體機",
+    "serial": [
+      "轉體機2-1"
+    ]
   }
 ]

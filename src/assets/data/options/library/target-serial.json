@@ -1,407 +1,132 @@
 [
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機B1-1",
-      "category": "物體"
-    },
-    "floor": "B1"
+    "floor": "",
+    "category": "",
+    "name": "",
+    "serial": [
+      ""
+    ]
   },
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機B1-2",
-      "category": "物體"
-    },
-    "floor": "B1"
+    "floor": "B1",
+    "category": "物體",
+    "name": "飲水機",
+    "serial": [
+      "飲水機B1-1",
+      "飲水機B1-2"
+    ]
   },
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區1-1",
-      "category": "空間"
-    },
-    "floor": "1F"
+    "floor": "1F",
+    "category": "空間",
+    "name": "一般座位區",
+    "serial": [
+      "一般座位區1-1"
+    ]
   },
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "沙發區",
-      "serial": "沙發區2-1",
-      "category": "空間"
-    },
-    "floor": "2F"
+    "floor": "2F",
+    "category": "空間",
+    "name": "沙發區",
+    "serial": [
+      "沙發區2-1",
+      "沙發區2-2",
+      "沙發區2-3"
+    ]
   },
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "沙發區",
-      "serial": "沙發區2-2",
-      "category": "空間"
-    },
-    "floor": "2F"
+    "floor": "2F",
+    "category": "空間",
+    "name": "一般座位區",
+    "serial": [
+      "一般座位區2-1"
+    ]
   },
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "沙發區",
-      "serial": "沙發區2-3",
-      "category": "空間"
-    },
-    "floor": "2F"
+    "floor": "2F",
+    "category": "物體",
+    "name": "飲水機",
+    "serial": [
+      "飲水機2-1"
+    ]
   },
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區2-1",
-      "category": "空間"
-    },
-    "floor": "2F"
+    "floor": "2F",
+    "category": "物體",
+    "name": "櫃台",
+    "serial": [
+      "櫃台2-1",
+      "櫃台2-2"
+    ]
   },
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機2-1",
-      "category": "物體"
-    },
-    "floor": "2F"
+    "floor": "2F",
+    "category": "物體",
+    "name": "公用電腦",
+    "serial": [
+      "公用電腦2-1",
+      "公用電腦2-2",
+      "公用電腦2-3",
+      "公用電腦2-4",
+      "公用電腦2-5",
+      "公用電腦2-6",
+      "公用電腦2-7",
+      "公用電腦2-8",
+      "公用電腦2-9",
+      "公用電腦2-10",
+      "公用電腦2-11",
+      "公用電腦2-12",
+      "公用電腦2-13",
+      "公用電腦2-14",
+      "公用電腦2-15",
+      "公用電腦2-16",
+      "公用電腦2-17",
+      "公用電腦2-18"
+    ]
   },
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台2-1",
-      "category": "物體"
-    },
-    "floor": "2F"
+    "floor": "3F",
+    "category": "物體",
+    "name": "飲水機",
+    "serial": [
+      "飲水機3-1",
+      "飲水機3-2"
+    ]
   },
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "櫃台",
-      "serial": "櫃台2-2",
-      "category": "物體"
-    },
-    "floor": "2F"
+    "floor": "3F",
+    "category": "物體",
+    "name": "公用電腦",
+    "serial": [
+      "公用電腦3-1",
+      "公用電腦3-2",
+      "公用電腦3-3"
+    ]
   },
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-1",
-      "category": "物體"
-    },
-    "floor": "2F"
+    "floor": "3F",
+    "category": "空間",
+    "name": "高腳椅區",
+    "serial": [
+      "高腳椅區3-1",
+      "高腳椅區3-2",
+      "高腳椅區3-3"
+    ]
   },
   {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-2",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-3",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-4",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-5",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-6",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-7",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-8",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-9",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-10",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-11",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-12",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-13",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-14",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-15",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-16",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-17",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦2-18",
-      "category": "物體"
-    },
-    "floor": "2F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機3-1",
-      "category": "物體"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "飲水機",
-      "serial": "飲水機3-2",
-      "category": "物體"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦3-1",
-      "category": "物體"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦3-2",
-      "category": "物體"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "公用電腦",
-      "serial": "公用電腦3-3",
-      "category": "物體"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "高腳椅區",
-      "serial": "高腳椅區3-1",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "高腳椅區",
-      "serial": "高腳椅區3-2",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "高腳椅區",
-      "serial": "高腳椅區3-3",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區3-1",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區3-2",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區3-3",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區3-4",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區3-5",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區3-6",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區3-7",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區3-8",
-      "category": "空間"
-    },
-    "floor": "3F"
-  },
-  {
-    "locationName": "圖書館",
-    "target": {
-      "name": "一般座位區",
-      "serial": "一般座位區3-9",
-      "category": "空間"
-    },
-    "floor": "3F"
+    "floor": "3F",
+    "category": "空間",
+    "name": "一般座位區",
+    "serial": [
+      "一般座位區3-1",
+      "一般座位區3-2",
+      "一般座位區3-3",
+      "一般座位區3-4",
+      "一般座位區3-5",
+      "一般座位區3-6",
+      "一般座位區3-7",
+      "一般座位區3-8",
+      "一般座位區3-9"
+    ]
   }
 ]
