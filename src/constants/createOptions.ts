@@ -100,9 +100,9 @@ function getOptions(clusterName: string) {
     default:
       return {
         floor: [""],
-        targetCategory: [""],
-        targetName: [""],
-        targetSerial: [""],
+        targetCategory: [{ floor: "", category: [""] }],
+        targetName: [{ floor: "", category: "", name: [""] }],
+        targetSerial: [{ floor: "", category: "", name: "", serial: [""] }],
       };
   }
 }
