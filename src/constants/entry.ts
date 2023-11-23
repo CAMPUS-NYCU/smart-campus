@@ -6,9 +6,11 @@ function getEntries(clusterName: string): EntryData {
     const matches = clusterName.match(/[^a-zA-Z\d]+/g);
     const pureClusterName = matches ? matches.join("") : "";
 
-    const entryArray = Object.values(entryData);
-    const result = entryArray.find((entry) => entry.name === pureClusterName);
-    return result ? result : defaultEntry;
+    for (let i = 0; i < entryData.length; i++) {
+      if (entryData[i].name === pureClusterName) {
+        return entryData[i];
+      }
+    }
   }
 
   return defaultEntry;

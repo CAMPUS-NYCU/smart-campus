@@ -10,7 +10,6 @@ export const setEntries = (entries: EntryData): void => {
   if (!maps.mapRef.current) {
     return;
   }
-  console.log("entries", entries.latlng.latitude);
 
   const marker: [string, google.maps.Marker] = [
     entries.name,
