@@ -1,32 +1,32 @@
 [
   {
     "floor": "",
-    "categorys": [
+    "category": [
       ""
     ]
   },
   {
     "floor": "B1",
-    "categorys": [
+    "category": [
       "物體"
     ]
   },
   {
     "floor": "1F",
-    "categorys": [
+    "category": [
       "空間"
     ]
   },
   {
     "floor": "2F",
-    "categorys": [
+    "category": [
       "空間",
       "物體"
     ]
   },
   {
     "floor": "3F",
-    "categorys": [
+    "category": [
       "物體",
       "空間"
     ]
