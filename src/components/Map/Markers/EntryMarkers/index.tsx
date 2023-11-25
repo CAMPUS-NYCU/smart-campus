@@ -4,7 +4,7 @@ import {
   isCurrentDrawerParams,
 } from "../../../../utils/routes/params";
 import { useGetClusterQuery } from "../../../../api/cluster";
-import { defaultEntry, EntryData } from "../../../../models/entry";
+import { EntryData } from "../../../../models/entry";
 import { useMemo } from "react";
 import { getEntries } from "../../../../constants/entry";
 import React from "react";
@@ -19,16 +19,17 @@ const EntryMarkers: React.FC = () => {
     searchParams,
   );
 
-  const targetEntry: EntryData = useMemo(() => {
+  const targetEntry: EntryData | null = useMemo(() => {
     if (cluster) {
       return getEntries(cluster.data.name);
     } else {
-      return defaultEntry;
+      return null;
     }
   }, [cluster]);
 
   React.useEffect(() => {
-    if (isCurrentSearchParamsCluster) markers.entry.setEntries(targetEntry);
+    if (isCurrentSearchParamsCluster && targetEntry)
+      markers.entry.setEntries(targetEntry);
     else {
       markers.entry.clear();
     }

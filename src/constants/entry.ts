@@ -1,7 +1,7 @@
 import entryData from "../assets/data/markers/entries/entry.json";
-import { defaultEntry, EntryData } from "../models/entry";
+import { EntryData } from "../models/entry";
 
-function getEntries(clusterName: string): EntryData {
+function getEntries(clusterName: string): EntryData | null {
   if (clusterName) {
     const matches = clusterName.match(/[^a-zA-Z\d]+/g);
     const pureClusterName = matches ? matches.join("") : "";
@@ -13,7 +13,7 @@ function getEntries(clusterName: string): EntryData {
     }
   }
 
-  return defaultEntry;
+  return null;
 }
 
 export { getEntries };
