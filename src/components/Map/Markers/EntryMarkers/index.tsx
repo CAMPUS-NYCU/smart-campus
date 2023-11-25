@@ -1,13 +1,13 @@
+import React, { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+
+import { useGetClusterQuery } from "../../../../api/cluster";
+import { getEntry } from "../../../../constants/entry";
+import { EntryData } from "../../../../models/entry";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
 } from "../../../../utils/routes/params";
-import { useGetClusterQuery } from "../../../../api/cluster";
-import { EntryData } from "../../../../models/entry";
-import { useMemo } from "react";
-import { getEntries } from "../../../../constants/entry";
-import React from "react";
 import { markers } from "../../../../utils/googleMaps";
 
 const EntryMarkers: React.FC = () => {
@@ -21,16 +21,16 @@ const EntryMarkers: React.FC = () => {
 
   const targetEntry: EntryData | null = useMemo(() => {
     if (cluster) {
-      return getEntries(cluster.data.name);
+      return getEntry(cluster.data.name);
     } else {
       return null;
     }
   }, [cluster]);
 
   React.useEffect(() => {
-    if (isCurrentSearchParamsCluster && targetEntry)
-      markers.entry.setEntries(targetEntry);
-    else {
+    if (isCurrentSearchParamsCluster && targetEntry) {
+      markers.entry.setEntry(targetEntry);
+    } else {
       markers.entry.clear();
     }
 
@@ -38,6 +38,7 @@ const EntryMarkers: React.FC = () => {
       markers.entry.clear();
     };
   }, [isCurrentSearchParamsCluster, targetEntry]);
+
   return <></>;
 };
 

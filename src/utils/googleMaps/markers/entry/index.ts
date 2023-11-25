@@ -6,7 +6,7 @@ export const markerRef = {
   current: {} as Record<string, google.maps.Marker>,
 };
 
-export const setEntries = (entries: EntryData): void => {
+export const setEntry = (entries: EntryData): void => {
   if (!maps.mapRef.current) {
     return;
   }
