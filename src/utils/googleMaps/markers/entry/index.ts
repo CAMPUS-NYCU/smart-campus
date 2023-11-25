@@ -29,6 +29,5 @@ export const setEntry = (entries: EntryData): void => {
 
 export const clear = (): void => {
   Object.values(markerRef.current).forEach((marker) => marker.setMap(null));
-
   markerRef.current = {};
 };
