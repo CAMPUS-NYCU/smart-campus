@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
@@ -19,7 +19,7 @@ import {
 
 import noImage from "../../../assets/images/noImage.svg";
 import Drawer from "..";
-import { PoiData } from "../../../models/poi";
+import Poi, { PoiData } from "../../../models/poi";
 import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
@@ -27,6 +27,9 @@ import {
 import { statusColor } from "../../../constants/statusStyle";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
+import { getEntry } from "../../../constants/entry";
+import { calculateDistance } from "../../../constants/map";
+import { EntryData } from "../../../models/entry";
 
 interface PoiListItemProps {
   poi: {
@@ -37,6 +40,7 @@ interface PoiListItemProps {
 
 const PoiListItem: React.FC<PoiListItemProps> = (props) => {
   const { poi } = props;
+  console.log("poi input: ", poi);
 
   const containerRef = React.useRef<HTMLDivElement>(null);
 
@@ -218,6 +222,28 @@ const ClusterDrawer: React.FC = () => {
     }
   }, [dispatch, searchParams]);
 
+  const targetEntry: EntryData | null = useMemo(() => {
+    if (cluster) {
+      return getEntry(cluster.data.name);
+    } else {
+      return null;
+    }
+  }, [cluster]);
+
+  let orderedPoiList: Poi[] = [];
+
+  if (poiList && targetEntry) {
+    orderedPoiList = Object.entries(poiList).map(([id, data]) => ({
+      id,
+      data,
+    }));
+    orderedPoiList.sort((poi1: Poi, poi2: Poi) => {
+      const distance1 = calculateDistance(targetEntry.latlng, poi1.data.latlng);
+      const distance2 = calculateDistance(targetEntry.latlng, poi2.data.latlng);
+      return distance1 - distance2;
+    });
+  }
+
   return (
     <Drawer
       open={selected}
@@ -228,11 +254,13 @@ const ClusterDrawer: React.FC = () => {
       })}
       children={
         <div>
-          {poiList ? (
-            Object.keys(poiList).map((poiId) => {
-              const poiData = poiList[poiId];
+          {poiList && targetEntry ? (
+            orderedPoiList.map((poi) => {
               return (
-                <PoiListItem key={poiId} poi={{ id: poiId, data: poiData }} />
+                <PoiListItem
+                  key={poi.id}
+                  poi={{ id: poi.id, data: poi.data }}
+                />
               );
             })
           ) : (
