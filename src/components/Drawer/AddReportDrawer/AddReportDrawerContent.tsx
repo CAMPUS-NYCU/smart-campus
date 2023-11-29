@@ -13,6 +13,7 @@ import {
 import {
   poiObjectStatusTypeSelect,
   poiSpaceStatusTypeSelect,
+  poiStatusType,
   poiStatusTypeMessageKeys,
   poiStatusValue,
   poiStatusValueMessageKeys,
@@ -44,6 +45,10 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
             category: "",
             name: "",
             serial: "",
+          },
+          status: {
+            ...reportData.status,
+            type: poiStatusType.unknown as PoiStatusType,
           },
         }),
       );
@@ -103,6 +108,10 @@ const TargetCategorySelect: React.FC<{
             category: e.target.value,
             name: "",
             serial: "",
+          },
+          status: {
+            ...reportData.status,
+            type: poiStatusType.unknown as PoiStatusType,
           },
         }),
       );
@@ -164,6 +173,10 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
             ...reportData.target,
             name: e.target.value,
             serial: "",
+          },
+          status: {
+            ...reportData.status,
+            type: poiStatusType.unknown as PoiStatusType,
           },
         }),
       );
@@ -231,6 +244,10 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
             ...reportData.target,
             serial: e.target.value,
           },
+          status: {
+            ...reportData.status,
+            type: poiStatusType.unknown as PoiStatusType,
+          },
         }),
       );
     }
@@ -270,9 +287,12 @@ const StatusTypeSelect: React.FC = () => {
   const statusType = reportData.status.type;
   let statusTypeOptions: string[];
 
-  if (reportData.target.category === "物體") {
+  if (reportData.target.category === "物體" && reportData.target.serial) {
     statusTypeOptions = poiObjectStatusTypeSelect;
-  } else if (reportData.target.category === "空間") {
+  } else if (
+    reportData.target.category === "空間" &&
+    reportData.target.serial
+  ) {
     statusTypeOptions = poiSpaceStatusTypeSelect;
   } else {
     statusTypeOptions = ["unknown"];
