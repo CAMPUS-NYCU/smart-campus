@@ -76,12 +76,6 @@
           "value": {
             "unknown": "未知"
           }
-        },
-        "empty": {
-          "name": "请选择",
-          "value": {
-            "empty": "请选择"
-          }
         }
       }
     }
