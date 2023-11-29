@@ -15,6 +15,7 @@ import {
   poiStatusTypeMessageKeys,
   poiStatusValue,
   poiStatusValueMessageKeys,
+  poiStatusValueSelect,
 } from "../../../constants/model/poi";
 import Cluster from "../../../models/cluster/index";
 import { useGetClusterQuery } from "../../../api/cluster";
@@ -237,6 +238,7 @@ const StatusTypeSelect: React.FC = () => {
           status: {
             ...reportData.status,
             type: e.target.value as PoiStatusType,
+            value: poiStatusValue.unknown as PoiStatusValue,
           },
         }),
       );
@@ -275,6 +277,7 @@ const StatusValueSelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const statusValue = reportData.status.value;
+  const statusValueOption = poiStatusValueSelect[reportData.status.type];
   // statusValueOptions TODO: 要根據 statusType 來決定值，且要等到 statusType 被選擇後才能選擇
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -304,7 +307,7 @@ const StatusValueSelect: React.FC = () => {
         selectedKeys={new Set([statusValue])}
         onChange={handleSelectChange}
       >
-        {Object.keys(poiStatusValue).map((s) => (
+        {statusValueOption.map((s) => (
           <SelectItem key={s} value={s}>
             {t(poiStatusValueMessageKeys[s] || "", {
               ns: ["model"],
