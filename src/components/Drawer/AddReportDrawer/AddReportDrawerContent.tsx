@@ -70,7 +70,7 @@ const TargetCategorySelect: React.FC<{
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetCategory = reportData.target.category;
   const targetCategoryOptions = getOptions(cluster?.data.name || "")
-    .targetCategory[1].category; // TODO: 要根據 floor 來決定值
+    .targetCategory[0].category; // TODO: 要根據 floor 來決定值
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -119,7 +119,7 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null | undefined }> = ({
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetName = reportData.target.name;
-  const targetNameOptions = getOptions(cluster?.data.name || "").targetName[1]
+  const targetNameOptions = getOptions(cluster?.data.name || "").targetName[0]
     .name; // TODO: 要根據 floor, targetCategory 來決定值
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -170,7 +170,7 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null | undefined }> = ({
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetSerial = reportData.target.serial;
   const targetSerialOptions = getOptions(cluster?.data.name || "")
-    .targetSerial[1].serial; // TODO: 要根據 floor, targetCategory, targetName 來決定值
+    .targetSerial[0].serial; // TODO: 要根據 floor, targetCategory, targetName 來決定值
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
