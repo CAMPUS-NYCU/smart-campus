@@ -39,6 +39,10 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
       dispatch(
         updateAddReportData({
           floor: e.target.value,
+          target: {
+            ...reportData.target,
+            category: "",
+          },
         }),
       );
     }
@@ -76,10 +80,17 @@ const TargetCategorySelect: React.FC<{
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetCategory = reportData.target.category;
-  const targetCategoryOptions =
-    cluster !== null
-      ? getOptions(cluster.data.name).targetCategory[1]?.category || []
-      : [""]; // TODO: 要根據 floor 來決定值
+  let targetCategoryOptions: string[]; // 要根據 floor 來決定值
+
+  if (reportData.floor) {
+    targetCategoryOptions = getOptions(
+      cluster?.data.name || "",
+    ).targetCategory.find((c) => c.floor === reportData.floor)?.category || [
+      "",
+    ];
+  } else {
+    targetCategoryOptions = [""];
+  }
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
