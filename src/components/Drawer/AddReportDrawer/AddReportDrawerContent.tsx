@@ -285,7 +285,7 @@ const StatusTypeSelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const statusType = reportData.status.type;
-  let statusTypeOptions: string[];
+  let statusTypeOptions: string[]; // 要根據 targetCategory 來決定值，且要等到 targetSerial 被選擇後才能選擇
 
   if (reportData.target.category === "物體" && reportData.target.serial) {
     statusTypeOptions = poiObjectStatusTypeSelect;
@@ -297,7 +297,6 @@ const StatusTypeSelect: React.FC = () => {
   } else {
     statusTypeOptions = ["unknown"];
   }
-  // 要根據 targetCategory 來決定值，且要等到 targetSerial 被選擇後才能選擇
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -347,8 +346,7 @@ const StatusValueSelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const statusValue = reportData.status.value;
-  const statusValueOption = poiStatusValueSelect[reportData.status.type];
-  // 要根據 statusType 來決定值，且要等到 statusType 被選擇後才能選擇
+  const statusValueOption = poiStatusValueSelect[reportData.status.type]; // 要根據 statusType 來決定值，且要等到 statusType 被選擇後才能選擇
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
