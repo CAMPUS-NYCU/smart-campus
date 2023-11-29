@@ -11,7 +11,8 @@ import {
 } from "@nextui-org/react";
 
 import {
-  poiStatusType,
+  poiObjectStatusTypeSelect,
+  poiSpaceStatusTypeSelect,
   poiStatusTypeMessageKeys,
   poiStatusValue,
   poiStatusValueMessageKeys,
@@ -229,7 +230,16 @@ const StatusTypeSelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const statusType = reportData.status.type;
-  // statusTypeOptionsTODO: 要根據 targetCategory 來決定值，且要等到 targetSerial 被選擇後才能選擇
+  let statusTypeOptions: string[];
+
+  if (reportData.target.category === "物體") {
+    statusTypeOptions = poiObjectStatusTypeSelect;
+  } else if (reportData.target.category === "空間") {
+    statusTypeOptions = poiSpaceStatusTypeSelect;
+  } else {
+    statusTypeOptions = ["unknown"];
+  }
+  // 要根據 targetCategory 來決定值，且要等到 targetSerial 被選擇後才能選擇
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -259,11 +269,13 @@ const StatusTypeSelect: React.FC = () => {
         selectedKeys={new Set([statusType])}
         onChange={handleSelectChange}
       >
-        {Object.keys(poiStatusType).map((s) => (
+        {statusTypeOptions.map((s) => (
           <SelectItem key={s} value={s}>
-            {t(poiStatusTypeMessageKeys[s] || "", {
-              ns: ["model"],
-            })}
+            {s === "unknown"
+              ? "請選擇"
+              : t(poiStatusTypeMessageKeys[s] || "", {
+                  ns: ["model"],
+                })}
           </SelectItem>
         ))}
       </Select>
@@ -278,7 +290,7 @@ const StatusValueSelect: React.FC = () => {
   const reportData = useSelector((state: IRootState) => state.report.data);
   const statusValue = reportData.status.value;
   const statusValueOption = poiStatusValueSelect[reportData.status.type];
-  // statusValueOptions TODO: 要根據 statusType 來決定值，且要等到 statusType 被選擇後才能選擇
+  // 要根據 statusType 來決定值，且要等到 statusType 被選擇後才能選擇
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -309,9 +321,11 @@ const StatusValueSelect: React.FC = () => {
       >
         {statusValueOption.map((s) => (
           <SelectItem key={s} value={s}>
-            {t(poiStatusValueMessageKeys[s] || "", {
-              ns: ["model"],
-            })}
+            {s === "unknown"
+              ? "請選擇"
+              : t(poiStatusValueMessageKeys[s] || "", {
+                  ns: ["model"],
+                })}
           </SelectItem>
         ))}
       </Select>
