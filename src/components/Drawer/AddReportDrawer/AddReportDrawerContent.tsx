@@ -49,6 +49,7 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
           status: {
             ...reportData.status,
             type: poiStatusType.unknown as PoiStatusType,
+            value: poiStatusValue.unknown as PoiStatusValue,
           },
         }),
       );
@@ -112,6 +113,7 @@ const TargetCategorySelect: React.FC<{
           status: {
             ...reportData.status,
             type: poiStatusType.unknown as PoiStatusType,
+            value: poiStatusValue.unknown as PoiStatusValue,
           },
         }),
       );
@@ -177,6 +179,7 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
           status: {
             ...reportData.status,
             type: poiStatusType.unknown as PoiStatusType,
+            value: poiStatusValue.unknown as PoiStatusValue,
           },
         }),
       );
@@ -247,6 +250,7 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
           status: {
             ...reportData.status,
             type: poiStatusType.unknown as PoiStatusType,
+            value: poiStatusValue.unknown as PoiStatusValue,
           },
         }),
       );
