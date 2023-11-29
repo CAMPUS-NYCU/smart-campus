@@ -30,8 +30,23 @@
         "setLocation": "Mark"
       },
       "select": {
-        "setStatus": {
-          "label": "Status"
+        "setFloor": {
+          "label": "Floor"
+        },
+        "setTargetCategory": {
+          "label": "Target Category"
+        },
+        "setTargetName": {
+          "label": "Target Name"
+        },
+        "setTargetSerial": {
+          "label": "Target Serial"
+        },
+        "setStatusType": {
+          "label": "Status Type"
+        },
+        "setStatusValue": {
+          "label": "Status Value"
         }
       }
     },
