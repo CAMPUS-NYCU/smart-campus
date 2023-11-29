@@ -144,6 +144,7 @@ export const poiStatusValueMessageKeys = {
 };
 
 export const poiStatusValueSelect = {
+  [poiStatusType.empty]: [poiStatusValue.empty],
   [poiStatusType.maintenance]: [
     poiStatusValue.empty,
     poiStatusValue.maintenanceCompleted,
@@ -195,6 +196,72 @@ export const poiStatusValueSelect = {
     poiStatusValue.normalCleanliness,
     poiStatusValue.badCleanliness,
   ],
+  [poiStatusType.unknown]: [poiStatusValue.unknown],
+};
+
+export const poiObjectStatusValueSelect = {
   [poiStatusType.empty]: [poiStatusValue.empty],
+  [poiStatusType.maintenance]: [
+    poiStatusValue.empty,
+    poiStatusValue.maintenanceCompleted,
+    poiStatusValue.underMaintenance,
+  ],
+  [poiStatusType.function]: [
+    poiStatusValue.empty,
+    poiStatusValue.functional,
+    poiStatusValue.remainsFuntional,
+    poiStatusValue.nonFunctional,
+  ],
+  [poiStatusType.appearance]: [
+    poiStatusValue.empty,
+    poiStatusValue.appearanceGood,
+    poiStatusValue.appearanceBad,
+  ],
+  [poiStatusType.occupation]: [
+    poiStatusValue.empty,
+    poiStatusValue.occupied,
+    poiStatusValue.unoccupied,
+  ],
+  [poiStatusType.cleanliness]: [
+    poiStatusValue.empty,
+    poiStatusValue.goodCleanliness,
+    poiStatusValue.normalCleanliness,
+    poiStatusValue.badCleanliness,
+  ],
+  [poiStatusType.unknown]: [poiStatusValue.unknown],
+};
+
+export const poiSpaceStatusValueSelect = {
+  [poiStatusType.empty]: [poiStatusValue.empty],
+  [poiStatusType.usage]: [
+    poiStatusValue.empty,
+    poiStatusValue.spacesAvailable,
+    poiStatusValue.limitedSpaces,
+    poiStatusValue.noSpaces,
+  ],
+  [poiStatusType.crowd]: [
+    poiStatusValue.empty,
+    poiStatusValue.crowded,
+    poiStatusValue.normalCrowded,
+    poiStatusValue.notCrowded,
+  ],
+  [poiStatusType.noise]: [
+    poiStatusValue.empty,
+    poiStatusValue.quiet,
+    poiStatusValue.normalNoiseLevel,
+    poiStatusValue.noisy,
+  ],
+  [poiStatusType.thermalComfort]: [
+    poiStatusValue.empty,
+    poiStatusValue.comfortable,
+    poiStatusValue.normalComfort,
+    poiStatusValue.uncomfortable,
+  ],
+  [poiStatusType.cleanliness]: [
+    poiStatusValue.empty,
+    poiStatusValue.goodCleanliness,
+    poiStatusValue.normalCleanliness,
+    poiStatusValue.badCleanliness,
+  ],
   [poiStatusType.unknown]: [poiStatusValue.unknown],
 };
