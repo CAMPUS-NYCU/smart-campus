@@ -14,6 +14,9 @@ export const poiStatusType = {
   // 物體空間共用
   cleanliness: "cleanliness",
 
+  // 請選擇
+  empty: "empty",
+
   // for debug
   unknown: "unknown",
 };
@@ -33,6 +36,9 @@ export const poiStatusTypeMessageKeys = {
 
   // 物體空間共用
   [poiStatusType.cleanliness]: "poi.data.status.cleanliness.name",
+
+  // 請選擇
+  [poiStatusType.empty]: "poi.data.status.empty.name",
 
   // for debug
   [poiStatusType.unknown]: "poi.data.status.unknown.name",
@@ -77,6 +83,9 @@ export const poiStatusValue = {
   goodCleanliness: "goodCleanliness", // 整潔
   normalCleanliness: "normalCleanliness", // 普通
   badCleanliness: "badCleanliness", // 髒亂
+
+  // 請選擇
+  empty: "empty",
 
   // for debug
   unknown: "unknown",
@@ -127,49 +136,61 @@ export const poiStatusValueMessageKeys = {
     "poi.data.status.cleanliness.value.normal",
   [poiStatusValue.badCleanliness]: "poi.data.status.cleanliness.value.bad",
 
+  // 請選擇
+  [poiStatusValue.empty]: "poi.data.status.empty.value.empty",
+
   // for debug
   [poiStatusValue.unknown]: "poi.data.status.unknown.value.unknown",
 };
 
 export const poiStatusValueSelect = {
   [poiStatusType.maintenance]: [
+    poiStatusValue.empty,
     poiStatusValue.maintenanceCompleted,
     poiStatusValue.underMaintenance,
   ],
   [poiStatusType.function]: [
+    poiStatusValue.empty,
     poiStatusValue.functional,
     poiStatusValue.remainsFuntional,
     poiStatusValue.nonFunctional,
   ],
   [poiStatusType.appearance]: [
+    poiStatusValue.empty,
     poiStatusValue.appearanceGood,
     poiStatusValue.appearanceBad,
   ],
   [poiStatusType.occupation]: [
+    poiStatusValue.empty,
     poiStatusValue.occupied,
     poiStatusValue.unoccupied,
   ],
   [poiStatusType.usage]: [
+    poiStatusValue.empty,
     poiStatusValue.spacesAvailable,
     poiStatusValue.limitedSpaces,
     poiStatusValue.noSpaces,
   ],
   [poiStatusType.crowd]: [
+    poiStatusValue.empty,
     poiStatusValue.crowded,
     poiStatusValue.normalCrowded,
     poiStatusValue.notCrowded,
   ],
   [poiStatusType.noise]: [
+    poiStatusValue.empty,
     poiStatusValue.quiet,
     poiStatusValue.normalNoiseLevel,
     poiStatusValue.noisy,
   ],
   [poiStatusType.thermalComfort]: [
+    poiStatusValue.empty,
     poiStatusValue.comfortable,
     poiStatusValue.normalComfort,
     poiStatusValue.uncomfortable,
   ],
   [poiStatusType.cleanliness]: [
+    poiStatusValue.empty,
     poiStatusValue.goodCleanliness,
     poiStatusValue.normalCleanliness,
     poiStatusValue.badCleanliness,

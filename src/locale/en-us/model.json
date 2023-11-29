@@ -76,6 +76,12 @@
           "value": {
             "unknown": "Unknown"
           }
+        },
+        "empty": {
+          "name": "Please select an option",
+          "value": {
+            "empty": "Please select an option"
+          }
         }
       }
     }

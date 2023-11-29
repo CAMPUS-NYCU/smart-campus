@@ -76,6 +76,12 @@
           "value": {
             "unknown": "未知"
           }
+        },
+        "empty": {
+          "name": "請選擇",
+          "value": {
+            "empty": "請選擇"
+          }
         }
       }
     }
