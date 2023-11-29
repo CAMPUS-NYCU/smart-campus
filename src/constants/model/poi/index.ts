@@ -186,67 +186,20 @@ export const poiStatusValueSelect = {
   ],
 };
 
-export const poiObjectStatusValueSelect = {
-  [poiStatusType.unknown]: [poiStatusValue.unknown],
-  [poiStatusType.maintenance]: [
-    poiStatusValue.unknown,
-    poiStatusValue.maintenanceCompleted,
-    poiStatusValue.underMaintenance,
-  ],
-  [poiStatusType.function]: [
-    poiStatusValue.unknown,
-    poiStatusValue.functional,
-    poiStatusValue.remainsFuntional,
-    poiStatusValue.nonFunctional,
-  ],
-  [poiStatusType.appearance]: [
-    poiStatusValue.unknown,
-    poiStatusValue.appearanceGood,
-    poiStatusValue.appearanceBad,
-  ],
-  [poiStatusType.occupation]: [
-    poiStatusValue.unknown,
-    poiStatusValue.occupied,
-    poiStatusValue.unoccupied,
-  ],
-  [poiStatusType.cleanliness]: [
-    poiStatusValue.unknown,
-    poiStatusValue.goodCleanliness,
-    poiStatusValue.normalCleanliness,
-    poiStatusValue.badCleanliness,
-  ],
-};
+export const poiObjectStatusTypeSelect = [
+  poiStatusType.unknown,
+  poiStatusType.maintenance,
+  poiStatusType.function,
+  poiStatusType.appearance,
+  poiStatusType.occupation,
+  poiStatusType.cleanliness,
+];
 
-export const poiSpaceStatusValueSelect = {
-  [poiStatusType.unknown]: [poiStatusValue.unknown],
-  [poiStatusType.usage]: [
-    poiStatusValue.unknown,
-    poiStatusValue.spacesAvailable,
-    poiStatusValue.limitedSpaces,
-    poiStatusValue.noSpaces,
-  ],
-  [poiStatusType.crowd]: [
-    poiStatusValue.unknown,
-    poiStatusValue.crowded,
-    poiStatusValue.normalCrowded,
-    poiStatusValue.notCrowded,
-  ],
-  [poiStatusType.noise]: [
-    poiStatusValue.unknown,
-    poiStatusValue.quiet,
-    poiStatusValue.normalNoiseLevel,
-    poiStatusValue.noisy,
-  ],
-  [poiStatusType.thermalComfort]: [
-    poiStatusValue.unknown,
-    poiStatusValue.comfortable,
-    poiStatusValue.normalComfort,
-    poiStatusValue.uncomfortable,
-  ],
-  [poiStatusType.cleanliness]: [
-    poiStatusValue.unknown,
-    poiStatusValue.goodCleanliness,
-    poiStatusValue.normalCleanliness,
-    poiStatusValue.badCleanliness,
-  ],
-};
+export const poiSpaceStatusTypeSelect = [
+  poiStatusType.unknown,
+  poiStatusType.usage,
+  poiStatusType.crowd,
+  poiStatusType.noise,
+  poiStatusType.thermalComfort,
+  poiStatusType.cleanliness,
+];
