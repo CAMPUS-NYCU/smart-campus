@@ -20,8 +20,8 @@ export const initialReportPoiData: PoiData = {
     serial: "",
   },
   status: {
-    type: poiStatusType.empty as PoiStatusType,
-    value: poiStatusValue.empty as PoiStatusValue,
+    type: poiStatusType.unknown as PoiStatusType,
+    value: poiStatusValue.unknown as PoiStatusValue,
   },
   createdAt: "",
   createdBy: "",
