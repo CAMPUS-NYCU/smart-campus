@@ -195,5 +195,6 @@ export const poiStatusValueSelect = {
     poiStatusValue.normalCleanliness,
     poiStatusValue.badCleanliness,
   ],
+  [poiStatusType.empty]: [poiStatusValue.empty],
   [poiStatusType.unknown]: [poiStatusValue.unknown],
 };
