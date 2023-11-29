@@ -43,6 +43,7 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
             ...reportData.target,
             category: "",
             name: "",
+            serial: "",
           },
         }),
       );
@@ -101,6 +102,7 @@ const TargetCategorySelect: React.FC<{
             ...reportData.target,
             category: e.target.value,
             name: "",
+            serial: "",
           },
         }),
       );
@@ -161,6 +163,7 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
           target: {
             ...reportData.target,
             name: e.target.value,
+            serial: "",
           },
         }),
       );
@@ -201,10 +204,24 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetSerial = reportData.target.serial;
-  const targetSerialOptions =
-    cluster !== null
-      ? getOptions(cluster.data.name).targetSerial[1]?.serial || []
-      : [""]; // TODO: 要根據 floor, targetCategory, targetName 來決定值
+  let targetSerialOptions: string[]; // 要根據 floor, targetCategory, targetName 來決定值
+
+  if (
+    reportData.floor &&
+    reportData.target.category &&
+    reportData.target.name
+  ) {
+    targetSerialOptions = getOptions(
+      cluster?.data.name || "",
+    ).targetSerial.find(
+      (s) =>
+        s.floor === reportData.floor &&
+        s.category === reportData.target.category &&
+        s.name === reportData.target.name,
+    )?.serial || [""];
+  } else {
+    targetSerialOptions = [""];
+  }
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
