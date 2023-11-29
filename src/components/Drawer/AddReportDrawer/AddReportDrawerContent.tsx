@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Image, Input, Select, SelectItem } from "@nextui-org/react";
@@ -6,20 +6,218 @@ import { Button, Image, Input, Select, SelectItem } from "@nextui-org/react";
 import {
   poiStatusType,
   poiStatusTypeMessageKeys,
+  poiStatusValue,
+  poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
+import Cluster from "../../../models/cluster/index";
 import { useGetClusterQuery } from "../../../api/cluster";
-import { PoiStatusType } from "../../../models/poi";
+import { PoiStatusType, PoiStatusValue } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
 import { maps } from "../../../utils/googleMaps";
 import { getOptions } from "../../../constants/createOptions";
 
-const StatusSelect: React.FC = () => {
+const FloorSelect: React.FC<{ cluster: Cluster | null | undefined }> = ({
+  cluster,
+}) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
-  const status = reportData.status.type;
+  const floor = reportData.floor;
+  const floorOptions = getOptions(cluster?.data.name || "").floor;
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value) {
+      dispatch(
+        updateAddReportData({
+          floor: e.target.value,
+        }),
+      );
+    }
+  };
+
+  return (
+    <>
+      <p className="basis-2/12 text-xs font-bold">
+        {t("addReport.content.select.setFloor.label", { ns: ["drawer"] })}
+      </p>
+      <Select
+        label={t("addReport.content.select.setFloor.label", {
+          ns: ["drawer"],
+        })}
+        selectedKeys={new Set([floor])}
+        onChange={handleSelectChange}
+      >
+        {floorOptions.map((s) => {
+          return (
+            <SelectItem key={s} value={s}>
+              {s ? s : "請選擇"}
+            </SelectItem>
+          );
+        })}
+      </Select>
+    </>
+  );
+};
+
+const TargetCategorySelect: React.FC<{
+  cluster: Cluster | null | undefined;
+}> = ({ cluster }) => {
+  const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const reportData = useSelector((state: IRootState) => state.report.data);
+  const targetCategory = reportData.target.category;
+  const targetCategoryOptions = getOptions(cluster?.data.name || "")
+    .targetCategory[1].category; // TODO: 要根據 floor 來決定值
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value) {
+      dispatch(
+        updateAddReportData({
+          target: {
+            ...reportData.target,
+            category: e.target.value,
+          },
+        }),
+      );
+    }
+  };
+
+  return (
+    <>
+      <p className="basis-2/12 text-xs font-bold">
+        {t("addReport.content.select.setTargetCategory.label", {
+          ns: ["drawer"],
+        })}
+      </p>
+      <Select
+        label={t("addReport.content.select.setTargetCategory.label", {
+          ns: ["drawer"],
+        })}
+        selectedKeys={new Set([targetCategory])}
+        onChange={handleSelectChange}
+      >
+        {targetCategoryOptions.map((s) => {
+          return (
+            <SelectItem key={s} value={s}>
+              {s ? s : "請選擇"}
+            </SelectItem>
+          );
+        })}
+      </Select>
+    </>
+  );
+};
+
+const TargetNameSelect: React.FC<{ cluster: Cluster | null | undefined }> = ({
+  cluster,
+}) => {
+  const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const reportData = useSelector((state: IRootState) => state.report.data);
+  const targetName = reportData.target.name;
+  const targetNameOptions = getOptions(cluster?.data.name || "").targetName[1]
+    .name; // TODO: 要根據 floor, targetCategory 來決定值
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value) {
+      dispatch(
+        updateAddReportData({
+          target: {
+            ...reportData.target,
+            name: e.target.value,
+          },
+        }),
+      );
+    }
+  };
+
+  return (
+    <>
+      <p className="basis-2/12 text-xs font-bold">
+        {t("addReport.content.select.setTargetName.label", {
+          ns: ["drawer"],
+        })}
+      </p>
+      <Select
+        label={t("addReport.content.select.setTargetName.label", {
+          ns: ["drawer"],
+        })}
+        selectedKeys={new Set([targetName])}
+        onChange={handleSelectChange}
+      >
+        {targetNameOptions.map((s) => {
+          return (
+            <SelectItem key={s} value={s}>
+              {s ? s : "請選擇"}
+            </SelectItem>
+          );
+        })}
+      </Select>
+    </>
+  );
+};
+
+const TargetSerialSelect: React.FC<{ cluster: Cluster | null | undefined }> = ({
+  cluster,
+}) => {
+  const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const reportData = useSelector((state: IRootState) => state.report.data);
+  const targetSerial = reportData.target.serial;
+  const targetSerialOptions = getOptions(cluster?.data.name || "")
+    .targetSerial[1].serial; // TODO: 要根據 floor, targetCategory, targetName 來決定值
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value) {
+      dispatch(
+        updateAddReportData({
+          target: {
+            ...reportData.target,
+            serial: e.target.value,
+          },
+        }),
+      );
+    }
+  };
+
+  return (
+    <>
+      <p className="basis-2/12 text-xs font-bold">
+        {t("addReport.content.select.setTargetSerial.label", {
+          ns: ["drawer"],
+        })}
+      </p>
+      <Select
+        label={t("addReport.content.select.setTargetSerial.label", {
+          ns: ["drawer"],
+        })}
+        selectedKeys={new Set([targetSerial])}
+        onChange={handleSelectChange}
+      >
+        {targetSerialOptions.map((s) => {
+          return (
+            <SelectItem key={s} value={s}>
+              {s ? s : "請選擇"}
+            </SelectItem>
+          );
+        })}
+      </Select>
+    </>
+  );
+};
+
+const StatusTypeSelect: React.FC = () => {
+  const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const reportData = useSelector((state: IRootState) => state.report.data);
+  const statusType = reportData.status.type;
+  // statusTypeOptionsTODO: 要根據 targetCategory 來決定值，且要等到 targetSerial 被選擇後才能選擇
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -35,21 +233,75 @@ const StatusSelect: React.FC = () => {
   };
 
   return (
-    <Select
-      label={t("addReport.content.select.setStatusType.label", {
-        ns: ["drawer"],
-      })}
-      selectedKeys={new Set([status])}
-      onChange={handleSelectChange}
-    >
-      {Object.keys(poiStatusType).map((s) => (
-        <SelectItem key={s} value={s}>
-          {t(poiStatusTypeMessageKeys[s] || "", {
-            ns: ["model"],
-          })}
-        </SelectItem>
-      ))}
-    </Select>
+    <>
+      <p className="basis-2/12 text-xs font-bold">
+        {t("addReport.content.select.setStatusType.label", {
+          ns: ["drawer"],
+        })}
+      </p>
+      <Select
+        label={t("addReport.content.select.setStatusType.label", {
+          ns: ["drawer"],
+        })}
+        selectedKeys={new Set([statusType])}
+        onChange={handleSelectChange}
+      >
+        {Object.keys(poiStatusType).map((s) => (
+          <SelectItem key={s} value={s}>
+            {t(poiStatusTypeMessageKeys[s] || "", {
+              ns: ["model"],
+            })}
+          </SelectItem>
+        ))}
+      </Select>
+    </>
+  );
+};
+
+const StatusValueSelect: React.FC = () => {
+  const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const reportData = useSelector((state: IRootState) => state.report.data);
+  const statusValue = reportData.status.value;
+  // statusValueOptions TODO: 要根據 statusType 來決定值，且要等到 statusType 被選擇後才能選擇
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value) {
+      dispatch(
+        updateAddReportData({
+          status: {
+            ...reportData.status,
+            value: e.target.value as PoiStatusValue,
+          },
+        }),
+      );
+    }
+  };
+
+  return (
+    <>
+      <p className="basis-2/12 text-xs font-bold">
+        {t("addReport.content.select.setStatusType.label", {
+          ns: ["drawer"],
+        })}
+      </p>
+      <Select
+        label={t("addReport.content.select.setStatusType.label", {
+          ns: ["drawer"],
+        })}
+        selectedKeys={new Set([statusValue])}
+        onChange={handleSelectChange}
+      >
+        {Object.keys(poiStatusValue).map((s) => (
+          <SelectItem key={s} value={s}>
+            {t(poiStatusValueMessageKeys[s] || "", {
+              ns: ["model"],
+            })}
+          </SelectItem>
+        ))}
+      </Select>
+    </>
   );
 };
 
@@ -88,11 +340,6 @@ const AddReportDrawerContent: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const { data: cluster } = useGetClusterQuery(reportData.clusterId);
-  const options = getOptions(cluster?.data.name || "");
-  const floorOptions = options.floor;
-  const [targetCategoryOptions, setTargetCategoryOptions] = useState([""]);
-  const [targetNameOptions, setTargetNameOptions] = useState([""]);
-  const [targetSerialOptions, setTargetSerialOptions] = useState([""]);
 
   const handleSetLatLng = () => {
     const center = maps.getCenter();
@@ -102,84 +349,6 @@ const AddReportDrawerContent: React.FC = () => {
 
     const latlng = { latitude: center.lat(), longitude: center.lng() };
     dispatch(updateAddReportData({ latlng }));
-  };
-
-  const handleFloorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value) {
-      dispatch(
-        updateAddReportData({
-          floor: e.target.value,
-          target: {
-            category: "",
-            name: "",
-            serial: "",
-          },
-        }),
-      );
-    }
-    const fitFloor = options.targetCategory.find(
-      (i) => i.floor === e.target.value,
-    );
-    setTargetCategoryOptions(fitFloor ? fitFloor.category : []);
-  };
-
-  const handleTargetCategoryChange = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    if (e.target.value) {
-      dispatch(
-        updateAddReportData({
-          target: {
-            ...reportData.target,
-            category: e.target.value,
-            name: "",
-            serial: "",
-          },
-        }),
-      );
-    }
-
-    const fitCategory = options.targetName.find(
-      (i) => i.floor === reportData.floor && i.category === e.target.value,
-    );
-    setTargetNameOptions(fitCategory ? fitCategory.name : []);
-  };
-
-  const handleTargetNameChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value) {
-      dispatch(
-        updateAddReportData({
-          target: {
-            ...reportData.target,
-            name: e.target.value,
-            serial: "",
-          },
-        }),
-      );
-    }
-
-    const fitName = options.targetSerial.find(
-      (i) =>
-        i.floor === reportData.floor &&
-        i.category === reportData.target.category &&
-        i.name === e.target.value,
-    );
-    setTargetSerialOptions(fitName ? fitName.serial : []);
-  };
-
-  const handleTargetSerialChange = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    if (e.target.value) {
-      dispatch(
-        updateAddReportData({
-          target: {
-            ...reportData.target,
-            serial: e.target.value,
-          },
-        }),
-      );
-    }
   };
 
   return (
@@ -211,97 +380,29 @@ const AddReportDrawerContent: React.FC = () => {
       </div>
       {/* 回報樓層 */}
       <div className="flex flex-row space-x-1 mt-1 items-center">
-        <p className="basis-2/12 text-xs font-bold">
-          {t("addReport.content.select.setFloor.label", { ns: ["drawer"] })}
-        </p>
-        <Select
-          label={t("addReport.content.select.setFloor.label", {
-            ns: ["drawer"],
-          })}
-          selectedKeys={new Set([reportData.floor])}
-          onChange={handleFloorChange}
-        >
-          {floorOptions.map((s) => {
-            return (
-              <SelectItem key={s} value={s}>
-                {s ? s : "請選擇"}
-              </SelectItem>
-            );
-          })}
-        </Select>
+        <FloorSelect cluster={cluster} />
       </div>
       {/* 回報類別 */}
       <div className="flex flex-row space-x-1 mt-1 items-center">
-        <p className="basis-2/12 text-xs font-bold">
-          {t("addReport.content.select.setTargetCategory.label", {
-            ns: ["drawer"],
-          })}
-        </p>
-        <Select
-          label={t("addReport.content.select.setTargetCategory.label", {
-            ns: ["drawer"],
-          })}
-          selectedKeys={new Set([reportData.target.category])}
-          onChange={handleTargetCategoryChange}
-        >
-          {targetCategoryOptions.map((s) => {
-            return (
-              <SelectItem key={s} value={s}>
-                {s ? s : "請選擇"}
-              </SelectItem>
-            );
-          })}
-        </Select>
+        <TargetCategorySelect cluster={cluster} />
       </div>
       {/* 回報項目 */}
       <div className="flex flex-row space-x-1 mt-1 items-center">
-        <p className="basis-2/12 text-xs font-bold">
-          {t("addReport.content.select.setTargetName.label", {
-            ns: ["drawer"],
-          })}
-        </p>
-        <Select
-          label={t("addReport.content.select.setTargetName.label", {
-            ns: ["drawer"],
-          })}
-          selectedKeys={new Set([reportData.target.name])}
-          onChange={handleTargetNameChange}
-        >
-          {targetNameOptions.map((s) => {
-            return (
-              <SelectItem key={s} value={s}>
-                {s ? s : "請選擇"}
-              </SelectItem>
-            );
-          })}
-        </Select>
+        <TargetNameSelect cluster={cluster} />
       </div>
       {/* 項目描述 */}
       <div className="flex flex-row space-x-1 mt-1 items-center">
-        <p className="basis-2/12 text-xs font-bold">
-          {t("addReport.content.select.setTargetSerial.label", {
-            ns: ["drawer"],
-          })}
-        </p>
-        <Select
-          label={t("addReport.content.select.setTargetSerial.label", {
-            ns: ["drawer"],
-          })}
-          selectedKeys={new Set([reportData.target.serial])}
-          onChange={handleTargetSerialChange}
-        >
-          {targetSerialOptions.map((s) => {
-            return (
-              <SelectItem key={s} value={s}>
-                {s ? s : "請選擇"}
-              </SelectItem>
-            );
-          })}
-        </Select>
+        <TargetSerialSelect cluster={cluster} />
       </div>
       {/* 回報狀態 */}
+      <div className="flex flex-row space-x-1 mt-1 items-center">
+        <StatusTypeSelect />
+      </div>
       {/* 狀態描述 */}
-      <StatusSelect />
+      <div className="flex flex-row space-x-1 mt-1 items-center">
+        <StatusValueSelect />
+      </div>
+
       <AddReportDrawerContentPhotos />
     </div>
   );
