@@ -75,7 +75,7 @@ const TargetCategorySelect: React.FC<{
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetCategory = reportData.target.category;
   const targetCategoryOptions =
-    cluster !== undefined && cluster !== null
+    cluster !== null
       ? getOptions(cluster.data.name).targetCategory[1]?.category || []
       : [""]; // TODO: 要根據 floor 來決定值
 
@@ -127,7 +127,7 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetName = reportData.target.name;
   const targetNameOptions =
-    cluster !== undefined && cluster !== null
+    cluster !== null
       ? getOptions(cluster.data.name).targetName[1]?.name || []
       : [""]; // TODO: 要根據 floor, targetCategory 來決定值
 
@@ -179,7 +179,7 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetSerial = reportData.target.serial;
   const targetSerialOptions =
-    cluster !== undefined && cluster !== null
+    cluster !== null
       ? getOptions(cluster.data.name).targetSerial[1]?.serial || []
       : [""]; // TODO: 要根據 floor, targetCategory, targetName 來決定值
 
