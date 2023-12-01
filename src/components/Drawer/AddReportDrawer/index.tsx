@@ -18,6 +18,23 @@ import {
 import Drawer from "..";
 import AddReportDrawerContent from "./AddReportDrawerContent";
 import AddReportDrawerConfirm from "./AddReportDrawerConfirm";
+import { PoiData } from "../../../models/poi";
+
+const reportDataValidator = (reportData: PoiData) => {
+  const { latlng, target, status } = reportData;
+
+  const isLatLngValid =
+    latlng && latlng.latitude !== 0 && latlng.longitude !== 0;
+  const isTargetValid =
+    target &&
+    target.category !== "" &&
+    target.name !== "" &&
+    target.serial !== "";
+  const isStatusValid =
+    status && status.type !== "unknown" && status.value !== "unknown";
+
+  return reportData && isLatLngValid && isTargetValid && isStatusValid;
+};
 
 const AddReportDrawer: React.FC = () => {
   const { t } = useTranslation();
@@ -61,6 +78,11 @@ const AddReportDrawer: React.FC = () => {
     dispatch(resetReport());
   };
 
+  const [isReportDataFilled, setIsReportDataFilled] = React.useState(false);
+  React.useEffect(() => {
+    setIsReportDataFilled(reportDataValidator(reportData));
+  }, [reportData]);
+
   return (
     <Drawer
       open={selected}
@@ -80,7 +102,12 @@ const AddReportDrawer: React.FC = () => {
         </>
       }
       primaryButton={
-        <Button onClick={handleDrawerConfirm}>
+        <Button
+          radius="full"
+          isDisabled={!isReportDataFilled}
+          className="bg-primary h-fit px-2 py-1.5"
+          onClick={handleDrawerConfirm}
+        >
           {t("addReport.buttons.add", { ns: ["drawer"] })}
         </Button>
       }
