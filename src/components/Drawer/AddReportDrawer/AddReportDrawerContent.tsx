@@ -1,7 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Image, Input, Select, SelectItem } from "@nextui-org/react";
+import {
+  Button,
+  Image,
+  Input,
+  Select,
+  SelectItem,
+  Skeleton,
+} from "@nextui-org/react";
 
 import {
   poiStatusType,
@@ -17,9 +24,7 @@ import { updateAddReportData } from "../../../store/report";
 import { maps } from "../../../utils/googleMaps";
 import { getOptions } from "../../../constants/createOptions";
 
-const FloorSelect: React.FC<{ cluster: Cluster | null | undefined }> = ({
-  cluster,
-}) => {
+const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
@@ -62,7 +67,7 @@ const FloorSelect: React.FC<{ cluster: Cluster | null | undefined }> = ({
 };
 
 const TargetCategorySelect: React.FC<{
-  cluster: Cluster | null | undefined;
+  cluster: Cluster | null;
 }> = ({ cluster }) => {
   const { t } = useTranslation();
 
@@ -113,7 +118,7 @@ const TargetCategorySelect: React.FC<{
   );
 };
 
-const TargetNameSelect: React.FC<{ cluster: Cluster | null | undefined }> = ({
+const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
   cluster,
 }) => {
   const { t } = useTranslation();
@@ -165,7 +170,7 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null | undefined }> = ({
   );
 };
 
-const TargetSerialSelect: React.FC<{ cluster: Cluster | null | undefined }> = ({
+const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
   cluster,
 }) => {
   const { t } = useTranslation();
@@ -345,7 +350,9 @@ const AddReportDrawerContent: React.FC = () => {
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
-  const { data: cluster } = useGetClusterQuery(reportData.clusterId);
+  const { data: cluster, isLoading: clusterLoading } = useGetClusterQuery(
+    reportData.clusterId,
+  ); // clusterloading 的話就載入 skelton
 
   const handleSetLatLng = () => {
     const center = maps.getCenter();
@@ -356,6 +363,8 @@ const AddReportDrawerContent: React.FC = () => {
     const latlng = { latitude: center.lat(), longitude: center.lng() };
     dispatch(updateAddReportData({ latlng }));
   };
+
+  console.log("cluster query", cluster, clusterLoading);
 
   return (
     <div className="flex flex-col max-h-[calc(50vh-100px)]">
@@ -384,30 +393,34 @@ const AddReportDrawerContent: React.FC = () => {
           })}
         </Button>
       </div>
-      {/* 回報樓層 */}
-      <div className="flex flex-row space-x-1 mt-1 items-center">
-        <FloorSelect cluster={cluster} />
-      </div>
-      {/* 回報類別 */}
-      <div className="flex flex-row space-x-1 mt-1 items-center">
-        <TargetCategorySelect cluster={cluster} />
-      </div>
-      {/* 回報項目 */}
-      <div className="flex flex-row space-x-1 mt-1 items-center">
-        <TargetNameSelect cluster={cluster} />
-      </div>
-      {/* 項目描述 */}
-      <div className="flex flex-row space-x-1 mt-1 items-center">
-        <TargetSerialSelect cluster={cluster} />
-      </div>
-      {/* 回報狀態 */}
-      <div className="flex flex-row space-x-1 mt-1 items-center">
-        <StatusTypeSelect />
-      </div>
-      {/* 狀態描述 */}
-      <div className="flex flex-row space-x-1 mt-1 items-center">
-        <StatusValueSelect />
-      </div>
+      <Skeleton isLoaded={!clusterLoading}>
+        <div className="flex flex-col bg-white">
+          {/* 回報樓層 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <FloorSelect cluster={cluster!} />
+          </div>
+          {/* 回報類別 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <TargetCategorySelect cluster={cluster!} />
+          </div>
+          {/* 回報項目 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <TargetNameSelect cluster={cluster!} />
+          </div>
+          {/* 項目描述 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <TargetSerialSelect cluster={cluster!} />
+          </div>
+          {/* 回報狀態 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <StatusTypeSelect />
+          </div>
+          {/* 狀態描述 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <StatusValueSelect />
+          </div>
+        </div>
+      </Skeleton>
 
       <AddReportDrawerContentPhotos />
     </div>
