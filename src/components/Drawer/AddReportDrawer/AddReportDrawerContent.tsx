@@ -75,7 +75,7 @@ const TargetCategorySelect: React.FC<{
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetCategory = reportData.target.category;
   const targetCategoryOptions =
-    cluster !== undefined && cluster !== null
+    cluster !== null
       ? getOptions(cluster.data.name).targetCategory[1]?.category || []
       : [""]; // TODO: 要根據 floor 來決定值
 
@@ -127,7 +127,7 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetName = reportData.target.name;
   const targetNameOptions =
-    cluster !== undefined && cluster !== null
+    cluster !== null
       ? getOptions(cluster.data.name).targetName[1]?.name || []
       : [""]; // TODO: 要根據 floor, targetCategory 來決定值
 
@@ -179,7 +179,7 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetSerial = reportData.target.serial;
   const targetSerialOptions =
-    cluster !== undefined && cluster !== null
+    cluster !== null
       ? getOptions(cluster.data.name).targetSerial[1]?.serial || []
       : [""]; // TODO: 要根據 floor, targetCategory, targetName 來決定值
 
@@ -366,62 +366,63 @@ const AddReportDrawerContent: React.FC = () => {
 
   return (
     <div className="flex flex-col max-h-[calc(50vh-100px)]">
-      <Skeleton
-        isLoaded={!clusterLoading}
-        classNames={{ base: "bg-white overflow-y-scroll" }}
-      >
-        {/* 回報地點 */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
-          <p className="basis-2/12 text-xs font-bold">
-            {t("addReport.content.text.setLocation", {
-              ns: ["drawer"],
-            })}
-          </p>
-          <Input
-            aria-label="set location"
-            defaultValue={cluster?.data.name}
-            variant="underlined"
-            classNames={{ base: "basis-6/12" }}
-            readOnly
-          />
-          <Button
-            radius="full"
-            size="sm"
-            className="min-w-fit h-fit px-2 py-1"
-            onClick={handleSetLatLng}
-          >
-            {t("addReport.content.button.setLocation", {
-              ns: ["drawer"],
-            })}
-          </Button>
-        </div>
-        {/* 回報樓層 */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
-          <FloorSelect cluster={cluster!} />
-        </div>
-        {/* 回報類別 */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
-          <TargetCategorySelect cluster={cluster!} />
-        </div>
-        {/* 回報項目 */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
-          <TargetNameSelect cluster={cluster!} />
-        </div>
-        {/* 項目描述 */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
-          <TargetSerialSelect cluster={cluster!} />
-        </div>
-        {/* 回報狀態 */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
-          <StatusTypeSelect />
-        </div>
-        {/* 狀態描述 */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
-          <StatusValueSelect />
-        </div>
+      {clusterLoading ? (
+        <Skeleton classNames={{ base: "bg-white overflow-y-scroll" }} />
+      ) : (
+        <>
+          {/* 回報地點 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <p className="basis-2/12 text-xs font-bold">
+              {t("addReport.content.text.setLocation", {
+                ns: ["drawer"],
+              })}
+            </p>
+            <Input
+              aria-label="set location"
+              defaultValue={cluster?.data.name}
+              variant="underlined"
+              classNames={{ base: "basis-6/12" }}
+              readOnly
+            />
+            <Button
+              radius="full"
+              size="sm"
+              className="min-w-fit h-fit px-2 py-1"
+              onClick={handleSetLatLng}
+            >
+              {t("addReport.content.button.setLocation", {
+                ns: ["drawer"],
+              })}
+            </Button>
+          </div>
+          {/* 回報樓層 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <FloorSelect cluster={cluster!} />
+          </div>
+          {/* 回報類別 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <TargetCategorySelect cluster={cluster!} />
+          </div>
+          {/* 回報項目 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <TargetNameSelect cluster={cluster!} />
+          </div>
+          {/* 項目描述 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <TargetSerialSelect cluster={cluster!} />
+          </div>
+          {/* 回報狀態 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <StatusTypeSelect />
+          </div>
+          {/* 狀態描述 */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <StatusValueSelect />
+          </div>
 
-        <AddReportDrawerContentPhotos />
-      </Skeleton>
+          <AddReportDrawerContentPhotos />
+        </>
+      )}
     </div>
   );
 };
