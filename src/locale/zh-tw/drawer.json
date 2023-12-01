@@ -24,14 +24,29 @@
         }
       },
       "text": {
-        "setLocation": "位置"
+        "setLocation": "回報地點"
       },
       "button": {
         "setLocation": "標記"
       },
       "select": {
-        "setStatus": {
-          "label": "狀態"
+        "setFloor": {
+          "label": "回報樓層"
+        },
+        "setTargetCategory": {
+          "label": "回報類別"
+        },
+        "setTargetName": {
+          "label": "回報項目"
+        },
+        "setTargetSerial": {
+          "label": "項目描述"
+        },
+        "setStatusType": {
+          "label": "回報狀態"
+        },
+        "setStatusValue": {
+          "label": "狀態描述"
         }
       }
     },

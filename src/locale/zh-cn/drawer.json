@@ -24,14 +24,29 @@
         }
       },
       "text": {
-        "setLocation": "位置"
+        "setLocation": "回报地点"
       },
       "button": {
         "setLocation": "标记"
       },
       "select": {
-        "setStatus": {
-          "label": "状态"
+        "setFloor": {
+          "label": "回报楼层"
+        },
+        "setTargetCategory": {
+          "label": "回报类别"
+        },
+        "setTargetName": {
+          "label": "回报项目"
+        },
+        "setTargetSerial": {
+          "label": "项目描述"
+        },
+        "setStatusType": {
+          "label": "回报状态"
+        },
+        "setStatusValue": {
+          "label": "状态描述"
         }
       }
     },
