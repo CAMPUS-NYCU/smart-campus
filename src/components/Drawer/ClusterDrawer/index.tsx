@@ -39,7 +39,6 @@ interface PoiListItemProps {
 
 const PoiListItem: React.FC<PoiListItemProps> = (props) => {
   const { poi } = props;
-  console.log("poi input: ", poi);
 
   const { t } = useTranslation();
 
@@ -201,19 +200,29 @@ const ClusterDrawer: React.FC = () => {
     }
   }, [cluster]);
 
-  let orderedPoiList: Poi[] = [];
+  const orderedPoiList: Poi[] = useMemo(() => {
+    let result: Poi[] = [];
 
-  if (poiList && targetEntry) {
-    orderedPoiList = Object.entries(poiList).map(([id, data]) => ({
-      id,
-      data,
-    }));
-    orderedPoiList.sort((poi1: Poi, poi2: Poi) => {
-      const distance1 = calculateDistance(targetEntry.latlng, poi1.data.latlng);
-      const distance2 = calculateDistance(targetEntry.latlng, poi2.data.latlng);
-      return distance1 - distance2;
-    });
-  }
+    if (poiList && targetEntry) {
+      result = Object.entries(poiList).map(([id, data]) => ({
+        id,
+        data,
+      }));
+      result.sort((poi1: Poi, poi2: Poi) => {
+        const distance1 = calculateDistance(
+          targetEntry.latlng,
+          poi1.data.latlng,
+        );
+        const distance2 = calculateDistance(
+          targetEntry.latlng,
+          poi2.data.latlng,
+        );
+        return distance1 - distance2;
+      });
+    }
+
+    return result;
+  }, [poiList, targetEntry]);
 
   return (
     <Drawer
