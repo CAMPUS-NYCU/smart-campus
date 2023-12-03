@@ -9,6 +9,7 @@ import { useGetUserQuery } from "../../../api/user";
 import { useGetPoisQuery } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { openModal } from "../../../store/modal";
+import { resetHightlightId, setHighlightId } from "../../../store/poi";
 import { addReport, editReport, resetReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
@@ -37,7 +38,11 @@ interface PoiListItemProps {
 const PoiListItem: React.FC<PoiListItemProps> = (props) => {
   const { poi } = props;
 
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
   const { t } = useTranslation();
+
+  const highlightId = useSelector((state: IRootState) => state.poi.highlightId);
 
   const { data: user } = useGetUserQuery();
 
@@ -51,6 +56,10 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
     } else {
       dispatch(editReport(poi));
     }
+  };
+
+  const handlePoiHighlight = () => {
+    dispatch(setHighlightId(poi.id));
   };
 
   const [urls, setUrls] = useState<string[]>([]);
@@ -70,19 +79,39 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
     }
   }, [poi, storage]);
 
+  useEffect(() => {
+    if (highlightId === poi.id) {
+      containerRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
+      });
+    }
+  }, [dispatch, highlightId, poi.id]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetHightlightId());
+    };
+  }, [dispatch]);
+
   return (
-    <Listbox
-      aria-label="Actions"
-      onAction={(key) => alert(`TODO: highlight poi id: ${key}`)}
-    >
+    <Listbox aria-label="Actions" onAction={handlePoiHighlight}>
       <ListboxItem
         key={poi.id}
         textValue={`list item of ${poi.id}`}
         classNames={{
-          base: "border-1 border-secondary/50 h-fit py-0",
+          base: `${
+            highlightId === poi.id
+              ? "border-3 border-secondary"
+              : "border-1 border-secondary/50"
+          }  h-fit py-0`,
         }}
       >
-        <div className="container flex flex-row justify-around space-x-0.5 py-0 h-max-[calc((50vh-100px)/4)]">
+        <div
+          ref={containerRef}
+          className="container flex flex-row justify-around space-x-0.5 py-0 h-max-[calc((50vh-100px)/4)]"
+        >
           {/* 主要資訊列 */}
           <div className="flex flex-col shrink-0 justify-around basis-7/12">
             <div className="flex text-left flex-wrap flex-row">

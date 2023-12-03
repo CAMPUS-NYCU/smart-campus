@@ -1,16 +1,19 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 import { useGetPoiQuery, useGetPoisQuery } from "../../../../api/poi";
+import { IRootState } from "../../../../store";
+import { setHighlightId } from "../../../../store/poi";
 import { markers } from "../../../../utils/googleMaps";
+import { maps } from "../../../../utils/googleMaps";
 import { setOnPoiMarkerClick } from "../../../../utils/googleMaps/markers/poi";
-import {
-  getParamsFromDrawer,
-  setupDrawerParams,
-} from "../../../../utils/routes/params";
+import { getParamsFromDrawer } from "../../../../utils/routes/params";
 
 const PoiMarkers: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+
+  const highlightId = useSelector((state: IRootState) => state.poi.highlightId);
 
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: pois } = useGetPoisQuery(clusterId);
@@ -18,10 +21,11 @@ const PoiMarkers: React.FC = () => {
   const poiId = getParamsFromDrawer("poi", searchParams).poiId;
   const { data: poi } = useGetPoiQuery(poiId);
 
+  const dispatch = useDispatch();
+
   const handleClick = React.useCallback(
-    (poiId: string) =>
-      setupDrawerParams<"poi">({ poiId }, searchParams, setSearchParams),
-    [searchParams, setSearchParams],
+    (poiId: string) => dispatch(setHighlightId(poiId)),
+    [dispatch],
   );
 
   React.useEffect(() => {
@@ -37,6 +41,13 @@ const PoiMarkers: React.FC = () => {
       markers.poi.clear();
     };
   }, [poi, pois, handleClick]);
+
+  React.useEffect(() => {
+    if (highlightId && pois && pois[highlightId]) {
+      const { latitude, longitude } = pois[highlightId].latlng;
+      maps.panTo(latitude, longitude);
+    }
+  }, [highlightId, pois]);
   return <></>;
 };
 
