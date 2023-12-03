@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
@@ -19,7 +19,7 @@ import {
 
 import noImage from "../../../assets/images/noImage.svg";
 import Drawer from "..";
-import { PoiData } from "../../../models/poi";
+import Poi, { PoiData } from "../../../models/poi";
 import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
@@ -27,6 +27,9 @@ import {
 import { statusColor } from "../../../constants/statusStyle";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
+import { getEntry } from "../../../constants/entry";
+import { calculateDistance } from "../../../constants/map";
+import { EntryData } from "../../../models/entry";
 
 interface PoiListItemProps {
   poi: {
@@ -48,7 +51,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
 
   const dispatch = useDispatch();
 
-  const handleDrawerConfirm = () => {
+  const handlePoiEdit = () => {
     if (!poi) {
       throw new Error("ClusterDrawer: poi not found");
     } else if (!user?.id) {
@@ -156,7 +159,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
               radius="full"
               size="sm"
               className="bg-primary min-w-fit h-fit px-2 py-1"
-              onClick={handleDrawerConfirm}
+              onClick={handlePoiEdit}
             >
               {t("clusterDrawer.buttons.edit", { ns: ["drawer"] })}
             </Button>
@@ -198,7 +201,7 @@ const ClusterDrawer: React.FC = () => {
 
   const { data: poiList } = useGetPoisQuery(id);
 
-  const handleDrawerConfirm = () => {
+  const handlePoiEdit = () => {
     if (!id) {
       throw new Error("ClusterDrawer: id is null");
     } else if (!user?.id) {
@@ -218,6 +221,38 @@ const ClusterDrawer: React.FC = () => {
     }
   }, [dispatch, searchParams]);
 
+  const targetEntry: EntryData | null = useMemo(() => {
+    if (cluster) {
+      return getEntry(cluster.data.name);
+    } else {
+      return null;
+    }
+  }, [cluster]);
+
+  const orderedPoiList: Poi[] = useMemo(() => {
+    let result: Poi[] = [];
+
+    if (poiList && targetEntry) {
+      result = Object.entries(poiList).map(([id, data]) => ({
+        id,
+        data,
+      }));
+      result.sort((poi1: Poi, poi2: Poi) => {
+        const distance1 = calculateDistance(
+          targetEntry.latlng,
+          poi1.data.latlng,
+        );
+        const distance2 = calculateDistance(
+          targetEntry.latlng,
+          poi2.data.latlng,
+        );
+        return distance1 - distance2;
+      });
+    }
+
+    return result;
+  }, [poiList, targetEntry]);
+
   return (
     <Drawer
       open={selected}
@@ -228,11 +263,13 @@ const ClusterDrawer: React.FC = () => {
       })}
       children={
         <div>
-          {poiList ? (
-            Object.keys(poiList).map((poiId) => {
-              const poiData = poiList[poiId];
+          {poiList && targetEntry ? (
+            orderedPoiList.map((poi) => {
               return (
-                <PoiListItem key={poiId} poi={{ id: poiId, data: poiData }} />
+                <PoiListItem
+                  key={poi.id}
+                  poi={{ id: poi.id, data: poi.data }}
+                />
               );
             })
           ) : (
@@ -244,7 +281,7 @@ const ClusterDrawer: React.FC = () => {
         <Button
           radius="full"
           className="bg-primary h-fit px-2 py-1.5"
-          onClick={handleDrawerConfirm}
+          onClick={handlePoiEdit}
         >
           {t("clusterDrawer.buttons.add", { ns: ["drawer"] })}
         </Button>
