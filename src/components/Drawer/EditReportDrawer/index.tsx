@@ -11,6 +11,16 @@ import Drawer from "..";
 import AddReportDrawerContent from "./EditReportDrawerContent";
 import AddReportDrawerConfirm from "./EditReportDrawerConfirm";
 import { closeModal, openModal } from "../../../store/modal";
+import { PoiData } from "../../../models/poi";
+
+const reportDataValidator = (reportData: PoiData) => {
+  const { status } = reportData;
+
+  const isStatusValid =
+    status && status.type !== "unknown" && status.value !== "unknown";
+
+  return isStatusValid;
+};
 
 const AddReportDrawer: React.FC = () => {
   const { t } = useTranslation();
@@ -24,6 +34,11 @@ const AddReportDrawer: React.FC = () => {
   const [editPoi] = useUpdatePoiMutation();
 
   const selected = reportType === "edit";
+
+  const [isStatusValueValid, setIsStatusValueValid] = React.useState(false);
+  React.useEffect(() => {
+    setIsStatusValueValid(reportDataValidator(reportData));
+  }, [reportData]);
 
   const handleSubmit = () => {
     if (!reportId) {
@@ -70,6 +85,7 @@ const AddReportDrawer: React.FC = () => {
       primaryButton={
         <Button
           radius="full"
+          isDisabled={!isStatusValueValid}
           className="bg-primary h-fit px-2 py-1.5"
           onClick={handleDrawerConfirm}
         >
