@@ -51,7 +51,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
 
   const dispatch = useDispatch();
 
-  const handleDrawerConfirm = () => {
+  const handlePoiEdit = () => {
     if (!poi) {
       throw new Error("ClusterDrawer: poi not found");
     } else if (!user?.id) {
@@ -159,7 +159,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
               radius="full"
               size="sm"
               className="bg-primary min-w-fit h-fit px-2 py-1"
-              onClick={handleDrawerConfirm}
+              onClick={handlePoiEdit}
             >
               {t("clusterDrawer.buttons.edit", { ns: ["drawer"] })}
             </Button>
@@ -201,7 +201,7 @@ const ClusterDrawer: React.FC = () => {
 
   const { data: poiList } = useGetPoisQuery(id);
 
-  const handleDrawerConfirm = () => {
+  const handlePoiEdit = () => {
     if (!id) {
       throw new Error("ClusterDrawer: id is null");
     } else if (!user?.id) {
@@ -281,7 +281,7 @@ const ClusterDrawer: React.FC = () => {
         <Button
           radius="full"
           className="bg-primary h-fit px-2 py-1.5"
-          onClick={handleDrawerConfirm}
+          onClick={handlePoiEdit}
         >
           {t("clusterDrawer.buttons.add", { ns: ["drawer"] })}
         </Button>

@@ -1,8 +1,14 @@
+/**
+ * @description Get the distance between two coordinates
+ * @param latlng1 - the first coordinate
+ * @param latlng2 - the second coordinate
+ * @returns the distance between two coordinates
+ */
 function calculateDistance(
   latlng1: { latitude: number; longitude: number },
   latlng2: { latitude: number; longitude: number },
 ) {
-  const R = 6371e3; // metres
+  const R = 6371e3;
   const phi1 = (latlng1.latitude * Math.PI) / 180;
   const phi2 = (latlng2.latitude * Math.PI) / 180;
   const deltaPhi = ((latlng2.latitude - latlng1.latitude) * Math.PI) / 180;
@@ -16,7 +22,7 @@ function calculateDistance(
       Math.sin(deltaLambda / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  const d = R * c; // in metres
+  const d = R * c;
   return d;
 }
 
