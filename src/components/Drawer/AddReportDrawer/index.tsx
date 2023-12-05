@@ -20,6 +20,8 @@ import AddReportDrawerContent from "./AddReportDrawerContent";
 import AddReportDrawerConfirm from "./AddReportDrawerConfirm";
 import CreatingFlag from "./CreatingFlag";
 import { PoiData } from "../../../models/poi";
+import { maps } from "../../../utils/googleMaps";
+import { markers } from "../../../utils/googleMaps";
 
 const reportDataValidator = (reportData: PoiData) => {
   const { latlng, target, status } = reportData;
@@ -83,6 +85,19 @@ const AddReportDrawer: React.FC = () => {
   React.useEffect(() => {
     setIsReportDataFilled(reportDataValidator(reportData));
   }, [reportData]);
+
+  const center = maps.getCenter();
+  React.useEffect(() => {
+    if (selected && center !== null && center !== undefined) {
+      markers.creatingFlag.setLatLng(center?.lat(), center?.lng());
+    } else {
+      markers.creatingFlag.clear();
+    }
+
+    return () => {
+      markers.creatingFlag.clear();
+    };
+  }, [selected, center]);
 
   return (
     <>
