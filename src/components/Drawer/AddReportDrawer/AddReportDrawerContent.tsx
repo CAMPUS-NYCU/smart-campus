@@ -11,10 +11,13 @@ import {
 } from "@nextui-org/react";
 
 import {
+  poiObjectStatusTypeSelect,
+  poiSpaceStatusTypeSelect,
   poiStatusType,
   poiStatusTypeMessageKeys,
   poiStatusValue,
   poiStatusValueMessageKeys,
+  poiStatusValueSelect,
 } from "../../../constants/model/poi";
 import Cluster from "../../../models/cluster/index";
 import { useGetClusterQuery } from "../../../api/cluster";
@@ -37,6 +40,17 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
       dispatch(
         updateAddReportData({
           floor: e.target.value,
+          target: {
+            ...reportData.target,
+            category: "",
+            name: "",
+            serial: "",
+          },
+          status: {
+            ...reportData.status,
+            type: poiStatusType.unknown as PoiStatusType,
+            value: poiStatusValue.unknown as PoiStatusValue,
+          },
         }),
       );
     }
@@ -74,10 +88,17 @@ const TargetCategorySelect: React.FC<{
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetCategory = reportData.target.category;
-  const targetCategoryOptions =
-    cluster !== null
-      ? getOptions(cluster.data.name).targetCategory[1]?.category || []
-      : [""]; // TODO: 要根據 floor 來決定值
+  let targetCategoryOptions: string[]; // 要根據 floor 來決定值
+
+  if (reportData.floor) {
+    targetCategoryOptions = getOptions(
+      cluster?.data.name || "",
+    ).targetCategory.find((c) => c.floor === reportData.floor)?.category || [
+      "",
+    ];
+  } else {
+    targetCategoryOptions = [""];
+  }
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -86,6 +107,13 @@ const TargetCategorySelect: React.FC<{
           target: {
             ...reportData.target,
             category: e.target.value,
+            name: "",
+            serial: "",
+          },
+          status: {
+            ...reportData.status,
+            type: poiStatusType.unknown as PoiStatusType,
+            value: poiStatusValue.unknown as PoiStatusValue,
           },
         }),
       );
@@ -126,10 +154,18 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetName = reportData.target.name;
-  const targetNameOptions =
-    cluster !== null
-      ? getOptions(cluster.data.name).targetName[1]?.name || []
-      : [""]; // TODO: 要根據 floor, targetCategory 來決定值
+
+  let targetNameOptions: string[]; // 要根據 floor, targetCategory 來決定值
+
+  if (reportData.floor && reportData.target.category) {
+    targetNameOptions = getOptions(cluster?.data.name || "").targetName.find(
+      (n) =>
+        n.floor === reportData.floor &&
+        n.category === reportData.target.category,
+    )?.name || [""];
+  } else {
+    targetNameOptions = [""];
+  }
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -138,6 +174,12 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
           target: {
             ...reportData.target,
             name: e.target.value,
+            serial: "",
+          },
+          status: {
+            ...reportData.status,
+            type: poiStatusType.unknown as PoiStatusType,
+            value: poiStatusValue.unknown as PoiStatusValue,
           },
         }),
       );
@@ -178,10 +220,24 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetSerial = reportData.target.serial;
-  const targetSerialOptions =
-    cluster !== null
-      ? getOptions(cluster.data.name).targetSerial[1]?.serial || []
-      : [""]; // TODO: 要根據 floor, targetCategory, targetName 來決定值
+  let targetSerialOptions: string[]; // 要根據 floor, targetCategory, targetName 來決定值
+
+  if (
+    reportData.floor &&
+    reportData.target.category &&
+    reportData.target.name
+  ) {
+    targetSerialOptions = getOptions(
+      cluster?.data.name || "",
+    ).targetSerial.find(
+      (s) =>
+        s.floor === reportData.floor &&
+        s.category === reportData.target.category &&
+        s.name === reportData.target.name,
+    )?.serial || [""];
+  } else {
+    targetSerialOptions = [""];
+  }
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -190,6 +246,11 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
           target: {
             ...reportData.target,
             serial: e.target.value,
+          },
+          status: {
+            ...reportData.status,
+            type: poiStatusType.unknown as PoiStatusType,
+            value: poiStatusValue.unknown as PoiStatusValue,
           },
         }),
       );
@@ -228,7 +289,18 @@ const StatusTypeSelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const statusType = reportData.status.type;
-  // statusTypeOptionsTODO: 要根據 targetCategory 來決定值，且要等到 targetSerial 被選擇後才能選擇
+  let statusTypeOptions: string[]; // 要根據 targetCategory 來決定值，且要等到 targetSerial 被選擇後才能選擇
+
+  if (reportData.target.category === "物體" && reportData.target.serial) {
+    statusTypeOptions = poiObjectStatusTypeSelect;
+  } else if (
+    reportData.target.category === "空間" &&
+    reportData.target.serial
+  ) {
+    statusTypeOptions = poiSpaceStatusTypeSelect;
+  } else {
+    statusTypeOptions = ["unknown"];
+  }
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -237,6 +309,7 @@ const StatusTypeSelect: React.FC = () => {
           status: {
             ...reportData.status,
             type: e.target.value as PoiStatusType,
+            value: poiStatusValue.unknown as PoiStatusValue,
           },
         }),
       );
@@ -257,11 +330,13 @@ const StatusTypeSelect: React.FC = () => {
         selectedKeys={new Set([statusType])}
         onChange={handleSelectChange}
       >
-        {Object.keys(poiStatusType).map((s) => (
+        {statusTypeOptions.map((s) => (
           <SelectItem key={s} value={s}>
-            {t(poiStatusTypeMessageKeys[s] || "", {
-              ns: ["model"],
-            })}
+            {s === "unknown"
+              ? "請選擇"
+              : t(poiStatusTypeMessageKeys[s] || "", {
+                  ns: ["model"],
+                })}
           </SelectItem>
         ))}
       </Select>
@@ -275,7 +350,7 @@ const StatusValueSelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const statusValue = reportData.status.value;
-  // statusValueOptions TODO: 要根據 statusType 來決定值，且要等到 statusType 被選擇後才能選擇
+  const statusValueOption = poiStatusValueSelect[reportData.status.type]; // 要根據 statusType 來決定值，且要等到 statusType 被選擇後才能選擇
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -304,11 +379,13 @@ const StatusValueSelect: React.FC = () => {
         selectedKeys={new Set([statusValue])}
         onChange={handleSelectChange}
       >
-        {Object.keys(poiStatusValue).map((s) => (
+        {statusValueOption.map((s) => (
           <SelectItem key={s} value={s}>
-            {t(poiStatusValueMessageKeys[s] || "", {
-              ns: ["model"],
-            })}
+            {s === "unknown"
+              ? "請選擇"
+              : t(poiStatusValueMessageKeys[s] || "", {
+                  ns: ["model"],
+                })}
           </SelectItem>
         ))}
       </Select>
