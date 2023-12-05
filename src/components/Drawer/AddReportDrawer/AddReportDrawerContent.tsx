@@ -26,6 +26,7 @@ import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
 import { maps } from "../../../utils/googleMaps";
 import { getOptions } from "../../../constants/createOptions";
+import CreatingFlagMarker from "./CreatingFlagMarker";
 
 const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
   const { t } = useTranslation();
@@ -448,6 +449,7 @@ const AddReportDrawerContent: React.FC = () => {
       ) : (
         <>
           {/* 回報地點 */}
+          <CreatingFlagMarker />
           <div className="flex flex-row space-x-1 mt-1 items-center">
             <p className="basis-2/12 text-xs font-bold">
               {t("addReport.content.text.setLocation", {
