@@ -49,3 +49,7 @@ export const panTo = (lat: number, lng: number): void => {
 export const getCenter = (): google.maps.LatLng | null => {
   return mapRef.current?.getCenter() || null;
 };
+
+export const addCenterChangedListener = (callback: () => void) => {
+  mapRef.current?.addListener("center_changed", callback);
+};

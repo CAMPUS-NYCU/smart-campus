@@ -86,18 +86,26 @@ const AddReportDrawer: React.FC = () => {
     setIsReportDataFilled(reportDataValidator(reportData));
   }, [reportData]);
 
-  const center = maps.getCenter();
   React.useEffect(() => {
-    if (selected && center !== null && center !== undefined) {
-      markers.creatingFlag.setLatLng(center?.lat(), center?.lng());
+    const handleCenterChanged = () => {
+      const center = maps.getCenter();
+      if (center !== null && center !== undefined) {
+        markers.creatingFlag.setLatLng(center.lat(), center.lng());
+      }
+    };
+
+    if (selected) {
+      maps.addCenterChangedListener(handleCenterChanged);
     } else {
       markers.creatingFlag.clear();
+      removeEventListener("center_changed", handleCenterChanged);
     }
 
     return () => {
       markers.creatingFlag.clear();
+      removeEventListener("center_changed", handleCenterChanged);
     };
-  }, [selected, center]);
+  }, [selected]);
 
   return (
     <>
