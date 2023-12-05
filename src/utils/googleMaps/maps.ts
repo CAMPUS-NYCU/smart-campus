@@ -53,3 +53,7 @@ export const getCenter = (): google.maps.LatLng | null => {
 export const addCenterChangedListener = (callback: () => void) => {
   mapRef.current?.addListener("center_changed", callback);
 };
+
+export const removeCenterChangedListener = (callback: () => void) => {
+  removeEventListener("center_changed", callback);
+};
