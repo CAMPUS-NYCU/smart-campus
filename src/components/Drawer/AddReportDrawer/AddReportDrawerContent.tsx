@@ -456,10 +456,10 @@ const AddReportDrawerContent: React.FC = () => {
             </p>
             <Input
               aria-label="set location"
-              defaultValue={cluster?.data.name}
+              placeholder={cluster?.data.name}
               variant="underlined"
               classNames={{ base: "basis-6/12" }}
-              readOnly
+              isReadOnly
             />
             <Button
               radius="full"
