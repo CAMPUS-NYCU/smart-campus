@@ -449,7 +449,7 @@ const AddReportDrawerContentPhotos: React.FC = () => {
     <>
       <div className="flex flex-col basis-10/12">
         <div className="flex flex-row">
-          <label className="bg-gray-200 hover:bg-gray-400 rounded-lg min-w-fit h-fit px-2 py-1 items-center">
+          <label className="bg-textBtn rounded-lg min-w-fit h-fit px-2 py-1 items-center hover:bg-textBtnHover cursor-pointer">
             <input
               type="file"
               multiple
