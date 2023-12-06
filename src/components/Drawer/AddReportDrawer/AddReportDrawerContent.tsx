@@ -26,6 +26,14 @@ import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
 import { maps } from "../../../utils/googleMaps";
 import { getOptions } from "../../../constants/createOptions";
+import poiAddDrawerFloor from "../../../assets/images/poiAddDrawerFloor.svg";
+import poiAddDrawerImage from "../../../assets/images/poiAddDrawerImage.svg";
+import poiAddDrawerLocation from "../../../assets/images/poiAddDrawerLocation.svg";
+import poiAddDrawerStatusType from "../../../assets/images/poiAddDrawerStatusType.svg";
+import poiAddDrawerStatusValue from "../../../assets/images/poiAddDrawerStatusValue.svg";
+import poiAddDrawerTargetCategory from "../../../assets/images/poiAddDrawerTargetCategory.svg";
+import poiAddDrawerTargetName from "../../../assets/images/poiAddDrawerTargetName.svg";
+import poiAddDrawerTargetSerial from "../../../assets/images/poiAddDrawerTargetSerial.svg";
 
 const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
   const { t } = useTranslation();
@@ -449,6 +457,9 @@ const AddReportDrawerContent: React.FC = () => {
         <>
           {/* 回報地點 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image radius="none" src={poiAddDrawerLocation} alt="location" />
+            </div>
             <p className="basis-2/12 text-xs font-bold">
               {t("addReport.content.text.setLocation", {
                 ns: ["drawer"],
@@ -474,30 +485,72 @@ const AddReportDrawerContent: React.FC = () => {
           </div>
           {/* 回報樓層 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image radius="none" src={poiAddDrawerFloor} alt="floor" />
+            </div>
             <FloorSelect cluster={cluster!} />
           </div>
           {/* 回報類別 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerTargetCategory}
+                alt="target category"
+              />
+            </div>
             <TargetCategorySelect cluster={cluster!} />
           </div>
           {/* 回報項目 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerTargetName}
+                alt="target name"
+              />
+            </div>
             <TargetNameSelect cluster={cluster!} />
           </div>
           {/* 項目描述 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerTargetSerial}
+                alt="target serial"
+              />
+            </div>
             <TargetSerialSelect cluster={cluster!} />
           </div>
           {/* 回報狀態 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerStatusType}
+                alt="status type"
+              />
+            </div>
             <StatusTypeSelect />
           </div>
           {/* 狀態描述 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerStatusValue}
+                alt="status value"
+              />
+            </div>
             <StatusValueSelect />
           </div>
-
-          <AddReportDrawerContentPhotos />
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image radius="none" src={poiAddDrawerImage} alt="image" />
+            </div>
+            <AddReportDrawerContentPhotos />
+          </div>
         </>
       )}
     </div>
