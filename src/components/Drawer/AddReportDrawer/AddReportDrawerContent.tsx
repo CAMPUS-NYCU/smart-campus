@@ -34,6 +34,7 @@ import poiAddDrawerStatusValue from "../../../assets/images/poiAddDrawerStatusVa
 import poiAddDrawerTargetCategory from "../../../assets/images/poiAddDrawerTargetCategory.svg";
 import poiAddDrawerTargetName from "../../../assets/images/poiAddDrawerTargetName.svg";
 import poiAddDrawerTargetSerial from "../../../assets/images/poiAddDrawerTargetSerial.svg";
+import poiAddDrawerUploadImages from "../../../assets/images/poiAddDrawerUploadImages.svg";
 
 const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
   const { t } = useTranslation();
@@ -445,12 +446,31 @@ const AddReportDrawerContentPhotos: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-row">
-      {reportData.photoPaths.map((url) => (
-        <Image key={url} src={url} alt="" />
-      ))}
-      <input type="file" multiple onChange={handleUpload} />
-    </div>
+    <>
+      <div className="flex flex-col basis-10/12">
+        <div className="flex flex-row">
+          <label className="bg-gray-200 hover:bg-gray-400 rounded-lg min-w-fit h-fit px-2 py-1 items-center">
+            <input
+              type="file"
+              multiple
+              onChange={handleUpload}
+              className="hidden"
+            />
+            <div className="flex flex-row">
+              <Image src={poiAddDrawerUploadImages} />
+              <p className="text-xs font-bold pt-0.5 ml-0.5">上傳圖片</p>
+            </div>
+          </label>
+        </div>
+        <div className="flex flex-row mt-1">
+          <div className="flex flex-row justify-center basis-12/12 overflow-y-hidden">
+            {reportData.photoPaths.map((url) => (
+              <Image radius="none" key={url} src={url} alt="" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
@@ -569,8 +589,8 @@ const AddReportDrawerContent: React.FC = () => {
             </div>
             <StatusValueSelect />
           </div>
-          <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12">
+          <div className="flex flex-row space-x-1 mt-1 items-center whitespace-normal">
+            <div className="basis-0.5/12 shrink-0">
               <Image radius="none" src={poiAddDrawerImage} alt="image" />
             </div>
             <AddReportDrawerContentPhotos />
