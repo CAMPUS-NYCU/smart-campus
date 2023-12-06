@@ -70,11 +70,15 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
         {t("addReport.content.select.setFloor.label", { ns: ["drawer"] })}
       </p>
       <Select
-        label={t("addReport.content.select.setFloor.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set floor"
         selectedKeys={new Set([floor])}
         onChange={handleSelectChange}
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {floorOptions.map((s) => {
           return (
@@ -136,11 +140,15 @@ const TargetCategorySelect: React.FC<{
         })}
       </p>
       <Select
-        label={t("addReport.content.select.setTargetCategory.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set target category"
         selectedKeys={new Set([targetCategory])}
         onChange={handleSelectChange}
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {targetCategoryOptions.map((s) => {
           return (
@@ -202,11 +210,15 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
         })}
       </p>
       <Select
-        label={t("addReport.content.select.setTargetName.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set target name"
         selectedKeys={new Set([targetName])}
         onChange={handleSelectChange}
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {targetNameOptions.map((s) => {
           return (
@@ -273,11 +285,15 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
         })}
       </p>
       <Select
-        label={t("addReport.content.select.setTargetSerial.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set target serial"
         selectedKeys={new Set([targetSerial])}
         onChange={handleSelectChange}
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {targetSerialOptions.map((s) => {
           return (
@@ -332,11 +348,15 @@ const StatusTypeSelect: React.FC = () => {
         })}
       </p>
       <Select
-        label={t("addReport.content.select.setStatusType.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set status type"
         selectedKeys={new Set([statusType])}
         onChange={handleSelectChange}
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {statusTypeOptions.map((s) => (
           <SelectItem key={s} value={s}>
@@ -381,11 +401,15 @@ const StatusValueSelect: React.FC = () => {
         })}
       </p>
       <Select
-        label={t("addReport.content.select.setStatusValue.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set status value"
         selectedKeys={new Set([statusValue])}
         onChange={handleSelectChange}
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {statusValueOption.map((s) => (
           <SelectItem key={s} value={s}>
@@ -457,7 +481,7 @@ const AddReportDrawerContent: React.FC = () => {
         <>
           {/* 回報地點 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12">
+            <div className="basis-0.5/12 px-1">
               <Image radius="none" src={poiAddDrawerLocation} alt="location" />
             </div>
             <p className="basis-2/12 text-xs font-bold">
