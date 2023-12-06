@@ -85,24 +85,27 @@ const AddReportDrawer: React.FC = () => {
     setIsReportDataFilled(reportDataValidator(reportData));
   }, [reportData]);
 
-  const handleCenterChanged = React.useCallback(() => {
-    const center = maps.getCenter();
+  React.useEffect(() => {
+    const handleCenterChange = () => {
+      const center = maps.getCenter();
+      if (center !== null && center !== undefined) {
+        markers.creatingFlag.setLatLng(center?.lat(), center?.lng());
+      }
+    };
 
-    if (selected && center !== null && center !== undefined) {
-      markers.creatingFlag.setLatLng(center?.lat(), center?.lng());
+    let listener: google.maps.MapsEventListener | null = null;
+
+    if (selected) {
+      listener = maps.addCenterChangedListener(handleCenterChange);
     } else {
+      maps.removeCenterChangedListener(listener);
       markers.creatingFlag.clear();
     }
-  }, [selected]);
-
-  React.useEffect(() => {
-    maps.addCenterChangedListener(handleCenterChanged);
 
     return () => {
-      markers.creatingFlag.clear();
-      maps.removeCenterChangedListener(handleCenterChanged);
+      maps.removeCenterChangedListener(listener);
     };
-  }, [handleCenterChanged]);
+  }, [selected]);
 
   return (
     <Drawer
