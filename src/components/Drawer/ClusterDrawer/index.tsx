@@ -108,12 +108,12 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
             highlightId === poi.id
               ? "border-3 border-secondary"
               : "border-1 border-secondary/50"
-          }  h-fit py-0`,
+          }  h-[calc((50vh-100px)/4)] py-0`,
         }}
       >
         <div
           ref={containerRef}
-          className="container flex flex-row justify-around space-x-0.5 py-0 h-max-[calc((50vh-100px)/4)]"
+          className="container flex flex-row justify-around space-x-0.5 py-0 h-[calc((50vh-100px)/4)]"
         >
           {/* 主要資訊列 */}
           <div className="flex flex-col shrink-0 justify-around basis-7/12">
