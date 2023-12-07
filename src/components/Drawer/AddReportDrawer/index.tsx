@@ -88,8 +88,13 @@ const AddReportDrawer: React.FC = () => {
   React.useEffect(() => {
     const handleCenterChange = () => {
       const center = maps.getCenter();
-      if (center !== null && center !== undefined) {
-        markers.creatingFlag.setLatLng(center?.lat(), center?.lng());
+      const north = maps.getBounds()?.getNorthEast().lat();
+      const south = maps.getBounds()?.getSouthWest().lat();
+      if (north && south && center) {
+        markers.creatingFlag.setLatLng(
+          north - (north - south) / 4,
+          center?.lng(),
+        );
       }
     };
 
@@ -97,8 +102,13 @@ const AddReportDrawer: React.FC = () => {
 
     if (selected) {
       const center = maps.getCenter();
-      if (center !== null && center !== undefined) {
-        markers.creatingFlag.setLatLng(center?.lat(), center?.lng());
+      const north = maps.getBounds()?.getNorthEast().lat();
+      const south = maps.getBounds()?.getSouthWest().lat();
+      if (north && south && center) {
+        markers.creatingFlag.setLatLng(
+          north - (north - south) / 4,
+          center?.lng(),
+        );
       }
       listener = maps.addCenterChangedListener(handleCenterChange);
     } else {
