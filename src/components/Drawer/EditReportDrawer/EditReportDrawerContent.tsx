@@ -122,7 +122,7 @@ const AddReportDrawerContent: React.FC = () => {
   const reportData = useSelector((state: IRootState) => state.report.data);
 
   return (
-    <div className="flex flex-col max-h-[calc(50vh-100px)]">
+    <div className="flex flex-col max-h-[calc(50vh-80px)] mt-1">
       <AddReportDrawerContentPhotos />
       <div className="flex flex-col basis-6/12">
         {/* 回報項目 */}

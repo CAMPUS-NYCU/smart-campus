@@ -494,7 +494,7 @@ const AddReportDrawerContent: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col max-h-[calc(50vh-100px)]">
+    <div className="flex flex-col max-h-[calc(50vh-80px)] mt-1">
       {clusterLoading ? (
         <Skeleton classNames={{ base: "bg-white overflow-y-scroll" }} />
       ) : (
