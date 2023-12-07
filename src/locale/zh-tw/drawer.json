@@ -26,9 +26,6 @@
       "text": {
         "setLocation": "回報地點"
       },
-      "button": {
-        "setLocation": "標記"
-      },
       "select": {
         "setFloor": {
           "label": "回報樓層"

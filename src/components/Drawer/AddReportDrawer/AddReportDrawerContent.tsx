@@ -1,14 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Button,
-  Image,
-  Input,
-  Select,
-  SelectItem,
-  Skeleton,
-} from "@nextui-org/react";
+import { Image, Input, Select, SelectItem, Skeleton } from "@nextui-org/react";
 
 import {
   poiObjectStatusTypeSelect,
@@ -24,7 +17,6 @@ import { useGetClusterQuery } from "../../../api/cluster";
 import { PoiStatusType, PoiStatusValue } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
-import { maps } from "../../../utils/googleMaps";
 import { getOptions } from "../../../constants/createOptions";
 import poiAddDrawerFloor from "../../../assets/images/poiAddDrawerFloor.svg";
 import poiAddDrawerImage from "../../../assets/images/poiAddDrawerImage.svg";
@@ -477,21 +469,10 @@ const AddReportDrawerContentPhotos: React.FC = () => {
 const AddReportDrawerContent: React.FC = () => {
   const { t } = useTranslation();
 
-  const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const { data: cluster, isLoading: clusterLoading } = useGetClusterQuery(
     reportData.clusterId,
   ); // clusterloading 的話就載入 skelton
-
-  const handleSetLatLng = () => {
-    const center = maps.getCenter();
-    if (!center) {
-      throw new Error("LatLng not found");
-    }
-
-    const latlng = { latitude: center.lat(), longitude: center.lng() };
-    dispatch(updateAddReportData({ latlng }));
-  };
 
   return (
     <div className="flex flex-col max-h-[calc(50vh-80px)] mt-1">
@@ -516,16 +497,6 @@ const AddReportDrawerContent: React.FC = () => {
               classNames={{ base: "basis-6/12" }}
               isReadOnly
             />
-            <Button
-              radius="full"
-              size="sm"
-              className="min-w-fit h-fit px-2 py-1"
-              onClick={handleSetLatLng}
-            >
-              {t("addReport.content.button.setLocation", {
-                ns: ["drawer"],
-              })}
-            </Button>
           </div>
           {/* 回報樓層 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">

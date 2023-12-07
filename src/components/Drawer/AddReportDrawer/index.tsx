@@ -8,7 +8,7 @@ import { useGetClusterQuery } from "../../../api/cluster";
 import { useAddPoiMutation } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { closeModal, openModal } from "../../../store/modal";
-import { resetReport } from "../../../store/report";
+import { resetReport, updateAddReportData } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
@@ -24,10 +24,8 @@ import { maps } from "../../../utils/googleMaps";
 import { markers } from "../../../utils/googleMaps";
 
 const reportDataValidator = (reportData: PoiData) => {
-  const { latlng, target, status } = reportData;
+  const { target, status } = reportData;
 
-  const isLatLngValid =
-    latlng && latlng.latitude !== 0 && latlng.longitude !== 0;
   const isTargetValid =
     target &&
     target.category !== "" &&
@@ -36,7 +34,7 @@ const reportDataValidator = (reportData: PoiData) => {
   const isStatusValid =
     status && status.type !== "unknown" && status.value !== "unknown";
 
-  return reportData && isLatLngValid && isTargetValid && isStatusValid;
+  return reportData && isTargetValid && isStatusValid;
 };
 
 const AddReportDrawer: React.FC = () => {
@@ -73,7 +71,17 @@ const AddReportDrawer: React.FC = () => {
       });
   };
 
+  const handleSetLatLng = () => {
+    const center = maps.getCenter();
+    if (!center) {
+      throw new Error("LatLng not found");
+    }
+
+    const latlng = { latitude: center.lat(), longitude: center.lng() };
+    dispatch(updateAddReportData({ latlng }));
+  };
   const handleDrawerConfirm = () => {
+    handleSetLatLng();
     dispatch(openModal("confirmAddReport"));
   };
 

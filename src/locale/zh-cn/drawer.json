@@ -26,9 +26,6 @@
       "text": {
         "setLocation": "回报地点"
       },
-      "button": {
-        "setLocation": "标记"
-      },
       "select": {
         "setFloor": {
           "label": "回报楼层"
