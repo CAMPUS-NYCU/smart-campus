@@ -113,10 +113,10 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
       >
         <div
           ref={containerRef}
-          className="container flex flex-row justify-between py-0 h-[calc((50vh-100px)/4)]"
+          className="container flex flex-row py-0 h-[calc((50vh-100px)/4)]"
         >
           {/* 主要資訊列 */}
-          <div className="flex flex-col shrink-0 justify-around basis-7/12">
+          <div className="flex flex-col shrink-0 justify-around basis-8/12">
             <div className="flex text-left flex-wrap flex-row">
               <p className="text-xs font-bold whitespace-nowrap mr-1">{`${poi.data.target.category}/${poi.data.target.name}`}</p>
               <p className="text-xs whitespace-nowrap text-secondary">
@@ -166,7 +166,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
           </div>
 
           {/* 圖片 */}
-          <div className="flex flex-col justify-center basis-2/12 overflow-y-hidden">
+          <div className="flex flex-col justify-center basis-3/12 px-0.5 overflow-y-hidden">
             <Image
               radius="none"
               src={urls[urls.length - 1] || noImage}
