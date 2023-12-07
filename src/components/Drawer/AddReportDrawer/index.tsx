@@ -96,6 +96,10 @@ const AddReportDrawer: React.FC = () => {
     let listener: google.maps.MapsEventListener | null = null;
 
     if (selected) {
+      const center = maps.getCenter();
+      if (center !== null && center !== undefined) {
+        markers.creatingFlag.setLatLng(center?.lat(), center?.lng());
+      }
       listener = maps.addCenterChangedListener(handleCenterChange);
     } else {
       maps.removeCenterChangedListener(listener);
