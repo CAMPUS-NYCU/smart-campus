@@ -63,3 +63,7 @@ export const removeCenterChangedListener = (
 ): void => {
   listener?.remove();
 };
+
+export const getBounds = (): google.maps.LatLngBounds | null => {
+  return mapRef.current?.getBounds() || null;
+};
