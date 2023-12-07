@@ -136,6 +136,7 @@ const TargetCategorySelect: React.FC<{
         aria-label="set target category"
         selectedKeys={new Set([targetCategory])}
         onChange={handleSelectChange}
+        isDisabled={reportData.floor ? false : true}
         classNames={{
           value: "text-xs",
           innerWrapper: "pt-0",
@@ -206,6 +207,9 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
         aria-label="set target name"
         selectedKeys={new Set([targetName])}
         onChange={handleSelectChange}
+        isDisabled={
+          reportData.floor && reportData.target.category ? false : true
+        }
         classNames={{
           value: "text-xs",
           innerWrapper: "pt-0",
@@ -281,6 +285,13 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
         aria-label="set target serial"
         selectedKeys={new Set([targetSerial])}
         onChange={handleSelectChange}
+        isDisabled={
+          reportData.floor &&
+          reportData.target.category &&
+          reportData.target.name
+            ? false
+            : true
+        }
         classNames={{
           value: "text-xs",
           innerWrapper: "pt-0",
@@ -344,6 +355,14 @@ const StatusTypeSelect: React.FC = () => {
         aria-label="set status type"
         selectedKeys={new Set([statusType])}
         onChange={handleSelectChange}
+        isDisabled={
+          reportData.floor &&
+          reportData.target.name &&
+          reportData.target.category &&
+          reportData.target.serial
+            ? false
+            : true
+        }
         classNames={{
           value: "text-xs",
           innerWrapper: "pt-0",
@@ -397,6 +416,15 @@ const StatusValueSelect: React.FC = () => {
         aria-label="set status value"
         selectedKeys={new Set([statusValue])}
         onChange={handleSelectChange}
+        isDisabled={
+          reportData.floor &&
+          reportData.target.name &&
+          reportData.target.category &&
+          reportData.target.serial &&
+          reportData.status.type !== "unknown"
+            ? false
+            : true
+        }
         classNames={{
           value: "text-xs",
           innerWrapper: "pt-0",
