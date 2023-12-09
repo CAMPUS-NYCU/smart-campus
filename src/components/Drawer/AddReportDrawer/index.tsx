@@ -20,6 +20,7 @@ import AddReportDrawerContent from "./AddReportDrawerContent";
 import AddReportDrawerConfirm from "./AddReportDrawerConfirm";
 import CreatingFlag from "./CreatingFlag";
 import { PoiData } from "../../../models/poi";
+import { maps } from "../../../utils/googleMaps";
 
 const reportDataValidator = (reportData: PoiData) => {
   const { target, status } = reportData;
