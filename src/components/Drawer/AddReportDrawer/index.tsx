@@ -20,8 +20,6 @@ import AddReportDrawerContent from "./AddReportDrawerContent";
 import AddReportDrawerConfirm from "./AddReportDrawerConfirm";
 import CreatingFlag from "./CreatingFlag";
 import { PoiData } from "../../../models/poi";
-import { maps } from "../../../utils/googleMaps";
-import { markers } from "../../../utils/googleMaps";
 
 const reportDataValidator = (reportData: PoiData) => {
   const { target, status } = reportData;
@@ -93,32 +91,6 @@ const AddReportDrawer: React.FC = () => {
   React.useEffect(() => {
     setIsReportDataFilled(reportDataValidator(reportData));
   }, [reportData]);
-
-  React.useEffect(() => {
-    const handleCenterChange = () => {
-      const center = maps.getCenter();
-      if (center !== null && center !== undefined) {
-        markers.creatingFlag.setLatLng(center?.lat(), center?.lng());
-      }
-    };
-
-    let listener: google.maps.MapsEventListener | null = null;
-
-    if (selected) {
-      const center = maps.getCenter();
-      if (center !== null && center !== undefined) {
-        markers.creatingFlag.setLatLng(center?.lat(), center?.lng());
-      }
-      listener = maps.addCenterChangedListener(handleCenterChange);
-    } else {
-      maps.removeCenterChangedListener(listener);
-      markers.creatingFlag.clear();
-    }
-
-    return () => {
-      maps.removeCenterChangedListener(listener);
-    };
-  }, [selected]);
 
   return (
     <>
