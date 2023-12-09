@@ -23,6 +23,11 @@ import {
   PasswordInvisibleButtonIcon,
   PasswordVisibleButtonIcon,
 } from "../../../utils/icons/login";
+import {
+  getAuth,
+  setPersistence,
+  browserSessionPersistence,
+} from "firebase/auth";
 
 const Login: React.FC = () => {
   const { t } = useTranslation();
@@ -54,14 +59,36 @@ const Login: React.FC = () => {
 
   const [loginWithProvider] = useLoginWithProviderMutation();
 
+  const auth = getAuth();
+
   const handleLoginWithEmailAndPassword = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    loginWithEmailAndPassword(inputloginInfo).then(resetInputLoginInfo);
+    setPersistence(auth, browserSessionPersistence)
+      .then(() => {
+        return loginWithEmailAndPassword(inputloginInfo);
+      })
+      .then(resetInputLoginInfo)
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorCode, errorMessage);
+      });
   };
 
   const handleRegisterWithEmailAndPassword = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    registerWithEmailAndPassword(inputloginInfo).then(resetInputLoginInfo);
+    setPersistence(auth, browserSessionPersistence)
+      .then(() => {
+        return registerWithEmailAndPassword(inputloginInfo);
+      })
+      .then(resetInputLoginInfo)
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorCode, errorMessage);
+      });
   };
 
   const handleLoginWithFacebook = (event: React.SyntheticEvent) => {
