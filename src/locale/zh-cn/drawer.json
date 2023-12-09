@@ -26,9 +26,6 @@
       "text": {
         "setLocation": "回报地点"
       },
-      "button": {
-        "setLocation": "标记"
-      },
       "select": {
         "setFloor": {
           "label": "回报楼层"
@@ -54,7 +51,7 @@
   },
   "editReport": {
     "buttons": {
-      "edit": "更改",
+      "edit": "更新",
       "cancel": "取消"
     },
     "confirm": {
@@ -62,8 +59,8 @@
         "cancel": "取消",
         "confirm": "确认"
       },
-      "content": "确认更改回报？",
-      "title": "更改回报"
+      "content": "确认更新回报？",
+      "title": "更新回报"
     },
     "content": {
       "texts": {
@@ -83,7 +80,7 @@
     "buttons": {
       "add": "新增",
       "cancel": "取消",
-      "edit": "编辑"
+      "edit": "更新"
     },
     "content": {
       "texts": {
@@ -94,7 +91,7 @@
   },
   "poiDrawer": {
     "buttons": {
-      "edit": "更改",
+      "edit": "更新",
       "cancel": "取消"
     },
     "content": {

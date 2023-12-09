@@ -17,6 +17,12 @@ export const setClusters = (clusters: Clusters): void => {
       clusterId,
       new google.maps.Marker({
         icon: getIcon(),
+        label: {
+          text: clusterData.name,
+          fontFamily: "'Helvetica', 'Arial', 'sans-serif'",
+          fontSize: "12px",
+          color: "#FDCC4F",
+        },
         map: maps.mapRef.current,
         position: new google.maps.LatLng(
           clusterData.latlng.latitude,
