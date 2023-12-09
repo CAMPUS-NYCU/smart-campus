@@ -50,20 +50,6 @@ export const getCenter = (): google.maps.LatLng | null => {
   return mapRef.current?.getCenter() || null;
 };
 
-export const addCenterChangedListener = (
-  callback: () => void,
-): google.maps.MapsEventListener | null => {
-  return mapRef.current
-    ? mapRef.current.addListener("center_changed", callback)
-    : null;
-};
-
-export const removeCenterChangedListener = (
-  listener: google.maps.MapsEventListener | null,
-): void => {
-  listener?.remove();
-};
-
 export const getBounds = (): google.maps.LatLngBounds | null => {
   return mapRef.current?.getBounds() || null;
 };

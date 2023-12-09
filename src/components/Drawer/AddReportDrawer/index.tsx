@@ -18,9 +18,8 @@ import {
 import Drawer from "..";
 import AddReportDrawerContent from "./AddReportDrawerContent";
 import AddReportDrawerConfirm from "./AddReportDrawerConfirm";
+import CreatingFlag from "./CreatingFlag";
 import { PoiData } from "../../../models/poi";
-import { maps } from "../../../utils/googleMaps";
-import { markers } from "../../../utils/googleMaps";
 
 const reportDataValidator = (reportData: PoiData) => {
   const { latlng, target, status } = reportData;
@@ -85,76 +84,43 @@ const AddReportDrawer: React.FC = () => {
     setIsReportDataFilled(reportDataValidator(reportData));
   }, [reportData]);
 
-  React.useEffect(() => {
-    const handleCenterChange = () => {
-      const center = maps.getCenter();
-      const north = maps.getBounds()?.getNorthEast().lat();
-      const south = maps.getBounds()?.getSouthWest().lat();
-      if (north && south && center) {
-        markers.creatingFlag.setLatLng(
-          north - (north - south) / 4,
-          center?.lng(),
-        );
-      }
-    };
-
-    let listener: google.maps.MapsEventListener | null = null;
-
-    if (selected) {
-      const center = maps.getCenter();
-      const north = maps.getBounds()?.getNorthEast().lat();
-      const south = maps.getBounds()?.getSouthWest().lat();
-      if (north && south && center) {
-        markers.creatingFlag.setLatLng(
-          north - (north - south) / 4,
-          center?.lng(),
-        );
-      }
-      listener = maps.addCenterChangedListener(handleCenterChange);
-    } else {
-      maps.removeCenterChangedListener(listener);
-      markers.creatingFlag.clear();
-    }
-
-    return () => {
-      maps.removeCenterChangedListener(listener);
-    };
-  }, [selected]);
-
   return (
-    <Drawer
-      open={selected}
-      onClose={handleDrawerDismiss}
-      title={
-        <span>
-          {t("addReport.title", {
-            cluster: cluster?.data.name,
-            ns: ["drawer"],
-          })}
-        </span>
-      }
-      children={
-        <>
-          <AddReportDrawerContent />
-          <AddReportDrawerConfirm onSubmit={handleSubmit} />
-        </>
-      }
-      primaryButton={
-        <Button
-          radius="full"
-          isDisabled={!isReportDataFilled}
-          className="bg-primary h-fit px-2 py-1.5"
-          onClick={handleDrawerConfirm}
-        >
-          {t("addReport.buttons.add", { ns: ["drawer"] })}
-        </Button>
-      }
-      secondaryButton={
-        <button onClick={handleDrawerDismiss}>
-          {t("addReport.buttons.cancel", { ns: ["drawer"] })}
-        </button>
-      }
-    />
+    <>
+      {selected && <CreatingFlag />}
+      <Drawer
+        open={selected}
+        onClose={handleDrawerDismiss}
+        title={
+          <span>
+            {t("addReport.title", {
+              cluster: cluster?.data.name,
+              ns: ["drawer"],
+            })}
+          </span>
+        }
+        children={
+          <>
+            <AddReportDrawerContent />
+            <AddReportDrawerConfirm onSubmit={handleSubmit} />
+          </>
+        }
+        primaryButton={
+          <Button
+            radius="full"
+            isDisabled={!isReportDataFilled}
+            className="bg-primary h-fit px-2 py-1.5"
+            onClick={handleDrawerConfirm}
+          >
+            {t("addReport.buttons.add", { ns: ["drawer"] })}
+          </Button>
+        }
+        secondaryButton={
+          <button onClick={handleDrawerDismiss}>
+            {t("addReport.buttons.cancel", { ns: ["drawer"] })}
+          </button>
+        }
+      />
+    </>
   );
 };
 
