@@ -26,9 +26,6 @@
       "text": {
         "setLocation": "Location"
       },
-      "button": {
-        "setLocation": "Mark"
-      },
       "select": {
         "setFloor": {
           "label": "Floor"

@@ -26,9 +26,6 @@
       "text": {
         "setLocation": "回報地點"
       },
-      "button": {
-        "setLocation": "標記"
-      },
       "select": {
         "setFloor": {
           "label": "回報樓層"
@@ -54,7 +51,7 @@
   },
   "editReport": {
     "buttons": {
-      "edit": "更改",
+      "edit": "更新",
       "cancel": "取消"
     },
     "confirm": {
@@ -62,8 +59,8 @@
         "cancel": "取消",
         "confirm": "確認"
       },
-      "content": "確認更改回報？",
-      "title": "更改回報"
+      "content": "確認更新回報？",
+      "title": "更新回報"
     },
     "content": {
       "texts": {
@@ -83,7 +80,7 @@
     "buttons": {
       "add": "新增",
       "cancel": "取消",
-      "edit": "編輯"
+      "edit": "更新"
     },
     "content": {
       "texts": {
@@ -94,7 +91,7 @@
   },
   "poiDrawer": {
     "buttons": {
-      "edit": "更改",
+      "edit": "更新",
       "cancel": "取消"
     },
     "content": {

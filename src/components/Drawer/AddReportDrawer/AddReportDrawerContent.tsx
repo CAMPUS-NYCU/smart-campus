@@ -1,14 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Button,
-  Image,
-  Input,
-  Select,
-  SelectItem,
-  Skeleton,
-} from "@nextui-org/react";
+import { Image, Input, Select, SelectItem, Skeleton } from "@nextui-org/react";
 
 import {
   poiObjectStatusTypeSelect,
@@ -24,8 +17,16 @@ import { useGetClusterQuery } from "../../../api/cluster";
 import { PoiStatusType, PoiStatusValue } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
-import { maps } from "../../../utils/googleMaps";
 import { getOptions } from "../../../constants/createOptions";
+import poiAddDrawerFloor from "../../../assets/images/poiAddDrawerFloor.svg";
+import poiAddDrawerImage from "../../../assets/images/poiAddDrawerImage.svg";
+import poiAddDrawerLocation from "../../../assets/images/poiAddDrawerLocation.svg";
+import poiAddDrawerStatusType from "../../../assets/images/poiAddDrawerStatusType.svg";
+import poiAddDrawerStatusValue from "../../../assets/images/poiAddDrawerStatusValue.svg";
+import poiAddDrawerTargetCategory from "../../../assets/images/poiAddDrawerTargetCategory.svg";
+import poiAddDrawerTargetName from "../../../assets/images/poiAddDrawerTargetName.svg";
+import poiAddDrawerTargetSerial from "../../../assets/images/poiAddDrawerTargetSerial.svg";
+import poiAddDrawerUploadImages from "../../../assets/images/poiAddDrawerUploadImages.svg";
 
 const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
   const { t } = useTranslation();
@@ -62,11 +63,15 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
         {t("addReport.content.select.setFloor.label", { ns: ["drawer"] })}
       </p>
       <Select
-        label={t("addReport.content.select.setFloor.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set floor"
         selectedKeys={new Set([floor])}
         onChange={handleSelectChange}
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {floorOptions.map((s) => {
           return (
@@ -128,11 +133,16 @@ const TargetCategorySelect: React.FC<{
         })}
       </p>
       <Select
-        label={t("addReport.content.select.setTargetCategory.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set target category"
         selectedKeys={new Set([targetCategory])}
         onChange={handleSelectChange}
+        isDisabled={reportData.floor ? false : true}
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {targetCategoryOptions.map((s) => {
           return (
@@ -194,11 +204,18 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
         })}
       </p>
       <Select
-        label={t("addReport.content.select.setTargetName.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set target name"
         selectedKeys={new Set([targetName])}
         onChange={handleSelectChange}
+        isDisabled={
+          reportData.floor && reportData.target.category ? false : true
+        }
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {targetNameOptions.map((s) => {
           return (
@@ -265,11 +282,22 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
         })}
       </p>
       <Select
-        label={t("addReport.content.select.setTargetSerial.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set target serial"
         selectedKeys={new Set([targetSerial])}
         onChange={handleSelectChange}
+        isDisabled={
+          reportData.floor &&
+          reportData.target.category &&
+          reportData.target.name
+            ? false
+            : true
+        }
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {targetSerialOptions.map((s) => {
           return (
@@ -324,11 +352,23 @@ const StatusTypeSelect: React.FC = () => {
         })}
       </p>
       <Select
-        label={t("addReport.content.select.setStatusType.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set status type"
         selectedKeys={new Set([statusType])}
         onChange={handleSelectChange}
+        isDisabled={
+          reportData.floor &&
+          reportData.target.name &&
+          reportData.target.category &&
+          reportData.target.serial
+            ? false
+            : true
+        }
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {statusTypeOptions.map((s) => (
           <SelectItem key={s} value={s}>
@@ -373,11 +413,24 @@ const StatusValueSelect: React.FC = () => {
         })}
       </p>
       <Select
-        label={t("addReport.content.select.setStatusValue.label", {
-          ns: ["drawer"],
-        })}
+        aria-label="set status value"
         selectedKeys={new Set([statusValue])}
         onChange={handleSelectChange}
+        isDisabled={
+          reportData.floor &&
+          reportData.target.name &&
+          reportData.target.category &&
+          reportData.target.serial &&
+          reportData.status.type !== "unknown"
+            ? false
+            : true
+        }
+        classNames={{
+          value: "text-xs",
+          innerWrapper: "pt-0",
+          trigger: "py-0 h-7 min-h-fit bg-primary",
+          base: "min-w-fit w-[50%]",
+        }}
       >
         {statusValueOption.map((s) => (
           <SelectItem key={s} value={s}>
@@ -413,47 +466,53 @@ const AddReportDrawerContentPhotos: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-row">
-      {reportData.photoPaths.map((url) => (
-        <Image key={url} src={url} alt="" />
-      ))}
-      <input type="file" multiple onChange={handleUpload} />
-    </div>
+    <>
+      <div className="flex flex-col basis-10/12">
+        <div className="flex flex-row">
+          <label className="bg-textBtn rounded-lg min-w-fit h-fit px-2 py-1 items-center hover:bg-textBtnHover cursor-pointer">
+            <input
+              type="file"
+              multiple
+              onChange={handleUpload}
+              className="hidden"
+            />
+            <div className="flex flex-row">
+              <Image src={poiAddDrawerUploadImages} />
+              <p className="text-xs font-bold pt-0.5 ml-0.5">上傳圖片</p>
+            </div>
+          </label>
+        </div>
+        <div className="flex flex-row mt-1">
+          <div className="flex flex-row justify-center basis-12/12 overflow-y-hidden">
+            {reportData.photoPaths.map((url) => (
+              <Image radius="none" key={url} src={url} alt="" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
 const AddReportDrawerContent: React.FC = () => {
   const { t } = useTranslation();
 
-  const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const { data: cluster, isLoading: clusterLoading } = useGetClusterQuery(
     reportData.clusterId,
   ); // clusterloading 的話就載入 skelton
 
-  const handleSetLatLng = () => {
-    const center = maps.getCenter();
-    const north = maps.getBounds()?.getNorthEast().lat();
-    const south = maps.getBounds()?.getSouthWest().lat();
-    if (!center || !north || !south) {
-      throw new Error("LatLng not found");
-    }
-
-    const latlng = {
-      latitude: north - (north - south) / 4,
-      longitude: center.lng(),
-    };
-    dispatch(updateAddReportData({ latlng }));
-  };
-
   return (
-    <div className="flex flex-col max-h-[calc(50vh-100px)]">
+    <div className="flex flex-col max-h-[calc(50vh-80px)] mt-1">
       {clusterLoading ? (
         <Skeleton classNames={{ base: "bg-white overflow-y-scroll" }} />
       ) : (
         <>
           {/* 回報地點 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12 px-1">
+              <Image radius="none" src={poiAddDrawerLocation} alt="location" />
+            </div>
             <p className="basis-2/12 text-xs font-bold">
               {t("addReport.content.text.setLocation", {
                 ns: ["drawer"],
@@ -461,48 +520,80 @@ const AddReportDrawerContent: React.FC = () => {
             </p>
             <Input
               aria-label="set location"
-              defaultValue={cluster?.data.name}
+              placeholder={cluster?.data.name}
               variant="underlined"
               classNames={{ base: "basis-6/12" }}
-              readOnly
+              isReadOnly
             />
-            <Button
-              radius="full"
-              size="sm"
-              className="min-w-fit h-fit px-2 py-1"
-              onClick={handleSetLatLng}
-            >
-              {t("addReport.content.button.setLocation", {
-                ns: ["drawer"],
-              })}
-            </Button>
           </div>
           {/* 回報樓層 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image radius="none" src={poiAddDrawerFloor} alt="floor" />
+            </div>
             <FloorSelect cluster={cluster!} />
           </div>
           {/* 回報類別 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerTargetCategory}
+                alt="target category"
+              />
+            </div>
             <TargetCategorySelect cluster={cluster!} />
           </div>
           {/* 回報項目 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerTargetName}
+                alt="target name"
+              />
+            </div>
             <TargetNameSelect cluster={cluster!} />
           </div>
           {/* 項目描述 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerTargetSerial}
+                alt="target serial"
+              />
+            </div>
             <TargetSerialSelect cluster={cluster!} />
           </div>
           {/* 回報狀態 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerStatusType}
+                alt="status type"
+              />
+            </div>
             <StatusTypeSelect />
           </div>
           {/* 狀態描述 */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerStatusValue}
+                alt="status value"
+              />
+            </div>
             <StatusValueSelect />
           </div>
-
-          <AddReportDrawerContentPhotos />
+          <div className="flex flex-row space-x-1 mt-1 items-center whitespace-normal">
+            <div className="basis-0.5/12 shrink-0">
+              <Image radius="none" src={poiAddDrawerImage} alt="image" />
+            </div>
+            <AddReportDrawerContentPhotos />
+          </div>
         </>
       )}
     </div>
