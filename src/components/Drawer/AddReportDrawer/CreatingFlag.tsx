@@ -6,7 +6,7 @@ const CreatingFlag: React.FC = () => {
     <img
       src={creatingFlagMarker}
       alt="creating flag marker"
-      className="mt-[calc(50vh-29px)] ml-[calc(50vw-9px)]"
+      className="mt-[calc(25vh-29px)] ml-[calc(50vw-9px)]"
     />
   );
 };
