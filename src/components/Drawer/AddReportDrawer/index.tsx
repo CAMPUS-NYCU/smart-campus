@@ -18,6 +18,7 @@ import {
 import Drawer from "..";
 import AddReportDrawerContent from "./AddReportDrawerContent";
 import AddReportDrawerConfirm from "./AddReportDrawerConfirm";
+import CreatingFlag from "./CreatingFlag";
 import { PoiData } from "../../../models/poi";
 
 const reportDataValidator = (reportData: PoiData) => {
@@ -84,39 +85,42 @@ const AddReportDrawer: React.FC = () => {
   }, [reportData]);
 
   return (
-    <Drawer
-      open={selected}
-      onClose={handleDrawerDismiss}
-      title={
-        <span>
-          {t("addReport.title", {
-            cluster: cluster?.data.name,
-            ns: ["drawer"],
-          })}
-        </span>
-      }
-      children={
-        <>
-          <AddReportDrawerContent />
-          <AddReportDrawerConfirm onSubmit={handleSubmit} />
-        </>
-      }
-      primaryButton={
-        <Button
-          radius="full"
-          isDisabled={!isReportDataFilled}
-          className="bg-primary h-fit px-2 py-1.5"
-          onClick={handleDrawerConfirm}
-        >
-          {t("addReport.buttons.add", { ns: ["drawer"] })}
-        </Button>
-      }
-      secondaryButton={
-        <button onClick={handleDrawerDismiss}>
-          {t("addReport.buttons.cancel", { ns: ["drawer"] })}
-        </button>
-      }
-    />
+    <>
+      {selected && <CreatingFlag />}
+      <Drawer
+        open={selected}
+        onClose={handleDrawerDismiss}
+        title={
+          <span>
+            {t("addReport.title", {
+              cluster: cluster?.data.name,
+              ns: ["drawer"],
+            })}
+          </span>
+        }
+        children={
+          <>
+            <AddReportDrawerContent />
+            <AddReportDrawerConfirm onSubmit={handleSubmit} />
+          </>
+        }
+        primaryButton={
+          <Button
+            radius="full"
+            isDisabled={!isReportDataFilled}
+            className="bg-primary h-fit px-2 py-1.5"
+            onClick={handleDrawerConfirm}
+          >
+            {t("addReport.buttons.add", { ns: ["drawer"] })}
+          </Button>
+        }
+        secondaryButton={
+          <button onClick={handleDrawerDismiss}>
+            {t("addReport.buttons.cancel", { ns: ["drawer"] })}
+          </button>
+        }
+      />
+    </>
   );
 };
 
