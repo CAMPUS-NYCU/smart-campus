@@ -49,3 +49,7 @@ export const panTo = (lat: number, lng: number): void => {
 export const getCenter = (): google.maps.LatLng | null => {
   return mapRef.current?.getCenter() || null;
 };
+
+export const getBounds = (): google.maps.LatLngBounds | null => {
+  return mapRef.current?.getBounds() || null;
+};

@@ -72,13 +72,19 @@ const AddReportDrawer: React.FC = () => {
 
   const handleSetLatLng = () => {
     const center = maps.getCenter();
-    if (!center) {
+    const north = maps.getBounds()?.getNorthEast().lat();
+    const south = maps.getBounds()?.getSouthWest().lat();
+    if (!center || !north || !south) {
       throw new Error("LatLng not found");
     }
 
-    const latlng = { latitude: center.lat(), longitude: center.lng() };
+    const latlng = {
+      latitude: south + (north - south) * 0.75,
+      longitude: center.lng(),
+    };
     dispatch(updateAddReportData({ latlng }));
   };
+
   const handleDrawerConfirm = () => {
     handleSetLatLng();
     dispatch(openModal("confirmAddReport"));

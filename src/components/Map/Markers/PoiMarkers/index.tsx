@@ -45,7 +45,12 @@ const PoiMarkers: React.FC = () => {
   React.useEffect(() => {
     if (highlightId && pois && pois[highlightId]) {
       const { latitude, longitude } = pois[highlightId].latlng;
-      maps.panTo(latitude, longitude);
+      const north = maps.getBounds()?.getNorthEast().lat();
+      const south = maps.getBounds()?.getSouthWest().lat();
+      maps.panTo(
+        north && south ? latitude - (north - south) / 4 : latitude,
+        longitude,
+      );
     }
   }, [highlightId, pois]);
   return <></>;
