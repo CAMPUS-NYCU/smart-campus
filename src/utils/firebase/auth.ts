@@ -15,21 +15,12 @@ import { firebaseEmulatorConfig } from "../../constants/firebase";
 
 const firebaseAuth = getAuth(firebaseApp);
 
-let currentUser: User | null | undefined = undefined;
-
-onAuthStateChanged(firebaseAuth, (user) => (currentUser = user));
-
 export const loadCurrentUser = (): Promise<User | null> =>
   new Promise((resolve) => {
-    const checkVariable = () => {
-      if (currentUser !== undefined) {
-        resolve(currentUser);
-      } else {
-        setTimeout(checkVariable, 100);
-      }
-    };
-
-    checkVariable();
+    const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
+      resolve(user);
+      unsubscribe();
+    });
   });
 
 if (env.ENABLE_FIREBASE_EMULATOR) {

@@ -10,7 +10,7 @@ const PrivateRoute: React.FC = () => {
   const { data: isLoggedIn } = useIsLoggedInQuery();
 
   React.useEffect(() => {
-    if (!isLoggedIn) {
+    if (isLoggedIn === false) {
       navigate(url.map);
     }
   }, [navigate, isLoggedIn]);
