@@ -12,6 +12,7 @@ import { firestoreConfig } from "../../constants/firebase";
 import User, { UserOrNull } from "../../models/user";
 import { FirestoreUserData } from "../../models/firebase/firestore";
 import { firebaseAuth, firestore } from "../../utils/firebase";
+import { loadCurrentUser } from "../../utils/firebase/auth";
 
 import apiSlice from "..";
 
@@ -19,23 +20,23 @@ const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUser: builder.query<UserOrNull, void>({
       queryFn: async () => {
-        const userAuth = firebaseAuth.currentUser;
+        const currentUser = await loadCurrentUser();
 
-        if (!userAuth) {
+        if (!currentUser) {
           return { data: null };
         }
 
         const userDataFromFirestore = await getDoc(
-          doc(firestore, firestoreConfig.collection.user, userAuth.uid),
+          doc(firestore, firestoreConfig.collection.user, currentUser.uid),
         ).then((doc) => doc.data() as FirestoreUserData);
 
         const user: User = {
-          id: userAuth.uid,
+          id: currentUser.uid,
           auth: {
-            displayName: userAuth.displayName || "",
-            email: userAuth.email,
-            idToken: await userAuth.getIdToken(),
-            photoURL: userAuth.photoURL,
+            displayName: currentUser.displayName || "",
+            email: currentUser.email,
+            idToken: await currentUser.getIdToken(),
+            photoURL: currentUser.photoURL,
           },
           data: {
             ...userDataFromFirestore,
@@ -48,9 +49,9 @@ const userApiSlice = apiSlice.injectEndpoints({
     }),
     isLoggedIn: builder.query<boolean, void>({
       queryFn: async () => {
-        const user = firebaseAuth.currentUser;
+        const currentUser = await loadCurrentUser();
 
-        return { data: !!user };
+        return { data: !!currentUser };
       },
       providesTags: ["User"],
     }),
