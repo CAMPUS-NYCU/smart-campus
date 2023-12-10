@@ -84,6 +84,7 @@ const AddReportDrawer: React.FC = () => {
     };
     dispatch(updateAddReportData({ latlng }));
   };
+  
   const handleDrawerConfirm = () => {
     handleSetLatLng();
     dispatch(openModal("confirmAddReport"));
