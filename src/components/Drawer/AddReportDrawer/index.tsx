@@ -79,7 +79,7 @@ const AddReportDrawer: React.FC = () => {
     }
 
     const latlng = {
-      latitude: north - (north - south) / 4,
+      latitude: south + (north - south) * 0.75,
       longitude: center.lng(),
     };
     dispatch(updateAddReportData({ latlng }));
