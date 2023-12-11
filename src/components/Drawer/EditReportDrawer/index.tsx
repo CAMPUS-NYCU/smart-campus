@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@nextui-org/react";
 
 import { useUpdatePoiMutation } from "../../../api/poi";
+import { useGetUserQuery } from "../../../api/user";
 import { IRootState } from "../../../store";
 import { resetReport } from "../../../store/report";
 
 import Drawer from "..";
-import AddReportDrawerContent from "./EditReportDrawerContent";
-import AddReportDrawerConfirm from "./EditReportDrawerConfirm";
+import EditReportDrawerContent from "./EditReportDrawerContent";
+import EditReportDrawerConfirm from "./EditReportDrawerConfirm";
 import { closeModal, openModal } from "../../../store/modal";
 import { PoiData } from "../../../models/poi";
 
@@ -22,7 +23,7 @@ const reportDataValidator = (reportData: PoiData) => {
   return isStatusValid;
 };
 
-const AddReportDrawer: React.FC = () => {
+const EditReportDrawer: React.FC = () => {
   const { t } = useTranslation();
 
   const reportType = useSelector((state: IRootState) => state.report.type);
@@ -35,19 +36,23 @@ const AddReportDrawer: React.FC = () => {
 
   const selected = reportType === "edit";
 
+  const { data: user } = useGetUserQuery();
+
   const [isStatusValueValid, setIsStatusValueValid] = React.useState(false);
   React.useEffect(() => {
     setIsStatusValueValid(reportDataValidator(reportData));
   }, [reportData]);
 
   const handleSubmit = () => {
-    if (!reportId) {
-      throw new Error("EditReportDrawer: report POI id not found");
+    if (!reportId || !user?.id) {
+      throw new Error(
+        "EditReportDrawer: report POI id or user id is not found",
+      );
     }
 
     editPoi({
       id: reportId,
-      data: { ...reportData },
+      data: { ...reportData, updatedBy: user.id },
     })
       .unwrap()
       .then(() => {
@@ -78,8 +83,8 @@ const AddReportDrawer: React.FC = () => {
       }
       children={
         <>
-          <AddReportDrawerContent />
-          <AddReportDrawerConfirm onSubmit={handleSubmit} />
+          <EditReportDrawerContent />
+          <EditReportDrawerConfirm onSubmit={handleSubmit} />
         </>
       }
       primaryButton={
@@ -101,4 +106,4 @@ const AddReportDrawer: React.FC = () => {
   );
 };
 
-export default AddReportDrawer;
+export default EditReportDrawer;

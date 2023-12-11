@@ -107,9 +107,14 @@ const poiApiSlice = apiSlice.injectEndpoints({
     }),
     updatePoi: builder.mutation<string, Poi>({
       queryFn: async (arg) => {
+        const firebaseData = {
+          ...toFirebasePoiDataByPoiData(arg.data),
+          updatedAt: Timestamp.now(),
+        };
+
         await setDoc(
           doc(firestore, firestoreConfig.collection.poi, arg.id),
-          toFirebasePoiDataByPoiData(arg.data),
+          firebaseData,
         );
 
         return { data: "ok" };
