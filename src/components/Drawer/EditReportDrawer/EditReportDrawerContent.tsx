@@ -120,7 +120,6 @@ const EditReportDrawerContent: React.FC = () => {
   const { t } = useTranslation();
 
   const reportData = useSelector((state: IRootState) => state.report.data);
-  console.log(reportData);
 
   return (
     <div className="flex flex-col max-h-[calc(50vh-80px)] mt-1">
