@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@nextui-org/react";
 
 import { useUpdatePoiMutation } from "../../../api/poi";
+import { useGetUserQuery } from "../../../api/user";
 import { IRootState } from "../../../store";
 import { resetReport } from "../../../store/report";
 
@@ -35,19 +36,23 @@ const EditReportDrawer: React.FC = () => {
 
   const selected = reportType === "edit";
 
+  const { data: user } = useGetUserQuery();
+
   const [isStatusValueValid, setIsStatusValueValid] = React.useState(false);
   React.useEffect(() => {
     setIsStatusValueValid(reportDataValidator(reportData));
   }, [reportData]);
 
   const handleSubmit = () => {
-    if (!reportId) {
-      throw new Error("EditReportDrawer: report POI id not found");
+    if (!reportId || !user?.id) {
+      throw new Error(
+        "EditReportDrawer: report POI id or user id is not found",
+      );
     }
 
     editPoi({
       id: reportId,
-      data: { ...reportData },
+      data: { ...reportData, updatedBy: user.id },
     })
       .unwrap()
       .then(() => {
