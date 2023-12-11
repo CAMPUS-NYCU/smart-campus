@@ -67,7 +67,7 @@ const StatusValueSelect: React.FC = () => {
   );
 };
 
-const AddReportDrawerContentPhotos: React.FC = () => {
+const EditReportDrawerContentPhotos: React.FC = () => {
   const reportData = useSelector((state: IRootState) => state.report.data);
   const [urls, setUrls] = useState<string[]>([]);
   const storage = getStorage(firebaseApp);
@@ -116,14 +116,15 @@ const AddReportDrawerContentPhotos: React.FC = () => {
   );
 };
 
-const AddReportDrawerContent: React.FC = () => {
+const EditReportDrawerContent: React.FC = () => {
   const { t } = useTranslation();
 
   const reportData = useSelector((state: IRootState) => state.report.data);
+  console.log(reportData);
 
   return (
     <div className="flex flex-col max-h-[calc(50vh-80px)] mt-1">
-      <AddReportDrawerContentPhotos />
+      <EditReportDrawerContentPhotos />
       <div className="flex flex-col basis-6/12">
         {/* 回報項目 */}
         <div className="flex flex-row space-x-1 mt-1 items-center">
@@ -202,4 +203,4 @@ const AddReportDrawerContent: React.FC = () => {
   );
 };
 
-export default AddReportDrawerContent;
+export default EditReportDrawerContent;

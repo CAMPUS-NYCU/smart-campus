@@ -8,8 +8,8 @@ import { IRootState } from "../../../store";
 import { resetReport } from "../../../store/report";
 
 import Drawer from "..";
-import AddReportDrawerContent from "./EditReportDrawerContent";
-import AddReportDrawerConfirm from "./EditReportDrawerConfirm";
+import EditReportDrawerContent from "./EditReportDrawerContent";
+import EditReportDrawerConfirm from "./EditReportDrawerConfirm";
 import { closeModal, openModal } from "../../../store/modal";
 import { PoiData } from "../../../models/poi";
 
@@ -22,7 +22,7 @@ const reportDataValidator = (reportData: PoiData) => {
   return isStatusValid;
 };
 
-const AddReportDrawer: React.FC = () => {
+const EditReportDrawer: React.FC = () => {
   const { t } = useTranslation();
 
   const reportType = useSelector((state: IRootState) => state.report.type);
@@ -78,8 +78,8 @@ const AddReportDrawer: React.FC = () => {
       }
       children={
         <>
-          <AddReportDrawerContent />
-          <AddReportDrawerConfirm onSubmit={handleSubmit} />
+          <EditReportDrawerContent />
+          <EditReportDrawerConfirm onSubmit={handleSubmit} />
         </>
       }
       primaryButton={
@@ -101,4 +101,4 @@ const AddReportDrawer: React.FC = () => {
   );
 };
 
-export default AddReportDrawer;
+export default EditReportDrawer;
