@@ -26,6 +26,8 @@ import {
 import apiSlice from "..";
 import { generateImageStorageRef } from "../../utils/firebase/storage";
 import { uploadBytes } from "firebase/storage";
+import { firebaseAnalytics } from "../../utils/firebase";
+import { logEvent } from "firebase/analytics";
 
 const poiApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -101,6 +103,11 @@ const poiApiSlice = apiSlice.injectEndpoints({
           firebaseData,
         );
 
+        logEvent(firebaseAnalytics, "add_poi", {
+          poi_id: arg.data.clusterId,
+          user_id: arg.data.createdBy,
+        });
+
         return { data: docRef.id };
       },
       invalidatesTags: ["Poi"],
@@ -116,6 +123,10 @@ const poiApiSlice = apiSlice.injectEndpoints({
           doc(firestore, firestoreConfig.collection.poi, arg.id),
           firebaseData,
         );
+        logEvent(firebaseAnalytics, "update_poi", {
+          poi_id: arg.id,
+          user_id: arg.data.updatedBy,
+        });
 
         return { data: "ok" };
       },
