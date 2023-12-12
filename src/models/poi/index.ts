@@ -22,7 +22,7 @@ export interface PoiData {
   };
   status: {
     type: PoiStatusType | ""; // 狀態 e.g. 清潔狀態
-    value: PoiStatusValue | ""; // 狀態的狀態(?) e.g. 整潔(清潔狀態的其中一種描述)
+    value: PoiStatusValue | ""; // 狀態的描述 e.g. 整潔(清潔狀態的其中一種描述)
   };
   createdAt: string;
   createdBy: string;
