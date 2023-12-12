@@ -54,6 +54,6 @@ export const getBounds = (): google.maps.LatLngBounds | null => {
   return mapRef.current?.getBounds() || null;
 };
 
-export const setZoom = (zoom: number): void => {
-  mapRef.current?.setZoom(zoom);
+export const setZoom = (zoomScale: number): void => {
+  mapRef.current?.setZoom(zoomScale);
 };
