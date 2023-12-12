@@ -9,7 +9,6 @@ import poiMarkerOccupation from "../../../../assets/images/poiMarkerOccupation.s
 import poiMarkerAppearance from "../../../../assets/images/poiMarkerAppearance.svg";
 import poiMarkerThermalComfort from "../../../../assets/images/poiMarkerThermalComfort.svg";
 import poiMarkerUsage from "../../../../assets/images/poiMarkerUsage.svg";
-import poiMarkerUnknown from "../../../../assets/images/poiMarkerUnknown.svg";
 
 import poiMarkerHighlightedAppearance from "../../../../assets/images/poiMarkerHighlightedAppearance.svg";
 import poiMarkerHighlightedCleanliness from "../../../../assets/images/poiMarkerHighlightedCleanliness.svg";
@@ -21,7 +20,7 @@ import poiMarkerHighlightedOccupation from "../../../../assets/images/poiMarkerH
 import poiMarkerHighlightedThermalComfort from "../../../../assets/images/poiMarkerHighlightedThermalComfort.svg";
 import poiMarkerHighlightedUsage from "../../../../assets/images/poiMarkerHighlightedUsage.svg";
 
-export const getIcon = (status: PoiStatusType): google.maps.Icon => {
+export const getIcon = (status: PoiStatusType | ""): google.maps.Icon => {
   let thisUrl: string;
   switch (status) {
     case "cleanliness":
@@ -52,7 +51,7 @@ export const getIcon = (status: PoiStatusType): google.maps.Icon => {
       thisUrl = poiMarkerUsage;
       break;
     default:
-      thisUrl = poiMarkerUnknown;
+      thisUrl = "";
       break;
   }
 
@@ -62,7 +61,9 @@ export const getIcon = (status: PoiStatusType): google.maps.Icon => {
   };
 };
 
-export const getHighlightedIcon = (status: PoiStatusType): google.maps.Icon => {
+export const getHighlightedIcon = (
+  status: PoiStatusType | "",
+): google.maps.Icon => {
   let thisUrl: string;
 
   switch (status) {
@@ -94,7 +95,7 @@ export const getHighlightedIcon = (status: PoiStatusType): google.maps.Icon => {
       thisUrl = poiMarkerHighlightedUsage;
       break;
     default:
-      thisUrl = poiMarkerUnknown;
+      thisUrl = "";
       break;
   }
 

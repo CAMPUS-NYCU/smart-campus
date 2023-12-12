@@ -56,7 +56,7 @@ const StatusValueSelect: React.FC = () => {
     >
       {statusValueOption.map((s) => (
         <SelectItem key={s} value={s}>
-          {s === "unknown"
+          {s === ""
             ? "請選擇"
             : t(poiStatusValueMessageKeys[s] || "", {
                 ns: ["model"],

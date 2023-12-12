@@ -70,12 +70,6 @@
             "normal": "normal",
             "bad": "dirty"
           }
-        },
-        "unknown": {
-          "name": "Unknown",
-          "value": {
-            "unknown": "Unknown"
-          }
         }
       }
     }

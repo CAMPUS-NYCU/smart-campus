@@ -20,32 +20,31 @@ import noImage from "../../../assets/images/noImage.svg";
 import poiDrawerLocation from "../../../assets/images/poiDrawerLocation.svg";
 import poiDrawerTargetSerial from "../../../assets/images/poiDrawerTargetSerial.svg";
 import { statusColor, statusIcon } from "../../../constants/statusStyle";
-import {
-  poiStatusType,
-  poiStatusTypeMessageKeys,
-} from "../../../constants/model/poi";
+import { poiStatusTypeMessageKeys } from "../../../constants/model/poi";
 import { PoiStatusType } from "../../../models/poi";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
 import Drawer from "..";
 
-const PoiDrawerStatus: React.FC<{ status?: PoiStatusType }> = ({ status }) => {
+const PoiDrawerStatus: React.FC<{ status?: PoiStatusType | "" }> = ({
+  status,
+}) => {
   const { t } = useTranslation();
 
   return (
     <div className="flex flex-row space-x-1 mt-1 items-center">
       <div className="basis-0.5/12">
-        <Image src={statusIcon(status || poiStatusType.unknown)} alt="status" />
+        <Image src={statusIcon(status || "")} alt="status" />
       </div>
       <Chip
         radius="sm"
         classNames={{
           content: "px-0.5 text-xs",
-          base: statusColor(status || poiStatusType.unknown),
+          base: statusColor(status || ""),
         }}
       >
-        {t(poiStatusTypeMessageKeys[status || poiStatusType.unknown] || "", {
+        {t(poiStatusTypeMessageKeys[status || ""], {
           ns: ["model"],
         })}
       </Chip>

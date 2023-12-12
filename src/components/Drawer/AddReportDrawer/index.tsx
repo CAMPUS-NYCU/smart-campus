@@ -30,8 +30,7 @@ const reportDataValidator = (reportData: PoiData) => {
     target.category !== "" &&
     target.name !== "" &&
     target.serial !== "";
-  const isStatusValid =
-    status && status.type !== "unknown" && status.value !== "unknown";
+  const isStatusValid = status && status.type !== "" && status.value !== "";
 
   return reportData && isTargetValid && isStatusValid;
 };

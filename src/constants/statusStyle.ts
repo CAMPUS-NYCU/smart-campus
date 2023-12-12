@@ -39,9 +39,8 @@ function statusColor(type: string) {
     case "cleanliness":
       thisColor = "bg-cleanliness";
       break;
-    case "unknown":
     default:
-      thisColor = "bg-unknown";
+      thisColor = "bg-secondary";
       break;
   }
 
@@ -79,7 +78,6 @@ function statusIcon(type: string) {
     case "cleanliness":
       thisIcon = poiDrawerCleanliness;
       break;
-    case "unknown":
     default:
       thisIcon = "";
   }

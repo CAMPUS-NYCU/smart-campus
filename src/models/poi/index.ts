@@ -21,8 +21,8 @@ export interface PoiData {
     serial: string; // 回報項目敘述 e.g. 飲水機1-2
   };
   status: {
-    type: PoiStatusType; // 狀態 e.g. 清潔狀態
-    value: PoiStatusValue; // 狀態的狀態(?) e.g. 整潔(清潔狀態的其中一種描述)
+    type: PoiStatusType | ""; // 狀態 e.g. 清潔狀態
+    value: PoiStatusValue | ""; // 狀態的描述 e.g. 整潔(清潔狀態的其中一種描述)
   };
   createdAt: string;
   createdBy: string;
