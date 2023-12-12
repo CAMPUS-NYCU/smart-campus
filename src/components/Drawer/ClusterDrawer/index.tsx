@@ -106,7 +106,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
         classNames={{
           base: `${
             highlightId === poi.id
-              ? "border-3 border-secondary"
+              ? "border-3 border-primary bg-primary/50"
               : "border-1 border-secondary/50"
           }  h-[calc((50vh-100px)/4)] py-0 px-1.5`,
         }}

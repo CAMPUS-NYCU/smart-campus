@@ -1,7 +1,7 @@
-import { Pois } from "../../../../models/poi";
+import { PoiData, Pois } from "../../../../models/poi";
 
 import { maps } from "../..";
-import { getIcon } from "./icons";
+import { getIcon, getHighlightedIcon } from "./icons";
 
 export const markerRef = {
   current: {} as Record<string, google.maps.Marker>,
@@ -39,4 +39,16 @@ export const clear = (): void => {
   Object.values(markerRef.current).forEach((marker) => marker.setMap(null));
 
   markerRef.current = {};
+};
+
+export const toggleHighlightIcon = (
+  highlightedId: string,
+  statusType: PoiData["status"]["type"],
+  isHighlighted: boolean,
+): void => {
+  if (isHighlighted) {
+    markerRef.current[highlightedId].setIcon(getHighlightedIcon(statusType));
+  } else {
+    markerRef.current[highlightedId].setIcon(getIcon(statusType));
+  }
 };
