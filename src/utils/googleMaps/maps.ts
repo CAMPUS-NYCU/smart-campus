@@ -53,3 +53,7 @@ export const getCenter = (): google.maps.LatLng | null => {
 export const getBounds = (): google.maps.LatLngBounds | null => {
   return mapRef.current?.getBounds() || null;
 };
+
+export const setZoom = (zoomScale: number): void => {
+  mapRef.current?.setZoom(zoomScale);
+};

@@ -9,6 +9,8 @@ import {
   isCurrentDrawerParams,
   setupDrawerParams,
 } from "../../../../utils/routes/params";
+import { maps } from "../../../../utils/googleMaps";
+import { getClusterCenter } from "../../../../constants/clusterCenter";
 
 const ClusterMarkers: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,15 +25,18 @@ const ClusterMarkers: React.FC = () => {
     "cluster",
     searchParams,
   );
+  const [onClickedClusterName, setOnClickedClusterName] = React.useState("");
 
   const handleClick = React.useCallback(
-    (clusterId: string) =>
+    (clusterId: string) => {
+      setOnClickedClusterName(clusters![clusterId].name);
       setupDrawerParams<"cluster">(
         { clusterId },
         searchParams,
         setSearchParams,
-      ),
-    [searchParams, setSearchParams],
+      );
+    },
+    [searchParams, setSearchParams, clusters],
   );
 
   React.useEffect(() => {
@@ -41,6 +46,11 @@ const ClusterMarkers: React.FC = () => {
     }
 
     if (isCurrentSearchParamsCluster) {
+      const clusterCenter = getClusterCenter(onClickedClusterName)?.latlng;
+      if (clusterCenter) {
+        maps.panTo(clusterCenter.latitude, clusterCenter.longitude);
+      }
+      maps.setZoom(18);
       markers.cluster.clear();
     }
 
@@ -52,6 +62,7 @@ const ClusterMarkers: React.FC = () => {
     handleClick,
     isCurrentSearchParamsPoi,
     isCurrentSearchParamsCluster,
+    onClickedClusterName,
   ]);
   return <></>;
 };
