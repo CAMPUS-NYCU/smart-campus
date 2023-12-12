@@ -20,7 +20,7 @@ import poiMarkerHighlightedOccupation from "../../../../assets/images/poiMarkerH
 import poiMarkerHighlightedThermalComfort from "../../../../assets/images/poiMarkerHighlightedThermalComfort.svg";
 import poiMarkerHighlightedUsage from "../../../../assets/images/poiMarkerHighlightedUsage.svg";
 
-export const getIcon = (status: PoiStatusType): google.maps.Icon => {
+export const getIcon = (status: PoiStatusType | ""): google.maps.Icon => {
   let thisUrl: string;
   switch (status) {
     case "cleanliness":
@@ -61,7 +61,9 @@ export const getIcon = (status: PoiStatusType): google.maps.Icon => {
   };
 };
 
-export const getHighlightedIcon = (status: PoiStatusType): google.maps.Icon => {
+export const getHighlightedIcon = (
+  status: PoiStatusType | "",
+): google.maps.Icon => {
   let thisUrl: string;
 
   switch (status) {

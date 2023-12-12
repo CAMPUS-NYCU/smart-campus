@@ -1,6 +1,6 @@
 import { GeoPoint, Timestamp } from "firebase/firestore";
 import { FirestorePoiData } from "../../../../models/firebase/firestore";
-import { PoiData } from "../../../../models/poi";
+import { PoiData, PoiStatusType, PoiStatusValue } from "../../../../models/poi";
 
 export const toFirebasePoiDataByPoiData = (poi: PoiData): FirestorePoiData => ({
   clusterId: poi.clusterId,
@@ -12,8 +12,8 @@ export const toFirebasePoiDataByPoiData = (poi: PoiData): FirestorePoiData => ({
     serial: poi.target.serial,
   },
   status: {
-    type: poi.status.type,
-    value: poi.status.value,
+    type: poi.status.type as PoiStatusType,
+    value: poi.status.value as PoiStatusValue,
   },
   createdAt: Timestamp.fromDate(new Date(poi.createdAt)),
   createdBy: poi.createdBy,
