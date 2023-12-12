@@ -41,7 +41,7 @@ export const clear = (): void => {
   markerRef.current = {};
 };
 
-export const setIcon = (
+export const toggleHighlightIcon = (
   highlightedId: string,
   statusType: PoiData["status"]["type"],
   isHighlighted: boolean,

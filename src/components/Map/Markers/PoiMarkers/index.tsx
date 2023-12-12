@@ -53,9 +53,13 @@ const PoiMarkers: React.FC = () => {
         longitude,
       );
 
-      markers.poi.setIcon(highlightId, pois[highlightId].status.type, true);
+      markers.poi.toggleHighlightIcon(
+        highlightId,
+        pois[highlightId].status.type,
+        true,
+      );
       if (prevHighlightId.current) {
-        markers.poi.setIcon(
+        markers.poi.toggleHighlightIcon(
           prevHighlightId.current,
           pois[prevHighlightId.current].status.type,
           false,
