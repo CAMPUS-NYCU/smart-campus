@@ -14,6 +14,7 @@ const PoiMarkers: React.FC = () => {
   const [searchParams] = useSearchParams();
 
   const highlightId = useSelector((state: IRootState) => state.poi.highlightId);
+  const prevHighlightId = React.useRef<string | null>("");
 
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: pois } = useGetPoisQuery(clusterId);
@@ -51,7 +52,18 @@ const PoiMarkers: React.FC = () => {
         north && south ? latitude - (north - south) / 4 : latitude,
         longitude,
       );
+
+      markers.poi.setIcon(highlightId, pois[highlightId].status.type, true);
+      if (prevHighlightId.current) {
+        markers.poi.setIcon(
+          prevHighlightId.current,
+          pois[prevHighlightId.current].status.type,
+          false,
+        );
+      }
     }
+
+    prevHighlightId.current = highlightId;
   }, [highlightId, pois]);
   return <></>;
 };
