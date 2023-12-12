@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import Poi, { PoiData, PoiStatusValue, PoiStatusType } from "../../models/poi";
-import { poiStatusValue, poiStatusType } from "../../constants/model/poi";
+import Poi, { PoiData } from "../../models/poi";
 
 interface ReportState extends Poi {
   type: "add" | "edit" | null;
@@ -20,8 +19,8 @@ export const initialReportPoiData: PoiData = {
     serial: "",
   },
   status: {
-    type: poiStatusType.unknown as PoiStatusType,
-    value: poiStatusValue.unknown as PoiStatusValue,
+    type: "",
+    value: "",
   },
   createdAt: "",
   createdBy: "",

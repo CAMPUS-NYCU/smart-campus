@@ -17,8 +17,7 @@ import { PoiData } from "../../../models/poi";
 const reportDataValidator = (reportData: PoiData) => {
   const { status } = reportData;
 
-  const isStatusValid =
-    status && status.type !== "unknown" && status.value !== "unknown";
+  const isStatusValid = status && status.type !== "" && status.value !== "";
 
   return isStatusValid;
 };

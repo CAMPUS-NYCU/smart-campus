@@ -70,12 +70,6 @@
             "normal": "普通",
             "bad": "髒亂"
           }
-        },
-        "unknown": {
-          "name": "未知",
-          "value": {
-            "unknown": "未知"
-          }
         }
       }
     }

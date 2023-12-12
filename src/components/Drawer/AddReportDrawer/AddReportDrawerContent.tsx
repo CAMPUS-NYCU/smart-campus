@@ -6,9 +6,7 @@ import { Image, Input, Select, SelectItem, Skeleton } from "@nextui-org/react";
 import {
   poiObjectStatusTypeSelect,
   poiSpaceStatusTypeSelect,
-  poiStatusType,
   poiStatusTypeMessageKeys,
-  poiStatusValue,
   poiStatusValueMessageKeys,
   poiStatusValueSelect,
 } from "../../../constants/model/poi";
@@ -49,8 +47,8 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
           },
           status: {
             ...reportData.status,
-            type: poiStatusType.unknown as PoiStatusType,
-            value: poiStatusValue.unknown as PoiStatusValue,
+            type: "",
+            value: "",
           },
         }),
       );
@@ -117,8 +115,8 @@ const TargetCategorySelect: React.FC<{
           },
           status: {
             ...reportData.status,
-            type: poiStatusType.unknown as PoiStatusType,
-            value: poiStatusValue.unknown as PoiStatusValue,
+            type: "",
+            value: "",
           },
         }),
       );
@@ -188,8 +186,8 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
           },
           status: {
             ...reportData.status,
-            type: poiStatusType.unknown as PoiStatusType,
-            value: poiStatusValue.unknown as PoiStatusValue,
+            type: "",
+            value: "",
           },
         }),
       );
@@ -266,8 +264,8 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
           },
           status: {
             ...reportData.status,
-            type: poiStatusType.unknown as PoiStatusType,
-            value: poiStatusValue.unknown as PoiStatusValue,
+            type: "",
+            value: "",
           },
         }),
       );
@@ -327,7 +325,7 @@ const StatusTypeSelect: React.FC = () => {
   ) {
     statusTypeOptions = poiSpaceStatusTypeSelect;
   } else {
-    statusTypeOptions = ["unknown"];
+    statusTypeOptions = [""];
   }
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -337,7 +335,7 @@ const StatusTypeSelect: React.FC = () => {
           status: {
             ...reportData.status,
             type: e.target.value as PoiStatusType,
-            value: poiStatusValue.unknown as PoiStatusValue,
+            value: "",
           },
         }),
       );
@@ -372,7 +370,7 @@ const StatusTypeSelect: React.FC = () => {
       >
         {statusTypeOptions.map((s) => (
           <SelectItem key={s} value={s}>
-            {s === "unknown"
+            {s === ""
               ? "請選擇"
               : t(poiStatusTypeMessageKeys[s] || "", {
                   ns: ["model"],
@@ -421,7 +419,7 @@ const StatusValueSelect: React.FC = () => {
           reportData.target.name &&
           reportData.target.category &&
           reportData.target.serial &&
-          reportData.status.type !== "unknown"
+          reportData.status.type !== ""
             ? false
             : true
         }
@@ -432,9 +430,9 @@ const StatusValueSelect: React.FC = () => {
           base: "min-w-fit w-[50%]",
         }}
       >
-        {statusValueOption.map((s) => (
+        {statusValueOption?.map((s) => (
           <SelectItem key={s} value={s}>
-            {s === "unknown"
+            {s === ""
               ? "請選擇"
               : t(poiStatusValueMessageKeys[s] || "", {
                   ns: ["model"],

@@ -13,9 +13,6 @@ export const poiStatusType = {
 
   // 物體空間共用
   cleanliness: "cleanliness",
-
-  // for debug
-  unknown: "unknown",
 };
 
 export const poiStatusTypeMessageKeys = {
@@ -33,9 +30,6 @@ export const poiStatusTypeMessageKeys = {
 
   // 物體空間共用
   [poiStatusType.cleanliness]: "poi.data.status.cleanliness.name",
-
-  // for debug
-  [poiStatusType.unknown]: "poi.data.status.unknown.name",
 };
 
 export const poiStatusValue = {
@@ -77,9 +71,6 @@ export const poiStatusValue = {
   goodCleanliness: "goodCleanliness", // 整潔
   normalCleanliness: "normalCleanliness", // 普通
   badCleanliness: "badCleanliness", // 髒亂
-
-  // for debug
-  unknown: "unknown",
 };
 
 export const poiStatusValueMessageKeys = {
@@ -126,60 +117,57 @@ export const poiStatusValueMessageKeys = {
   [poiStatusValue.normalCleanliness]:
     "poi.data.status.cleanliness.value.normal",
   [poiStatusValue.badCleanliness]: "poi.data.status.cleanliness.value.bad",
-
-  // for debug
-  [poiStatusValue.unknown]: "poi.data.status.unknown.value.unknown",
 };
 
 export const poiStatusValueSelect = {
-  [poiStatusType.unknown]: [poiStatusValue.unknown],
+  [""]: [""],
   [poiStatusType.maintenance]: [
-    poiStatusValue.unknown,
+    "",
     poiStatusValue.maintenanceCompleted,
     poiStatusValue.underMaintenance,
   ],
   [poiStatusType.function]: [
-    poiStatusValue.unknown,
+    "",
     poiStatusValue.functional,
     poiStatusValue.remainsFuntional,
     poiStatusValue.nonFunctional,
   ],
   [poiStatusType.appearance]: [
-    poiStatusValue.unknown,
+    "",
     poiStatusValue.appearanceGood,
     poiStatusValue.appearanceBad,
   ],
   [poiStatusType.occupation]: [
-    poiStatusValue.unknown,
+    "",
     poiStatusValue.occupied,
     poiStatusValue.unoccupied,
   ],
   [poiStatusType.usage]: [
-    poiStatusValue.unknown,
+    "",
     poiStatusValue.spacesAvailable,
     poiStatusValue.limitedSpaces,
     poiStatusValue.noSpaces,
   ],
   [poiStatusType.crowd]: [
-    poiStatusValue.unknown,
+    "",
     poiStatusValue.crowded,
     poiStatusValue.normalCrowded,
     poiStatusValue.notCrowded,
   ],
   [poiStatusType.noise]: [
-    poiStatusValue.unknown,
+    "",
     poiStatusValue.quiet,
     poiStatusValue.normalNoiseLevel,
     poiStatusValue.noisy,
   ],
   [poiStatusType.thermalComfort]: [
-    poiStatusValue.unknown,
+    "",
     poiStatusValue.comfortable,
     poiStatusValue.normalComfort,
     poiStatusValue.uncomfortable,
   ],
   [poiStatusType.cleanliness]: [
-    poiStatusValue.unknown,
+    "",
     poiStatusValue.goodCleanliness,
     poiStatusValue.normalCleanliness,
     poiStatusValue.badCleanliness,
@@ -187,7 +175,7 @@ export const poiStatusValueSelect = {
 };
 
 export const poiObjectStatusTypeSelect = [
-  poiStatusType.unknown,
+  "",
   poiStatusType.maintenance,
   poiStatusType.function,
   poiStatusType.appearance,
@@ -196,7 +184,7 @@ export const poiObjectStatusTypeSelect = [
 ];
 
 export const poiSpaceStatusTypeSelect = [
-  poiStatusType.unknown,
+  "",
   poiStatusType.usage,
   poiStatusType.crowd,
   poiStatusType.noise,

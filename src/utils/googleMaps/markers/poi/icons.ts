@@ -9,7 +9,6 @@ import poiMarkerOccupation from "../../../../assets/images/poiMarkerOccupation.s
 import poiMarkerAppearance from "../../../../assets/images/poiMarkerAppearance.svg";
 import poiMarkerThermalComfort from "../../../../assets/images/poiMarkerThermalComfort.svg";
 import poiMarkerUsage from "../../../../assets/images/poiMarkerUsage.svg";
-import poiMarkerUnknown from "../../../../assets/images/poiMarkerUnknown.svg";
 
 import poiMarkerHighlightedAppearance from "../../../../assets/images/poiMarkerHighlightedAppearance.svg";
 import poiMarkerHighlightedCleanliness from "../../../../assets/images/poiMarkerHighlightedCleanliness.svg";
@@ -52,7 +51,7 @@ export const getIcon = (status: PoiStatusType): google.maps.Icon => {
       thisUrl = poiMarkerUsage;
       break;
     default:
-      thisUrl = poiMarkerUnknown;
+      thisUrl = "";
       break;
   }
 
@@ -94,7 +93,7 @@ export const getHighlightedIcon = (status: PoiStatusType): google.maps.Icon => {
       thisUrl = poiMarkerHighlightedUsage;
       break;
     default:
-      thisUrl = poiMarkerUnknown;
+      thisUrl = "";
       break;
   }
 

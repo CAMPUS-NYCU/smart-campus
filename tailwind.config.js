@@ -21,7 +21,6 @@ export default {
         noise: "#D3AAB1",
         thermalComfort: "#FCA6D4",
         cleanliness: "#DAAEDB",
-        unknown: "#D4D4D8",
         textBtn: "#D4D4D8",
         textBtnHover: "#b6b6ba",
       },
