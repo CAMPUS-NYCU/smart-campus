@@ -100,6 +100,6 @@ export const getHighlightedIcon = (status: PoiStatusType): google.maps.Icon => {
 
   return {
     url: thisUrl,
-    scaledSize: new google.maps.Size(45, 45),
+    scaledSize: new google.maps.Size(28, 30),
   };
 };
