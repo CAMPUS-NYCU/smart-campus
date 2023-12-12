@@ -30,8 +30,8 @@ export interface FirestorePoiData {
     serial: string;
   };
   status: {
-    type: PoiStatusType;
-    value: PoiStatusValue;
+    type: PoiStatusType | "";
+    value: PoiStatusValue | "";
   };
   createdAt: Timestamp;
   createdBy: string;
