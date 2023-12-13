@@ -96,7 +96,8 @@
     },
     "content": {
       "texts": {
-        "description": "{{description}}"
+        "description": "{{description}}",
+        "updatedAt":"Updated at {{updatedAt}}"
       }
     },
     "title": "{{name}}"
