@@ -38,9 +38,24 @@ export const toPoiDataByFirebasePoiData = (poi: FirestorePoiData): PoiData => ({
     type: poi.status.type,
     value: poi.status.value,
   },
-  createdAt: poi.createdAt?.toDate().toDateString(),
+  createdAt: poi.createdAt?.toDate().toLocaleString("zh-TW", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }),
   createdBy: poi.createdBy,
-  updatedAt: poi.updatedAt?.toDate().toDateString() || null,
+  updatedAt:
+    poi.updatedAt?.toDate().toLocaleString("zh-TW", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }) || null,
   updatedBy: poi.updatedBy,
   photoPaths: poi.photoPaths,
 });
