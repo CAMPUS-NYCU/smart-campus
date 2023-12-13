@@ -20,33 +20,39 @@ import noImage from "../../../assets/images/noImage.svg";
 import poiDrawerLocation from "../../../assets/images/poiDrawerLocation.svg";
 import poiDrawerTargetSerial from "../../../assets/images/poiDrawerTargetSerial.svg";
 import { statusColor, statusIcon } from "../../../constants/statusStyle";
-import { poiStatusTypeMessageKeys } from "../../../constants/model/poi";
-import { PoiStatusType } from "../../../models/poi";
+import {
+  poiStatusTypeMessageKeys,
+  poiStatusValueMessageKeys,
+} from "../../../constants/model/poi";
+import { PoiStatusType, PoiStatusValue } from "../../../models/poi";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
 import Drawer from "..";
 
-const PoiDrawerStatus: React.FC<{ status?: PoiStatusType | "" }> = ({
-  status,
-}) => {
+const PoiDrawerStatus: React.FC<{
+  statusType?: PoiStatusType | "";
+  statusValue?: PoiStatusValue | "";
+}> = ({ statusType, statusValue }) => {
   const { t } = useTranslation();
 
   return (
     <div className="flex flex-row space-x-1 mt-1 items-center">
       <div className="basis-0.5/12">
-        <Image src={statusIcon(status || "")} alt="status" />
+        <Image src={statusIcon(statusType || "")} alt="status" />
       </div>
       <Chip
         radius="sm"
         classNames={{
           content: "px-0.5 text-xs",
-          base: statusColor(status || ""),
+          base: statusColor(statusType || ""),
         }}
       >
-        {t(poiStatusTypeMessageKeys[status || ""], {
+        {`${t(poiStatusTypeMessageKeys[statusType || ""], {
           ns: ["model"],
-        })}
+        })}:${t(poiStatusValueMessageKeys[statusValue || ""], {
+          ns: ["model"],
+        })}`}
       </Chip>
     </div>
   );
@@ -175,7 +181,10 @@ const PoiDrawer: React.FC = () => {
             </div>
 
             {/* 第三行：status */}
-            <PoiDrawerStatus status={poi?.data.status.type} />
+            <PoiDrawerStatus
+              statusType={poi?.data.status.type}
+              statusValue={poi?.data.status.value}
+            />
 
             {/* 第四行：updatedBy &updatedAt */}
             <div className="flex flex-row space-x-1 mt-1 items-center justify-end">
