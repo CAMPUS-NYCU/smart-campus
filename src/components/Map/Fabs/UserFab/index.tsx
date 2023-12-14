@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Dropdown, DropdownTrigger } from "@nextui-org/react";
+import { Avatar, Dropdown, DropdownTrigger, Skeleton } from "@nextui-org/react";
 
 import { useGetUserQuery } from "../../../../api/user";
 import SwitchLanguage from "../../../modal/SwitchLanguage";
@@ -10,13 +10,20 @@ import UserFabMenu from "./UserFabMenu";
 import Login from "../../../modal/Login";
 
 const Trigger: React.FC = () => {
-  const { data: user } = useGetUserQuery();
+  const { data: user, isLoading: userLoading } = useGetUserQuery();
 
+  if (userLoading) {
+    return (
+      <DropdownTrigger>
+        <Skeleton className="absolute top-6 right-4 flex rounded-full w-10 h-10" />
+      </DropdownTrigger>
+    );
+  }
   return (
     <DropdownTrigger>
       <Avatar
         isBordered
-        className="absolute top-6 right-4"
+        className="absolute top-6 right-4 w-10 h-10"
         src={user?.auth.photoURL || ""}
         name={user?.auth.displayName || ""}
       />
