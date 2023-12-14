@@ -57,7 +57,9 @@ const StatusValueSelect: React.FC = () => {
       {statusValueOption.map((s) => (
         <SelectItem key={s} value={s}>
           {s === ""
-            ? "請選擇"
+            ? t("editReport.content.select.placeHolder", {
+                ns: ["drawer"],
+              })
             : t(poiStatusValueMessageKeys[s] || "", {
                 ns: ["model"],
               })}

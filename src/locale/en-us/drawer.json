@@ -70,6 +70,7 @@
         "statusType": "Status Type"
       },
       "select": {
+        "placeHolder": "Select a value",
         "setStatusValue": {
           "label": "Status Description"
         }

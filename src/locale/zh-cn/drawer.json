@@ -70,6 +70,7 @@
         "statusType": "回报状态"
       },
       "select": {
+        "placeHolder": "请选择",
         "setStatusValue": {
           "label": "状态描述"
         }

@@ -70,6 +70,7 @@
         "statusType": "回報狀態"
       },
       "select": {
+        "placeHolder": "請選擇",
         "setStatusValue": {
           "label": "狀態描述"
         }
