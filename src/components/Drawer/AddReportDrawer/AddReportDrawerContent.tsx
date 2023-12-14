@@ -76,7 +76,7 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
             <SelectItem key={s} value={s}>
               {s
                 ? s
-                : t("addReport.content.select.text.pleaseSelect", {
+                : t("addReport.content.select.placeHolder", {
                     ns: ["drawer"],
                   })}
             </SelectItem>
@@ -151,7 +151,7 @@ const TargetCategorySelect: React.FC<{
             <SelectItem key={s} value={s}>
               {s
                 ? s
-                : t("addReport.content.select.text.pleaseSelect", {
+                : t("addReport.content.select.placeHolder", {
                     ns: ["drawer"],
                   })}
             </SelectItem>
@@ -228,7 +228,7 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
             <SelectItem key={s} value={s}>
               {s
                 ? s
-                : t("addReport.content.select.text.pleaseSelect", {
+                : t("addReport.content.select.placeHolder", {
                     ns: ["drawer"],
                   })}
             </SelectItem>
@@ -314,7 +314,7 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
             <SelectItem key={s} value={s}>
               {s
                 ? s
-                : t("addReport.content.select.text.pleaseSelect", {
+                : t("addReport.content.select.placeHolder", {
                     ns: ["drawer"],
                   })}
             </SelectItem>
@@ -387,7 +387,7 @@ const StatusTypeSelect: React.FC = () => {
         {statusTypeOptions.map((s) => (
           <SelectItem key={s} value={s}>
             {s === ""
-              ? t("addReport.content.select.text.pleaseSelect", {
+              ? t("addReport.content.select.placeHolder", {
                   ns: ["drawer"],
                 })
               : t(poiStatusTypeMessageKeys[s] || "", {
@@ -451,7 +451,7 @@ const StatusValueSelect: React.FC = () => {
         {statusValueOption?.map((s) => (
           <SelectItem key={s} value={s}>
             {s === ""
-              ? t("addReport.content.select.text.pleaseSelect", {
+              ? t("addReport.content.select.placeHolder", {
                   ns: ["drawer"],
                 })
               : t(poiStatusValueMessageKeys[s] || "", {

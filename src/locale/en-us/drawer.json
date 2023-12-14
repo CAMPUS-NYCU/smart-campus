@@ -26,9 +26,7 @@
         "setLocation": "Location"
       },
       "select": {
-        "text": {
-          "pleaseSelect": "Select a value"
-        },
+        "placeHolder": "Select a value",
         "setFloor": {
           "label": "Floor"
         },
