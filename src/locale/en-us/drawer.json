@@ -1,8 +1,7 @@
 {
   "addReport": {
     "buttons": {
-      "add": "Add",
-      "cancel": "Cancel"
+      "add": "Add"
     },
     "confirm": {
       "buttons": {
@@ -27,6 +26,7 @@
         "setLocation": "Location"
       },
       "select": {
+        "placeHolder": "Select a value",
         "setFloor": {
           "label": "Floor"
         },
@@ -51,8 +51,7 @@
   },
   "editReport": {
     "buttons": {
-      "edit": "Edit",
-      "cancel": "Cancel"
+      "edit": "Edit"
     },
     "confirm": {
       "buttons": {
@@ -69,35 +68,34 @@
         "statusType": "Status Type"
       },
       "select": {
+        "placeHolder": "Select a value",
         "setStatusValue": {
           "label": "Status Description"
         }
       }
     },
-    "title": "Update report"
+    "title": "Edit report"
   },
   "clusterDrawer": {
     "buttons": {
       "add": "Add",
-      "cancel": "Cancel",
       "edit": "Edit"
     },
     "content": {
       "texts": {
-        "updatedAt": "Updated at {{updatedAt}}"
+        "updatedAt": "Edited at {{updatedAt}}"
       }
     },
     "title": "Reports of {{name}}"
   },
   "poiDrawer": {
     "buttons": {
-      "edit": "Edit",
-      "cancel": "Cancel"
+      "edit": "Edit"
     },
     "content": {
       "texts": {
         "description": "{{description}}",
-        "updatedAt":"Updated at {{updatedAt}}"
+        "updatedAt":"Edited at {{updatedAt}}"
       }
     },
     "title": "{{name}}"

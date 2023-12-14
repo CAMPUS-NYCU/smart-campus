@@ -74,7 +74,11 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
         {floorOptions.map((s) => {
           return (
             <SelectItem key={s} value={s}>
-              {s ? s : "請選擇"}
+              {s
+                ? s
+                : t("addReport.content.select.placeHolder", {
+                    ns: ["drawer"],
+                  })}
             </SelectItem>
           );
         })}
@@ -91,7 +95,7 @@ const TargetCategorySelect: React.FC<{
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetCategory = reportData.target.category;
-  let targetCategoryOptions: string[]; // 要根據 floor 來決定值
+  let targetCategoryOptions: string[]; // decided by floor
 
   if (reportData.floor) {
     targetCategoryOptions = getOptions(
@@ -145,7 +149,11 @@ const TargetCategorySelect: React.FC<{
         {targetCategoryOptions.map((s) => {
           return (
             <SelectItem key={s} value={s}>
-              {s ? s : "請選擇"}
+              {s
+                ? s
+                : t("addReport.content.select.placeHolder", {
+                    ns: ["drawer"],
+                  })}
             </SelectItem>
           );
         })}
@@ -163,7 +171,7 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetName = reportData.target.name;
 
-  let targetNameOptions: string[]; // 要根據 floor, targetCategory 來決定值
+  let targetNameOptions: string[]; // decided by floor and targetCategory
 
   if (reportData.floor && reportData.target.category) {
     targetNameOptions = getOptions(cluster?.data.name || "").targetName.find(
@@ -218,7 +226,11 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
         {targetNameOptions.map((s) => {
           return (
             <SelectItem key={s} value={s}>
-              {s ? s : "請選擇"}
+              {s
+                ? s
+                : t("addReport.content.select.placeHolder", {
+                    ns: ["drawer"],
+                  })}
             </SelectItem>
           );
         })}
@@ -235,7 +247,7 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetSerial = reportData.target.serial;
-  let targetSerialOptions: string[]; // 要根據 floor, targetCategory, targetName 來決定值
+  let targetSerialOptions: string[]; // decided by floor, targetCategory and targetName
 
   if (
     reportData.floor &&
@@ -300,7 +312,11 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
         {targetSerialOptions.map((s) => {
           return (
             <SelectItem key={s} value={s}>
-              {s ? s : "請選擇"}
+              {s
+                ? s
+                : t("addReport.content.select.placeHolder", {
+                    ns: ["drawer"],
+                  })}
             </SelectItem>
           );
         })}
@@ -315,7 +331,7 @@ const StatusTypeSelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const statusType = reportData.status.type;
-  let statusTypeOptions: string[]; // 要根據 targetCategory 來決定值，且要等到 targetSerial 被選擇後才能選擇
+  let statusTypeOptions: string[]; // decided by targetCategory, and can only be selectable when targetSerial is set
 
   if (reportData.target.category === "物體" && reportData.target.serial) {
     statusTypeOptions = poiObjectStatusTypeSelect;
@@ -371,7 +387,9 @@ const StatusTypeSelect: React.FC = () => {
         {statusTypeOptions.map((s) => (
           <SelectItem key={s} value={s}>
             {s === ""
-              ? "請選擇"
+              ? t("addReport.content.select.placeHolder", {
+                  ns: ["drawer"],
+                })
               : t(poiStatusTypeMessageKeys[s] || "", {
                   ns: ["model"],
                 })}
@@ -388,7 +406,7 @@ const StatusValueSelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const statusValue = reportData.status.value;
-  const statusValueOption = poiStatusValueSelect[reportData.status.type]; // 要根據 statusType 來決定值，且要等到 statusType 被選擇後才能選擇
+  const statusValueOption = poiStatusValueSelect[reportData.status.type]; // decided by statusType, and can only be selectable when statusType is set
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -433,7 +451,9 @@ const StatusValueSelect: React.FC = () => {
         {statusValueOption?.map((s) => (
           <SelectItem key={s} value={s}>
             {s === ""
-              ? "請選擇"
+              ? t("addReport.content.select.placeHolder", {
+                  ns: ["drawer"],
+                })
               : t(poiStatusValueMessageKeys[s] || "", {
                   ns: ["model"],
                 })}
@@ -498,7 +518,7 @@ const AddReportDrawerContent: React.FC = () => {
   const reportData = useSelector((state: IRootState) => state.report.data);
   const { data: cluster, isLoading: clusterLoading } = useGetClusterQuery(
     reportData.clusterId,
-  ); // clusterloading 的話就載入 skelton
+  ); // if cluster is loading, load skelton
 
   return (
     <div className="flex flex-col max-h-[calc(50vh-80px)] mt-1">
@@ -506,7 +526,7 @@ const AddReportDrawerContent: React.FC = () => {
         <Skeleton classNames={{ base: "bg-white overflow-y-scroll" }} />
       ) : (
         <>
-          {/* 回報地點 */}
+          {/* report location */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
             <div className="basis-0.5/12 px-1">
               <Image radius="none" src={poiAddDrawerLocation} alt="location" />
@@ -524,14 +544,14 @@ const AddReportDrawerContent: React.FC = () => {
               isReadOnly
             />
           </div>
-          {/* 回報樓層 */}
+          {/* report floor */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
             <div className="basis-0.5/12">
               <Image radius="none" src={poiAddDrawerFloor} alt="floor" />
             </div>
             <FloorSelect cluster={cluster!} />
           </div>
-          {/* 回報類別 */}
+          {/* report target category */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
             <div className="basis-0.5/12">
               <Image
@@ -542,7 +562,7 @@ const AddReportDrawerContent: React.FC = () => {
             </div>
             <TargetCategorySelect cluster={cluster!} />
           </div>
-          {/* 回報項目 */}
+          {/* report target name */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
             <div className="basis-0.5/12">
               <Image
@@ -553,7 +573,7 @@ const AddReportDrawerContent: React.FC = () => {
             </div>
             <TargetNameSelect cluster={cluster!} />
           </div>
-          {/* 項目描述 */}
+          {/* report target serial */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
             <div className="basis-0.5/12">
               <Image
@@ -564,7 +584,7 @@ const AddReportDrawerContent: React.FC = () => {
             </div>
             <TargetSerialSelect cluster={cluster!} />
           </div>
-          {/* 回報狀態 */}
+          {/* report status type */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
             <div className="basis-0.5/12">
               <Image
@@ -575,7 +595,7 @@ const AddReportDrawerContent: React.FC = () => {
             </div>
             <StatusTypeSelect />
           </div>
-          {/* 狀態描述 */}
+          {/* report status value */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
             <div className="basis-0.5/12">
               <Image
@@ -586,6 +606,7 @@ const AddReportDrawerContent: React.FC = () => {
             </div>
             <StatusValueSelect />
           </div>
+          {/* report images */}
           <div className="flex flex-row space-x-1 mt-1 items-center whitespace-normal">
             <div className="basis-0.5/12 shrink-0">
               <Image radius="none" src={poiAddDrawerImage} alt="image" />

@@ -15,8 +15,7 @@ interface DrawerProps {
 }
 
 const Drawer: React.FC<DrawerProps> = (props) => {
-  const { children, open, onClose, title, primaryButton, secondaryButton } =
-    props;
+  const { children, open, onClose, title, primaryButton } = props;
 
   return (
     <motion.div
@@ -39,8 +38,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
           {children}
         </div>
         <div className="fixed bottom-0 left-0 right-0 flex w-full z-10 px-4 py-1 rounded items-center bg-white">
-          <div className="flex-1 text-left">{secondaryButton}</div>
-          <div className="flex-1 text-right">{primaryButton}</div>
+          <div className="flex-1 text-center">{primaryButton}</div>
         </div>
       </div>
     </motion.div>

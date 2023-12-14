@@ -1,8 +1,7 @@
 {
   "addReport": {
     "buttons": {
-      "add": "新增",
-      "cancel": "取消"
+      "add": "新增"
     },
     "confirm": {
       "buttons": {
@@ -27,6 +26,7 @@
         "setLocation": "回報地點"
       },
       "select": {
+        "placeHolder": "請選擇",
         "setFloor": {
           "label": "回報樓層"
         },
@@ -51,8 +51,7 @@
   },
   "editReport": {
     "buttons": {
-      "edit": "更新",
-      "cancel": "取消"
+      "edit": "更新"
     },
     "confirm": {
       "buttons": {
@@ -69,6 +68,7 @@
         "statusType": "回報狀態"
       },
       "select": {
+        "placeHolder": "請選擇",
         "setStatusValue": {
           "label": "狀態描述"
         }
@@ -79,7 +79,6 @@
   "clusterDrawer": {
     "buttons": {
       "add": "新增",
-      "cancel": "取消",
       "edit": "更新"
     },
     "content": {
@@ -91,8 +90,7 @@
   },
   "poiDrawer": {
     "buttons": {
-      "edit": "更新",
-      "cancel": "取消"
+      "edit": "更新"
     },
     "content": {
       "texts": {

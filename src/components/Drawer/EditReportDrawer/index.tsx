@@ -96,11 +96,6 @@ const EditReportDrawer: React.FC = () => {
           {t("editReport.buttons.edit", { ns: ["drawer"] })}
         </Button>
       }
-      secondaryButton={
-        <button onClick={handleDrawerDismiss}>
-          {t("editReport.buttons.cancel", { ns: ["drawer"] })}
-        </button>
-      }
     />
   );
 };

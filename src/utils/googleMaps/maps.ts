@@ -16,12 +16,14 @@ export const getDefaultMapOptions = (
       return {
         ...defaultMapOptions,
         ...mapDarkModeModifier,
+        clickableIcons: false,
       };
     case "light":
     default:
       return {
         ...defaultMapOptions,
         ...mapLightModeModifier,
+        clickableIcons: false,
       };
   }
 };

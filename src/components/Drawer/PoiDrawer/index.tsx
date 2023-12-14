@@ -151,7 +151,7 @@ const PoiDrawer: React.FC = () => {
           </div>
 
           <div className="basis-6/12">
-            {/* 第一行：location & floor */}
+            {/* the fist row：location & floor */}
             <div className="flex flex-row space-x-1 mt-1 items-center">
               <div className="basis-0.5/12">
                 <Image src={poiDrawerLocation} alt="location and floor" />
@@ -167,7 +167,7 @@ const PoiDrawer: React.FC = () => {
               </Chip>
             </div>
 
-            {/* 第二行：target serial */}
+            {/* the second row：target serial */}
             <div className="flex flex-row space-x-1 mt-1 items-center">
               <div className="basis-0.5/12">
                 <Image
@@ -180,13 +180,13 @@ const PoiDrawer: React.FC = () => {
               </Chip>
             </div>
 
-            {/* 第三行：status */}
+            {/* the third row：status */}
             <PoiDrawerStatus
               statusType={poi?.data.status.type}
               statusValue={poi?.data.status.value}
             />
 
-            {/* 第四行：updatedBy &updatedAt */}
+            {/* the fourth row：updatedBy &updatedAt */}
             <div className="flex flex-row space-x-1 mt-1 items-center justify-end">
               <p className="text-xs text-secondary">
                 {t("poiDrawer.content.texts.updatedAt", {
@@ -208,11 +208,6 @@ const PoiDrawer: React.FC = () => {
         >
           {t("poiDrawer.buttons.edit", { ns: ["drawer"] })}
         </Button>
-      }
-      secondaryButton={
-        <button onClick={handleDrawerDismiss}>
-          {t("poiDrawer.buttons.cancel", { ns: ["drawer"] })}
-        </button>
       }
     />
   );
