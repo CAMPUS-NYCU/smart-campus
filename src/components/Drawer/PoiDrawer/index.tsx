@@ -209,11 +209,6 @@ const PoiDrawer: React.FC = () => {
           {t("poiDrawer.buttons.edit", { ns: ["drawer"] })}
         </Button>
       }
-      secondaryButton={
-        <button onClick={handleDrawerDismiss}>
-          {t("poiDrawer.buttons.cancel", { ns: ["drawer"] })}
-        </button>
-      }
     />
   );
 };

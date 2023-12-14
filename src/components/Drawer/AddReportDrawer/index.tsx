@@ -128,11 +128,6 @@ const AddReportDrawer: React.FC = () => {
             {t("addReport.buttons.add", { ns: ["drawer"] })}
           </Button>
         }
-        secondaryButton={
-          <button onClick={handleDrawerDismiss}>
-            {t("addReport.buttons.cancel", { ns: ["drawer"] })}
-          </button>
-        }
       />
     </>
   );

@@ -286,11 +286,6 @@ const ClusterDrawer: React.FC = () => {
           {t("clusterDrawer.buttons.add", { ns: ["drawer"] })}
         </Button>
       }
-      secondaryButton={
-        <button onClick={handleDrawerDismiss}>
-          {t("clusterDrawer.buttons.cancel", { ns: ["drawer"] })}
-        </button>
-      }
     />
   );
 };
