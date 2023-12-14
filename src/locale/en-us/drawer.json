@@ -74,7 +74,7 @@
         }
       }
     },
-    "title": "Update report"
+    "title": "Edit report"
   },
   "clusterDrawer": {
     "buttons": {
@@ -83,7 +83,7 @@
     },
     "content": {
       "texts": {
-        "updatedAt": "Updated at {{updatedAt}}"
+        "updatedAt": "Edited at {{updatedAt}}"
       }
     },
     "title": "Reports of {{name}}"
@@ -95,7 +95,7 @@
     "content": {
       "texts": {
         "description": "{{description}}",
-        "updatedAt":"Updated at {{updatedAt}}"
+        "updatedAt":"Edited at {{updatedAt}}"
       }
     },
     "title": "{{name}}"
