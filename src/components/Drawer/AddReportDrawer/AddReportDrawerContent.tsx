@@ -74,7 +74,11 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
         {floorOptions.map((s) => {
           return (
             <SelectItem key={s} value={s}>
-              {s ? s : "請選擇"}
+              {s
+                ? s
+                : t("addReport.content.select.text.pleaseSelect", {
+                    ns: ["drawer"],
+                  })}
             </SelectItem>
           );
         })}
@@ -145,7 +149,11 @@ const TargetCategorySelect: React.FC<{
         {targetCategoryOptions.map((s) => {
           return (
             <SelectItem key={s} value={s}>
-              {s ? s : "請選擇"}
+              {s
+                ? s
+                : t("addReport.content.select.text.pleaseSelect", {
+                    ns: ["drawer"],
+                  })}
             </SelectItem>
           );
         })}
@@ -218,7 +226,11 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
         {targetNameOptions.map((s) => {
           return (
             <SelectItem key={s} value={s}>
-              {s ? s : "請選擇"}
+              {s
+                ? s
+                : t("addReport.content.select.text.pleaseSelect", {
+                    ns: ["drawer"],
+                  })}
             </SelectItem>
           );
         })}
@@ -300,7 +312,11 @@ const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
         {targetSerialOptions.map((s) => {
           return (
             <SelectItem key={s} value={s}>
-              {s ? s : "請選擇"}
+              {s
+                ? s
+                : t("addReport.content.select.text.pleaseSelect", {
+                    ns: ["drawer"],
+                  })}
             </SelectItem>
           );
         })}
@@ -371,7 +387,9 @@ const StatusTypeSelect: React.FC = () => {
         {statusTypeOptions.map((s) => (
           <SelectItem key={s} value={s}>
             {s === ""
-              ? "請選擇"
+              ? t("addReport.content.select.text.pleaseSelect", {
+                  ns: ["drawer"],
+                })
               : t(poiStatusTypeMessageKeys[s] || "", {
                   ns: ["model"],
                 })}
@@ -433,7 +451,9 @@ const StatusValueSelect: React.FC = () => {
         {statusValueOption?.map((s) => (
           <SelectItem key={s} value={s}>
             {s === ""
-              ? "請選擇"
+              ? t("addReport.content.select.text.pleaseSelect", {
+                  ns: ["drawer"],
+                })
               : t(poiStatusValueMessageKeys[s] || "", {
                   ns: ["model"],
                 })}

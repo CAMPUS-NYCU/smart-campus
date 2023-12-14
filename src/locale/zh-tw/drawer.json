@@ -26,6 +26,9 @@
         "setLocation": "回報地點"
       },
       "select": {
+        "text": {
+          "pleaseSelect": "請選擇"
+        },
         "setFloor": {
           "label": "回報樓層"
         },

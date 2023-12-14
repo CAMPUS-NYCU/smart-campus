@@ -26,6 +26,9 @@
         "setLocation": "回报地点"
       },
       "select": {
+        "text": {
+          "pleaseSelect": "请选择"
+        },
         "setFloor": {
           "label": "回报楼层"
         },
