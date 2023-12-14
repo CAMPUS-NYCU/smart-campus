@@ -115,7 +115,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
           ref={containerRef}
           className="container flex flex-row py-0 h-[calc((50vh-100px)/4)]"
         >
-          {/* 主要資訊列 */}
+          {/* the main information of the report */}
           <div className="flex flex-col shrink-0 justify-around basis-8/12">
             <div className="flex text-left flex-wrap flex-row">
               <p className="text-xs font-bold whitespace-nowrap mr-1">{`${poi.data.target.category}/${poi.data.target.name}`}</p>
@@ -153,7 +153,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
             </div>
           </div>
 
-          {/* 編輯按鈕 */}
+          {/* the edit button */}
           <div className="flex flex-col justify-end basis-1/12 py-1.5">
             <Button
               radius="full"
@@ -165,7 +165,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
             </Button>
           </div>
 
-          {/* 圖片 */}
+          {/* the report images */}
           <div className="flex flex-col justify-center basis-3/12 px-0.5 overflow-y-hidden">
             <Image
               radius="none"

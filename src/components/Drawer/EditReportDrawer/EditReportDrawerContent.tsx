@@ -125,7 +125,7 @@ const EditReportDrawerContent: React.FC = () => {
     <div className="flex flex-col max-h-[calc(50vh-80px)] mt-1">
       <EditReportDrawerContentPhotos />
       <div className="flex flex-col basis-6/12">
-        {/* 回報項目 */}
+        {/* report target name */}
         <div className="flex flex-row space-x-1 mt-1 items-center">
           <div className="basis-0.5/12">
             <Image
@@ -141,7 +141,7 @@ const EditReportDrawerContent: React.FC = () => {
             {reportData.target.name}
           </Chip>
         </div>
-        {/* 項目描述 */}
+        {/* report target serial */}
         <div className="flex flex-row space-x-1 mt-1 items-center">
           <div className="basis-0.5/12">
             <Image
@@ -157,7 +157,7 @@ const EditReportDrawerContent: React.FC = () => {
             {reportData.target.serial}
           </Chip>
         </div>
-        {/* 回報狀態 */}
+        {/* report status type */}
         <div className="flex flex-row space-x-1 mt-1 items-center">
           <div className="basis-0.5/12">
             <Image
@@ -181,7 +181,7 @@ const EditReportDrawerContent: React.FC = () => {
             })}
           </Chip>
         </div>
-        {/* 狀態描述 */}
+        {/* report status value */}
         <div className="flex flex-row space-x-1 mt-1 items-center">
           <div className="basis-0.5/12">
             <Image
