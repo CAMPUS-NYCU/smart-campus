@@ -5,6 +5,7 @@ name: Check Types and Lint
       - prod
       - dev
       - research
+      - insight
 
 jobs:
   test:
