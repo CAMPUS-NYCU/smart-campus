@@ -19,7 +19,10 @@ import {
 import noImage from "../../../assets/images/noImage.svg";
 import poiDrawerLocation from "../../../assets/images/poiDrawerLocation.svg";
 import poiDrawerTargetSerial from "../../../assets/images/poiDrawerTargetSerial.svg";
-import { statusColor, statusIcon } from "../../../constants/statusStyle";
+import {
+  statusColor,
+  poiDrawerStatusIcon,
+} from "../../../constants/statusStyle";
 import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
@@ -39,7 +42,7 @@ const PoiDrawerStatus: React.FC<{
   return (
     <div className="flex flex-row space-x-1 mt-1 items-center">
       <div className="basis-0.5/12">
-        <Image src={statusIcon(statusType || "")} alt="status" />
+        <Image src={poiDrawerStatusIcon(statusType || "")} alt="status" />
       </div>
       <Chip
         radius="sm"

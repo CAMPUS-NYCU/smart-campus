@@ -24,7 +24,7 @@ import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
-import { statusColor } from "../../../constants/statusStyle";
+import { clusterListStatusIcon } from "../../../constants/statusStyle";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 import { getEntry } from "../../../constants/entry";
@@ -131,16 +131,23 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
                 radius="sm"
                 classNames={{
                   content: "px-0.5 whitespace-normal text-xs",
-                  base: statusColor(poi.data.status.type),
+                  base: "bg-transparent",
                 }}
               >
-                {t(poiStatusTypeMessageKeys[poi.data.status.type], {
-                  ns: ["model"],
-                })}
-                :
-                {t(poiStatusValueMessageKeys[poi.data.status.value], {
-                  ns: ["model"],
-                })}
+                <img
+                  src={clusterListStatusIcon(poi.data.status.type)}
+                  alt="status icon"
+                  className="inline mr-0.5"
+                />
+                <p className="inline align-middle">
+                  {t(poiStatusTypeMessageKeys[poi.data.status.type], {
+                    ns: ["model"],
+                  })}
+                  :
+                  {t(poiStatusValueMessageKeys[poi.data.status.value], {
+                    ns: ["model"],
+                  })}
+                </p>
               </Chip>
             </div>
             <div className="flex flex-row space-x-1 text-xs">
