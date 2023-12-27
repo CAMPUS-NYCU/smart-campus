@@ -57,7 +57,7 @@ function statusColor(type: string) {
   return thisColor;
 }
 
-function statusIcon(type: string) {
+function poiDrawerStatusIcon(type: string) {
   let thisIcon: string;
 
   switch (type) {
@@ -131,4 +131,4 @@ function clusterListStatusIcon(type: string) {
   return thisIcon;
 }
 
-export { statusColor, statusIcon, clusterListStatusIcon };
+export { statusColor, poiDrawerStatusIcon, clusterListStatusIcon };
