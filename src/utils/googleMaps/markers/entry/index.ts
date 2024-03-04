@@ -21,6 +21,7 @@ export const setEntry = (entries: EntryData): void => {
         entries.latlng.longitude,
       ),
       zIndex: 2,
+      clickable: false,
     }),
   ];
 

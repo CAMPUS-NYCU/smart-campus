@@ -29,6 +29,7 @@ export const setFacilities = (facilities: Facilities): void => {
           FacilityData.latlng.longitude,
         ),
         zIndex: 2,
+        clickable: false,
       }),
     ]),
   );

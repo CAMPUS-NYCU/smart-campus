@@ -27,9 +27,6 @@ import {
 import { clusterListStatusIcon } from "../../../constants/statusStyle";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
-import { getEntry } from "../../../constants/entry";
-import { calculateDistance } from "../../../constants/map";
-import { EntryData } from "../../../models/entry";
 
 interface PoiListItemProps {
   poi: {
@@ -228,37 +225,20 @@ const ClusterDrawer: React.FC = () => {
     }
   }, [dispatch, searchParams]);
 
-  const targetEntry: EntryData | null = useMemo(() => {
-    if (cluster) {
-      return getEntry(cluster.data.name);
-    } else {
-      return null;
-    }
-  }, [cluster]);
-
   const orderedPoiList: Poi[] = useMemo(() => {
     let result: Poi[] = [];
 
-    if (poiList && targetEntry) {
+    if (poiList) {
       result = Object.entries(poiList).map(([id, data]) => ({
         id,
         data,
       }));
-      result.sort((poi1: Poi, poi2: Poi) => {
-        const distance1 = calculateDistance(
-          targetEntry.latlng,
-          poi1.data.latlng,
-        );
-        const distance2 = calculateDistance(
-          targetEntry.latlng,
-          poi2.data.latlng,
-        );
-        return distance1 - distance2;
-      });
+      // sort the poi list by the random order
+      result.sort(() => Math.random() - 0.5);
     }
 
     return result;
-  }, [poiList, targetEntry]);
+  }, [poiList]);
 
   return (
     <Drawer
@@ -270,7 +250,7 @@ const ClusterDrawer: React.FC = () => {
       })}
       children={
         <div>
-          {poiList && targetEntry ? (
+          {poiList ? (
             orderedPoiList.map((poi) => {
               return (
                 <PoiListItem
