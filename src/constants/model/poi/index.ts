@@ -6,7 +6,7 @@ export const poiStatusType = {
   occupation: "occupation",
 
   // 空間的回報狀態
-  usage: "usage",
+  space: "space",
   crowd: "crowd",
   noise: "noise",
   thermalComfort: "thermalComfort",
@@ -23,7 +23,7 @@ export const poiStatusTypeMessageKeys = {
   [poiStatusType.occupation]: "poi.data.status.occupation.name",
 
   // 空間的回報狀態
-  [poiStatusType.usage]: "poi.data.status.usage.name",
+  [poiStatusType.space]: "poi.data.status.space.name",
   [poiStatusType.crowd]: "poi.data.status.crowd.name",
   [poiStatusType.noise]: "poi.data.status.noise.name",
   [poiStatusType.thermalComfort]: "poi.data.status.thermalComfort.name",
@@ -49,7 +49,7 @@ export const poiStatusValue = {
   occupied: "occupied", // 有人占用
 
   // 空間的回報狀態描述
-  // 使用狀態 usage
+  // 使用狀態 space
   spacesAvailable: "spacesAvailable", // 尚有空位
   limitedSpaces: "limitedSpaces", // 空位有限
   noSpaces: "noSpaces", // 已無空位
@@ -93,9 +93,9 @@ export const poiStatusValueMessageKeys = {
 
   // 空間的回報狀態描述
   // 使用狀態
-  [poiStatusValue.spacesAvailable]: "poi.data.status.usage.value.available",
-  [poiStatusValue.limitedSpaces]: "poi.data.status.usage.value.limited",
-  [poiStatusValue.noSpaces]: "poi.data.status.usage.value.noSpaces",
+  [poiStatusValue.spacesAvailable]: "poi.data.status.space.value.available",
+  [poiStatusValue.limitedSpaces]: "poi.data.status.space.value.limited",
+  [poiStatusValue.noSpaces]: "poi.data.status.space.value.noSpaces",
   // 人潮狀態
   [poiStatusValue.crowded]: "poi.data.status.crowd.value.dense",
   [poiStatusValue.normalCrowded]: "poi.data.status.crowd.value.normal",
@@ -142,7 +142,7 @@ export const poiStatusValueSelect = {
     poiStatusValue.occupied,
     poiStatusValue.unoccupied,
   ],
-  [poiStatusType.usage]: [
+  [poiStatusType.space]: [
     "",
     poiStatusValue.spacesAvailable,
     poiStatusValue.limitedSpaces,
@@ -185,7 +185,7 @@ export const poiObjectStatusTypeSelect = [
 
 export const poiSpaceStatusTypeSelect = [
   "",
-  poiStatusType.usage,
+  poiStatusType.space,
   poiStatusType.crowd,
   poiStatusType.noise,
   poiStatusType.thermalComfort,

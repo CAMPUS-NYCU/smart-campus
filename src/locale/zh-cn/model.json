@@ -31,7 +31,7 @@
             "occupied": "有人占用"
           }
         },
-        "usage": {
+        "space": {
           "name": "使用状态",
           "value": {
             "available": "尚有空位",

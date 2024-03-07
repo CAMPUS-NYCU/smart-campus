@@ -31,8 +31,8 @@
             "occupied": "Occupied"
           }
         },
-        "usage": {
-          "name": "Space Usage",
+        "space": {
+          "name": "Space Availability",
           "value": {
             "available": "Spaces are available",
             "limited": "Spaces are limited",
