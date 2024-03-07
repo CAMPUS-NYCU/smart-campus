@@ -2,7 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
-import { useGetPoiQuery, useGetPoisQuery } from "../../../../api/poi";
+import {
+  useGetAllPoisQuery,
+  useGetPoiQuery,
+  useGetPoisQuery,
+} from "../../../../api/poi";
 import { IRootState } from "../../../../store";
 import { setHighlightId } from "../../../../store/poi";
 import { markers } from "../../../../utils/googleMaps";
@@ -15,6 +19,8 @@ const PoiMarkers: React.FC = () => {
 
   const highlightId = useSelector((state: IRootState) => state.poi.highlightId);
   const prevHighlightId = React.useRef<string | null>("");
+  // get all pois without clusterId
+  const { data: Allpois } = useGetAllPoisQuery();
 
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: pois } = useGetPoisQuery(clusterId);
@@ -28,6 +34,18 @@ const PoiMarkers: React.FC = () => {
     (poiId: string) => dispatch(setHighlightId(poiId)),
     [dispatch],
   );
+
+  // set all pois markers on map
+  React.useEffect(() => {
+    if (Allpois) {
+      markers.poi.setPois(Allpois);
+      setOnPoiMarkerClick(handleClick);
+    }
+
+    return () => {
+      markers.poi.clear();
+    };
+  }, [Allpois, handleClick]);
 
   React.useEffect(() => {
     if (pois && Object.keys(pois).length !== 0) {
