@@ -24,7 +24,6 @@ import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
-import { clusterListStatusIcon } from "../../../constants/statusStyle";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
@@ -131,11 +130,6 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
                   base: "bg-transparent",
                 }}
               >
-                <img
-                  src={clusterListStatusIcon(poi.data.status.type)}
-                  alt="status icon"
-                  className="inline mr-0.5"
-                />
                 <p className="inline align-middle">
                   {t(poiStatusTypeMessageKeys[poi.data.status.type], {
                     ns: ["model"],
