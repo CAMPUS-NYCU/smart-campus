@@ -31,6 +31,35 @@
             "occupied": "Occupied"
           }
         },
+        "presence": {
+          "name": "Presence",
+          "value": {
+            "present": "present",
+            "absent": "absent"
+          }
+        },
+        "availability": {
+          "name": "Availability",
+          "value": {
+            "available": "Availabile",
+            "nonAvailable": "Unavailable"
+          }
+        },
+        "experience": {
+          "name": "Experience",
+          "value": {
+            "good": "Good Experience",
+            "normal": "Acceptable Experience",
+            "poor": "Poor Experience"
+          }
+        },
+        "reservation": {
+          "name": "Reservation",
+          "value": {
+            "reserved": "Reserved",
+            "unreserved": "Unreserved"
+          }
+        },
         "space": {
           "name": "Space Availability",
           "value": {
@@ -55,12 +84,42 @@
             "noisy": "Noisy"
           }
         },
-        "thermalComfort": {
-          "name": "Thermal Comfort",
+        "temperature": {
+          "name": "Temperature",
           "value": {
-            "comfortable": "Comfortable",
-            "normal": "Normal",
-            "uncomfortable": "Uncomfortable"
+            "hot": "Hot",
+            "comfort": "Comfortable",
+            "cold": "Cold"
+          }
+        },
+        "humidity": {
+          "name": "Humidity",
+          "value": {
+            "humid": "humid",
+            "comfort": "Comfortable",
+            "dry": "Dry"
+          }
+        },
+        "ventilation": {
+          "name": "Ventilation",
+          "value": {
+            "good": "Good Ventilation",
+            "bad": "Bad Ventilation"
+          }
+        },
+        "lighting": {
+          "name": "Lighting",
+          "value": {
+            "glaring": "Glaring",
+            "adequate": "Adequate",
+            "dim": "Dim"
+          }
+        },
+        "odor": {
+          "name": "Odor",
+          "value": {
+            "odorous": "Odorous",
+            "odorless": "Odorless"
           }
         },
         "cleanliness": {

@@ -31,8 +31,37 @@
             "occupied": "有人占用"
           }
         },
+        "presence": {
+          "name": "存在状态",
+          "value": {
+            "present": "存在",
+            "absent": "不存在"
+          }
+        },
+        "availability": {
+          "name": "可用性",
+          "value": {
+            "available": "可用",
+            "nonAvailable": "不可用"
+          }
+        },
+        "experience": {
+          "name": "体验",
+          "value": {
+            "good": "体验佳",
+            "normal": "体验尚可",
+            "poor": "体验差"
+          }
+        },
+        "reservation": {
+          "name": "预约状态",
+          "value": {
+            "reserved": "预约中",
+            "unreserved": "未预约"
+          }
+        },
         "space": {
-          "name": "使用状态",
+          "name": "空位状态",
           "value": {
             "available": "尚有空位",
             "limited": "空位有限",
@@ -55,12 +84,42 @@
             "noisy": "吵杂"
           }
         },
-        "thermalComfort": {
-          "name": "体感状态",
+        "temperature": {
+          "name": "温度状态",
           "value": {
-            "comfortable": "舒适",
-            "normal": "普通",
-            "uncomfortable": "不适"
+            "hot": "热",
+            "comfort": "舒适",
+            "cold": "冷"
+          }
+        },
+        "humidity": {
+          "name": "湿度状态",
+          "value": {
+            "humid": "潮湿",
+            "comfort": "舒适",
+            "dry": "乾燥"
+          }
+        },
+        "ventilation": {
+          "name": "通风状态",
+          "value": {
+            "good": "通风顺畅",
+            "bad": "通风不良"
+          }
+        },
+        "lighting": {
+          "name": "光线状态",
+          "value": {
+            "glaring": "光线刺眼",
+            "adequate": "光线充足",
+            "dim": "光线昏暗"
+          }
+        },
+        "odor": {
+          "name": "气味状态",
+          "value": {
+            "odorous": "有异味",
+            "odorless": "无异味"
           }
         },
         "cleanliness": {
