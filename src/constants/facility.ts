@@ -7,6 +7,7 @@ import swimMultiGymData from "../assets/data/markers/facilities/swim-multigym.js
 import outdoorFieldData from "../assets/data/markers/facilities/outdoor-field.json";
 import oldGymData from "../assets/data/markers/facilities/oldgym.json";
 import libraryData from "../assets/data/markers/facilities/library.json";
+import multiFloorLibraryData from "../assets/data/markers/facilities/multi-floor-library.json";
 
 function getLocations(clusterName: string): Facilities {
   switch (true) {
@@ -33,6 +34,9 @@ function getLocations(clusterName: string): Facilities {
 
     case /^圖書館/.test(clusterName):
       return libraryData;
+
+    case /^多樓層圖書館/.test(clusterName):
+      return multiFloorLibraryData;
 
     default:
       console.error("未知的地點:", clusterName);
