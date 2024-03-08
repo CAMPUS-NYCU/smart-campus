@@ -6,9 +6,7 @@ import {
   doc,
   getDoc,
   getDocs,
-  query,
   setDoc,
-  where,
 } from "firebase/firestore";
 
 import { firestoreConfig } from "../../constants/firebase";
@@ -29,37 +27,10 @@ import { uploadBytes } from "firebase/storage";
 
 const poiApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAllPois: builder.query<Pois, void>({
+    getPois: builder.query<Pois, void>({
       queryFn: async () => {
         const pois = await getDocs(
           collection(firestore, firestoreConfig.collection.poi),
-        )
-          .then((snapshot) =>
-            snapshot.docs.map(
-              (doc) => ({ id: doc.id, data: doc.data() }) as FirestorePoi,
-            ),
-          )
-          .then((pois) =>
-            Object.fromEntries(
-              pois.map((poi) => [poi.id, toPoiDataByFirebasePoiData(poi.data)]),
-            ),
-          );
-
-        return { data: pois };
-      },
-      providesTags: ["Poi"],
-    }),
-    getPois: builder.query<Pois, string | null>({
-      queryFn: async (arg) => {
-        if (!arg) {
-          return { data: {} };
-        }
-
-        const pois = await getDocs(
-          query(
-            collection(firestore, firestoreConfig.collection.poi),
-            where("clusterId", "==", arg),
-          ),
         )
           .then((snapshot) =>
             snapshot.docs.map(
@@ -153,7 +124,6 @@ const poiApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useGetAllPoisQuery,
   useGetPoisQuery,
   useGetPoiQuery,
   useAddPoiMutation,
