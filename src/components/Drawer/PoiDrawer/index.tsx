@@ -13,7 +13,7 @@ import { editReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
-  setupDrawerParams,
+  resetDrawerParams,
 } from "../../../utils/routes/params";
 
 import noImage from "../../../assets/images/noImage.svg";
@@ -93,11 +93,7 @@ const PoiDrawer: React.FC = () => {
     if (!poi) {
       throw new Error("PoiDrawer: poi not found");
     } else {
-      setupDrawerParams<"cluster">(
-        { clusterId: poi?.data.clusterId },
-        searchParams,
-        setSearchParams,
-      );
+      resetDrawerParams(searchParams, setSearchParams);
     }
   };
 

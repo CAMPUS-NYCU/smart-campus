@@ -203,7 +203,7 @@ const ClusterDrawer: React.FC = () => {
   });
   const { data: user } = useGetUserQuery();
 
-  const { data: poiList } = useGetPoisQuery(id);
+  const { data: poiList } = useGetPoisQuery();
 
   const handlePoiEdit = () => {
     if (!id) {
