@@ -4,12 +4,20 @@ export const poiStatusType = {
   function: "function",
   appearance: "appearance",
   occupation: "occupation",
+  presence: "presence",
+  availability: "availability",
+  experience: "experience",
+  reservation: "reservation",
 
   // 空間的回報狀態
-  usage: "usage",
+  space: "space",
   crowd: "crowd",
   noise: "noise",
-  thermalComfort: "thermalComfort",
+  temperature: "temperature",
+  humidity: "humidity",
+  ventilation: "ventilation",
+  lighting: "lighting",
+  odor: "odor",
 
   // 物體空間共用
   cleanliness: "cleanliness",
@@ -21,12 +29,20 @@ export const poiStatusTypeMessageKeys = {
   [poiStatusType.function]: "poi.data.status.function.name",
   [poiStatusType.appearance]: "poi.data.status.appearance.name",
   [poiStatusType.occupation]: "poi.data.status.occupation.name",
+  [poiStatusType.presence]: "poi.data.status.presence.name",
+  [poiStatusType.availability]: "poi.data.status.availability.name",
+  [poiStatusType.experience]: "poi.data.status.experience.name",
+  [poiStatusType.reservation]: "poi.data.status.reservation.name",
 
   // 空間的回報狀態
-  [poiStatusType.usage]: "poi.data.status.usage.name",
+  [poiStatusType.space]: "poi.data.status.space.name",
   [poiStatusType.crowd]: "poi.data.status.crowd.name",
   [poiStatusType.noise]: "poi.data.status.noise.name",
-  [poiStatusType.thermalComfort]: "poi.data.status.thermalComfort.name",
+  [poiStatusType.temperature]: "poi.data.status.temperature.name",
+  [poiStatusType.humidity]: "poi.data.status.humidity.name",
+  [poiStatusType.ventilation]: "poi.data.status.ventilation.name",
+  [poiStatusType.lighting]: "poi.data.status.lighting.name",
+  [poiStatusType.odor]: "poi.data.status.odor.name",
 
   // 物體空間共用
   [poiStatusType.cleanliness]: "poi.data.status.cleanliness.name",
@@ -47,9 +63,22 @@ export const poiStatusValue = {
   // 占用狀態 occupation
   unoccupied: "unoccupied", // 無人使用
   occupied: "occupied", // 有人占用
+  // 存在狀態 presence
+  present: "present", // 存在
+  absent: "absent", // 不存在
+  // 可用性 availability
+  available: "available", // 可使用
+  nonAvailable: "nonAvailable", // 尚無法使用
+  // 體驗狀態 experience
+  goodExperience: "goodExperience", // 體驗佳
+  normalExperience: "normalExperience", // 體驗尚可
+  poorExperience: "poorExperience", // 體驗差
+  // 預約狀態 reservation
+  reserved: "reserved", // 預約中
+  unreserved: "unreserved", // 未預約
 
   // 空間的回報狀態描述
-  // 使用狀態 usage
+  // 空位狀態 space
   spacesAvailable: "spacesAvailable", // 尚有空位
   limitedSpaces: "limitedSpaces", // 空位有限
   noSpaces: "noSpaces", // 已無空位
@@ -61,10 +90,24 @@ export const poiStatusValue = {
   quiet: "quiet", // 安靜
   normalNoiseLevel: "normalNoiseLevel", // 普通
   noisy: "noisy", // 吵雜
-  // 體感狀態 thermalComfort
-  comfortable: "comfortable", // 舒適
-  normalComfort: "normalComfort", // 普通
-  uncomfortable: "uncomfortable", // 不適
+  // 溫度狀態 temperature
+  hot: "hot", // 熱
+  comfortTemperature: "comfortTemperature", // 舒適
+  cold: "cold", // 冷
+  // 濕度狀態 humidity
+  humid: "humid", // 潮濕
+  comfortableHumidity: "comfortableHumidity", // 舒適
+  dry: "dry", // 乾燥
+  // 通風狀態 ventilation
+  goodVentilation: "goodVentilation", // 通風順暢
+  badVentilation: "badVentilation", // 通風不良
+  // 光線狀態 lighting
+  glaring: "glaring", // 光線刺眼
+  adequate: "adequate", // 光線充足
+  dim: "dim", // 光線昏暗
+  // 氣味狀態 odor
+  odorous: "odorous", // 有異味
+  odorless: "odorless", // 無異味
 
   // 物體空間共用狀態描述
   // 清潔狀態 cleanliness
@@ -90,12 +133,26 @@ export const poiStatusValueMessageKeys = {
   // 占用狀態
   [poiStatusValue.occupied]: "poi.data.status.occupation.value.occupied",
   [poiStatusValue.unoccupied]: "poi.data.status.occupation.value.unoccupied",
+  // 存在狀態
+  [poiStatusValue.present]: "poi.data.status.presence.value.present",
+  [poiStatusValue.absent]: "poi.data.status.presence.value.absent",
+  // 可用性
+  [poiStatusValue.available]: "poi.data.status.availability.value.available",
+  [poiStatusValue.nonAvailable]:
+    "poi.data.status.availability.value.nonAvailable",
+  // 體驗狀態
+  [poiStatusValue.goodExperience]: "poi.data.status.experience.value.good",
+  [poiStatusValue.normalExperience]: "poi.data.status.experience.value.normal",
+  [poiStatusValue.poorExperience]: "poi.data.status.experience.value.poor",
+  // 預約狀態
+  [poiStatusValue.reserved]: "poi.data.status.reservation.value.reserved",
+  [poiStatusValue.unreserved]: "poi.data.status.reservation.value.unreserved",
 
   // 空間的回報狀態描述
   // 使用狀態
-  [poiStatusValue.spacesAvailable]: "poi.data.status.usage.value.available",
-  [poiStatusValue.limitedSpaces]: "poi.data.status.usage.value.limited",
-  [poiStatusValue.noSpaces]: "poi.data.status.usage.value.noSpaces",
+  [poiStatusValue.spacesAvailable]: "poi.data.status.space.value.available",
+  [poiStatusValue.limitedSpaces]: "poi.data.status.space.value.limited",
+  [poiStatusValue.noSpaces]: "poi.data.status.space.value.noSpaces",
   // 人潮狀態
   [poiStatusValue.crowded]: "poi.data.status.crowd.value.dense",
   [poiStatusValue.normalCrowded]: "poi.data.status.crowd.value.normal",
@@ -104,12 +161,26 @@ export const poiStatusValueMessageKeys = {
   [poiStatusValue.quiet]: "poi.data.status.noise.value.quiet",
   [poiStatusValue.normalNoiseLevel]: "poi.data.status.noise.value.normal",
   [poiStatusValue.noisy]: "poi.data.status.noise.value.noisy",
-  // 體感狀態
-  [poiStatusValue.comfortable]:
-    "poi.data.status.thermalComfort.value.comfortable",
-  [poiStatusValue.normalComfort]: "poi.data.status.thermalComfort.value.normal",
-  [poiStatusValue.uncomfortable]:
-    "poi.data.status.thermalComfort.value.uncomfortable",
+  // 溫度狀態
+  [poiStatusValue.hot]: "poi.data.status.temperature.value.hot",
+  [poiStatusValue.comfortTemperature]:
+    "poi.data.status.temperature.value.comfort",
+  [poiStatusValue.cold]: "poi.data.status.temperature.value.cold",
+  // 濕度狀態
+  [poiStatusValue.humid]: "poi.data.status.humidity.value.humid",
+  [poiStatusValue.comfortableHumidity]:
+    "poi.data.status.humidity.value.comfort",
+  [poiStatusValue.dry]: "poi.data.status.humidity.value.dry",
+  // 通風狀態
+  [poiStatusValue.goodVentilation]: "poi.data.status.ventilation.value.good",
+  [poiStatusValue.badVentilation]: "poi.data.status.ventilation.value.bad",
+  // 光線狀態
+  [poiStatusValue.glaring]: "poi.data.status.lighting.value.glaring",
+  [poiStatusValue.adequate]: "poi.data.status.lighting.value.adequate",
+  [poiStatusValue.dim]: "poi.data.status.lighting.value.dim",
+  // 氣味狀態
+  [poiStatusValue.odorous]: "poi.data.status.odor.value.odorous",
+  [poiStatusValue.odorless]: "poi.data.status.odor.value.odorless",
 
   // 物體空間共用狀態描述
   // 清潔狀態
@@ -142,7 +213,24 @@ export const poiStatusValueSelect = {
     poiStatusValue.occupied,
     poiStatusValue.unoccupied,
   ],
-  [poiStatusType.usage]: [
+  [poiStatusType.presence]: ["", poiStatusValue.present, poiStatusValue.absent],
+  [poiStatusType.availability]: [
+    "",
+    poiStatusValue.available,
+    poiStatusValue.nonAvailable,
+  ],
+  [poiStatusType.experience]: [
+    "",
+    poiStatusValue.goodExperience,
+    poiStatusValue.normalExperience,
+    poiStatusValue.poorExperience,
+  ],
+  [poiStatusType.reservation]: [
+    "",
+    poiStatusValue.reserved,
+    poiStatusValue.unreserved,
+  ],
+  [poiStatusType.space]: [
     "",
     poiStatusValue.spacesAvailable,
     poiStatusValue.limitedSpaces,
@@ -160,12 +248,30 @@ export const poiStatusValueSelect = {
     poiStatusValue.normalNoiseLevel,
     poiStatusValue.noisy,
   ],
-  [poiStatusType.thermalComfort]: [
+  [poiStatusType.temperature]: [
     "",
-    poiStatusValue.comfortable,
-    poiStatusValue.normalComfort,
-    poiStatusValue.uncomfortable,
+    poiStatusValue.hot,
+    poiStatusValue.comfortTemperature,
+    poiStatusValue.cold,
   ],
+  [poiStatusType.humidity]: [
+    "",
+    poiStatusValue.humid,
+    poiStatusValue.comfortableHumidity,
+    poiStatusValue.dry,
+  ],
+  [poiStatusType.ventilation]: [
+    "",
+    poiStatusValue.goodVentilation,
+    poiStatusValue.badVentilation,
+  ],
+  [poiStatusType.lighting]: [
+    "",
+    poiStatusValue.glaring,
+    poiStatusValue.adequate,
+    poiStatusValue.dim,
+  ],
+  [poiStatusType.odor]: ["", poiStatusValue.odorous, poiStatusValue.odorless],
   [poiStatusType.cleanliness]: [
     "",
     poiStatusValue.goodCleanliness,
@@ -180,14 +286,22 @@ export const poiObjectStatusTypeSelect = [
   poiStatusType.function,
   poiStatusType.appearance,
   poiStatusType.occupation,
+  poiStatusType.presence,
+  poiStatusType.availability,
+  poiStatusType.experience,
+  poiStatusType.reservation,
   poiStatusType.cleanliness,
 ];
 
 export const poiSpaceStatusTypeSelect = [
   "",
-  poiStatusType.usage,
+  poiStatusType.space,
   poiStatusType.crowd,
   poiStatusType.noise,
-  poiStatusType.thermalComfort,
+  poiStatusType.temperature,
+  poiStatusType.humidity,
+  poiStatusType.ventilation,
+  poiStatusType.lighting,
+  poiStatusType.odor,
   poiStatusType.cleanliness,
 ];
