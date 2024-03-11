@@ -110,7 +110,7 @@ export const getHighlightedIcon = (
   let thisUrl: string;
 
   switch (targetName) {
-    case "無障礙停車區":
+    case "路邊無障礙停車位":
       thisUrl = poiMakrerAccessibleParkingHighlighted;
       break;
     case "ATM":
@@ -152,7 +152,7 @@ export const getHighlightedIcon = (
     case "跑步機":
       thisUrl = poiMarkerTreadmillHighlighted;
       break;
-    case "一般停車區":
+    case "路邊一般停車位":
       thisUrl = poiMarkerUsualParkingHighlighted;
       break;
     case "一般座位區":
