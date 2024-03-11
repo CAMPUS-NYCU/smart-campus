@@ -50,8 +50,8 @@
         "longitude": 120.99756958763687
       },
       "target": {
-        "name": "櫃台",
-        "description": "小木屋點餐櫃台1-1"
+        "name": "服務台",
+        "description": "小木屋點餐服務台1-1"
       }
     },
     "5": {
@@ -61,8 +61,8 @@
         "longitude": 120.9976272551307
       },
       "target": {
-        "name": "櫃台",
-        "description": "小木屋取餐櫃台1-1"
+        "name": "服務台",
+        "description": "小木屋取餐服務台1-1"
       }
     },
     "6": {
