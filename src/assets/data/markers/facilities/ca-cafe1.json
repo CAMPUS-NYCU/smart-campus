@@ -50,8 +50,8 @@
       "longitude": 120.99967506247044
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-1"
+      "name": "服務台",
+      "description": "服務台1-1"
     }
   },
   "5": {
@@ -61,8 +61,8 @@
       "longitude": 120.99967640357495
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-2"
+      "name": "服務台",
+      "description": "服務台1-2"
     }
   },
   "6": {
@@ -72,8 +72,8 @@
       "longitude": 120.9996770741272
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-3"
+      "name": "服務台",
+      "description": "服務台1-3"
     }
   },
   "7": {
@@ -83,8 +83,8 @@
       "longitude": 120.99972334223271
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-4"
+      "name": "服務台",
+      "description": "服務台1-4"
     }
   },
   "8": {
@@ -94,8 +94,8 @@
       "longitude": 120.99962410049916
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-5"
+      "name": "服務台",
+      "description": "服務台1-5"
     }
   },
   "9": {
@@ -105,8 +105,8 @@
       "longitude": 120.99952485876561
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-6"
+      "name": "服務台",
+      "description": "服務台1-6"
     }
   },
   "10": {

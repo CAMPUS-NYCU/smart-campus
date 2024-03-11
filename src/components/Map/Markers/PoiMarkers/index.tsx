@@ -55,13 +55,13 @@ const PoiMarkers: React.FC = () => {
 
       markers.poi.toggleHighlightIcon(
         highlightId,
-        pois[highlightId].status.type,
+        pois[highlightId].target.name,
         true,
       );
       if (prevHighlightId.current) {
         markers.poi.toggleHighlightIcon(
           prevHighlightId.current,
-          pois[prevHighlightId.current].status.type,
+          pois[prevHighlightId.current].target.name,
           false,
         );
       }
