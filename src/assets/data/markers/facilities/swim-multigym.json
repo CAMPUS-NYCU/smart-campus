@@ -105,8 +105,8 @@
       "longitude": 120.99593462420128
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台2-1"
+      "name": "服務台",
+      "description": "服務台2-1"
     }
   },
   "10": {
@@ -303,8 +303,8 @@
       "longitude": 120.99582749194022
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-1"
+      "name": "服務台",
+      "description": "服務台1-1"
     }
   },
   "28": {

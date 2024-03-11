@@ -116,8 +116,8 @@
       "longitude": 120.9974695043067
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-1"
+      "name": "服務台",
+      "description": "服務台1-1"
     }
   },
   "11": {
@@ -127,8 +127,8 @@
       "longitude": 120.99743731779851
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-2"
+      "name": "服務台",
+      "description": "服務台1-2"
     }
   },
   "12": {
@@ -138,8 +138,8 @@
       "longitude": 120.99738367361822
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-3"
+      "name": "服務台",
+      "description": "服務台1-3"
     }
   },
   "13": {
@@ -149,8 +149,8 @@
       "longitude": 120.99726833863058
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-4"
+      "name": "服務台",
+      "description": "服務台1-4"
     }
   },
   "14": {
@@ -160,8 +160,8 @@
       "longitude": 120.99720126282591
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-5"
+      "name": "服務台",
+      "description": "服務台1-5"
     }
   },
   "15": {
@@ -171,8 +171,8 @@
       "longitude": 120.99714093370237
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台1-6"
+      "name": "服務台",
+      "description": "服務台1-6"
     }
   },
   "16": {
@@ -226,8 +226,8 @@
       "longitude": 120.99732852069535
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台2-1"
+      "name": "服務台",
+      "description": "服務台2-1"
     }
   },
   "21": {
@@ -237,8 +237,8 @@
       "longitude": 120.99718166975178
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台2-2"
+      "name": "服務台",
+      "description": "服務台2-2"
     }
   },
   "22": {
@@ -248,8 +248,8 @@
       "longitude": 120.99713137833275
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台2-3"
+      "name": "服務台",
+      "description": "服務台2-3"
     }
   },
   "23": {
@@ -259,8 +259,8 @@
       "longitude": 120.99718770472207
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台2-4"
+      "name": "服務台",
+      "description": "服務台2-4"
     }
   },
   "24": {
@@ -270,8 +270,8 @@
       "longitude": 120.99706164089837
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台2-5"
+      "name": "服務台",
+      "description": "服務台2-5"
     }
   },
   "25": {
@@ -281,8 +281,8 @@
       "longitude": 120.99697379855313
     },
     "target": {
-      "name": "櫃台",
-      "description": "櫃台2-6"
+      "name": "服務台",
+      "description": "服務台2-6"
     }
   },
   "26": {
