@@ -115,39 +115,36 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
           {/* the main information of the report */}
           <div className="flex flex-col shrink-0 justify-around basis-8/12">
             <div className="flex text-left flex-wrap flex-row">
-              <div className="basis-0.5/12">
+              <div className="basis-0.5/12 align-middle">
                 <img
                   src={getClusterIcon(poi.data.target.name)}
                   alt={"icon of" + poi.data.target.name}
-                  className="inline mr-0.5"
+                  className="inline mr-1 h-6"
                 />
-                <p className="text-xs inline font-bold whitespace-nowrap mr-1">{`${poi.data.target.category}/${poi.data.target.name}`}</p>
-                <p className="text-xs inline whitespace-nowrap text-secondary">
-                  {poi.data.target.serial}
-                </p>
+                <p className="text-sm inline font-bold whitespace-nowrap mr-1">{`${poi.data.target.category}/${poi.data.target.serial}`}</p>
               </div>
             </div>
             <div className="flex flex-row space-x-1">
-              <Chip radius="sm" classNames={{ content: "text-xs px-0.5" }}>
-                {poi.data.floor}
-              </Chip>
-              <Chip
-                radius="sm"
-                classNames={{
-                  content: "px-0.5 whitespace-normal text-xs",
-                  base: "bg-transparent",
-                }}
-              >
+              <div className="basis-3/12">
+                <Chip
+                  radius="sm"
+                  classNames={{
+                    content: "text-xs px-0.5",
+                    base: "py-0 min-h-fit h-6 mr-1",
+                  }}
+                >
+                  {poi.data.floor}
+                </Chip>
                 <p className="inline align-middle">
                   {t(poiStatusTypeMessageKeys[poi.data.status.type], {
                     ns: ["model"],
                   })}
-                  :
+                  ：
                   {t(poiStatusValueMessageKeys[poi.data.status.value], {
                     ns: ["model"],
                   })}
                 </p>
-              </Chip>
+              </div>
             </div>
             <div className="flex flex-row space-x-1 text-xs">
               {t("clusterDrawer.content.texts.updatedAt", {
