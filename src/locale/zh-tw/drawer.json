@@ -36,9 +36,6 @@
         "setTargetName": {
           "label": "回報項目"
         },
-        "setTargetSerial": {
-          "label": "項目描述"
-        },
         "setStatusType": {
           "label": "回報狀態"
         },
@@ -64,7 +61,6 @@
     "content": {
       "texts": {
         "targetName": "回報項目",
-        "targetSerial": "項目描述",
         "statusType": "回報狀態"
       },
       "select": {
