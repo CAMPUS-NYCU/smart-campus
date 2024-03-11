@@ -16,7 +16,7 @@ export const setPois = (pois: Pois): void => {
     Object.entries(pois).map(([poiId, poiData]) => [
       poiId,
       new google.maps.Marker({
-        icon: getIcon(poiData.status.type),
+        icon: getIcon(poiData.target.name),
         map: maps.mapRef.current,
         position: new google.maps.LatLng(
           poiData.latlng.latitude,
@@ -43,12 +43,12 @@ export const clear = (): void => {
 
 export const toggleHighlightIcon = (
   highlightedId: string,
-  statusType: PoiData["status"]["type"],
+  targetName: PoiData["target"]["name"],
   isHighlighted: boolean,
 ): void => {
   if (isHighlighted) {
-    markerRef.current[highlightedId].setIcon(getHighlightedIcon(statusType));
+    markerRef.current[highlightedId].setIcon(getHighlightedIcon(targetName));
   } else {
-    markerRef.current[highlightedId].setIcon(getIcon(statusType));
+    markerRef.current[highlightedId].setIcon(getIcon(targetName));
   }
 };

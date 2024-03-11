@@ -16,7 +16,6 @@ import poiEditDrawerTargetName from "../../../assets/images/poiEditDrawerTargetN
 import poiEditDrawerTargetSerial from "../../../assets/images/poiEditDrawerTargetSerial.svg";
 import poiEditDrawerStatusType from "../../../assets/images/poiEditDrawerStatusType.svg";
 import poiEditDrawerStatusValue from "../../../assets/images/poiEditDrawerStatusValue.svg";
-import { statusColor } from "../../../constants/statusStyle";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
@@ -175,7 +174,6 @@ const EditReportDrawerContent: React.FC = () => {
             radius="sm"
             classNames={{
               content: "px-0.5 text-xs",
-              base: statusColor(reportData.status.type),
             }}
           >
             {t(poiStatusTypeMessageKeys[reportData.status.type], {
