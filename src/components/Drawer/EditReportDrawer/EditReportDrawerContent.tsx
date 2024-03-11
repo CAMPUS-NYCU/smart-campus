@@ -13,7 +13,6 @@ import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
 import noImage from "../../../assets/images/noImage.svg";
 import poiEditDrawerTargetName from "../../../assets/images/poiEditDrawerTargetName.svg";
-import poiEditDrawerTargetSerial from "../../../assets/images/poiEditDrawerTargetSerial.svg";
 import poiEditDrawerStatusType from "../../../assets/images/poiEditDrawerStatusType.svg";
 import poiEditDrawerStatusValue from "../../../assets/images/poiEditDrawerStatusValue.svg";
 import { statusColor } from "../../../constants/statusStyle";
@@ -141,22 +140,6 @@ const EditReportDrawerContent: React.FC = () => {
           </p>
           <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
             {reportData.target.name}
-          </Chip>
-        </div>
-        {/* report target serial */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
-          <div className="basis-0.5/12">
-            <Image
-              radius="none"
-              src={poiEditDrawerTargetSerial}
-              alt="target serial"
-            />
-          </div>
-          <p className="text-xs font-bold">
-            {t("editReport.content.texts.targetSerial", { ns: ["drawer"] })}
-          </p>
-          <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
-            {reportData.target.serial}
           </Chip>
         </div>
         {/* report status type */}

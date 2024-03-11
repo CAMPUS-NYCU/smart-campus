@@ -36,9 +36,6 @@
         "setTargetName": {
           "label": "回报项目"
         },
-        "setTargetSerial": {
-          "label": "项目描述"
-        },
         "setStatusType": {
           "label": "回报状态"
         },
@@ -64,7 +61,6 @@
     "content": {
       "texts": {
         "targetName": "回报项目",
-        "targetSerial": "项目描述",
         "statusType": "回报状态"
       },
       "select": {

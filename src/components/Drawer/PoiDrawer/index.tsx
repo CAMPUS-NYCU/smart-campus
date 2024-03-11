@@ -18,7 +18,6 @@ import {
 
 import noImage from "../../../assets/images/noImage.svg";
 import poiDrawerLocation from "../../../assets/images/poiDrawerLocation.svg";
-import poiDrawerTargetSerial from "../../../assets/images/poiDrawerTargetSerial.svg";
 import { statusColor, statusIcon } from "../../../constants/statusStyle";
 import {
   poiStatusTypeMessageKeys,
@@ -151,7 +150,7 @@ const PoiDrawer: React.FC = () => {
           </div>
 
           <div className="basis-6/12">
-            {/* the fist row：location & floor */}
+            {/* the first row：location & floor */}
             <div className="flex flex-row space-x-1 mt-1 items-center">
               <div className="basis-0.5/12">
                 <Image src={poiDrawerLocation} alt="location and floor" />
@@ -167,26 +166,13 @@ const PoiDrawer: React.FC = () => {
               </Chip>
             </div>
 
-            {/* the second row：target serial */}
-            <div className="flex flex-row space-x-1 mt-1 items-center">
-              <div className="basis-0.5/12">
-                <Image
-                  src={poiDrawerTargetSerial}
-                  alt="target serial of this report"
-                />
-              </div>
-              <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
-                {poi?.data.target.serial}
-              </Chip>
-            </div>
-
-            {/* the third row：status */}
+            {/* the second row：status */}
             <PoiDrawerStatus
               statusType={poi?.data.status.type}
               statusValue={poi?.data.status.value}
             />
 
-            {/* the fourth row：updatedBy &updatedAt */}
+            {/* the third row：updatedBy &updatedAt */}
             <div className="flex flex-row space-x-1 mt-1 items-center justify-end">
               <p className="text-xs text-secondary">
                 {t("poiDrawer.content.texts.updatedAt", {

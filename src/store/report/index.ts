@@ -16,7 +16,6 @@ export const initialReportPoiData: PoiData = {
   target: {
     category: "",
     name: "",
-    serial: "",
   },
   status: {
     type: "",
