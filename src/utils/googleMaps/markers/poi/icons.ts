@@ -165,7 +165,7 @@ export const getHighlightedIcon = (
       thisUrl = poiMarkerVolleyballHighlighted;
       break;
     default:
-      console.log(`No icon for ${targetName}`);
+      console.log(`No highlighted icon for ${targetName}`);
       thisUrl = "";
       break;
   }
