@@ -49,7 +49,7 @@
         }
       }
     },
-    "title": "新增位於 {{cluster}} 的回報"
+    "title": "新增位於{{cluster}}的回報"
   },
   "editReport": {
     "buttons": {

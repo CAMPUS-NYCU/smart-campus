@@ -19,6 +19,7 @@ import Drawer from "..";
 import AddReportDrawerContent from "./AddReportDrawerContent";
 import AddReportDrawerConfirm from "./AddReportDrawerConfirm";
 import CreatingFlag from "./CreatingFlag";
+import { getDrawerTitle } from "../../../constants/drawerTitle";
 import { PoiData } from "../../../models/poi";
 import { maps } from "../../../utils/googleMaps";
 
@@ -107,7 +108,7 @@ const AddReportDrawer: React.FC = () => {
         title={
           <span>
             {t("addReport.title", {
-              cluster: cluster?.data.name,
+              cluster: cluster ? getDrawerTitle(cluster.data.name) : "",
               ns: ["drawer"],
             })}
           </span>
