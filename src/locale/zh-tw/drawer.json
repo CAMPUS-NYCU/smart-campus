@@ -24,7 +24,8 @@
         }
       },
       "text": {
-        "setLocation": "回報地點"
+        "setLocation": "回報座標",
+        "flagInsruction": "將地圖上的黃色標籤移動到欲回報的位置"
       },
       "select": {
         "placeHolder": "請選擇",

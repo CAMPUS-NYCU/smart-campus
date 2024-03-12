@@ -541,13 +541,17 @@ const AddReportDrawerContent: React.FC = () => {
                 ns: ["drawer"],
               })}
             </p>
-            <Input
-              aria-label="set location"
-              placeholder={cluster?.data.name}
-              variant="underlined"
-              classNames={{ base: "basis-6/12" }}
-              isReadOnly
-            />
+            <div className="flex flex-row basis-[70%]">
+              <Input
+                aria-label="set location"
+                placeholder={t("addReport.content.text.flagInsruction", {
+                  ns: ["drawer"],
+                })}
+                variant="underlined"
+                classNames={{ base: "", input: "text-xs w-full" }}
+                isReadOnly
+              />
+            </div>
           </div>
           {/* report floor */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
