@@ -92,7 +92,7 @@
   },
   {
     "floor": "1F",
-    "category": "物體",
+    "category": "空間",
     "name": "置物櫃",
     "serial": [
       "置物櫃1-1",
@@ -189,7 +189,7 @@
   },
   {
     "floor": "2F",
-    "category": "物體",
+    "category": "空間",
     "name": "置物櫃",
     "serial": [
       "置物櫃2-1",
@@ -254,7 +254,7 @@
   },
   {
     "floor": "3F",
-    "category": "物體",
+    "category": "空間",
     "name": "置物櫃",
     "serial": [
       "置物櫃3-1",
