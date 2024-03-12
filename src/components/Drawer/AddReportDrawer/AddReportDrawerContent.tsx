@@ -465,6 +465,7 @@ const StatusValueSelect: React.FC = () => {
 };
 
 const AddReportDrawerContentPhotos: React.FC = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
 
@@ -496,7 +497,11 @@ const AddReportDrawerContentPhotos: React.FC = () => {
             />
             <div className="flex flex-row">
               <Image src={poiAddDrawerUploadImages} />
-              <p className="text-xs font-bold pt-0.5 ml-0.5">上傳圖片</p>
+              <p className="text-xs font-bold pt-0.5 ml-0.5">
+                {t("addReport.buttons.uploadImage", {
+                  ns: ["drawer"],
+                })}
+              </p>
             </div>
           </label>
         </div>

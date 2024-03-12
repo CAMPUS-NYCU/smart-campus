@@ -1,7 +1,8 @@
 {
   "addReport": {
     "buttons": {
-      "add": "新增"
+      "add": "新增",
+      "uploadImage": "上传图片"
     },
     "confirm": {
       "buttons": {
