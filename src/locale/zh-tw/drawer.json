@@ -1,7 +1,8 @@
 {
   "addReport": {
     "buttons": {
-      "add": "新增"
+      "add": "新增",
+      "uploadImage": "上傳圖片"
     },
     "confirm": {
       "buttons": {
@@ -23,7 +24,8 @@
         }
       },
       "text": {
-        "setLocation": "回報地點"
+        "setLocation": "回報座標",
+        "flagInsruction": "將地圖上的黃色標籤移動到欲回報的位置"
       },
       "select": {
         "placeHolder": "請選擇",
@@ -47,7 +49,7 @@
         }
       }
     },
-    "title": "新增位於 {{cluster}} 的回報"
+    "title": "新增位於{{cluster}}的回報"
   },
   "editReport": {
     "buttons": {

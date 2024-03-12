@@ -465,6 +465,7 @@ const StatusValueSelect: React.FC = () => {
 };
 
 const AddReportDrawerContentPhotos: React.FC = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
 
@@ -496,7 +497,11 @@ const AddReportDrawerContentPhotos: React.FC = () => {
             />
             <div className="flex flex-row">
               <Image src={poiAddDrawerUploadImages} />
-              <p className="text-xs font-bold pt-0.5 ml-0.5">上傳圖片</p>
+              <p className="text-xs font-bold pt-0.5 ml-0.5">
+                {t("addReport.buttons.uploadImage", {
+                  ns: ["drawer"],
+                })}
+              </p>
             </div>
           </label>
         </div>
@@ -536,13 +541,17 @@ const AddReportDrawerContent: React.FC = () => {
                 ns: ["drawer"],
               })}
             </p>
-            <Input
-              aria-label="set location"
-              placeholder={cluster?.data.name}
-              variant="underlined"
-              classNames={{ base: "basis-6/12" }}
-              isReadOnly
-            />
+            <div className="flex flex-row basis-[70%]">
+              <Input
+                aria-label="set location"
+                placeholder={t("addReport.content.text.flagInsruction", {
+                  ns: ["drawer"],
+                })}
+                variant="underlined"
+                classNames={{ base: "", input: "text-xs w-full" }}
+                isReadOnly
+              />
+            </div>
           </div>
           {/* report floor */}
           <div className="flex flex-row space-x-1 mt-1 items-center">

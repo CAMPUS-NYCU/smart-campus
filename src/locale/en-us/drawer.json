@@ -1,7 +1,8 @@
 {
   "addReport": {
     "buttons": {
-      "add": "Add"
+      "add": "Add",
+      "uploadImage": "Upload Image"
     },
     "confirm": {
       "buttons": {
@@ -23,7 +24,8 @@
         }
       },
       "text": {
-        "setLocation": "Location"
+        "setLocation": "Report Coordinates",
+        "flagInsruction": "Move the yellow flag to the desired location."
       },
       "select": {
         "placeHolder": "Select a value",

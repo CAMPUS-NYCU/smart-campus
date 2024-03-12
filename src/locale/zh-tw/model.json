@@ -14,7 +14,7 @@
           "value": {
             "good": "功能正常",
             "ok": "尚可使用",
-            "broken": "無法使用"
+            "broken": "功能異常"
           }
         },
         "appearance": {
@@ -25,10 +25,10 @@
           }
         },
         "occupation": {
-          "name": "占用狀態",
+          "name": "佔用狀態",
           "value": {
             "unoccupied": "無人使用",
-            "occupied": "有人占用"
+            "occupied": "有人佔用"
           }
         },
         "presence": {
@@ -39,14 +39,14 @@
           }
         },
         "availability": {
-          "name": "可用性",
+          "name": "可用性狀態",
           "value": {
-            "available": "可用",
-            "nonAvailable": "不可用"
+            "available": "可使用",
+            "nonAvailable": "尚無法使用"
           }
         },
         "experience": {
-          "name": "體驗",
+          "name": "體驗感受",
           "value": {
             "good": "體驗佳",
             "normal": "體驗尚可",

@@ -1,7 +1,8 @@
 {
   "addReport": {
     "buttons": {
-      "add": "新增"
+      "add": "新增",
+      "uploadImage": "上传图片"
     },
     "confirm": {
       "buttons": {
@@ -23,7 +24,8 @@
         }
       },
       "text": {
-        "setLocation": "回报地点"
+        "setLocation": "回报座标",
+        "flagInsruction": "将地图上的黄色标籤移动到欲回报的位置"
       },
       "select": {
         "placeHolder": "请选择",
@@ -47,7 +49,7 @@
         }
       }
     },
-    "title": "新增位于 {{cluster}} 的回报"
+    "title": "新增位于{{cluster}}的回报"
   },
   "editReport": {
     "buttons": {
