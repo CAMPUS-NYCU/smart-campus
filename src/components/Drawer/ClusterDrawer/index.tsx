@@ -126,7 +126,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
               </div>
             </div>
             <div className="flex flex-row space-x-1">
-              <div className="basis-3/12">
+              <div className="flex flex-row basis-3/12">
                 <Chip
                   radius="sm"
                   classNames={{
