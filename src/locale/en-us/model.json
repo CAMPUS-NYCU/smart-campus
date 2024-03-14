@@ -13,7 +13,6 @@
           "name": "Function",
           "value": {
             "good": "Functional",
-            "ok": "Remains funtional",
             "broken": "Non-Functional"
           }
         },

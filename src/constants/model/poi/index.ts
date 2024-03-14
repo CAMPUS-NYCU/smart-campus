@@ -55,7 +55,6 @@ export const poiStatusValue = {
   underMaintenance: "underMaintenance", // 保養中
   // 功能狀態 function
   functional: "functional", // 功能正常
-  remainsFuntional: "remainsFuntional", // 尚可使用
   nonFunctional: "nonFunctional", // 無法使用
   // 外觀狀態 appearance
   appearanceGood: "appearanceGood", // 完好無損
@@ -125,7 +124,6 @@ export const poiStatusValueMessageKeys = {
     "poi.data.status.maintenance.value.processing",
   // 功能狀態
   [poiStatusValue.functional]: "poi.data.status.function.value.good",
-  [poiStatusValue.remainsFuntional]: "poi.data.status.function.value.ok",
   [poiStatusValue.nonFunctional]: "poi.data.status.function.value.broken",
   // 外觀狀態
   [poiStatusValue.appearanceGood]: "poi.data.status.appearance.value.good",
@@ -200,7 +198,6 @@ export const poiStatusValueSelect = {
   [poiStatusType.function]: [
     "",
     poiStatusValue.functional,
-    poiStatusValue.remainsFuntional,
     poiStatusValue.nonFunctional,
   ],
   [poiStatusType.appearance]: [
