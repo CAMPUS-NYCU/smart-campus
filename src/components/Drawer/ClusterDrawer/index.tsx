@@ -25,7 +25,6 @@ import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
-import { getDrawerTitle } from "../../../constants/drawerTitle";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
@@ -245,7 +244,7 @@ const ClusterDrawer: React.FC = () => {
       open={selected}
       onClose={handleDrawerDismiss}
       title={t("clusterDrawer.title", {
-        name: cluster ? getDrawerTitle(cluster.data.name) : "",
+        name: cluster?.data.name,
         ns: ["drawer"],
       })}
       children={
