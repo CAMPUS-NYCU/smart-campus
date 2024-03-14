@@ -3,8 +3,12 @@ import { EntryData } from "../models/entry";
 
 function getEntry(clusterName: string): EntryData | null {
   if (clusterName) {
-    const matches = clusterName.match(/[^a-zA-Z\d]+/g);
-    const pureClusterName = matches ? matches.join("") : "";
+    // for research requirement. other cluster name may not be properly handled
+    // 1. remove the number after a Chinese character of the cluster name
+    // 2. remove the character from the dash (-) to the end of the cluster name
+    const pureClusterName = clusterName
+      .replace(/(\p{Script=Han})\d+/gu, "$1")
+      .replace(/-.*$/, "");
 
     const foundEntry = entryData.find(
       (entry) => entry.name === pureClusterName,
@@ -13,6 +17,7 @@ function getEntry(clusterName: string): EntryData | null {
     if (foundEntry) {
       return foundEntry;
     } else {
+      console.warn(`entry not found: ${clusterName}`);
       return null;
     }
   }
