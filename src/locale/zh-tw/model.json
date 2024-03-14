@@ -27,7 +27,7 @@
         "occupation": {
           "name": "佔用狀態",
           "value": {
-            "unoccupied": "無人使用",
+            "unoccupied": "無人佔用",
             "occupied": "有人佔用"
           }
         },
