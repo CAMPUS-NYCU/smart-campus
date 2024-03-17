@@ -75,7 +75,7 @@ export const getClusterIcon = (targetName: string | ""): string => {
       thisUrl = clusterTargetVolleyball;
       break;
     default:
-      console.log(`No icon for ${targetName}`);
+      console.error(`No icon for ${targetName}`);
       thisUrl = "";
       break;
   }

@@ -1,222 +1,255 @@
 {
-    "0": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.78762989263285,
-        "longitude": 120.9974750397691
-      },
-      "target": {
-        "name": "一般座位區",
-        "description": "一般座位區1-1"
-      }
+  "0": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.787581626232452,
+      "longitude": 120.9974750397691
     },
-    "1": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.78757449428251,
-        "longitude": 120.99755081217377
-      },
-      "target": {
-        "name": "一般座位區",
-        "description": "一般座位區1-2"
-      }
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-4"
+    }
+  },
+  "1": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.787617765827697,
+      "longitude": 120.99782313402345
     },
-    "2": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.787576929375348,
-        "longitude": 120.99765541832535
-      },
-      "target": {
-        "name": "一般座位區",
-        "description": "一般座位區1-3"
-      }
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-1"
+    }
+  },
+  "2": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.787557376622196,
+      "longitude": 120.99770362831647
     },
-    "3": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.787635980362136,
-        "longitude": 120.99772247355072
-      },
-      "target": {
-        "name": "一般座位區",
-        "description": "一般座位區1-4"
-      }
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-2"
+    }
+  },
+  "3": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.787513544936825,
+      "longitude": 120.99757488228376
     },
-    "4": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.787626848768074,
-        "longitude": 120.99756958763687
-      },
-      "target": {
-        "name": "服務台",
-        "description": "小木屋點餐服務台1-1"
-      }
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-3"
+    }
+  },
+  "4": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78776321383609,
+      "longitude": 120.99767703600573
     },
-    "5": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.787628066313975,
-        "longitude": 120.9976272551307
-      },
-      "target": {
-        "name": "服務台",
-        "description": "小木屋取餐服務台1-1"
-      }
+    "target": {
+      "name": "公用電腦",
+      "description": "公用電腦1-5"
+    }
+  },
+  "5": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78776321383609,
+      "longitude": 120.99793044297562
     },
-    "6": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.78776321383609,
-        "longitude": 120.99761703600572
-      },
-      "target": {
-        "name": "公用電腦",
-        "description": "公用電腦1-1"
-      }
+    "target": {
+      "name": "公用電腦",
+      "description": "公用電腦1-1"
+    }
+  },
+  "6": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78771572958834,
+      "longitude": 120.99792977242336
     },
-    "7": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.78771572958834,
-        "longitude": 120.99761703600572
-      },
-      "target": {
-        "name": "公用電腦",
-        "description": "公用電腦1-2"
-      }
+    "target": {
+      "name": "公用電腦",
+      "description": "公用電腦1-6"
+    }
+  },
+  "7": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78771572958834,
+      "longitude": 120.99767703600573
     },
-    "8": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.78776321383609,
-        "longitude": 120.99767738673945
-      },
-      "target": {
-        "name": "公用電腦",
-        "description": "公用電腦1-3"
-      }
+    "target": {
+      "name": "公用電腦",
+      "description": "公用電腦1-10"
+    }
+  },
+  "8": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78776321383609,
+      "longitude": 120.99774738673945
     },
-    "9": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.78771572958834,
-        "longitude": 120.99767738673945
-      },
-      "target": {
-        "name": "公用電腦",
-        "description": "公用電腦1-4"
-      }
+    "target": {
+      "name": "公用電腦",
+      "description": "公用電腦1-4"
+    }
+  },
+  "9": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78771572958834,
+      "longitude": 120.99774738673945
     },
-    "10": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.78776321383609,
-        "longitude": 120.9977377374732
-      },
-      "target": {
-        "name": "公用電腦",
-        "description": "公用電腦1-5"
-      }
+    "target": {
+      "name": "公用電腦",
+      "description": "公用電腦1-9"
+    }
+  },
+  "10": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78776321383609,
+      "longitude": 120.9978077374732
     },
-    "11": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.78771572958834,
-        "longitude": 120.9977377374732
-      },
-      "target": {
-        "name": "公用電腦",
-        "description": "公用電腦1-6"
-      }
+    "target": {
+      "name": "公用電腦",
+      "description": "公用電腦1-3"
+    }
+  },
+  "11": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78771572958834,
+      "longitude": 120.9978077374732
     },
-    "12": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.78776321383609,
-        "longitude": 120.997798088207
-      },
-      "target": {
-        "name": "公用電腦",
-        "description": "公用電腦1-7"
-      }
+    "target": {
+      "name": "公用電腦",
+      "description": "公用電腦1-8"
+    }
+  },
+  "12": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78776321383609,
+      "longitude": 120.997868088207
     },
-    "13": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.78771572958834,
-        "longitude": 120.997798088207
-      },
-      "target": {
-        "name": "公用電腦",
-        "description": "公用電腦1-8"
-      }
+    "target": {
+      "name": "公用電腦",
+      "description": "公用電腦1-2"
+    }
+  },
+  "13": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78771572958834,
+      "longitude": 120.997868088207
     },
-    "14": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.787737645397257,
-        "longitude": 120.9980792073497
-      },
-      "target": {
-        "name": "飲水機",
-        "description": "飲水機1-1"
-      }
+    "target": {
+      "name": "公用電腦",
+      "description": "公用電腦1-7"
+    }
+  },
+  "14": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.787781678119718,
+      "longitude": 120.99799272070766
     },
-    "15": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.787807045433272,
-        "longitude": 120.99736439864724
-      },
-      "target": {
-        "name": "教職員停車區",
-        "description": "教職員停車區1-1"
-      }
+    "target": {
+      "name": "飲水機",
+      "description": "飲水機1-1"
+    }
+  },
+  "15": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78804354948574,
+      "longitude": 120.99759087157781
     },
-    "16": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.787737645397257,
-        "longitude": 120.99736573975174
-      },
-      "target": {
-        "name": "教職員停車區",
-        "description": "教職員停車區1-2"
-      }
+    "target": {
+      "name": "飲水機",
+      "description": "飲水機1-2"
+    }
+  },
+  "16": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78789220637148,
+      "longitude": 120.99736439864724
     },
-    "17": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.78766946286793,
-        "longitude": 120.99736573975174
-      },
-      "target": {
-        "name": "教職員停車區",
-        "description": "教職員停車區1-3"
-      }
+    "target": {
+      "name": "路邊一般停車位",
+      "description": "路邊一般停車位1-1"
+    }
+  },
+  "17": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78779293166175,
+      "longitude": 120.99736573975174
     },
-    "18": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.787606150485715,
-        "longitude": 120.99736976306527
-      },
-      "target": {
-        "name": "教職員停車區",
-        "description": "教職員停車區1-4"
-      }
+    "target": {
+      "name": "路邊一般停車位",
+      "description": "路邊一般停車位1-2"
+    }
+  },
+  "18": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.787717746153564,
+      "longitude": 120.99736573975174
     },
-    "19": {
-      "name": "小木屋&校計中",
-      "latlng": {
-        "latitude": 24.787882533147663,
-        "longitude": 120.99736439864724
-      },
-      "target": {
-        "name": "路邊無障礙停車位",
-        "description": "路邊無障礙停車位1-1"
-      }
+    "target": {
+      "name": "路邊一般停車位",
+      "description": "路邊一般停車位1-3"
+    }
+  },
+  "19": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.787606150485715,
+      "longitude": 120.99736976306527
+    },
+    "target": {
+      "name": "路邊一般停車位",
+      "description": "路邊一般停車位1-4"
+    }
+  },
+  "20": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.787606150485715,
+      "longitude": 120.99736976306527
+    },
+    "target": {
+      "name": "路邊一般停車位",
+      "description": "路邊一般停車位1-4"
+    }
+  },
+  "21": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.78753275093158,
+      "longitude": 120.99736258827416
+    },
+    "target": {
+      "name": "路邊一般停車位",
+      "description": "路邊一般停車位1-5"
+    }
+  },
+  "22": {
+    "name": "小木屋&校計中",
+    "latlng": {
+      "latitude": 24.787979942973173,
+      "longitude": 120.99735553852841
+    },
+    "target": {
+      "name": "路邊無障礙停車位",
+      "description": "路邊無障礙停車位1-1"
     }
   }
+}

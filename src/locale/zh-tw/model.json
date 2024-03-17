@@ -13,7 +13,6 @@
           "name": "功能狀態",
           "value": {
             "good": "功能正常",
-            "ok": "尚可使用",
             "broken": "功能異常"
           }
         },
@@ -27,7 +26,7 @@
         "occupation": {
           "name": "佔用狀態",
           "value": {
-            "unoccupied": "無人使用",
+            "unoccupied": "無人佔用",
             "occupied": "有人佔用"
           }
         },
