@@ -16,7 +16,7 @@ function getClusterCenter(clusterName: string) {
     if (foundCenter) {
       return foundCenter;
     } else {
-      console.warn(`Cluster center not found: ${clusterName}`);
+      console.error(`Cluster center not found: ${clusterName}`);
       return null;
     }
   }

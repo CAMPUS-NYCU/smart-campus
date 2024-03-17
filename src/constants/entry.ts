@@ -17,7 +17,7 @@ function getEntry(clusterName: string): EntryData | null {
     if (foundEntry) {
       return foundEntry;
     } else {
-      console.warn(`Entry not found: ${clusterName}`);
+      console.error(`Entry not found: ${clusterName}`);
       return null;
     }
   }

@@ -93,7 +93,7 @@ export const getIcon = (targetName: string | ""): google.maps.Icon => {
       thisUrl = poiMarkerVolleyball;
       break;
     default:
-      console.log(`No icon for ${targetName}`);
+      console.error(`No icon for ${targetName}`);
       thisUrl = "";
       break;
   }
@@ -165,7 +165,7 @@ export const getHighlightedIcon = (
       thisUrl = poiMarkerVolleyballHighlighted;
       break;
     default:
-      console.log(`No highlighted icon for ${targetName}`);
+      console.error(`No highlighted icon for ${targetName}`);
       thisUrl = "";
       break;
   }
