@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Image, Select, SelectItem, Chip } from "@nextui-org/react";
+import { Image, Select, SelectItem, Chip, Input } from "@nextui-org/react";
 
 import {
   poiStatusValueSelect,
@@ -65,6 +65,46 @@ const StatusValueSelect: React.FC = () => {
         </SelectItem>
       ))}
     </Select>
+  );
+};
+
+const EditDescription: React.FC = () => {
+  const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const reportData = useSelector((state: IRootState) => state.report.data);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value) {
+      dispatch(
+        updateAddReportData({
+          target: {
+            ...reportData.target,
+            description: e.target.value,
+          },
+        }),
+      );
+    }
+  };
+
+  return (
+    <>
+      <p className="text-xs font-bold">
+        {t("addReport.content.text.setDescription", {
+          ns: ["drawer"],
+        })}
+      </p>
+      <Input
+        aria-label="set description"
+        placeholder={t("addReport.content.inputs.description.placeholder", {
+          ns: ["drawer"],
+        })}
+        variant="underlined"
+        value={reportData.target.description}
+        onChange={handleInputChange}
+        classNames={{ base: "basis-6/12" }}
+      />
+    </>
   );
 };
 
@@ -181,6 +221,17 @@ const EditReportDrawerContent: React.FC = () => {
             })}
           </p>
           <StatusValueSelect />
+        </div>
+        {/* report description */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image
+              radius="none"
+              src={poiEditDrawerStatusValue}
+              alt="status value"
+            />
+          </div>
+          <EditDescription />
         </div>
       </div>
     </div>

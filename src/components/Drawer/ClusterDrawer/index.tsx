@@ -139,6 +139,14 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
                   ns: ["model"],
                 })}
               </Chip>
+              <Chip
+                radius="sm"
+                classNames={{
+                  content: "px-0.5 whitespace-normal text-xs",
+                }}
+              >
+                {poi.data.target.description}
+              </Chip>
             </div>
             <div className="flex flex-row space-x-1 text-xs">
               {t("clusterDrawer.content.texts.updatedAt", {
