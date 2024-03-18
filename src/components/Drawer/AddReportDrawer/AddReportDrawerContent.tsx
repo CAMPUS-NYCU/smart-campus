@@ -42,6 +42,7 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
             ...reportData.target,
             category: "",
             name: "",
+            description: "",
           },
           status: {
             ...reportData.status,
@@ -113,6 +114,7 @@ const TargetCategorySelect: React.FC<{
             ...reportData.target,
             category: e.target.value,
             name: "",
+            description: "",
           },
           status: {
             ...reportData.status,
@@ -187,6 +189,7 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
           target: {
             ...reportData.target,
             name: e.target.value,
+            description: "",
           },
           status: {
             ...reportData.status,
@@ -369,6 +372,46 @@ const StatusValueSelect: React.FC = () => {
   );
 };
 
+const AddDescription: React.FC = () => {
+  const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const reportData = useSelector((state: IRootState) => state.report.data);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value) {
+      dispatch(
+        updateAddReportData({
+          target: {
+            ...reportData.target,
+            description: e.target.value,
+          },
+        }),
+      );
+    }
+  };
+
+  return (
+    <>
+      <p className="basis-2/12 text-xs font-bold">
+        {t("addReport.content.text.setDescription", {
+          ns: ["drawer"],
+        })}
+      </p>
+      <Input
+        aria-label="set description"
+        placeholder={t("addReport.content.inputs.description.placeholder", {
+          ns: ["drawer"],
+        })}
+        variant="underlined"
+        value={reportData.target.description}
+        onChange={handleInputChange}
+        classNames={{ base: "basis-6/12" }}
+      />
+    </>
+  );
+};
+
 const AddReportDrawerContentPhotos: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
@@ -499,6 +542,17 @@ const AddReportDrawerContent: React.FC = () => {
               />
             </div>
             <StatusValueSelect />
+          </div>
+          {/* report description */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerStatusValue}
+                alt="status value"
+              />
+            </div>
+            <AddDescription />
           </div>
           {/* report images */}
           <div className="flex flex-row space-x-1 mt-1 items-center whitespace-normal">

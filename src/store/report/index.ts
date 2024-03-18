@@ -16,6 +16,7 @@ export const initialReportPoiData: PoiData = {
   target: {
     category: "",
     name: "",
+    description: "",
   },
   status: {
     type: "",

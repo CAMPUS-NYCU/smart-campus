@@ -163,7 +163,18 @@ const PoiDrawer: React.FC = () => {
               statusValue={poi?.data.status.value}
             />
 
-            {/* the third row：updatedBy &updatedAt */}
+            {/* the third row：target serial */}
+            <div className="flex flex-row space-x-1 mt-1 items-center">
+              <div className="basis-0.5/12">
+                {/* No related icon, so I used upper one instead */}
+                <Image src={poiDrawerLocation} alt="location and floor" />
+              </div>
+              <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
+                {poi?.data.target.description}
+              </Chip>
+            </div>
+
+            {/* the fourth row：updatedBy &updatedAt */}
             <div className="flex flex-row space-x-1 mt-1 items-center justify-end">
               <p className="text-xs text-secondary">
                 {t("poiDrawer.content.texts.updatedAt", {

@@ -23,7 +23,8 @@
         }
       },
       "text": {
-        "setLocation": "Location"
+        "setLocation": "Location",
+        "setDescription": "Description"
       },
       "select": {
         "placeHolder": "Select a value",
@@ -67,6 +68,11 @@
         "placeHolder": "Select a value",
         "setStatusValue": {
           "label": "Status Description"
+        }
+      },
+      "input": {
+        "setDescription": {
+          "label": "Description"
         }
       }
     },
