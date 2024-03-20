@@ -379,16 +379,15 @@ const AddDescription: React.FC = () => {
   const reportData = useSelector((state: IRootState) => state.report.data);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value) {
-      dispatch(
-        updateAddReportData({
-          target: {
-            ...reportData.target,
-            description: e.target.value,
-          },
-        }),
-      );
-    }
+    const newValue = e.target.value;
+    dispatch(
+      updateAddReportData({
+        target: {
+          ...reportData.target,
+          description: newValue,
+        },
+      }),
+    );
   };
 
   return (
