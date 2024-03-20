@@ -163,7 +163,7 @@ const PoiDrawer: React.FC = () => {
               statusValue={poi?.data.status.value}
             />
 
-            {/* the third row：target serial */}
+            {/* the third row：target description */}
             <div className="flex flex-row space-x-1 mt-1 items-center">
               <div className="basis-0.5/12">
                 {/* No related icon, so I used upper one instead */}
