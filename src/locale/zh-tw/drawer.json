@@ -23,7 +23,8 @@
         }
       },
       "text": {
-        "setLocation": "回報地點"
+        "setLocation": "回報地點",
+        "setDescription": "回報敘述"
       },
       "select": {
         "placeHolder": "請選擇",
@@ -35,9 +36,6 @@
         },
         "setTargetName": {
           "label": "回報項目"
-        },
-        "setTargetSerial": {
-          "label": "項目描述"
         },
         "setStatusType": {
           "label": "回報狀態"
@@ -64,13 +62,17 @@
     "content": {
       "texts": {
         "targetName": "回報項目",
-        "targetSerial": "項目描述",
         "statusType": "回報狀態"
       },
       "select": {
         "placeHolder": "請選擇",
         "setStatusValue": {
           "label": "狀態描述"
+        }
+      },
+      "input": {
+        "setDescription": {
+          "label": "回報敘述"
         }
       }
     },

@@ -119,9 +119,6 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
           <div className="flex flex-col shrink-0 justify-around basis-8/12">
             <div className="flex text-left flex-wrap flex-row">
               <p className="text-xs font-bold whitespace-nowrap mr-1">{`${poi.data.target.category}/${poi.data.target.name}`}</p>
-              <p className="text-xs whitespace-nowrap text-secondary">
-                {poi.data.target.serial}
-              </p>
             </div>
             <div className="flex flex-row space-x-1">
               <Chip radius="sm" classNames={{ content: "text-xs px-0.5" }}>
@@ -141,6 +138,14 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
                 {t(poiStatusValueMessageKeys[poi.data.status.value], {
                   ns: ["model"],
                 })}
+              </Chip>
+              <Chip
+                radius="sm"
+                classNames={{
+                  content: "px-0.5 whitespace-normal text-xs",
+                }}
+              >
+                {poi.data.target.description}
               </Chip>
             </div>
             <div className="flex flex-row space-x-1 text-xs">

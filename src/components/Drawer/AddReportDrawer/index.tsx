@@ -25,11 +25,7 @@ import { maps } from "../../../utils/googleMaps";
 const reportDataValidator = (reportData: PoiData) => {
   const { target, status } = reportData;
 
-  const isTargetValid =
-    target &&
-    target.category !== "" &&
-    target.name !== "" &&
-    target.serial !== "";
+  const isTargetValid = target && target.category !== "" && target.name !== "";
   const isStatusValid = status && status.type !== "" && status.value !== "";
 
   return reportData && isTargetValid && isStatusValid;
