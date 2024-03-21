@@ -55,5 +55,8 @@
       "system": "System"
     },
     "title": "Switch Theme"
+  },
+  "reportCompletion": {
+    "text": "Report Completed"
   }
 }
