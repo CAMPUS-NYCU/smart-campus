@@ -607,7 +607,7 @@ const AddReportDrawerContent: React.FC = () => {
             <StatusValueSelect />
           </div>
           {/* report images */}
-          <div className="flex flex-row space-x-1 mt-1 items-center whitespace-normal">
+          <div className="flex-row space-x-1 mt-1 items-center whitespace-normal hidden">
             <div className="basis-0.5/12 shrink-0">
               <Image radius="none" src={poiAddDrawerImage} alt="image" />
             </div>
