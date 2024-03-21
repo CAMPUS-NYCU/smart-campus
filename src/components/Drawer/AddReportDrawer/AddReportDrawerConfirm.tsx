@@ -10,8 +10,9 @@ import {
   ModalHeader,
 } from "@nextui-org/react";
 
+import ReportCompletion from "../../modal/ReportCompletion";
 import { IRootState } from "../../../store";
-import { closeModal, toggleModal } from "../../../store/modal";
+import { openModal, closeModal, toggleModal } from "../../../store/modal";
 
 interface AddReportDrawerConfirmProps {
   onSubmit: () => void;
@@ -33,6 +34,7 @@ const AddReportDrawerConfirm: React.FC<AddReportDrawerConfirmProps> = (
   const handleSubmit = () => {
     onSubmit();
     dispatch(closeModal("confirmAddReport"));
+    dispatch(openModal("reportCompletion"));
   };
 
   const handleCloseModal = () => {
@@ -44,24 +46,27 @@ const AddReportDrawerConfirm: React.FC<AddReportDrawerConfirmProps> = (
   };
 
   return (
-    <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
-      <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">
-          {t("addReport.confirm.title", { ns: ["drawer"] })}
-        </ModalHeader>
-        <ModalBody className="items-center">
-          {t("addReport.confirm.content", { ns: ["drawer"] })}
-        </ModalBody>
-        <ModalFooter>
-          <Button color="danger" variant="light" onPress={handleCloseModal}>
-            {t("addReport.confirm.buttons.cancel", { ns: ["drawer"] })}
-          </Button>
-          <Button color="primary" onPress={handleSubmit}>
-            {t("addReport.confirm.buttons.confirm", { ns: ["drawer"] })}
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+    <>
+      <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
+        <ModalContent>
+          <ModalHeader className="flex flex-col gap-1">
+            {t("addReport.confirm.title", { ns: ["drawer"] })}
+          </ModalHeader>
+          <ModalBody className="items-center">
+            {t("addReport.confirm.content", { ns: ["drawer"] })}
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" variant="light" onPress={handleCloseModal}>
+              {t("addReport.confirm.buttons.cancel", { ns: ["drawer"] })}
+            </Button>
+            <Button color="primary" onPress={handleSubmit}>
+              {t("addReport.confirm.buttons.confirm", { ns: ["drawer"] })}
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      <ReportCompletion />
+    </>
   );
 };
 
