@@ -30,7 +30,7 @@ const ReportCompletion: React.FC = () => {
       isOpen={modalOpen}
       onOpenChange={handleToggleModal}
       classNames={{
-        base: "h-1/5",
+        base: "h-1/5 h-fit",
       }}
     >
       <ModalContent>
