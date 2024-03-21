@@ -91,9 +91,6 @@
     "title": "Reports of {{name}}"
   },
   "poiDrawer": {
-    "buttons": {
-      "edit": "Edit"
-    },
     "content": {
       "texts": {
         "description": "{{description}}",

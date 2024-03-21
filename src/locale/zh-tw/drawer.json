@@ -91,9 +91,6 @@
     "title": "{{name}}現有回報資訊"
   },
   "poiDrawer": {
-    "buttons": {
-      "edit": "更新"
-    },
     "content": {
       "texts": {
         "description": "{{description}}",
