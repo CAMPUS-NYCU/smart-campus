@@ -24,12 +24,9 @@ import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
-import { statusColor } from "../../../constants/statusStyle";
+import { clusterListStatusIcon } from "../../../constants/statusStyle";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
-import { getEntry } from "../../../constants/entry";
-import { calculateDistance } from "../../../constants/map";
-import { EntryData } from "../../../models/entry";
 
 interface PoiListItemProps {
   poi: {
@@ -131,16 +128,23 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
                 radius="sm"
                 classNames={{
                   content: "px-0.5 whitespace-normal text-xs",
-                  base: statusColor(poi.data.status.type),
+                  base: "bg-transparent",
                 }}
               >
-                {t(poiStatusTypeMessageKeys[poi.data.status.type], {
-                  ns: ["model"],
-                })}
-                :
-                {t(poiStatusValueMessageKeys[poi.data.status.value], {
-                  ns: ["model"],
-                })}
+                <img
+                  src={clusterListStatusIcon(poi.data.status.type)}
+                  alt="status icon"
+                  className="inline mr-0.5"
+                />
+                <p className="inline align-middle">
+                  {t(poiStatusTypeMessageKeys[poi.data.status.type], {
+                    ns: ["model"],
+                  })}
+                  :
+                  {t(poiStatusValueMessageKeys[poi.data.status.value], {
+                    ns: ["model"],
+                  })}
+                </p>
               </Chip>
             </div>
             <div className="flex flex-row space-x-1 text-xs">
@@ -199,7 +203,7 @@ const ClusterDrawer: React.FC = () => {
   });
   const { data: user } = useGetUserQuery();
 
-  const { data: poiList } = useGetPoisQuery(id);
+  const { data: poiList } = useGetPoisQuery();
 
   const handlePoiEdit = () => {
     if (!id) {
@@ -221,37 +225,20 @@ const ClusterDrawer: React.FC = () => {
     }
   }, [dispatch, searchParams]);
 
-  const targetEntry: EntryData | null = useMemo(() => {
-    if (cluster) {
-      return getEntry(cluster.data.name);
-    } else {
-      return null;
-    }
-  }, [cluster]);
-
   const orderedPoiList: Poi[] = useMemo(() => {
     let result: Poi[] = [];
 
-    if (poiList && targetEntry) {
+    if (poiList) {
       result = Object.entries(poiList).map(([id, data]) => ({
         id,
         data,
       }));
-      result.sort((poi1: Poi, poi2: Poi) => {
-        const distance1 = calculateDistance(
-          targetEntry.latlng,
-          poi1.data.latlng,
-        );
-        const distance2 = calculateDistance(
-          targetEntry.latlng,
-          poi2.data.latlng,
-        );
-        return distance1 - distance2;
-      });
+      // sort the poi list by the random order
+      result.sort(() => Math.random() - 0.5);
     }
 
     return result;
-  }, [poiList, targetEntry]);
+  }, [poiList]);
 
   return (
     <Drawer
@@ -263,7 +250,7 @@ const ClusterDrawer: React.FC = () => {
       })}
       children={
         <div>
-          {poiList && targetEntry ? (
+          {poiList ? (
             orderedPoiList.map((poi) => {
               return (
                 <PoiListItem

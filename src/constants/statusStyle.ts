@@ -8,6 +8,16 @@ import poiDrawerOccupation from "../assets/images/poiDrawerOccupation.svg";
 import poiDrawerThermalComfort from "../assets/images/poiDrawerThermalComfort.svg";
 import poiDrawerUsage from "../assets/images/poiDrawerUsage.svg";
 
+import clusterListAppearance from "../assets/images/clusterListAppearance.svg";
+import clusterListCleanliness from "../assets/images/clusterListCleanliness.svg";
+import clusterListCrowd from "../assets/images/clusterListCrowd.svg";
+import clusterListFunction from "../assets/images/clusterListFunction.svg";
+import clusterListMaintenance from "../assets/images/clusterListMaintenance.svg";
+import clusterListNoise from "../assets/images/clusterListNoise.svg";
+import clusterListOccupation from "../assets/images/clusterListOccupation.svg";
+import clusterListThermalComfort from "../assets/images/clusterListThermalComfort.svg";
+import clusterListUsage from "../assets/images/clusterListUsage.svg";
+
 function statusColor(type: string) {
   let thisColor: string;
 
@@ -47,7 +57,7 @@ function statusColor(type: string) {
   return thisColor;
 }
 
-function statusIcon(type: string) {
+function poiDrawerStatusIcon(type: string) {
   let thisIcon: string;
 
   switch (type) {
@@ -84,4 +94,41 @@ function statusIcon(type: string) {
   return thisIcon;
 }
 
-export { statusColor, statusIcon };
+function clusterListStatusIcon(type: string) {
+  let thisIcon: string;
+
+  switch (type) {
+    case "maintenance":
+      thisIcon = clusterListMaintenance;
+      break;
+    case "function":
+      thisIcon = clusterListFunction;
+      break;
+    case "appearance":
+      thisIcon = clusterListAppearance;
+      break;
+    case "occupation":
+      thisIcon = clusterListOccupation;
+      break;
+    case "usage":
+      thisIcon = clusterListUsage;
+      break;
+    case "crowd":
+      thisIcon = clusterListCrowd;
+      break;
+    case "noise":
+      thisIcon = clusterListNoise;
+      break;
+    case "thermalComfort":
+      thisIcon = clusterListThermalComfort;
+      break;
+    case "cleanliness":
+      thisIcon = clusterListCleanliness;
+      break;
+    default:
+      thisIcon = "";
+  }
+  return thisIcon;
+}
+
+export { statusColor, poiDrawerStatusIcon, clusterListStatusIcon };
