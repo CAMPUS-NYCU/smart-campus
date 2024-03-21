@@ -10,8 +10,9 @@ import {
   ModalHeader,
 } from "@nextui-org/react";
 
+import ReportCompletion from "../../modal/ReportCompletion";
 import { IRootState } from "../../../store";
-import { closeModal, toggleModal } from "../../../store/modal";
+import { closeModal, toggleModal, openModal } from "../../../store/modal";
 
 interface EditReportDrawerConfirmProps {
   onSubmit: () => void;
@@ -33,6 +34,7 @@ const EditReportDrawerConfirm: React.FC<EditReportDrawerConfirmProps> = (
   const handleSubmit = () => {
     onSubmit();
     dispatch(closeModal("confirmEditReport"));
+    dispatch(openModal("reportCompletion"));
   };
 
   const handleCloseModal = () => {
@@ -44,24 +46,27 @@ const EditReportDrawerConfirm: React.FC<EditReportDrawerConfirmProps> = (
   };
 
   return (
-    <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
-      <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">
-          {t("editReport.confirm.title", { ns: ["drawer"] })}
-        </ModalHeader>
-        <ModalBody className="items-center">
-          {t("editReport.confirm.content", { ns: ["drawer"] })}
-        </ModalBody>
-        <ModalFooter>
-          <Button color="danger" variant="light" onPress={handleCloseModal}>
-            {t("editReport.confirm.buttons.cancel", { ns: ["drawer"] })}
-          </Button>
-          <Button color="primary" onPress={handleSubmit}>
-            {t("editReport.confirm.buttons.confirm", { ns: ["drawer"] })}
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+    <>
+      <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
+        <ModalContent>
+          <ModalHeader className="flex flex-col gap-1">
+            {t("editReport.confirm.title", { ns: ["drawer"] })}
+          </ModalHeader>
+          <ModalBody className="items-center">
+            {t("editReport.confirm.content", { ns: ["drawer"] })}
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" variant="light" onPress={handleCloseModal}>
+              {t("editReport.confirm.buttons.cancel", { ns: ["drawer"] })}
+            </Button>
+            <Button color="primary" onPress={handleSubmit}>
+              {t("editReport.confirm.buttons.confirm", { ns: ["drawer"] })}
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      <ReportCompletion />
+    </>
   );
 };
 

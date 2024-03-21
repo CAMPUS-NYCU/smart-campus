@@ -55,5 +55,8 @@
       "system": "系统"
     },
     "title": "主题设置"
+  },
+  "reportCompletion": {
+    "text": "回报已完成"
   }
 }

@@ -55,5 +55,8 @@
       "system": "系統"
     },
     "title": "主題設定"
+  },
+  "reportCompletion": {
+    "text": "回報已完成"
   }
 }
