@@ -3,7 +3,8 @@
     "default": "smartcampus-prod",
     "prod": "smartcampus-prod",
     "dev": "smartcampus-dev",
-    "research": "smartcampus-research"
+    "research": "smartcampus-research",
+    "vanguard": "smartcampus-vanguard"
   },
   "targets": {},
   "etags": {}
