@@ -5,7 +5,7 @@ name: Check Types and Lint
       - prod
       - dev
       - research
-
+      - vanguard
 jobs:
   test:
     runs-on: ubuntu-latest
