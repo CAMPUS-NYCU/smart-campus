@@ -107,7 +107,7 @@ const PoiDrawer: React.FC = () => {
         ns: ["drawer"],
       })}
       children={
-        <div className="flex flex-col max-h-[calc(50vh-32px)]">
+        <div className="flex flex-col max-h-[calc(50vh-64px)]">
           <div className="flex flex-row justify-center basis-6/12 overflow-y-hidden">
             {urls.length > 0 ? (
               urls.map((url) => (
@@ -170,7 +170,7 @@ const PoiDrawer: React.FC = () => {
             />
 
             {/* the fourth row：updatedBy &updatedAt */}
-            <div className="flex flex-row space-x-1 mt-1 items-center justify-end">
+            <div className="fixed bottom-1 right-3 flex w-full flex-row mt-1 items-center justify-end">
               <p className="text-xs text-secondary">
                 {t("poiDrawer.content.texts.updatedAt", {
                   updatedAt: poi?.data.updatedAt

@@ -34,22 +34,18 @@ const Drawer: React.FC<DrawerProps> = (props) => {
             <CloseIcon />
           </button>
         </div>
+        <div className="max-h-[calc(50vh-64px)] overflow-y-auto">
+          {children}
+        </div>
         <div
           className={
             primaryButton
-              ? "ax-h-[calc(50vh-64px)] overflow-y-auto"
-              : "overflow-y-auto"
+              ? "fixed bottom-0 left-0 right-0 flex w-full z-10 px-4 py-1 rounded items-center bg-white"
+              : "hidden"
           }
         >
-          {children}
+          <div className="flex-1 text-center">{primaryButton}</div>
         </div>
-        {primaryButton ? (
-          <>
-            <div className="fixed bottom-0 left-0 right-0 flex w-full z-10 px-4 py-1 rounded items-center bg-white">
-              <div className="flex-1 text-center">{primaryButton}</div>
-            </div>
-          </>
-        ) : null}
       </div>
     </motion.div>
   );
