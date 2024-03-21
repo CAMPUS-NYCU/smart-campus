@@ -24,8 +24,7 @@
         }
       },
       "text": {
-        "setLocation": "回报座标",
-        "flagInsruction": "将地图上的黄色标籤移动到欲回报的位置"
+        "flagInsruction": "拖曳地图将上方黄色标籤移到欲回报位置"
       },
       "select": {
         "placeHolder": "请选择",
@@ -91,9 +90,6 @@
     "title": "更新回报资讯"
   },
   "poiDrawer": {
-    "buttons": {
-      "edit": "更新"
-    },
     "content": {
       "texts": {
         "description": "{{description}}",

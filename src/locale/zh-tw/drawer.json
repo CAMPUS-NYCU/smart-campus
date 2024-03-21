@@ -24,8 +24,7 @@
         }
       },
       "text": {
-        "setLocation": "回報座標",
-        "flagInsruction": "將地圖上的黃色標籤移動到欲回報的位置"
+        "flagInsruction": "拖曳地圖將上方黃色標籤移到欲回報位置"
       },
       "select": {
         "placeHolder": "請選擇",
@@ -91,9 +90,6 @@
     "title": "{{name}}現有回報資訊"
   },
   "poiDrawer": {
-    "buttons": {
-      "edit": "更新"
-    },
     "content": {
       "texts": {
         "description": "{{description}}",

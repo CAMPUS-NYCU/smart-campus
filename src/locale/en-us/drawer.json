@@ -24,7 +24,6 @@
         }
       },
       "text": {
-        "setLocation": "Report Coordinates",
         "flagInsruction": "Move the yellow flag to the desired location."
       },
       "select": {
@@ -91,9 +90,6 @@
     "title": "Reports of {{name}}"
   },
   "poiDrawer": {
-    "buttons": {
-      "edit": "Edit"
-    },
     "content": {
       "texts": {
         "description": "{{description}}",
