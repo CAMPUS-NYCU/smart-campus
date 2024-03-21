@@ -8,993 +8,288 @@
     ]
   },
   {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機1-1"
-    },
+    "floor": "1F",
+    "category": "物體",
+    "name": "飲水機",
     "serial": [
-      null
+      "飲水機1-1",
+      "飲水機1-2",
+      "飲水機1-3",
+      "飲水機1-4"
     ]
   },
   {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機1-2"
-    },
+    "floor": "1F",
+    "category": "空間",
+    "name": "一般座位區",
     "serial": [
-      null
+      "一般座位區1-1",
+      "一般座位區1-2",
+      "一般座位區1-3",
+      "一般座位區1-4",
+      "一般座位區1-5"
     ]
   },
   {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機1-3"
-    },
+    "floor": "1F",
+    "category": "空間",
+    "name": "高腳椅區",
     "serial": [
-      null
+      "高腳椅區1-1",
+      "高腳椅區1-2"
     ]
   },
   {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機1-4"
-    },
+    "floor": "1F",
+    "category": "物體",
+    "name": "公用印表機",
     "serial": [
-      null
+      "公用印表機1-1",
+      "公用印表機1-2"
     ]
   },
   {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區1-1"
-    },
+    "floor": "1F",
+    "category": "物體",
+    "name": "ATM",
     "serial": [
-      null
+      "ATM1-1"
     ]
   },
   {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區1-2"
-    },
+    "floor": "1F",
+    "category": "空間",
+    "name": "沙發區",
     "serial": [
-      null
+      "沙發區1-1",
+      "沙發區1-2",
+      "沙發區1-3",
+      "沙發區1-4",
+      "沙發區1-5"
     ]
   },
   {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區1-3"
-    },
+    "floor": "1F",
+    "category": "物體",
+    "name": "販賣機",
     "serial": [
-      null
+      "販賣機1-1",
+      "販賣機1-2",
+      "販賣機1-3",
+      "販賣機1-4"
     ]
   },
   {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區1-4"
-    },
+    "floor": "1F",
+    "category": "物體",
+    "name": "公用電腦",
     "serial": [
-      null
+      "公用電腦1-1",
+      "公用電腦1-2",
+      "公用電腦1-3",
+      "公用電腦1-4"
     ]
   },
   {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區1-5"
-    },
+    "floor": "1F",
+    "category": "空間",
+    "name": "置物櫃",
     "serial": [
-      null
+      "置物櫃1-1",
+      "置物櫃1-2",
+      "置物櫃1-3"
     ]
   },
   {
-    "category": {
-      "categoryName": "高腳椅區",
-      "categoryDescName": "高腳椅區1-1"
-    },
+    "floor": "1F",
+    "category": "空間",
+    "name": "腳踏車停車區",
     "serial": [
-      null
+      "腳踏車停車區1-1",
+      "腳踏車停車區1-2"
     ]
   },
   {
-    "category": {
-      "categoryName": "高腳椅區",
-      "categoryDescName": "高腳椅區1-2"
-    },
+    "floor": "1F",
+    "category": "物體",
+    "name": "服務台",
     "serial": [
-      null
+      "服務台1-1"
     ]
   },
   {
-    "category": {
-      "categoryName": "公用印表機",
-      "categoryDescName": "公用印表機1-1"
-    },
+    "floor": "2F",
+    "category": "物體",
+    "name": "飲水機",
     "serial": [
-      null
+      "飲水機2-1",
+      "飲水機2-2",
+      "飲水機2-3",
+      "飲水機2-4"
     ]
   },
   {
-    "category": {
-      "categoryName": "公用印表機",
-      "categoryDescName": "公用印表機1-2"
-    },
+    "floor": "2F",
+    "category": "空間",
+    "name": "一般座位區",
     "serial": [
-      null
+      "一般座位區2-1",
+      "一般座位區2-2",
+      "一般座位區2-3",
+      "一般座位區2-4",
+      "一般座位區2-5",
+      "一般座位區2-6",
+      "一般座位區2-7",
+      "一般座位區2-8",
+      "一般座位區2-9",
+      "一般座位區2-10",
+      "一般座位區2-11",
+      "一般座位區2-12",
+      "一般座位區2-13"
     ]
   },
   {
-    "category": {
-      "categoryName": "ATM",
-      "categoryDescName": "ATM1-1"
-    },
+    "floor": "2F",
+    "category": "空間",
+    "name": "高腳椅區",
     "serial": [
-      null
+      "高腳椅區2-1",
+      "高腳椅區2-2",
+      "高腳椅區2-3"
     ]
   },
   {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區1-1"
-    },
+    "floor": "2F",
+    "category": "物體",
+    "name": "公用印表機",
     "serial": [
-      null
+      "公用印表機2-1",
+      "公用印表機2-2",
+      "公用印表機2-3"
     ]
   },
   {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區1-2"
-    },
+    "floor": "2F",
+    "category": "空間",
+    "name": "沙發區",
     "serial": [
-      null
+      "沙發區2-1",
+      "沙發區2-2",
+      "沙發區2-3"
     ]
   },
   {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區1-3"
-    },
+    "floor": "2F",
+    "category": "物體",
+    "name": "公用電腦",
     "serial": [
-      null
+      "公用電腦2-1",
+      "公用電腦2-2",
+      "公用電腦2-3",
+      "公用電腦2-4",
+      "公用電腦2-5",
+      "公用電腦2-6"
     ]
   },
   {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區1-4"
-    },
+    "floor": "2F",
+    "category": "空間",
+    "name": "置物櫃",
     "serial": [
-      null
+      "置物櫃2-1",
+      "置物櫃2-2",
+      "置物櫃2-3"
     ]
   },
   {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區1-5"
-    },
+    "floor": "2F",
+    "category": "物體",
+    "name": "販賣機",
     "serial": [
-      null
+      "販賣機2-1",
+      "販賣機2-2",
+      "販賣機2-3",
+      "販賣機2-4"
     ]
   },
   {
-    "category": {
-      "categoryName": "販賣機",
-      "categoryDescName": "販賣機1-1"
-    },
+    "floor": "3F",
+    "category": "物體",
+    "name": "飲水機",
     "serial": [
-      null
+      "飲水機3-1",
+      "飲水機3-2",
+      "飲水機3-3",
+      "飲水機3-4"
     ]
   },
   {
-    "category": {
-      "categoryName": "販賣機",
-      "categoryDescName": "販賣機1-2"
-    },
+    "floor": "3F",
+    "category": "空間",
+    "name": "一般座位區",
     "serial": [
-      null
+      "一般座位區3-1",
+      "一般座位區3-2",
+      "一般座位區3-3",
+      "一般座位區3-4",
+      "一般座位區3-5",
+      "一般座位區3-6"
     ]
   },
   {
-    "category": {
-      "categoryName": "販賣機",
-      "categoryDescName": "販賣機1-3"
-    },
+    "floor": "3F",
+    "category": "空間",
+    "name": "沙發區",
     "serial": [
-      null
+      "沙發區3-1",
+      "沙發區3-2",
+      "沙發區3-3",
+      "沙發區3-4",
+      "沙發區3-5"
     ]
   },
   {
-    "category": {
-      "categoryName": "販賣機",
-      "categoryDescName": "販賣機1-4"
-    },
+    "floor": "3F",
+    "category": "物體",
+    "name": "販賣機",
     "serial": [
-      null
+      "販賣機3-1",
+      "販賣機3-2"
     ]
   },
   {
-    "category": {
-      "categoryName": "公用電腦",
-      "categoryDescName": "公用電腦1-1"
-    },
+    "floor": "3F",
+    "category": "空間",
+    "name": "置物櫃",
     "serial": [
-      null
+      "置物櫃3-1",
+      "置物櫃3-2",
+      "置物櫃3-3",
+      "置物櫃3-4",
+      "置物櫃3-5",
+      "置物櫃3-6"
     ]
   },
   {
-    "category": {
-      "categoryName": "公用電腦",
-      "categoryDescName": "公用電腦1-2"
-    },
+    "floor": "3F",
+    "category": "物體",
+    "name": "跑步機",
     "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "公用電腦",
-      "categoryDescName": "公用電腦1-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "公用電腦",
-      "categoryDescName": "公用電腦1-4"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃1-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃1-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃1-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "腳踏車停車區",
-      "categoryDescName": "腳踏車停車區1-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "腳踏車停車區",
-      "categoryDescName": "腳踏車停車區1-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "服務台",
-      "categoryDescName": "服務台1-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機2-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機2-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機2-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機2-4"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-4"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-5"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-6"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-7"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-8"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-9"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-10"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-11"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-12"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區2-13"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "高腳椅區",
-      "categoryDescName": "高腳椅區2-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "高腳椅區",
-      "categoryDescName": "高腳椅區2-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "高腳椅區",
-      "categoryDescName": "高腳椅區2-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "公用印表機",
-      "categoryDescName": "公用印表機2-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "公用印表機",
-      "categoryDescName": "公用印表機2-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "公用印表機",
-      "categoryDescName": "公用印表機2-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區2-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區2-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區2-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "公用電腦",
-      "categoryDescName": "公用電腦2-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "公用電腦",
-      "categoryDescName": "公用電腦2-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "公用電腦",
-      "categoryDescName": "公用電腦2-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "公用電腦",
-      "categoryDescName": "公用電腦2-4"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "公用電腦",
-      "categoryDescName": "公用電腦2-5"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "公用電腦",
-      "categoryDescName": "公用電腦2-6"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃2-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃2-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃2-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "販賣機",
-      "categoryDescName": "販賣機2-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "販賣機",
-      "categoryDescName": "販賣機2-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "販賣機",
-      "categoryDescName": "販賣機2-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "販賣機",
-      "categoryDescName": "販賣機2-4"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機3-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機3-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機3-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "飲水機",
-      "categoryDescName": "飲水機3-4"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區3-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區3-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區3-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區3-4"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區3-5"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "一般座位區",
-      "categoryDescName": "一般座位區3-6"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區3-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區3-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區3-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區3-4"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "沙發區",
-      "categoryDescName": "沙發區3-5"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "販賣機",
-      "categoryDescName": "販賣機3-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "販賣機",
-      "categoryDescName": "販賣機3-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃3-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃3-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃3-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃3-4"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃3-5"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "置物櫃",
-      "categoryDescName": "置物櫃3-6"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-1"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-2"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-3"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-4"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-5"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-6"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-7"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-8"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-9"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-10"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-11"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-12"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-13"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-14"
-    },
-    "serial": [
-      null
-    ]
-  },
-  {
-    "category": {
-      "categoryName": "跑步機",
-      "categoryDescName": "跑步機3-15"
-    },
-    "serial": [
-      null
+      "跑步機3-1",
+      "跑步機3-2",
+      "跑步機3-3",
+      "跑步機3-4",
+      "跑步機3-5",
+      "跑步機3-6",
+      "跑步機3-7",
+      "跑步機3-8",
+      "跑步機3-9",
+      "跑步機3-10",
+      "跑步機3-11",
+      "跑步機3-12",
+      "跑步機3-13",
+      "跑步機3-14",
+      "跑步機3-15"
     ]
   }
 ]
