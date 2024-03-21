@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Image, Input, Select, SelectItem, Skeleton } from "@nextui-org/react";
+import { Image, Select, SelectItem, Skeleton } from "@nextui-org/react";
 
 import {
   poiObjectStatusTypeSelect,
@@ -536,21 +536,12 @@ const AddReportDrawerContent: React.FC = () => {
             <div className="basis-0.5/12 px-1">
               <Image radius="none" src={poiAddDrawerLocation} alt="location" />
             </div>
-            <p className="basis-2/12 text-xs font-bold">
-              {t("addReport.content.text.setLocation", {
-                ns: ["drawer"],
-              })}
-            </p>
-            <div className="flex flex-row basis-[70%]">
-              <Input
-                aria-label="set location"
-                placeholder={t("addReport.content.text.flagInsruction", {
+            <div className="flex flex-row basis-11/12 pl-1.5 mb-2">
+              <p className="text-sm font-bold">
+                {t("addReport.content.text.flagInsruction", {
                   ns: ["drawer"],
                 })}
-                variant="underlined"
-                classNames={{ base: "", input: "text-xs w-full" }}
-                isReadOnly
-              />
+              </p>
             </div>
           </div>
           {/* report floor */}
