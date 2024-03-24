@@ -12,7 +12,6 @@ import { resetReport, updateAddReportData } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
-  setupDrawerParams,
 } from "../../../utils/routes/params";
 
 import Drawer from "..";
@@ -39,7 +38,7 @@ const reportDataValidator = (reportData: PoiData) => {
 const AddReportDrawer: React.FC = () => {
   const { t } = useTranslation();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const reportType = useSelector((state: IRootState) => state.report.type);
   const reportData = useSelector((state: IRootState) => state.report.data);
@@ -59,13 +58,8 @@ const AddReportDrawer: React.FC = () => {
   const handleSubmit = () => {
     addPoi({ data: reportData })
       .unwrap()
-      .then((poiId) => {
+      .then(() => {
         dispatch(resetReport());
-        setupDrawerParams<"poi">(
-          { poiId: poiId },
-          searchParams,
-          setSearchParams,
-        );
         dispatch(closeModal("confirmAddReport"));
       });
   };
