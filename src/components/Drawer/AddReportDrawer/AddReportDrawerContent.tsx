@@ -537,7 +537,7 @@ const AddReportDrawerContent: React.FC = () => {
               <Image radius="none" src={poiAddDrawerLocation} alt="location" />
             </div>
             <div className="flex flex-row basis-11/12 pl-1.5 mb-2">
-              <p className="text-sm font-bold">
+              <p className="text-md font-bold text-newLocation">
                 {t("addReport.content.text.flagInsruction", {
                   ns: ["drawer"],
                 })}
