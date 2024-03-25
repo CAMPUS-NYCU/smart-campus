@@ -58,5 +58,8 @@
   },
   "reportCompletion": {
     "text": "Report Completed"
+  },
+  "reportStart": {
+    "text": "You may start carrying out the task."
   }
 }

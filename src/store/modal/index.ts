@@ -9,6 +9,7 @@ const modal = {
   switchResource: "switchResource",
   switchTheme: "switchTheme",
   reportCompletion: "reportCompletion",
+  reportStart: "reportStart",
 };
 
 type Modal = keyof typeof modal;

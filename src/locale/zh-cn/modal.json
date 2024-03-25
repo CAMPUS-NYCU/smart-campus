@@ -58,5 +58,8 @@
   },
   "reportCompletion": {
     "text": "回报已完成"
+  },
+  "reportStart": {
+    "text": "请开始执行任务"
   }
 }

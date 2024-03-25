@@ -10,6 +10,9 @@ import {
   setupDrawerParams,
 } from "../../../../utils/routes/params";
 import { maps } from "../../../../utils/googleMaps";
+import { useDispatch } from "react-redux";
+import { openModal } from "../../../../store/modal";
+import ReportStart from "../../../modal/ReportStart";
 import { getClusterCenter } from "../../../../constants/clusterCenter";
 
 const ClusterMarkers: React.FC = () => {
@@ -39,6 +42,8 @@ const ClusterMarkers: React.FC = () => {
     [searchParams, setSearchParams, clusters],
   );
 
+  const dispatch = useDispatch();
+
   React.useEffect(() => {
     if (!isCurrentSearchParamsPoi && clusters) {
       markers.cluster.setClusters(clusters);
@@ -52,6 +57,7 @@ const ClusterMarkers: React.FC = () => {
       }
       maps.setZoom(18);
       markers.cluster.clear();
+      dispatch(openModal("reportStart"));
     }
 
     return () => {
@@ -63,8 +69,13 @@ const ClusterMarkers: React.FC = () => {
     isCurrentSearchParamsPoi,
     isCurrentSearchParamsCluster,
     onClickedClusterName,
+    dispatch,
   ]);
-  return <></>;
+  return (
+    <>
+      <ReportStart />
+    </>
+  );
 };
 
 export default ClusterMarkers;
