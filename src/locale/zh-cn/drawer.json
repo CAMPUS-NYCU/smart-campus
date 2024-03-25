@@ -24,7 +24,7 @@
         }
       },
       "text": {
-        "flagInsruction": "拖曳地图将上方黄色标籤移到欲回报位置"
+        "flagInsruction": "拖曳地图将上方红色标籤移到欲回报位置"
       },
       "select": {
         "placeHolder": "请选择",

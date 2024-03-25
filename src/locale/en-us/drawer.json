@@ -24,7 +24,7 @@
         }
       },
       "text": {
-        "flagInsruction": "Move the yellow flag to the desired location."
+        "flagInsruction": "Move the red flag to the desired location."
       },
       "select": {
         "placeHolder": "Select a value",
