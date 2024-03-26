@@ -14,6 +14,7 @@ export default {
         secondary: "#777777",
         textBtn: "#D4D4D8",
         textBtnHover: "#b6b6ba",
+        newLocation: "#E25D33",
       },
     },
   },

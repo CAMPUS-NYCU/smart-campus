@@ -12,17 +12,17 @@ import {
 import { IRootState } from "../../../store";
 import { toggleModal } from "../../../store/modal";
 
-const ReportCompletion: React.FC = () => {
+const ReportStart: React.FC = () => {
   const { t } = useTranslation();
 
   const modalOpen = useSelector(
-    (state: IRootState) => state.modal.open["reportCompletion"],
+    (state: IRootState) => state.modal.open["reportStart"],
   );
 
   const dispatch = useDispatch();
 
   const handleToggleModal = () => {
-    dispatch(toggleModal("reportCompletion"));
+    dispatch(toggleModal("reportStart"));
   };
 
   return (
@@ -38,7 +38,7 @@ const ReportCompletion: React.FC = () => {
         <ModalHeader />
         <ModalBody className="items-center justify-center">
           <p className="text-xl font-bold">
-            {t("reportCompletion.text", { ns: ["modal"] })}
+            {t("reportStart.text", { ns: ["modal"] })}
           </p>
         </ModalBody>
         <ModalFooter />
@@ -47,4 +47,4 @@ const ReportCompletion: React.FC = () => {
   );
 };
 
-export default ReportCompletion;
+export default ReportStart;

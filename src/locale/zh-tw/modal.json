@@ -58,5 +58,8 @@
   },
   "reportCompletion": {
     "text": "回報已完成"
+  },
+  "reportStart": {
+    "text": "請開始執行任務"
   }
 }
