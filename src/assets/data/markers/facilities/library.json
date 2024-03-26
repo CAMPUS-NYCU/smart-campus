@@ -3,7 +3,7 @@
     "name": "圖書館",
     "latlng": {
       "latitude": 24.786852512077758,
-      "longitude": 120.99864032564031
+      "longitude": 120.99864089720543
     },
     "target": {
       "name": "飲水機",
@@ -13,8 +13,8 @@
   "1": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786578989073288,
-      "longitude": 120.99863678117575
+      "latitude": 24.786832017985837,
+      "longitude": 120.99864089720543
     },
     "target": {
       "name": "飲水機",
@@ -24,7 +24,7 @@
   "2": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786022287524133,
+      "latitude": 24.786563516625037,
       "longitude": 120.99861551447023
     },
     "target": {
@@ -35,8 +35,8 @@
   "3": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78603355026629,
-      "longitude": 120.99851804206313
+      "latitude": 24.78601805019011,
+      "longitude": 120.9986058368385
     },
     "target": {
       "name": "飲水機",
@@ -46,8 +46,8 @@
   "4": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786852512077758,
-      "longitude": 120.99840461962688
+      "latitude": 24.78601805019011,
+      "longitude": 120.99857901474837
     },
     "target": {
       "name": "飲水機",
@@ -57,8 +57,8 @@
   "5": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78685871908375,
-      "longitude": 120.9981890740094
+      "latitude": 24.786852512077758,
+      "longitude": 120.99840111556868
     },
     "target": {
       "name": "飲水機",
@@ -68,8 +68,8 @@
   "6": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786800276504046,
-      "longitude": 120.99819376787518
+      "latitude": 24.786852512077758,
+      "longitude": 120.9981710586543
     },
     "target": {
       "name": "飲水機",
@@ -79,8 +79,8 @@
   "7": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786441691642615,
-      "longitude": 120.99814854288691
+      "latitude": 24.78681297731619,
+      "longitude": 120.9981710586543
     },
     "target": {
       "name": "飲水機",
@@ -90,8 +90,8 @@
   "8": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78602067855027,
-      "longitude": 120.99821499149928
+      "latitude": 24.78640596499262,
+      "longitude": 120.99813786572372
     },
     "target": {
       "name": "飲水機",
@@ -101,290 +101,587 @@
   "9": {
     "name": "圖書館",
     "latlng": {
+      "latitude": 24.78601805019011,
+      "longitude": 120.9982089885264
+    },
+    "target": {
+      "name": "飲水機",
+      "description": "飲水機1-10"
+    }
+  },
+  "10": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78601805019011,
+      "longitude": 120.99816062502057
+    },
+    "target": {
+      "name": "飲水機",
+      "description": "飲水機1-11"
+    }
+  },
+  "11": {
+    "name": "圖書館",
+    "latlng": {
       "latitude": 24.786852512077758,
-      "longitude": 120.9985482605647
+      "longitude": 120.9986234024218
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-1"
     }
   },
-  "10": {
+  "12": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786695422529814,
-      "longitude": 120.99854880974593
+      "latitude": 24.786852512077758,
+      "longitude": 120.9985873150648
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-2"
     }
   },
-  "11": {
+  "13": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.7865269144618,
-      "longitude": 120.99854708753863
+      "latitude": 24.786852512077758,
+      "longitude": 120.9985557386274
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-3"
     }
   },
-  "12": {
+  "14": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786414705647,
-      "longitude": 120.99854963580994
+      "latitude": 24.786617724024055,
+      "longitude": 120.99860761420312
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-4"
     }
   },
-  "13": {
+  "15": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786285414256866,
-      "longitude": 120.99855009364023
+      "latitude": 24.786494863366496,
+      "longitude": 120.99860761420312
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-5"
     }
   },
-  "14": {
+  "16": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78617143208317,
-      "longitude": 120.99854580067588
+      "latitude": 24.786352549619405,
+      "longitude": 120.99858393187506
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-6"
     }
   },
-  "15": {
+  "17": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78666697809558,
-      "longitude": 120.99838889144851
+      "latitude": 24.786326953604398,
+      "longitude": 120.99858393187506
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-7"
     }
   },
-  "16": {
+  "18": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786567138517633,
-      "longitude": 120.99839291476204
+      "latitude": 24.786336168170404,
+      "longitude": 120.99855235543767
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-8"
     }
   },
-  "17": {
+  "19": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786434424807968,
-      "longitude": 120.99839023255302
+      "latitude": 24.78624299863815,
+      "longitude": 120.99858393187506
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-9"
     }
   },
-  "18": {
+  "20": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786290752925535,
-      "longitude": 120.99837950371696
+      "latitude": 24.786617724024055,
+      "longitude": 120.99841138919936
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-10"
     }
   },
-  "19": {
+  "21": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78617751988404,
-      "longitude": 120.99837816261245
+      "latitude": 24.78648667265165,
+      "longitude": 120.99843056060777
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-11"
     }
   },
-  "20": {
+  "22": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786656129861534,
-      "longitude": 120.99820556068902
+      "latitude": 24.786501006402247,
+      "longitude": 120.99841138919936
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-12"
     }
   },
-  "21": {
+  "23": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786525934110042,
-      "longitude": 120.9982126003468
+      "latitude": 24.78647643425736,
+      "longitude": 120.99841138919936
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-13"
     }
   },
-  "22": {
+  "24": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78644278779725,
-      "longitude": 120.99821490592757
+      "latitude": 24.786339239692264,
+      "longitude": 120.99841138919936
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-14"
     }
   },
-  "23": {
+  "25": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78629120179111,
-      "longitude": 120.99821356482306
+      "latitude": 24.78623480790669,
+      "longitude": 120.99843056060777
     },
     "target": {
       "name": "一般座位區",
       "description": "一般座位區1-15"
     }
   },
-  "24": {
+  "26": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786721229254454,
-      "longitude": 120.99864136370573
+      "latitude": 24.78624914168637,
+      "longitude": 120.99841138919936
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-16"
+    }
+  },
+  "27": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786224569491587,
+      "longitude": 120.99841138919936
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-17"
+    }
+  },
+  "28": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786617724024055,
+      "longitude": 120.99822418603486
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-18"
+    }
+  },
+  "29": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786617724024055,
+      "longitude": 120.9981959927872
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-19"
+    }
+  },
+  "30": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78648667265165,
+      "longitude": 120.99822418603486
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-20"
+    }
+  },
+  "31": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78648667265165,
+      "longitude": 120.9981959927872
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-21"
+    }
+  },
+  "32": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786339239692264,
+      "longitude": 120.99822418603486
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-22"
+    }
+  },
+  "33": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786339239692264,
+      "longitude": 120.9981959927872
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-23"
+    }
+  },
+  "34": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78624914168637,
+      "longitude": 120.99822418603486
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-24"
+    }
+  },
+  "35": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78624914168637,
+      "longitude": 120.9981959927872
+    },
+    "target": {
+      "name": "一般座位區",
+      "description": "一般座位區1-25"
+    }
+  },
+  "36": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78666280119584,
+      "longitude": 120.99864089720543
     },
     "target": {
       "name": "高腳椅區",
       "description": "高腳椅區1-1"
     }
   },
-  "25": {
+  "37": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78634701384464,
-      "longitude": 120.9986359992877
+      "latitude": 24.78666280119584,
+      "longitude": 120.99861957819915
     },
     "target": {
       "name": "高腳椅區",
       "description": "高腳椅區1-2"
     }
   },
-  "26": {
+  "38": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78602843863554,
-      "longitude": 120.99842156000025
+      "latitude": 24.78666280119584,
+      "longitude": 120.99858688375515
     },
     "target": {
       "name": "高腳椅區",
       "description": "高腳椅區1-3"
     }
   },
-  "27": {
+  "39": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78685245571848,
-      "longitude": 120.99824502690016
+      "latitude": 24.786326953604398,
+      "longitude": 120.99864089720543
     },
     "target": {
       "name": "高腳椅區",
       "description": "高腳椅區1-4"
     }
   },
-  "28": {
+  "40": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78660002220101,
-      "longitude": 120.99820097675975
+      "latitude": 24.786326953604398,
+      "longitude": 120.99860139388805
     },
     "target": {
       "name": "高腳椅區",
       "description": "高腳椅區1-5"
     }
   },
-  "29": {
+  "41": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786384531412658,
-      "longitude": 120.99821510117546
+      "latitude": 24.78601805019011,
+      "longitude": 120.99843056060777
     },
     "target": {
       "name": "高腳椅區",
       "description": "高腳椅區1-6"
     }
   },
-  "30": {
+  "42": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78651402778089,
-      "longitude": 120.9986374532696
+      "latitude": 24.78601805019011,
+      "longitude": 120.99841138919936
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區1-7"
+    }
+  },
+  "43": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786852512077758,
+      "longitude": 120.99822946505142
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區1-8"
+    }
+  },
+  "44": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786839630265284,
+      "longitude": 120.99825360493114
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區1-9"
+    }
+  },
+  "45": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786563516625037,
+      "longitude": 120.99822418603486
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區1-10"
+    }
+  },
+  "46": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786563516625037,
+      "longitude": 120.9981959927872
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區1-11"
+    }
+  },
+  "47": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786326953604398,
+      "longitude": 120.99822418603486
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區1-12"
+    }
+  },
+  "48": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786326953604398,
+      "longitude": 120.9981959927872
+    },
+    "target": {
+      "name": "高腳椅區",
+      "description": "高腳椅區1-13"
+    }
+  },
+  "49": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786493413380953,
+      "longitude": 120.99861551447023
     },
     "target": {
       "name": "公用印表機",
       "description": "公用印表機1-1"
     }
   },
-  "31": {
+  "50": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786092351772325,
-      "longitude": 120.9986149072802
+      "latitude": 24.786480629031594,
+      "longitude": 120.99861551447023
     },
     "target": {
       "name": "公用印表機",
       "description": "公用印表機1-2"
     }
   },
-  "32": {
+  "51": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78674366022871,
-      "longitude": 120.99819309732293
+      "latitude": 24.786464800787716,
+      "longitude": 120.99861551447023
     },
     "target": {
       "name": "公用印表機",
       "description": "公用印表機1-3"
     }
   },
-  "33": {
+  "52": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786492596703436,
-      "longitude": 120.99821460960648
+      "latitude": 24.786030679517555,
+      "longitude": 120.99861102559387
     },
     "target": {
       "name": "公用印表機",
       "description": "公用印表機1-4"
     }
   },
-  "34": {
+  "53": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786111496549825,
-      "longitude": 120.99822327582845
+      "latitude": 24.786030679517555,
+      "longitude": 120.99856171378401
     },
     "target": {
       "name": "公用印表機",
       "description": "公用印表機1-5"
     }
   },
-  "35": {
+  "54": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78601805019011,
+      "longitude": 120.99851998840646
+    },
+    "target": {
+      "name": "公用印表機",
+      "description": "公用印表機1-6"
+    }
+  },
+  "55": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786698003417577,
+      "longitude": 120.99822129018041
+    },
+    "target": {
+      "name": "公用印表機",
+      "description": "公用印表機1-7"
+    }
+  },
+  "56": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786724789624895,
+      "longitude": 120.9981710586543
+    },
+    "target": {
+      "name": "公用印表機",
+      "description": "公用印表機1-8"
+    }
+  },
+  "57": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78668156642383,
+      "longitude": 120.9981710586543
+    },
+    "target": {
+      "name": "公用印表機",
+      "description": "公用印表機1-9"
+    }
+  },
+  "58": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78644170782314,
+      "longitude": 120.9981710586543
+    },
+    "target": {
+      "name": "公用印表機",
+      "description": "公用印表機1-10"
+    }
+  },
+  "59": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786156067865306,
+      "longitude": 120.99816407803749
+    },
+    "target": {
+      "name": "公用印表機",
+      "description": "公用印表機1-11"
+    }
+  },
+  "60": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786121367391075,
+      "longitude": 120.99816407803749
+    },
+    "target": {
+      "name": "公用印表機",
+      "description": "公用印表機1-12"
+    }
+  },
+  "61": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786084231785107,
+      "longitude": 120.99816407803749
+    },
+    "target": {
+      "name": "公用印表機",
+      "description": "公用印表機1-13"
+    }
+  },
+  "62": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.786473513466387,
@@ -395,117 +692,183 @@
       "description": "服務台1-1"
     }
   },
-  "36": {
+  "63": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786651982675725,
-      "longitude": 120.99848031953813
+      "latitude": 24.786560769236992,
+      "longitude": 120.99851357307946
     },
     "target": {
       "name": "沙發區",
       "description": "沙發區1-1"
     }
   },
-  "37": {
+  "64": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.7864416035241,
-      "longitude": 120.99847878899105
+      "latitude": 24.786373265416287,
+      "longitude": 120.99855235543767
     },
     "target": {
       "name": "沙發區",
       "description": "沙發區1-2"
     }
   },
-  "38": {
+  "65": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786232183448718,
-      "longitude": 120.99847744788654
+      "latitude": 24.786381788323382,
+      "longitude": 120.99849479761747
     },
     "target": {
       "name": "沙發區",
       "description": "沙發區1-3"
     }
   },
-  "39": {
+  "66": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786796405623196,
-      "longitude": 120.9983946948675
+      "latitude": 24.786346479133044,
+      "longitude": 120.99849479761747
     },
     "target": {
       "name": "沙發區",
       "description": "沙發區1-4"
     }
   },
-  "40": {
+  "67": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786755617555205,
-      "longitude": 120.99839402431525
+      "latitude": 24.78618332619215,
+      "longitude": 120.99849747982631
     },
     "target": {
       "name": "沙發區",
       "description": "沙發區1-5"
     }
   },
-  "41": {
+  "68": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78679884073133,
-      "longitude": 120.99834842676199
+      "latitude": 24.78620280715158,
+      "longitude": 120.99846261111117
     },
     "target": {
       "name": "沙發區",
       "description": "沙發區1-6"
     }
   },
-  "42": {
+  "69": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786756835109678,
-      "longitude": 120.99834708565749
+      "latitude": 24.786161410109113,
+      "longitude": 120.99846261111117
     },
     "target": {
       "name": "沙發區",
       "description": "沙發區1-7"
     }
   },
-  "43": {
+  "70": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786778142310833,
-      "longitude": 120.99828874761141
+      "latitude": 24.78676047410292,
+      "longitude": 120.99841138919936
     },
     "target": {
       "name": "沙發區",
       "description": "沙發區1-8"
     }
   },
-  "44": {
+  "71": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78660037926331,
-      "longitude": 120.99830752307452
+      "latitude": 24.78670933680769,
+      "longitude": 120.99841138919936
     },
     "target": {
       "name": "沙發區",
       "description": "沙發區1-9"
     }
   },
-  "45": {
+  "72": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786403743814756,
-      "longitude": 120.99831825191058
+      "latitude": 24.78676047410292,
+      "longitude": 120.99834052516132
     },
     "target": {
       "name": "沙發區",
       "description": "沙發區1-10"
     }
   },
-  "46": {
+  "73": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78670933680769,
+      "longitude": 120.99834052516132
+    },
+    "target": {
+      "name": "沙發區",
+      "description": "沙發區1-11"
+    }
+  },
+  "74": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786734905457962,
+      "longitude": 120.9982976098196
+    },
+    "target": {
+      "name": "沙發區",
+      "description": "沙發區1-12"
+    }
+  },
+  "75": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78652670343838,
+      "longitude": 120.99831370307272
+    },
+    "target": {
+      "name": "沙發區",
+      "description": "沙發區1-13"
+    }
+  },
+  "76": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78629536745133,
+      "longitude": 120.99831370307272
+    },
+    "target": {
+      "name": "沙發區",
+      "description": "沙發區1-14"
+    }
+  },
+  "77": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786314848393207,
+      "longitude": 120.99827346993989
+    },
+    "target": {
+      "name": "沙發區",
+      "description": "沙發區1-15"
+    }
+  },
+  "78": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786275886506427,
+      "longitude": 120.99827615214875
+    },
+    "target": {
+      "name": "沙發區",
+      "description": "沙發區1-16"
+    }
+  },
+  "79": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.78685780717959,
@@ -516,7 +879,7 @@
       "description": "販賣機1-1"
     }
   },
-  "47": {
+  "80": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.78602319543469,
@@ -527,7 +890,7 @@
       "description": "販賣機1-2"
     }
   },
-  "48": {
+  "81": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.78623671342494,
@@ -538,7 +901,7 @@
       "description": "公用電腦1-1"
     }
   },
-  "49": {
+  "82": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.786198098261824,
@@ -549,7 +912,7 @@
       "description": "公用電腦1-2"
     }
   },
-  "50": {
+  "83": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.786149829291034,
@@ -560,7 +923,7 @@
       "description": "公用電腦1-3"
     }
   },
-  "51": {
+  "84": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.78623671342494,
@@ -571,7 +934,7 @@
       "description": "公用電腦1-4"
     }
   },
-  "52": {
+  "85": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.786198098261824,
@@ -582,7 +945,7 @@
       "description": "公用電腦1-5"
     }
   },
-  "53": {
+  "86": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.786149024804914,
@@ -593,7 +956,7 @@
       "description": "公用電腦1-6"
     }
   },
-  "54": {
+  "87": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.78623671342494,
@@ -604,7 +967,7 @@
       "description": "公用電腦1-7"
     }
   },
-  "55": {
+  "88": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.786198098261824,
@@ -615,7 +978,7 @@
       "description": "公用電腦1-8"
     }
   },
-  "56": {
+  "89": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.786149024804914,
@@ -626,106 +989,161 @@
       "description": "公用電腦1-9"
     }
   },
-  "57": {
+  "90": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78681011897696,
-      "longitude": 120.99864024282208
+      "latitude": 24.786771311511938,
+      "longitude": 120.99864089720543
     },
     "target": {
       "name": "置物櫃",
       "description": "置物櫃1-1"
     }
   },
-  "58": {
+  "91": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.7865465084,
-      "longitude": 120.99863585614929
+      "latitude": 24.786745742869197,
+      "longitude": 120.99864089720543
     },
     "target": {
       "name": "置物櫃",
       "description": "置物櫃1-2"
     }
   },
-  "59": {
+  "92": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786253058801,
-      "longitude": 120.99863893243675
+      "latitude": 24.78658867823385,
+      "longitude": 120.99864089720543
     },
     "target": {
       "name": "置物櫃",
       "description": "置物櫃1-3"
     }
   },
-  "60": {
+  "93": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786855736102655,
-      "longitude": 120.99829264471077
+      "latitude": 24.786223410868214,
+      "longitude": 120.99864089720543
     },
     "target": {
       "name": "置物櫃",
       "description": "置物櫃1-4"
     }
   },
-  "61": {
+  "94": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78602319543469,
-      "longitude": 120.99833423715414
+      "latitude": 24.786199059672466,
+      "longitude": 120.99864089720543
     },
     "target": {
       "name": "置物櫃",
       "description": "置物櫃1-5"
     }
   },
-  "62": {
+  "95": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786836954558574,
-      "longitude": 120.99813803030118
+      "latitude": 24.786852512077758,
+      "longitude": 120.99830565945275
     },
     "target": {
       "name": "置物櫃",
       "description": "置物櫃1-6"
     }
   },
-  "63": {
+  "96": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786629762286125,
-      "longitude": 120.9981432562586
+      "latitude": 24.78601805019011,
+      "longitude": 120.99830633000904
     },
     "target": {
       "name": "置物櫃",
       "description": "置物櫃1-7"
     }
   },
-  "64": {
+  "97": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.78653570006815,
-      "longitude": 120.99814312976183
+      "latitude": 24.78601805019011,
+      "longitude": 120.99827414350274
     },
     "target": {
       "name": "置物櫃",
       "description": "置物櫃1-8"
     }
   },
-  "65": {
+  "98": {
     "name": "圖書館",
     "latlng": {
-      "latitude": 24.786272104782615,
-      "longitude": 120.99814542608313
+      "latitude": 24.786845273971533,
+      "longitude": 120.99814942079011
     },
     "target": {
       "name": "置物櫃",
       "description": "置物櫃1-9"
     }
   },
-  "66": {
+  "99": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786820922897817,
+      "longitude": 120.99814942079011
+    },
+    "target": {
+      "name": "置物櫃",
+      "description": "置物櫃1-10"
+    }
+  },
+  "100": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78658471723494,
+      "longitude": 120.99814942079011
+    },
+    "target": {
+      "name": "置物櫃",
+      "description": "置物櫃1-11"
+    }
+  },
+  "101": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786463127622675,
+      "longitude": 120.99814942079011
+    },
+    "target": {
+      "name": "置物櫃",
+      "description": "置物櫃1-12"
+    }
+  },
+  "102": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.78626283927906,
+      "longitude": 120.99814942079011
+    },
+    "target": {
+      "name": "置物櫃",
+      "description": "置物櫃1-13"
+    }
+  },
+  "103": {
+    "name": "圖書館",
+    "latlng": {
+      "latitude": 24.786225703715424,
+      "longitude": 120.99814942079011
+    },
+    "target": {
+      "name": "置物櫃",
+      "description": "置物櫃1-14"
+    }
+  },
+  "104": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.78602442799644,
@@ -736,7 +1154,7 @@
       "description": "ATM1-1"
     }
   },
-  "67": {
+  "105": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.78625934524186,
@@ -747,7 +1165,7 @@
       "description": "腳踏車停車區1-1"
     }
   },
-  "68": {
+  "106": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.78682598565079,
@@ -758,7 +1176,7 @@
       "description": "跑步機1-1"
     }
   },
-  "69": {
+  "107": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.786791956192182,
@@ -769,7 +1187,7 @@
       "description": "跑步機1-2"
     }
   },
-  "70": {
+  "108": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.78682562363217,
@@ -780,7 +1198,7 @@
       "description": "跑步機1-3"
     }
   },
-  "71": {
+  "109": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.78679087014527,
@@ -791,7 +1209,7 @@
       "description": "跑步機1-4"
     }
   },
-  "72": {
+  "110": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.786828157734686,
@@ -802,7 +1220,7 @@
       "description": "跑步機1-5"
     }
   },
-  "73": {
+  "111": {
     "name": "圖書館",
     "latlng": {
       "latitude": 24.786798834492128,
