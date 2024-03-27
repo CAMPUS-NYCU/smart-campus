@@ -100,7 +100,7 @@ export const getIcon = (targetName: string | ""): google.maps.Icon => {
 
   return {
     url: thisUrl,
-    scaledSize: new google.maps.Size(28, 30),
+    scaledSize: new google.maps.Size(40, 42),
   };
 };
 
@@ -172,6 +172,6 @@ export const getHighlightedIcon = (
 
   return {
     url: thisUrl,
-    scaledSize: new google.maps.Size(28, 30),
+    scaledSize: new google.maps.Size(40, 42),
   };
 };
