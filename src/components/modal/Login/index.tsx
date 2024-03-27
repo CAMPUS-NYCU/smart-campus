@@ -128,7 +128,7 @@ const Login: React.FC = () => {
               }
               endContent={
                 <button
-                  className="focus:outline-none"
+                  className="focus:outline-none hidden"
                   onClick={() => setPasswordVisible(!isPasswordVisible)}
                 >
                   {isPasswordVisible ? (
