@@ -7,7 +7,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-1"
+      "description": "1-1"
     }
   },
   "1": {
@@ -18,7 +18,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-2"
+      "description": "1-2"
     }
   },
   "2": {
@@ -29,7 +29,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-3"
+      "description": "1-3"
     }
   },
   "3": {
@@ -40,7 +40,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-4"
+      "description": "1-4"
     }
   },
   "4": {
@@ -51,7 +51,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-5"
+      "description": "1-5"
     }
   },
   "5": {
@@ -62,7 +62,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-6"
+      "description": "1-6"
     }
   },
   "6": {
@@ -73,7 +73,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-7"
+      "description": "1-7"
     }
   },
   "7": {
@@ -84,7 +84,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-8"
+      "description": "1-8"
     }
   },
   "8": {
@@ -95,7 +95,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-9"
+      "description": "1-9"
     }
   },
   "9": {
@@ -106,7 +106,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-10"
+      "description": "1-10"
     }
   },
   "10": {
@@ -117,7 +117,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-11"
+      "description": "1-11"
     }
   },
   "11": {
@@ -128,7 +128,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-12"
+      "description": "1-12"
     }
   },
   "12": {
@@ -139,7 +139,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-13"
+      "description": "1-13"
     }
   },
   "13": {
@@ -150,7 +150,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-14"
+      "description": "1-14"
     }
   },
   "14": {
@@ -161,7 +161,7 @@
     },
     "target": {
       "name": "飲水機",
-      "description": "飲水機1-15"
+      "description": "1-15"
     }
   },
   "15": {
@@ -172,7 +172,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-1"
+      "description": "1-1"
     }
   },
   "16": {
@@ -183,7 +183,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-2"
+      "description": "1-2"
     }
   },
   "17": {
@@ -194,7 +194,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-3"
+      "description": "1-3"
     }
   },
   "18": {
@@ -205,7 +205,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-4"
+      "description": "1-4"
     }
   },
   "19": {
@@ -216,7 +216,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-5"
+      "description": "1-5"
     }
   },
   "20": {
@@ -227,7 +227,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-6"
+      "description": "1-6"
     }
   },
   "21": {
@@ -238,7 +238,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-7"
+      "description": "1-7"
     }
   },
   "22": {
@@ -249,7 +249,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-8"
+      "description": "1-8"
     }
   },
   "23": {
@@ -260,7 +260,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-9"
+      "description": "1-9"
     }
   },
   "24": {
@@ -271,7 +271,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-10"
+      "description": "1-10"
     }
   },
   "25": {
@@ -282,7 +282,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-11"
+      "description": "1-11"
     }
   },
   "26": {
@@ -293,7 +293,7 @@
     },
     "target": {
       "name": "販賣機",
-      "description": "販賣機1-12"
+      "description": "1-12"
     }
   },
   "27": {
@@ -304,7 +304,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-1"
+      "description": "1-1"
     }
   },
   "28": {
@@ -315,7 +315,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-2"
+      "description": "1-2"
     }
   },
   "29": {
@@ -326,7 +326,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-3"
+      "description": "1-3"
     }
   },
   "30": {
@@ -337,7 +337,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-4"
+      "description": "1-4"
     }
   },
   "31": {
@@ -348,7 +348,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-5"
+      "description": "1-5"
     }
   },
   "32": {
@@ -359,7 +359,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-6"
+      "description": "1-6"
     }
   },
   "33": {
@@ -370,7 +370,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-7"
+      "description": "1-7"
     }
   },
   "34": {
@@ -381,7 +381,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-8"
+      "description": "1-8"
     }
   },
   "35": {
@@ -392,7 +392,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-9"
+      "description": "1-9"
     }
   },
   "36": {
@@ -403,7 +403,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-10"
+      "description": "1-10"
     }
   },
   "37": {
@@ -414,7 +414,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-11"
+      "description": "1-11"
     }
   },
   "38": {
@@ -425,7 +425,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-12"
+      "description": "1-12"
     }
   },
   "39": {
@@ -436,7 +436,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-13"
+      "description": "1-13"
     }
   },
   "40": {
@@ -447,7 +447,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-14"
+      "description": "1-14"
     }
   },
   "41": {
@@ -458,7 +458,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-15"
+      "description": "1-15"
     }
   },
   "42": {
@@ -469,7 +469,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-16"
+      "description": "1-16"
     }
   },
   "43": {
@@ -480,7 +480,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-17"
+      "description": "1-17"
     }
   },
   "44": {
@@ -491,7 +491,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-18"
+      "description": "1-18"
     }
   },
   "45": {
@@ -502,7 +502,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-19"
+      "description": "1-19"
     }
   },
   "46": {
@@ -513,7 +513,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-20"
+      "description": "1-20"
     }
   },
   "47": {
@@ -524,7 +524,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-21"
+      "description": "1-21"
     }
   },
   "48": {
@@ -535,7 +535,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-22"
+      "description": "1-22"
     }
   },
   "49": {
@@ -546,7 +546,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-23"
+      "description": "1-23"
     }
   },
   "50": {
@@ -557,7 +557,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-24"
+      "description": "1-24"
     }
   },
   "51": {
@@ -568,7 +568,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-25"
+      "description": "1-25"
     }
   },
   "52": {
@@ -579,7 +579,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-26"
+      "description": "1-26"
     }
   },
   "53": {
@@ -590,7 +590,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-27"
+      "description": "1-27"
     }
   },
   "54": {
@@ -601,7 +601,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-28"
+      "description": "1-28"
     }
   },
   "55": {
@@ -612,7 +612,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-29"
+      "description": "1-29"
     }
   },
   "56": {
@@ -623,7 +623,7 @@
     },
     "target": {
       "name": "一般座位區",
-      "description": "一般座位區1-30"
+      "description": "1-30"
     }
   },
   "57": {
@@ -634,7 +634,7 @@
     },
     "target": {
       "name": "室外排球場",
-      "description": "室外排球場1-1"
+      "description": "1-1"
     }
   },
   "58": {
@@ -645,7 +645,7 @@
     },
     "target": {
       "name": "室外排球場",
-      "description": "室外排球場1-2"
+      "description": "1-2"
     }
   },
   "59": {
@@ -656,7 +656,7 @@
     },
     "target": {
       "name": "室外排球場",
-      "description": "室外排球場1-3"
+      "description": "1-3"
     }
   },
   "60": {
@@ -667,7 +667,7 @@
     },
     "target": {
       "name": "室外排球場",
-      "description": "室外排球場1-4"
+      "description": "1-4"
     }
   },
   "61": {
@@ -678,7 +678,7 @@
     },
     "target": {
       "name": "室外排球場",
-      "description": "室外排球場1-5"
+      "description": "1-5"
     }
   },
   "62": {
@@ -689,7 +689,7 @@
     },
     "target": {
       "name": "室外排球場",
-      "description": "室外排球場1-6"
+      "description": "1-6"
     }
   },
   "63": {
@@ -700,7 +700,7 @@
     },
     "target": {
       "name": "室外排球場",
-      "description": "室外排球場1-7"
+      "description": "1-7"
     }
   },
   "64": {
@@ -711,7 +711,7 @@
     },
     "target": {
       "name": "ATM",
-      "description": "ATM1-1"
+      "description": "1-1"
     }
   },
   "65": {
@@ -722,7 +722,7 @@
     },
     "target": {
       "name": "路邊無障礙停車位",
-      "description": "路邊無障礙停車位1-1"
+      "description": "1-1"
     }
   },
   "66": {
@@ -733,7 +733,7 @@
     },
     "target": {
       "name": "路邊無障礙停車位",
-      "description": "路邊無障礙停車位1-2"
+      "description": "1-2"
     }
   },
   "67": {
@@ -744,7 +744,7 @@
     },
     "target": {
       "name": "路邊無障礙停車位",
-      "description": "路邊無障礙停車位1-3"
+      "description": "1-3"
     }
   },
   "68": {
@@ -755,7 +755,7 @@
     },
     "target": {
       "name": "路邊無障礙停車位",
-      "description": "路邊無障礙停車位1-4"
+      "description": "1-4"
     }
   },
   "69": {
@@ -766,7 +766,7 @@
     },
     "target": {
       "name": "路邊無障礙停車位",
-      "description": "路邊無障礙停車位1-5"
+      "description": "1-5"
     }
   },
   "70": {
@@ -777,7 +777,7 @@
     },
     "target": {
       "name": "路邊無障礙停車位",
-      "description": "路邊無障礙停車位1-6"
+      "description": "1-6"
     }
   },
   "71": {
@@ -788,7 +788,7 @@
     },
     "target": {
       "name": "路邊無障礙停車位",
-      "description": "路邊無障礙停車位1-7"
+      "description": "1-7"
     }
   },
   "72": {
@@ -799,7 +799,7 @@
     },
     "target": {
       "name": "室外籃球場",
-      "description": "室外籃球場1-1"
+      "description": "1-1"
     }
   },
   "73": {
@@ -810,7 +810,7 @@
     },
     "target": {
       "name": "室外籃球場",
-      "description": "室外籃球場1-2"
+      "description": "1-2"
     }
   },
   "74": {
@@ -821,7 +821,7 @@
     },
     "target": {
       "name": "室外籃球場",
-      "description": "室外籃球場1-3"
+      "description": "1-3"
     }
   },
   "75": {
@@ -832,7 +832,7 @@
     },
     "target": {
       "name": "室外籃球場",
-      "description": "室外籃球場1-4"
+      "description": "1-4"
     }
   },
   "76": {
@@ -843,7 +843,7 @@
     },
     "target": {
       "name": "室外籃球場",
-      "description": "室外籃球場1-5"
+      "description": "1-5"
     }
   },
   "77": {
@@ -854,7 +854,7 @@
     },
     "target": {
       "name": "路邊一般停車位",
-      "description": "路邊一般停車位1-1"
+      "description": "1-1"
     }
   },
   "78": {
@@ -865,7 +865,7 @@
     },
     "target": {
       "name": "路邊一般停車位",
-      "description": "路邊一般停車位1-2"
+      "description": "1-2"
     }
   },
   "79": {
@@ -876,7 +876,7 @@
     },
     "target": {
       "name": "路邊一般停車位",
-      "description": "路邊一般停車位1-3"
+      "description": "1-3"
     }
   },
   "80": {
@@ -887,7 +887,7 @@
     },
     "target": {
       "name": "路邊一般停車位",
-      "description": "路邊一般停車位1-4"
+      "description": "1-4"
     }
   },
   "81": {
@@ -898,7 +898,7 @@
     },
     "target": {
       "name": "路邊一般停車位",
-      "description": "路邊一般停車位1-5"
+      "description": "1-5"
     }
   },
   "82": {
@@ -909,7 +909,7 @@
     },
     "target": {
       "name": "路邊一般停車位",
-      "description": "路邊一般停車位1-6"
+      "description": "1-6"
     }
   },
   "83": {
@@ -920,7 +920,7 @@
     },
     "target": {
       "name": "路邊一般停車位",
-      "description": "路邊一般停車位1-7"
+      "description": "1-7"
     }
   },
   "84": {
@@ -931,7 +931,7 @@
     },
     "target": {
       "name": "路邊一般停車位",
-      "description": "路邊一般停車位1-8"
+      "description": "1-8"
     }
   },
   "85": {
@@ -942,7 +942,7 @@
     },
     "target": {
       "name": "路邊一般停車位",
-      "description": "路邊一般停車位1-9"
+      "description": "1-9"
     }
   },
   "86": {
@@ -953,7 +953,7 @@
     },
     "target": {
       "name": "路邊一般停車位",
-      "description": "路邊一般停車位1-10"
+      "description": "1-10"
     }
   },
   "87": {
@@ -964,7 +964,7 @@
     },
     "target": {
       "name": "路邊一般停車位",
-      "description": "路邊一般停車位1-11"
+      "description": "1-11"
     }
   },
   "88": {
@@ -975,7 +975,7 @@
     },
     "target": {
       "name": "室外網球場",
-      "description": "室外網球場1-1"
+      "description": "1-1"
     }
   },
   "89": {
@@ -986,7 +986,7 @@
     },
     "target": {
       "name": "室外網球場",
-      "description": "室外網球場1-2"
+      "description": "1-2"
     }
   },
   "90": {
@@ -997,7 +997,7 @@
     },
     "target": {
       "name": "室外網球場",
-      "description": "室外網球場1-3"
+      "description": "1-3"
     }
   },
   "91": {
@@ -1008,7 +1008,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-1"
+      "description": "1-1"
     }
   },
   "92": {
@@ -1019,7 +1019,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-2"
+      "description": "1-2"
     }
   },
   "93": {
@@ -1030,7 +1030,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-3"
+      "description": "1-3"
     }
   },
   "94": {
@@ -1041,7 +1041,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-4"
+      "description": "1-4"
     }
   },
   "95": {
@@ -1052,7 +1052,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-5"
+      "description": "1-5"
     }
   },
   "96": {
@@ -1063,7 +1063,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-6"
+      "description": "1-6"
     }
   },
   "97": {
@@ -1074,7 +1074,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-7"
+      "description": "1-7"
     }
   },
   "98": {
@@ -1085,7 +1085,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-8"
+      "description": "1-8"
     }
   },
   "99": {
@@ -1096,7 +1096,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-9"
+      "description": "1-9"
     }
   },
   "100": {
@@ -1107,7 +1107,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-10"
+      "description": "1-10"
     }
   },
   "101": {
@@ -1118,7 +1118,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-11"
+      "description": "1-11"
     }
   },
   "102": {
@@ -1129,7 +1129,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-12"
+      "description": "1-12"
     }
   },
   "103": {
@@ -1140,7 +1140,7 @@
     },
     "target": {
       "name": "置物櫃",
-      "description": "置物櫃1-13"
+      "description": "1-13"
     }
   },
   "104": {
@@ -1151,7 +1151,7 @@
     },
     "target": {
       "name": "腳踏車停車區",
-      "description": "腳踏車停車區1-1"
+      "description": "1-1"
     }
   },
   "105": {
@@ -1162,7 +1162,7 @@
     },
     "target": {
       "name": "教職員停車區",
-      "description": "教職員停車區1-1"
+      "description": "1-1"
     }
   }
 }
