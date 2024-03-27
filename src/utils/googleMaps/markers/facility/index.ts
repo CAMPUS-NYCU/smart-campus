@@ -16,11 +16,11 @@ export const setFacilities = (facilities: Facilities): void => {
     Object.entries(facilities).map(([key, FacilityData]) => [
       key,
       new google.maps.Marker({
-        icon: getIcon(),
+        icon: getIcon(FacilityData.target.name),
         label: {
           text: FacilityData.target.description,
           fontFamily: "'Helvetica', 'Arial', 'sans-serif'",
-          fontSize: "10px",
+          fontSize: "12px",
           color: "#97948E",
         },
         map: maps.mapRef.current,
