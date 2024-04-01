@@ -6,7 +6,6 @@ import { Button, Chip, Image } from "@nextui-org/react";
 
 import { useGetPoiQuery } from "../../../api/poi";
 import { useGetUserQuery } from "../../../api/user";
-import { useGetClusterQuery } from "../../../api/cluster";
 import { IRootState } from "../../../store";
 import { openModal } from "../../../store/modal";
 import { editReport } from "../../../store/report";
@@ -77,11 +76,10 @@ const PoiDrawer: React.FC = () => {
     skip: !selected,
   });
   const { data: user } = useGetUserQuery();
-  const { data: cluster } = useGetClusterQuery(poi?.data.clusterId || "");
 
   const handleDrawerConfirm = () => {
     if (!poi) {
-      throw new Error("ClusterDrawer: poi not found");
+      throw new Error("PoiDrawer: poi not found");
     } else if (!user?.id) {
       dispatch(openModal("login"));
     } else {
@@ -155,12 +153,6 @@ const PoiDrawer: React.FC = () => {
               <div className="basis-0.5/12">
                 <Image src={poiDrawerLocation} alt="location and floor" />
               </div>
-              <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
-                {t("poiDrawer.content.texts.description", {
-                  description: cluster?.data.name || "",
-                  ns: ["drawer"],
-                })}
-              </Chip>
               <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
                 {poi?.data.floor}
               </Chip>
