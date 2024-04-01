@@ -3,6 +3,21 @@ import { Clusters } from "../../../../models/cluster";
 import { maps } from "../..";
 import { getIcon } from "./icons";
 
+function getClusterSerial(clusterName: string): string {
+  if (clusterName !== "小木屋&校計中1" && clusterName !== "小木屋&校計中2") {
+    const match = clusterName.split("-");
+
+    if (match.length === 3) {
+      return `${match[1]}-${match[2]}`;
+    } else {
+      console.error(`找不到"${clusterName}"的serial`);
+      return "";
+    }
+  } else {
+    return clusterName;
+  }
+}
+
 export const markerRef = {
   current: {} as Record<string, google.maps.Marker>,
 };
@@ -18,7 +33,7 @@ export const setClusters = (clusters: Clusters): void => {
       new google.maps.Marker({
         icon: getIcon(),
         label: {
-          text: clusterData.name,
+          text: getClusterSerial(clusterData.name),
           fontFamily: "'Helvetica', 'Arial', 'sans-serif'",
           fontSize: "12px",
           color: "#FDCC4F",
