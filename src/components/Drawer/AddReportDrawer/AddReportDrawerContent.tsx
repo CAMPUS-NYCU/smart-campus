@@ -372,19 +372,18 @@ const StatusValueSelect: React.FC = () => {
   );
 };
 
-const AddDescription: React.FC = () => {
+const StatusDescriptionAdd: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
     dispatch(
       updateAddReportData({
         target: {
           ...reportData.target,
-          description: newValue,
+          description: e.target.value,
         },
       }),
     );
@@ -548,10 +547,10 @@ const AddReportDrawerContent: React.FC = () => {
               <Image
                 radius="none"
                 src={poiAddDrawerStatusValue}
-                alt="status value"
+                alt="description"
               />
             </div>
-            <AddDescription />
+            <StatusDescriptionAdd />
           </div>
           {/* report images */}
           <div className="flex flex-row space-x-1 mt-1 items-center whitespace-normal">

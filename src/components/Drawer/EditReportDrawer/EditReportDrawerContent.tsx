@@ -68,19 +68,18 @@ const StatusValueSelect: React.FC = () => {
   );
 };
 
-const EditDescription: React.FC = () => {
+const StatusDescriptionEdit: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
     dispatch(
       updateAddReportData({
         target: {
           ...reportData.target,
-          description: newValue,
+          description: e.target.value,
         },
       }),
     );
@@ -230,7 +229,7 @@ const EditReportDrawerContent: React.FC = () => {
               alt="status value"
             />
           </div>
-          <EditDescription />
+          <StatusDescriptionEdit />
         </div>
       </div>
     </div>
