@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Image, Select, SelectItem, Chip } from "@nextui-org/react";
+import { Image, Select, SelectItem, Chip, Input } from "@nextui-org/react";
 
 import {
   poiStatusValueSelect,
@@ -13,7 +13,6 @@ import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
 import noImage from "../../../assets/images/noImage.svg";
 import poiEditDrawerTargetName from "../../../assets/images/poiEditDrawerTargetName.svg";
-import poiEditDrawerTargetSerial from "../../../assets/images/poiEditDrawerTargetSerial.svg";
 import poiEditDrawerStatusType from "../../../assets/images/poiEditDrawerStatusType.svg";
 import poiEditDrawerStatusValue from "../../../assets/images/poiEditDrawerStatusValue.svg";
 import { statusColor } from "../../../constants/statusStyle";
@@ -66,6 +65,44 @@ const StatusValueSelect: React.FC = () => {
         </SelectItem>
       ))}
     </Select>
+  );
+};
+
+const StatusDescriptionEdit: React.FC = () => {
+  const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const reportData = useSelector((state: IRootState) => state.report.data);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(
+      updateAddReportData({
+        target: {
+          ...reportData.target,
+          description: e.target.value,
+        },
+      }),
+    );
+  };
+
+  return (
+    <>
+      <p className="text-xs font-bold">
+        {t("addReport.content.text.setDescription", {
+          ns: ["drawer"],
+        })}
+      </p>
+      <Input
+        aria-label="set description"
+        placeholder={t("addReport.content.inputs.description.placeholder", {
+          ns: ["drawer"],
+        })}
+        variant="underlined"
+        value={reportData.target.description || ""}
+        onChange={handleInputChange}
+        classNames={{ base: "basis-6/12" }}
+      />
+    </>
   );
 };
 
@@ -143,22 +180,6 @@ const EditReportDrawerContent: React.FC = () => {
             {reportData.target.name}
           </Chip>
         </div>
-        {/* report target serial */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
-          <div className="basis-0.5/12">
-            <Image
-              radius="none"
-              src={poiEditDrawerTargetSerial}
-              alt="target serial"
-            />
-          </div>
-          <p className="text-xs font-bold">
-            {t("editReport.content.texts.targetSerial", { ns: ["drawer"] })}
-          </p>
-          <Chip radius="sm" classNames={{ content: "px-0.5 text-xs" }}>
-            {reportData.target.serial}
-          </Chip>
-        </div>
         {/* report status type */}
         <div className="flex flex-row space-x-1 mt-1 items-center">
           <div className="basis-0.5/12">
@@ -198,6 +219,17 @@ const EditReportDrawerContent: React.FC = () => {
             })}
           </p>
           <StatusValueSelect />
+        </div>
+        {/* report description */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image
+              radius="none"
+              src={poiEditDrawerStatusValue}
+              alt="status value"
+            />
+          </div>
+          <StatusDescriptionEdit />
         </div>
       </div>
     </div>

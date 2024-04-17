@@ -18,7 +18,7 @@ export interface PoiData {
   target: {
     category: string; // 回報項目類型 e.g. 物體
     name: string; // 回報項目名稱 e.g. 飲水機
-    serial: string; // 回報項目敘述 e.g. 飲水機1-2
+    description: string | ""; //回報項目敘述
   };
   status: {
     type: PoiStatusType | ""; // 狀態 e.g. 清潔狀態

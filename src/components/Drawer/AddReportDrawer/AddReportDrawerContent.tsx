@@ -23,7 +23,6 @@ import poiAddDrawerStatusType from "../../../assets/images/poiAddDrawerStatusTyp
 import poiAddDrawerStatusValue from "../../../assets/images/poiAddDrawerStatusValue.svg";
 import poiAddDrawerTargetCategory from "../../../assets/images/poiAddDrawerTargetCategory.svg";
 import poiAddDrawerTargetName from "../../../assets/images/poiAddDrawerTargetName.svg";
-import poiAddDrawerTargetSerial from "../../../assets/images/poiAddDrawerTargetSerial.svg";
 import poiAddDrawerUploadImages from "../../../assets/images/poiAddDrawerUploadImages.svg";
 
 const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
@@ -43,7 +42,7 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
             ...reportData.target,
             category: "",
             name: "",
-            serial: "",
+            description: "",
           },
           status: {
             ...reportData.status,
@@ -115,7 +114,7 @@ const TargetCategorySelect: React.FC<{
             ...reportData.target,
             category: e.target.value,
             name: "",
-            serial: "",
+            description: "",
           },
           status: {
             ...reportData.status,
@@ -190,7 +189,7 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
           target: {
             ...reportData.target,
             name: e.target.value,
-            serial: "",
+            description: "",
           },
           status: {
             ...reportData.status,
@@ -239,106 +238,17 @@ const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
   );
 };
 
-const TargetSerialSelect: React.FC<{ cluster: Cluster | null }> = ({
-  cluster,
-}) => {
-  const { t } = useTranslation();
-
-  const dispatch = useDispatch();
-  const reportData = useSelector((state: IRootState) => state.report.data);
-  const targetSerial = reportData.target.serial;
-  let targetSerialOptions: string[]; // decided by floor, targetCategory and targetName
-
-  if (
-    reportData.floor &&
-    reportData.target.category &&
-    reportData.target.name
-  ) {
-    targetSerialOptions = getOptions(
-      cluster?.data.name || "",
-    ).targetSerial.find(
-      (s) =>
-        s.floor === reportData.floor &&
-        s.category === reportData.target.category &&
-        s.name === reportData.target.name,
-    )?.serial || [""];
-  } else {
-    targetSerialOptions = [""];
-  }
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value) {
-      dispatch(
-        updateAddReportData({
-          target: {
-            ...reportData.target,
-            serial: e.target.value,
-          },
-          status: {
-            ...reportData.status,
-            type: "",
-            value: "",
-          },
-        }),
-      );
-    }
-  };
-
-  return (
-    <>
-      <p className="basis-2/12 text-xs font-bold">
-        {t("addReport.content.select.setTargetSerial.label", {
-          ns: ["drawer"],
-        })}
-      </p>
-      <Select
-        aria-label="set target serial"
-        selectedKeys={new Set([targetSerial])}
-        onChange={handleSelectChange}
-        isDisabled={
-          reportData.floor &&
-          reportData.target.category &&
-          reportData.target.name
-            ? false
-            : true
-        }
-        classNames={{
-          value: "text-xs",
-          innerWrapper: "pt-0",
-          trigger: "py-0 h-7 min-h-fit bg-primary",
-          base: "min-w-fit w-[50%]",
-        }}
-      >
-        {targetSerialOptions.map((s) => {
-          return (
-            <SelectItem key={s} value={s}>
-              {s
-                ? s
-                : t("addReport.content.select.placeHolder", {
-                    ns: ["drawer"],
-                  })}
-            </SelectItem>
-          );
-        })}
-      </Select>
-    </>
-  );
-};
-
 const StatusTypeSelect: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const statusType = reportData.status.type;
-  let statusTypeOptions: string[]; // decided by targetCategory, and can only be selectable when targetSerial is set
+  let statusTypeOptions: string[]; // decided by targetCategory
 
-  if (reportData.target.category === "物體" && reportData.target.serial) {
+  if (reportData.target.category === "物體") {
     statusTypeOptions = poiObjectStatusTypeSelect;
-  } else if (
-    reportData.target.category === "空間" &&
-    reportData.target.serial
-  ) {
+  } else if (reportData.target.category === "空間") {
     statusTypeOptions = poiSpaceStatusTypeSelect;
   } else {
     statusTypeOptions = [""];
@@ -372,8 +282,7 @@ const StatusTypeSelect: React.FC = () => {
         isDisabled={
           reportData.floor &&
           reportData.target.name &&
-          reportData.target.category &&
-          reportData.target.serial
+          reportData.target.category
             ? false
             : true
         }
@@ -436,7 +345,6 @@ const StatusValueSelect: React.FC = () => {
           reportData.floor &&
           reportData.target.name &&
           reportData.target.category &&
-          reportData.target.serial &&
           reportData.status.type !== ""
             ? false
             : true
@@ -460,6 +368,44 @@ const StatusValueSelect: React.FC = () => {
           </SelectItem>
         ))}
       </Select>
+    </>
+  );
+};
+
+const StatusDescriptionAdd: React.FC = () => {
+  const { t } = useTranslation();
+
+  const dispatch = useDispatch();
+  const reportData = useSelector((state: IRootState) => state.report.data);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(
+      updateAddReportData({
+        target: {
+          ...reportData.target,
+          description: e.target.value,
+        },
+      }),
+    );
+  };
+
+  return (
+    <>
+      <p className="basis-2/12 text-xs font-bold">
+        {t("addReport.content.text.setDescription", {
+          ns: ["drawer"],
+        })}
+      </p>
+      <Input
+        aria-label="set description"
+        placeholder={t("addReport.content.inputs.description.placeholder", {
+          ns: ["drawer"],
+        })}
+        variant="underlined"
+        value={reportData.target.description || ""}
+        onChange={handleInputChange}
+        classNames={{ base: "basis-6/12" }}
+      />
     </>
   );
 };
@@ -573,17 +519,6 @@ const AddReportDrawerContent: React.FC = () => {
             </div>
             <TargetNameSelect cluster={cluster!} />
           </div>
-          {/* report target serial */}
-          <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12">
-              <Image
-                radius="none"
-                src={poiAddDrawerTargetSerial}
-                alt="target serial"
-              />
-            </div>
-            <TargetSerialSelect cluster={cluster!} />
-          </div>
           {/* report status type */}
           <div className="flex flex-row space-x-1 mt-1 items-center">
             <div className="basis-0.5/12">
@@ -605,6 +540,17 @@ const AddReportDrawerContent: React.FC = () => {
               />
             </div>
             <StatusValueSelect />
+          </div>
+          {/* report description */}
+          <div className="flex flex-row space-x-1 mt-1 items-center">
+            <div className="basis-0.5/12">
+              <Image
+                radius="none"
+                src={poiAddDrawerStatusValue}
+                alt="description"
+              />
+            </div>
+            <StatusDescriptionAdd />
           </div>
           {/* report images */}
           <div className="flex flex-row space-x-1 mt-1 items-center whitespace-normal">

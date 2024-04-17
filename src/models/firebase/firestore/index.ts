@@ -27,7 +27,7 @@ export interface FirestorePoiData {
   target: {
     category: string;
     name: string;
-    serial: string;
+    description: string | "";
   };
   status: {
     type: PoiStatusType | "";

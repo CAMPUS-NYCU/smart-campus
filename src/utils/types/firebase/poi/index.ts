@@ -9,7 +9,7 @@ export const toFirebasePoiDataByPoiData = (poi: PoiData): FirestorePoiData => ({
   target: {
     category: poi.target.category,
     name: poi.target.name,
-    serial: poi.target.serial,
+    description: poi.target.description,
   },
   status: {
     type: poi.status.type,
@@ -32,7 +32,7 @@ export const toPoiDataByFirebasePoiData = (poi: FirestorePoiData): PoiData => ({
   target: {
     category: poi.target.category,
     name: poi.target.name,
-    serial: poi.target.serial,
+    description: poi.target.description,
   },
   status: {
     type: poi.status.type,

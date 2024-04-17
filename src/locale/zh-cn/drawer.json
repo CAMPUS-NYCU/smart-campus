@@ -23,7 +23,8 @@
         }
       },
       "text": {
-        "setLocation": "回报地点"
+        "setLocation": "回报地点",
+        "setDescription": "回报叙述"
       },
       "select": {
         "placeHolder": "请选择",
@@ -35,9 +36,6 @@
         },
         "setTargetName": {
           "label": "回报项目"
-        },
-        "setTargetSerial": {
-          "label": "项目描述"
         },
         "setStatusType": {
           "label": "回报状态"
@@ -64,13 +62,17 @@
     "content": {
       "texts": {
         "targetName": "回报项目",
-        "targetSerial": "项目描述",
         "statusType": "回报状态"
       },
       "select": {
         "placeHolder": "请选择",
         "setStatusValue": {
           "label": "状态描述"
+        }
+      },
+      "input": {
+        "setDescription": {
+          "label": "回报叙述"
         }
       }
     },
