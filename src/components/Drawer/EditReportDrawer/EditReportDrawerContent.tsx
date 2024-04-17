@@ -98,7 +98,7 @@ const StatusDescriptionEdit: React.FC = () => {
           ns: ["drawer"],
         })}
         variant="underlined"
-        value={reportData.target.description}
+        value={reportData.target.description || ""}
         onChange={handleInputChange}
         classNames={{ base: "basis-6/12" }}
       />
