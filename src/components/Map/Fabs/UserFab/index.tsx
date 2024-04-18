@@ -8,6 +8,7 @@ import SwitchTheme from "../../../modal/SwitchTheme";
 
 import UserFabMenu from "./UserFabMenu";
 import Login from "../../../modal/Login";
+import InputLlm from "../../../modal/InputLlm";
 
 const Trigger: React.FC = () => {
   const { data: user, isLoading: userLoading } = useGetUserQuery();
@@ -42,6 +43,7 @@ const UserFab: React.FC = () => {
       <SwitchLanguage />
       <SwitchResource />
       <SwitchTheme />
+      <InputLlm />
     </>
   );
 };
