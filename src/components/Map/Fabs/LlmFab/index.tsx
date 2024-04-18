@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { getParamsFromDrawer } from "../../../../utils/routes/params";
 import { useGetClusterQuery } from "../../../../api/cluster";
 import { openModal } from "../../../../store/modal";
+import InputLlm from "../../../modal/InputLlm";
 
 const LlmFabs: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -13,7 +14,7 @@ const LlmFabs: React.FC = () => {
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: cluster } = useGetClusterQuery(clusterId);
 
-  const handleOpenSwitchThemeModal = () => {
+  const handleOpenInputLlmModal = () => {
     dispatch(openModal("inputLlm"));
   };
 
@@ -24,11 +25,9 @@ const LlmFabs: React.FC = () => {
         className="absolute top-40 right-4 w-10 h-10"
         color="primary"
         size="sm"
-        onClick={() => {
-          console.log("click");
-          handleOpenSwitchThemeModal;
-        }}
+        onClick={() => handleOpenInputLlmModal()}
       />
+      <InputLlm />
     </>
   ) : null;
 };
