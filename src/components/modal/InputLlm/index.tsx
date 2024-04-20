@@ -11,6 +11,22 @@ import {
 } from "@nextui-org/react";
 import { IRootState } from "../../../store";
 import { closeModal, toggleModal } from "../../../store/modal";
+import OpenAI from "openai";
+import env from "../../../constants/env";
+
+const openai = new OpenAI({
+  apiKey: env.OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
+});
+
+async function callAi() {
+  const completion = await openai.chat.completions.create({
+    messages: [{ role: "system", content: "You are a helpful assistant." }],
+    model: "gpt-3.5-turbo",
+  });
+
+  console.log(completion.choices[0]);
+}
 
 const InputLlm: React.FC = () => {
   const modalOpen = useSelector(
@@ -22,6 +38,7 @@ const InputLlm: React.FC = () => {
   const handleCommit = () => {
     console.log("LLM Input", description);
     setDescription("");
+    callAi();
     dispatch(closeModal("inputLlm"));
   };
 

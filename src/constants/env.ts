@@ -13,6 +13,9 @@ interface ImportMetaEnv {
 
   // Firebase Emulator
   ENABLE_FIREBASE_EMULATOR: boolean;
+
+  // OpenAi
+  OPENAI_API_KEY: string;
 }
 
 const env: ImportMetaEnv = {
@@ -32,6 +35,9 @@ const env: ImportMetaEnv = {
   // Firebase Emulator
   ENABLE_FIREBASE_EMULATOR:
     import.meta.env.VITE_ENABLE_FIREBASE_EMULATOR || false,
+
+  // OpenAi
+  OPENAI_API_KEY: import.meta.env.VITE_OPENAI_API_KEY || "",
 };
 
 export default env;
