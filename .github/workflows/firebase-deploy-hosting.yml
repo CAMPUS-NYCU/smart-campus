@@ -8,6 +8,7 @@ name: Deploy to Firebase Hosting
       - prod
       - dev
       - research
+      - basic
   workflow_dispatch:
 jobs:
   build_and_deploy:
