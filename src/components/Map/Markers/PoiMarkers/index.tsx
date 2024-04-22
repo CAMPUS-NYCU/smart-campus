@@ -11,7 +11,7 @@ import { setOnPoiMarkerClick } from "../../../../utils/googleMaps/markers/poi";
 import { getParamsFromDrawer } from "../../../../utils/routes/params";
 
 const PoiMarkers: React.FC = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const highlightId = useSelector((state: IRootState) => state.poi.highlightId);
   const prevHighlightId = React.useRef<string | null>("");
@@ -25,8 +25,11 @@ const PoiMarkers: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleClick = React.useCallback(
-    (poiId: string) => dispatch(setHighlightId(poiId)),
-    [dispatch],
+    (poiId: string) => {
+      setSearchParams({ poiId });
+      dispatch(setHighlightId(poiId));
+    },
+    [dispatch, setSearchParams],
   );
 
   React.useEffect(() => {
@@ -69,6 +72,19 @@ const PoiMarkers: React.FC = () => {
 
     prevHighlightId.current = highlightId;
   }, [highlightId, pois]);
+
+  // in order to show poi drawer, we setParameter to poiId, only have poi now
+  React.useEffect(() => {
+    if (poi) {
+      const { latitude, longitude } = poi.data.latlng;
+      const north = maps.getBounds()?.getNorthEast().lat();
+      const south = maps.getBounds()?.getSouthWest().lat();
+      maps.panTo(
+        north && south ? latitude - (north - south) / 4 : latitude,
+        longitude,
+      );
+    }
+  }, [poi]);
   return <></>;
 };
 
