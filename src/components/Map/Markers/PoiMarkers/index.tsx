@@ -14,6 +14,7 @@ const PoiMarkers: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const highlightId = useSelector((state: IRootState) => state.poi.highlightId);
+
   const prevHighlightId = React.useRef<string | null>("");
 
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
@@ -26,10 +27,13 @@ const PoiMarkers: React.FC = () => {
 
   const handleClick = React.useCallback(
     (poiId: string) => {
-      setSearchParams({ poiId });
-      dispatch(setHighlightId(poiId));
+      if (poiId !== highlightId) {
+        setSearchParams({ clusterId, poiId });
+        // bug: highlight might not effect but router will be updated
+        dispatch(setHighlightId(poiId));
+      }
     },
-    [dispatch, setSearchParams],
+    [dispatch, setSearchParams, clusterId, highlightId],
   );
 
   React.useEffect(() => {
@@ -72,19 +76,6 @@ const PoiMarkers: React.FC = () => {
 
     prevHighlightId.current = highlightId;
   }, [highlightId, pois]);
-
-  // in order to show poi drawer, we setParameter to poiId, only have poi now
-  React.useEffect(() => {
-    if (poi) {
-      const { latitude, longitude } = poi.data.latlng;
-      const north = maps.getBounds()?.getNorthEast().lat();
-      const south = maps.getBounds()?.getSouthWest().lat();
-      maps.panTo(
-        north && south ? latitude - (north - south) / 4 : latitude,
-        longitude,
-      );
-    }
-  }, [poi]);
   return <></>;
 };
 

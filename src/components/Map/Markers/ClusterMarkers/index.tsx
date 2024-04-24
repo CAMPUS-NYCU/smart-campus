@@ -50,7 +50,7 @@ const ClusterMarkers: React.FC = () => {
       setOnClusterMarkerClick(handleClick);
     }
 
-    if (isCurrentSearchParamsCluster) {
+    if (isCurrentSearchParamsCluster && !isCurrentSearchParamsPoi) {
       const clusterCenter = getClusterCenter(onClickedClusterName)?.latlng;
       if (clusterCenter) {
         maps.panTo(clusterCenter.latitude, clusterCenter.longitude);
