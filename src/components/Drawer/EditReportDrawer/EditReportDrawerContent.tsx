@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Image, Select, SelectItem, Chip, Input } from "@nextui-org/react";
+import { Image, Select, SelectItem, Chip, Textarea } from "@nextui-org/react";
 
 import {
   poiStatusValueSelect,
@@ -92,7 +92,8 @@ const StatusDescriptionEdit: React.FC = () => {
           ns: ["drawer"],
         })}
       </p>
-      <Input
+      <Textarea
+        minRows={1}
         aria-label="set description"
         placeholder={t("addReport.content.inputs.description.placeholder", {
           ns: ["drawer"],
