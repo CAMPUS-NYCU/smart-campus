@@ -11,7 +11,7 @@ import {
 } from "../../../../utils/routes/params";
 import { maps } from "../../../../utils/googleMaps";
 import { useDispatch } from "react-redux";
-// import { openModal } from "../../../../store/modal";
+import { openModal } from "../../../../store/modal";
 import ReportStart from "../../../modal/ReportStart";
 import { getClusterCenter } from "../../../../constants/clusterCenter";
 
@@ -30,8 +30,11 @@ const ClusterMarkers: React.FC = () => {
   );
   const [onClickedClusterName, setOnClickedClusterName] = React.useState("");
 
+  const dispatch = useDispatch();
+
   const handleClick = React.useCallback(
     (clusterId: string) => {
+      dispatch(openModal("reportStart"));
       setOnClickedClusterName(clusters![clusterId].name);
       setupDrawerParams<"cluster">(
         { clusterId },
@@ -39,10 +42,8 @@ const ClusterMarkers: React.FC = () => {
         setSearchParams,
       );
     },
-    [searchParams, setSearchParams, clusters],
+    [dispatch, clusters, searchParams, setSearchParams],
   );
-
-  const dispatch = useDispatch();
 
   React.useEffect(() => {
     if (!isCurrentSearchParamsPoi && clusters) {
@@ -57,7 +58,6 @@ const ClusterMarkers: React.FC = () => {
       }
       maps.setZoom(18);
       markers.cluster.clear();
-      // dispatch(openModal("reportStart"));
     }
 
     return () => {
