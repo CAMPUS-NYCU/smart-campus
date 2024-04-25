@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
-import { useGetPoiQuery, useGetPoisQuery } from "../../../../api/poi";
+import { useGetPoisQuery } from "../../../../api/poi";
 import { IRootState } from "../../../../store";
 import { setHighlightId } from "../../../../store/poi";
 import { markers } from "../../../../utils/googleMaps";
@@ -20,16 +20,12 @@ const PoiMarkers: React.FC = () => {
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: pois } = useGetPoisQuery(clusterId);
 
-  const poiId = getParamsFromDrawer("poi", searchParams).poiId;
-  const { data: poi } = useGetPoiQuery(poiId);
-
   const dispatch = useDispatch();
 
   const handleClick = React.useCallback(
     (poiId: string) => {
       if (poiId !== highlightId) {
         setSearchParams({ clusterId, poiId });
-        // bug: highlight might not effect but router will be updated
         dispatch(setHighlightId(poiId));
       }
     },
@@ -40,15 +36,12 @@ const PoiMarkers: React.FC = () => {
     if (pois && Object.keys(pois).length !== 0) {
       markers.poi.setPois(pois);
       setOnPoiMarkerClick(handleClick);
-    } else if (poi) {
-      markers.poi.setPois({ [poi.id]: poi.data });
-      setOnPoiMarkerClick(handleClick);
     }
 
     return () => {
       markers.poi.clear();
     };
-  }, [poi, pois, handleClick]);
+  }, [pois, handleClick]);
 
   React.useEffect(() => {
     if (highlightId && pois && pois[highlightId]) {
