@@ -46,7 +46,11 @@ const ClusterMarkers: React.FC = () => {
   );
 
   React.useEffect(() => {
-    if (!isCurrentSearchParamsPoi && clusters) {
+    if (
+      !isCurrentSearchParamsPoi &&
+      !isCurrentSearchParamsCluster &&
+      clusters
+    ) {
       markers.cluster.setClusters(clusters);
       setOnClusterMarkerClick(handleClick);
     }
