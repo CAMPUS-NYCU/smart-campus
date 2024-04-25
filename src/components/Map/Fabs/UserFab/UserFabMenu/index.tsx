@@ -14,6 +14,8 @@ import {
   useLogoutMutation,
 } from "../../../../../api/user";
 import { openModal } from "../../../../../store/modal";
+import { useSearchParams } from "react-router-dom";
+import { resetDrawerParams } from "../../../../../utils/routes/params";
 
 const MenuItemUser: React.FC = () => {
   const { data: user } = useGetUserQuery();
@@ -58,6 +60,13 @@ const UserFabMenu: React.FC = () => {
   const { data: isLoggedIn } = useIsLoggedInQuery();
   const [logout] = useLogoutMutation();
 
+  // for back to homepage
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleBackToHome = () => {
+    resetDrawerParams(searchParams, setSearchParams);
+  };
+
   return (
     <DropdownMenu
       aria-label="User Fab Menu"
@@ -99,6 +108,9 @@ const UserFabMenu: React.FC = () => {
         </DropdownItem>
         <DropdownItem key="settings">
           {t("fabs.user.menu.options.settings", { ns: ["map"] })}
+        </DropdownItem>
+        <DropdownItem key="homepage" onPress={handleBackToHome}>
+          {"回主頁面"}
         </DropdownItem>
         <DropdownItem
           key="language"
