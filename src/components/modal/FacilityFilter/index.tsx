@@ -61,31 +61,29 @@ const FacilityFilter: React.FC = () => {
   return (
     <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
       <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">實體物件篩選</ModalHeader>
+        <ModalHeader className="flex flex-col gap-1">現場實體物件</ModalHeader>
         <ModalBody className="items-center">
-          <div className="absolute inset-0 w-3/4 h-9 top-8 left-4 overflow-x-auto scrollbar-hide">
-            <div className="flex gap-2 items-center justify-left">
-              {categories.map((category, index) => (
-                <Button
-                  key={category + index}
-                  className={`shrink-0 \
-													bg-zinc-50 dark:bg-zinc-800 \
-														text-black dark:text-white \
-														border border-zinc-400 dark:border-zinc-900 \
-														shadow-sm shadow-zinc-300 dark:shadow-zinc-800 
-														${
-                              selectedCategories.includes(category)
-                                ? "bg-textBtnHover dark:bg-textBtnHover text-white dark:text-white"
-                                : ""
-                            }`}
-                  color="primary"
-                  size="sm"
-                  onClick={() => handleCategoryClick(category)}
-                >
-                  {category}
-                </Button>
-              ))}
-            </div>
+          <div className="flex flex-wrap w-11/12 gap-3 mb-4">
+            {categories.map((category, index) => (
+              <Button
+                key={category + index}
+                className={`shrink-0 \
+												bg-zinc-50 dark:bg-zinc-800 \
+													text-black dark:text-white \
+													border border-zinc-400 dark:border-zinc-900 \
+													shadow-sm shadow-zinc-300 dark:shadow-zinc-800 
+													${
+                            selectedCategories.includes(category)
+                              ? "bg-primary dark:bg-textBtnHover text-black dark:text-white"
+                              : ""
+                          }`}
+                color="primary"
+                size="sm"
+                onClick={() => handleCategoryClick(category)}
+              >
+                {category}
+              </Button>
+            ))}
           </div>
         </ModalBody>
       </ModalContent>
