@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   Modal,
@@ -6,14 +6,15 @@ import {
   ModalContent,
   ModalHeader,
 } from "@nextui-org/react";
-import { useDispatch, useSelector } from "react-redux";
-import { IRootState } from "../../../store";
-import { toggleModal } from "../../../store/modal";
-import { useSearchParams } from "react-router-dom";
+
 import { getParamsFromDrawer } from "../../../utils/routes/params";
-import { useGetClusterQuery } from "../../../api/cluster";
 import { getLocationCategories } from "../../../constants/facility";
+import { IRootState } from "../../../store";
 import { setSelectedCategories } from "../../../store/facility";
+import { toggleModal } from "../../../store/modal";
+import { useGetClusterQuery } from "../../../api/cluster";
+import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
 const FacilityFilter: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -35,6 +36,13 @@ const FacilityFilter: React.FC = () => {
   const handleToggleModal = () => {
     dispatch(toggleModal("facilityFilter"));
   };
+
+  useEffect(() => {
+    // Initialize selected categories to empty array
+    if (cluster) {
+      dispatch(setSelectedCategories([]));
+    }
+  }, [cluster, dispatch]);
 
   const handleCategoryClick = (category: string) => {
     if (selectedCategories.includes(category)) {
