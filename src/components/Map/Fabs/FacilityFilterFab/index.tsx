@@ -8,7 +8,7 @@ import facilityMarkerFilter from "../../../../assets/images/facilityMarkerFilter
 import { openModal } from "../../../../store/modal";
 import FacilityFilter from "../../../modal/FacilityFilter";
 
-const FacilityFilterFabs: React.FC = () => {
+const FacilityFilterFab: React.FC = () => {
   const [searchParams] = useSearchParams();
 
   // const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
@@ -42,4 +42,4 @@ const FacilityFilterFabs: React.FC = () => {
   ) : null;
 };
 
-export default FacilityFilterFabs;
+export default FacilityFilterFab;
