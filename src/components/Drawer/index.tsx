@@ -34,7 +34,10 @@ const Drawer: React.FC<DrawerProps> = (props) => {
             <CloseIcon />
           </button>
         </div>
-        <div className="max-h-[calc(50vh-64px)] overflow-y-auto">
+        <div
+          className="max-h-[calc(50vh-64px)] 
+          overflow-y-auto" /** 64px is the height of the header and footer */
+        >
           {children}
         </div>
         <div

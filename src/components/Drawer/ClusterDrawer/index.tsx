@@ -105,6 +105,10 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
             highlightId === poi.id
               ? "border-3 border-primary bg-primary/50"
               : "border-1 border-secondary/50"
+            // 64px is the height of the header and footer
+            // 4 is the number of items in each row
+            // 8 is the margin between items
+            // so the total height is 50vh - 64px - 4 * 8 = 100px
           }  h-[calc((50vh-100px)/4)] py-0 px-1.5`,
         }}
       >
