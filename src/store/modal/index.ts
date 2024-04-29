@@ -10,6 +10,7 @@ const modal = {
   switchTheme: "switchTheme",
   reportCompletion: "reportCompletion",
   reportStart: "reportStart",
+  facilityFilter: "facilityFilter",
 };
 
 type Modal = keyof typeof modal;
