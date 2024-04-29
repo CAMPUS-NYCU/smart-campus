@@ -12,6 +12,7 @@ const modal = {
   reportStart: "reportStart",
   llmInput: "llmInput",
   llmResult: "llmResult",
+  facilityFilter: "facilityFilter",
 };
 
 type Modal = keyof typeof modal;
