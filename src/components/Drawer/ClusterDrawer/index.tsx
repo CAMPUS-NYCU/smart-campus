@@ -10,7 +10,7 @@ import { useGetPoisQuery } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { openModal } from "../../../store/modal";
 import { resetHightlightId, setHighlightId } from "../../../store/poi";
-import { addReport, editReport, resetReport } from "../../../store/report";
+import { editReport, resetReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
@@ -19,7 +19,7 @@ import {
 
 import { getClusterIcon } from "../../../constants/clusterIcon";
 import noImage from "../../../assets/images/noImage.svg";
-import Drawer from "..";
+import DraggableDrawer from "../draggableDrawer";
 import Poi, { PoiData } from "../../../models/poi";
 import {
   poiStatusTypeMessageKeys,
@@ -105,16 +105,16 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
             highlightId === poi.id
               ? "border-3 border-primary bg-primary/50"
               : "border-1 border-secondary/50"
-            // 64px is the height of the header and footer
+            // 42px is the height of the header and footer
             // 4 is the number of items in each row
             // 8 is the margin between items
-            // so the total height is 50vh - 64px - 4 * 8 = 100px
-          }  h-[calc((50vh-100px)/4)] py-0 px-1.5`,
+            // so the total height is 50vh - 42px - 4 * 8 = 50vh - 74px
+          }  h-[calc((50vh-74px)/4)] py-0 px-1.5`,
         }}
       >
         <div
           ref={containerRef}
-          className="container flex flex-row py-0 h-[calc((50vh-100px)/4)]"
+          className="container flex flex-row py-0 h-[calc((50vh-74px)/4)]"
         >
           {/* the main information of the report */}
           <div className="flex flex-col shrink-0 justify-around basis-8/12">
@@ -204,19 +204,8 @@ const ClusterDrawer: React.FC = () => {
   const { data: cluster } = useGetClusterQuery(id, {
     skip: !selected,
   });
-  const { data: user } = useGetUserQuery();
 
   const { data: poiList } = useGetPoisQuery(id);
-
-  const handlePoiEdit = () => {
-    if (!id) {
-      throw new Error("ClusterDrawer: id is null");
-    } else if (!user?.id) {
-      dispatch(openModal("login"));
-    } else {
-      dispatch(addReport({ clusterId: id, createdBy: user?.id }));
-    }
-  };
 
   const handleDrawerDismiss = () => {
     resetDrawerParams(searchParams, setSearchParams);
@@ -244,7 +233,7 @@ const ClusterDrawer: React.FC = () => {
   }, [poiList]);
 
   return (
-    <Drawer
+    <DraggableDrawer
       open={selected}
       onClose={handleDrawerDismiss}
       title={t("clusterDrawer.title", {
@@ -267,15 +256,7 @@ const ClusterDrawer: React.FC = () => {
           )}
         </div>
       }
-      primaryButton={
-        <Button
-          radius="full"
-          className="bg-primary h-fit px-2 py-1.5"
-          onClick={handlePoiEdit}
-        >
-          {t("clusterDrawer.buttons.add", { ns: ["drawer"] })}
-        </Button>
-      }
+      primaryButton={<Button></Button>}
     />
   );
 };
