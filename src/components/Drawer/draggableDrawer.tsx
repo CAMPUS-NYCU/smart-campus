@@ -13,10 +13,11 @@ interface DraggableDrawerProps {
   title: React.ReactNode;
   primaryButton?: React.ReactNode;
   secondaryButton?: React.ReactNode;
+  description?: string;
 }
 
 const DraggableDrawer: React.FC<DraggableDrawerProps> = (props) => {
-  const { children, open, onClose, title, primaryButton } = props;
+  const { children, open, onClose, title, primaryButton, description } = props;
 
   const dragFieldRef = React.useRef<HTMLDivElement>(null);
 
@@ -62,22 +63,24 @@ const DraggableDrawer: React.FC<DraggableDrawerProps> = (props) => {
           }}
         >
           <div className="flex flex-col">
-            <div className="flex flex-row justify-between">
-              <div className="flex flex-col">
+            <div className="flex flex-row justify-between space-x-2">
+              <div className="flex flex-col justify-between">
                 <h1 className="font-bold">{title}</h1>
-                <p className="text-xs text-start">說明說明</p>
+                <p className="text-xs text-start">{description}</p>
               </div>
-              <div className="flex flex-col justify-center">
+              <div className="flex flex-auto flex-col justify-center">
                 {primaryButton}
               </div>
-              <button
-                onClick={() => {
-                  onClose();
-                  setIsListOpen(false);
-                }}
-              >
-                <CloseIcon />
-              </button>
+              <div className="flex flex-none">
+                <button
+                  onClick={() => {
+                    onClose();
+                    setIsListOpen(false);
+                  }}
+                >
+                  <CloseIcon />
+                </button>
+              </div>
             </div>
             <div className="max-h-[calc(50vh-42px)] overflow-y-auto">
               {children}

@@ -2,7 +2,15 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { Button, Listbox, ListboxItem, Chip, Image } from "@nextui-org/react";
+import {
+  Button,
+  Listbox,
+  ListboxItem,
+  Chip,
+  Image,
+  Select,
+  SelectItem,
+} from "@nextui-org/react";
 
 import { useGetClusterQuery } from "../../../api/cluster";
 import { useGetUserQuery } from "../../../api/user";
@@ -232,6 +240,29 @@ const ClusterDrawer: React.FC = () => {
     return result;
   }, [poiList]);
 
+  const [sortingMethod, setSortingMethod] = useState("time");
+
+  const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value) {
+      setSortingMethod(e.target.value as string);
+    }
+  };
+
+  const sortingMessage = [
+    {
+      key: "time",
+      message: "以回報的最後更新時間由新到舊排序",
+    },
+    {
+      key: "distance",
+      message: "以回報位置與地圖畫面中心由近到遠排序",
+    },
+    {
+      key: "name",
+      message: "以回報項目的名稱排序",
+    },
+  ];
+
   return (
     <DraggableDrawer
       open={selected}
@@ -256,7 +287,33 @@ const ClusterDrawer: React.FC = () => {
           )}
         </div>
       }
-      primaryButton={<Button></Button>}
+      primaryButton={
+        <Select
+          aria-label="Sorting Method"
+          variant="bordered"
+          selectedKeys={[sortingMethod]}
+          classNames={{
+            value: "text-xs",
+            innerWrapper: "pt-0",
+            trigger: "py-0 h-7 min-h-fit bg-primary",
+            base: "min-w-fit w-full border-0",
+          }}
+          onChange={handleSelectionChange}
+        >
+          <SelectItem key={"distance"} value={"distance"}>
+            距離
+          </SelectItem>
+          <SelectItem key={"time"} value={"time"}>
+            時間
+          </SelectItem>
+          <SelectItem key={"name"} value={"name"}>
+            名稱
+          </SelectItem>
+        </Select>
+      }
+      description={
+        sortingMessage.find((msg) => msg.key === sortingMethod)?.message
+      }
     />
   );
 };
