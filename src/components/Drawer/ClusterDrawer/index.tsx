@@ -35,6 +35,10 @@ import {
 } from "../../../constants/model/poi";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
+import {
+  sortingOptions,
+  sortingMessages,
+} from "../../../constants/sortingOptions";
 
 interface PoiListItemProps {
   poi: {
@@ -240,28 +244,20 @@ const ClusterDrawer: React.FC = () => {
     return result;
   }, [poiList]);
 
-  const [sortingMethod, setSortingMethod] = useState("time");
+  const [sortingMethod, setSortingMethod] = useState(sortingOptions[0].key);
+  const [sortingMessage, setSortingMessage] = useState(
+    sortingMessages[0].message,
+  );
 
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
       setSortingMethod(e.target.value as string);
+      setSortingMessage(
+        sortingMessages.find((msg) => msg.key === e.target.value)?.message ??
+          sortingMessages[0].message,
+      );
     }
   };
-
-  const sortingMessage = [
-    {
-      key: "time",
-      message: "以回報的最後更新時間由新到舊排序",
-    },
-    {
-      key: "distance",
-      message: "以回報位置與地圖畫面中心由近到遠排序",
-    },
-    {
-      key: "name",
-      message: "以回報項目的名稱排序",
-    },
-  ];
 
   return (
     <DraggableDrawer
@@ -300,20 +296,14 @@ const ClusterDrawer: React.FC = () => {
           }}
           onChange={handleSelectionChange}
         >
-          <SelectItem key={"distance"} value={"distance"}>
-            距離
-          </SelectItem>
-          <SelectItem key={"time"} value={"time"}>
-            時間
-          </SelectItem>
-          <SelectItem key={"name"} value={"name"}>
-            名稱
-          </SelectItem>
+          {sortingOptions.map((option) => (
+            <SelectItem key={option.key} value={option.value}>
+              {option.label}
+            </SelectItem>
+          ))}
         </Select>
       }
-      description={
-        sortingMessage.find((msg) => msg.key === sortingMethod)?.message
-      }
+      description={sortingMessage}
     />
   );
 };
