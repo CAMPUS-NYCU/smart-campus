@@ -59,9 +59,9 @@ export const poiStatusValue = {
   // 外觀狀態 appearance
   appearanceGood: "appearanceGood", // 完好無損
   appearanceBad: "appearanceBad", // 外觀破損
-  // 占用狀態 occupation
+  // 佔用狀態 occupation
   unoccupied: "unoccupied", // 無人使用
-  occupied: "occupied", // 有人占用
+  occupied: "occupied", // 有人佔用
   // 存在狀態 presence
   present: "present", // 存在
   absent: "absent", // 不存在
@@ -128,7 +128,7 @@ export const poiStatusValueMessageKeys = {
   // 外觀狀態
   [poiStatusValue.appearanceGood]: "poi.data.status.appearance.value.good",
   [poiStatusValue.appearanceBad]: "poi.data.status.appearance.value.bad",
-  // 占用狀態
+  // 佔用狀態
   [poiStatusValue.occupied]: "poi.data.status.occupation.value.occupied",
   [poiStatusValue.unoccupied]: "poi.data.status.occupation.value.unoccupied",
   // 存在狀態
