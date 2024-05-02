@@ -27,7 +27,7 @@ import {
 
 import { getClusterIcon } from "../../../constants/clusterIcon";
 import noImage from "../../../assets/images/noImage.svg";
-import Drawer from "../";
+import Drawer from "..";
 import Poi, { PoiData } from "../../../models/poi";
 import {
   poiStatusTypeMessageKeys,
