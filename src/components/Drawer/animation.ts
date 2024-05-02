@@ -14,3 +14,24 @@ export const drawerVariants = {
     transition: { type: "tween", duration: 0.3 },
   },
 } satisfies Variants;
+
+export const draggableDrawerVariants = {
+  open: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 120,
+      damping: 20,
+    },
+  },
+  closed: {
+    y: "100%",
+    opacity: 0,
+    transition: {
+      type: "spring",
+      stiffness: 120,
+      damping: 20,
+    },
+  },
+} satisfies Variants;

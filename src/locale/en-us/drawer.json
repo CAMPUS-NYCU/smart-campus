@@ -80,14 +80,29 @@
   "clusterDrawer": {
     "buttons": {
       "add": "Add",
-      "edit": "Edit"
+      "edit": "Edit",
+      "openList": "Open List"
     },
     "content": {
       "texts": {
         "updatedAt": "Edited at {{updatedAt}}"
       }
     },
-    "title": "Reports of {{name}}"
+    "title": "Reports of {{name}}",
+    "sorting": {
+      "time": {
+        "label": "Time",
+        "message": "Sorted by last update time, newest to oldest"
+      },
+      "distance": {
+        "label": "Distance",
+        "message": "Sorted by distance from map center, closest to farthest."
+      },
+      "name": {
+        "label": "Name",
+        "message": "Sorted by report target name"
+      }
+    }
   },
   "poiDrawer": {
     "content": {
