@@ -28,7 +28,11 @@ const AddReportFab: React.FC = () => {
   return (
     <Button
       key="AddReportFab"
-      className="absolute bottom-14 left-1/2 transform -translate-x-1/2 w-14 h-14"
+      className={
+        id
+          ? "absolute bottom-14 left-1/2 transform -translate-x-1/2 w-14 h-14"
+          : "hidden"
+      }
       isIconOnly
       size="sm"
       style={{ backgroundColor: "transparent", padding: 0 }}
