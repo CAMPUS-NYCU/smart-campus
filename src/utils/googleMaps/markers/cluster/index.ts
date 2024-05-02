@@ -10,7 +10,7 @@ function getClusterSerial(clusterName: string): string {
     if (match.length === 3) {
       return `${match[1]}-${match[2]}`;
     } else {
-      console.error(`找不到"${clusterName}"的serial`);
+      console.error(`the cluster name is not valid: "${clusterName}"`);
       return "";
     }
   } else {
