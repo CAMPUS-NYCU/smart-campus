@@ -35,6 +35,12 @@ import {
 } from "../../../constants/model/poi";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
+import { maps } from "../../../utils/googleMaps";
+import {
+  calculateDistance,
+  compareByUpdatedTime,
+  compareByTargetSerial,
+} from "../../../constants/map";
 import {
   sortingOptions,
   sortingMessages,
@@ -223,6 +229,11 @@ const ClusterDrawer: React.FC = () => {
     resetDrawerParams(searchParams, setSearchParams);
   };
 
+  const [sortingMethod, setSortingMethod] = useState(sortingOptions[0].key);
+  const [sortingMessage, setSortingMessage] = useState(
+    sortingMessages[0].message,
+  );
+
   React.useEffect(() => {
     if (!isCurrentDrawerParams("cluster", searchParams)) {
       dispatch(resetReport());
@@ -237,17 +248,38 @@ const ClusterDrawer: React.FC = () => {
         id,
         data,
       }));
-      // sort the poi list by the random order
-      result.sort(() => Math.random() - 0.5);
+
+      if (sortingMethod === "time") {
+        result.sort(compareByUpdatedTime);
+      } else if (sortingMethod === "distance") {
+        const mapCenter = maps.getCenter();
+        const calCenter = {
+          latlng: {
+            latitude: mapCenter?.lat() || 0,
+            longitude: mapCenter?.lng() || 0,
+          },
+        };
+
+        result.sort((poi1: Poi, poi2: Poi) => {
+          const distance1 = calculateDistance(
+            calCenter.latlng,
+            poi1.data.latlng,
+          );
+          const distance2 = calculateDistance(
+            calCenter.latlng,
+            poi2.data.latlng,
+          );
+          return distance1 - distance2;
+        });
+      } else if (sortingMethod === "name") {
+        result.sort(compareByTargetSerial);
+      } else {
+        console.error("sorting method not found");
+      }
     }
 
     return result;
-  }, [poiList]);
-
-  const [sortingMethod, setSortingMethod] = useState(sortingOptions[0].key);
-  const [sortingMessage, setSortingMessage] = useState(
-    sortingMessages[0].message,
-  );
+  }, [poiList, sortingMethod]);
 
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
