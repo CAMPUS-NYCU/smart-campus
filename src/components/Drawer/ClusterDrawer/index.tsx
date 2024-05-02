@@ -2,7 +2,15 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { Button, Listbox, ListboxItem, Chip, Image } from "@nextui-org/react";
+import {
+  Button,
+  Listbox,
+  ListboxItem,
+  Chip,
+  Image,
+  Select,
+  SelectItem,
+} from "@nextui-org/react";
 
 import { useGetClusterQuery } from "../../../api/cluster";
 import { useGetUserQuery } from "../../../api/user";
@@ -10,7 +18,7 @@ import { useGetPoisQuery } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { openModal } from "../../../store/modal";
 import { resetHightlightId, setHighlightId } from "../../../store/poi";
-import { addReport, editReport, resetReport } from "../../../store/report";
+import { editReport, resetReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
@@ -27,6 +35,16 @@ import {
 } from "../../../constants/model/poi";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
+import { maps } from "../../../utils/googleMaps";
+import {
+  calculateDistance,
+  compareByUpdatedTime,
+  compareByTargetSerial,
+} from "../../../constants/map";
+import {
+  sortingOptions,
+  sortingMessages,
+} from "../../../constants/sortingOptions";
 
 interface PoiListItemProps {
   poi: {
@@ -105,12 +123,16 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
             highlightId === poi.id
               ? "border-3 border-primary bg-primary/50"
               : "border-1 border-secondary/50"
-          }  h-[calc((50vh-100px)/4)] py-0 px-1.5`,
+            // 42px is the height of the header and footer
+            // 4 is the number of items in each row
+            // 8 is the margin between items
+            // so the total height is 50vh - 42px - 4 * 8 = 50vh - 74px
+          }  h-[calc((50vh-74px)/4)] py-0 px-1.5`,
         }}
       >
         <div
           ref={containerRef}
-          className="container flex flex-row py-0 h-[calc((50vh-100px)/4)]"
+          className="container flex flex-row py-0 h-[calc((50vh-74px)/4)]"
         >
           {/* the main information of the report */}
           <div className="flex flex-col shrink-0 justify-around basis-8/12">
@@ -200,23 +222,17 @@ const ClusterDrawer: React.FC = () => {
   const { data: cluster } = useGetClusterQuery(id, {
     skip: !selected,
   });
-  const { data: user } = useGetUserQuery();
 
   const { data: poiList } = useGetPoisQuery(id);
-
-  const handlePoiEdit = () => {
-    if (!id) {
-      throw new Error("ClusterDrawer: id is null");
-    } else if (!user?.id) {
-      dispatch(openModal("login"));
-    } else {
-      dispatch(addReport({ clusterId: id, createdBy: user?.id }));
-    }
-  };
 
   const handleDrawerDismiss = () => {
     resetDrawerParams(searchParams, setSearchParams);
   };
+
+  const [sortingMethod, setSortingMethod] = useState(sortingOptions[0].key);
+  const [sortingMessage, setSortingMessage] = useState(
+    sortingMessages[0].message,
+  );
 
   React.useEffect(() => {
     if (!isCurrentDrawerParams("cluster", searchParams)) {
@@ -232,15 +248,52 @@ const ClusterDrawer: React.FC = () => {
         id,
         data,
       }));
-      // sort the poi list by the random order
-      result.sort(() => Math.random() - 0.5);
+
+      if (sortingMethod === "time") {
+        result.sort(compareByUpdatedTime);
+      } else if (sortingMethod === "distance") {
+        const mapCenter = maps.getCenter();
+        const calCenter = {
+          latlng: {
+            latitude: mapCenter?.lat() || 0,
+            longitude: mapCenter?.lng() || 0,
+          },
+        };
+
+        result.sort((poi1: Poi, poi2: Poi) => {
+          const distance1 = calculateDistance(
+            calCenter.latlng,
+            poi1.data.latlng,
+          );
+          const distance2 = calculateDistance(
+            calCenter.latlng,
+            poi2.data.latlng,
+          );
+          return distance1 - distance2;
+        });
+      } else if (sortingMethod === "name") {
+        result.sort(compareByTargetSerial);
+      } else {
+        console.error("sorting method not found");
+      }
     }
 
     return result;
-  }, [poiList]);
+  }, [poiList, sortingMethod]);
+
+  const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value) {
+      setSortingMethod(e.target.value as string);
+      setSortingMessage(
+        sortingMessages.find((msg) => msg.key === e.target.value)?.message ??
+          sortingMessages[0].message,
+      );
+    }
+  };
 
   return (
     <Drawer
+      isDraggable={true}
       open={selected}
       onClose={handleDrawerDismiss}
       title={t("clusterDrawer.title", {
@@ -264,14 +317,27 @@ const ClusterDrawer: React.FC = () => {
         </div>
       }
       primaryButton={
-        <Button
-          radius="full"
-          className="bg-primary h-fit px-2 py-1.5"
-          onClick={handlePoiEdit}
+        <Select
+          aria-label="Sorting Method"
+          variant="bordered"
+          selectedKeys={[sortingMethod]}
+          classNames={{
+            value: "text-xs",
+            innerWrapper: "pt-0",
+            trigger: "py-0 h-7 min-h-fit bg-primary",
+            base: "min-w-fit w-full border-0",
+            listboxWrapper: "min-w-fit",
+          }}
+          onChange={handleSelectionChange}
         >
-          {t("clusterDrawer.buttons.add", { ns: ["drawer"] })}
-        </Button>
+          {sortingOptions.map((option) => (
+            <SelectItem key={option.key} value={option.value}>
+              {t(option.label, { ns: ["drawer"] })}
+            </SelectItem>
+          ))}
+        </Select>
       }
+      description={t(sortingMessage, { ns: ["drawer"] })}
     />
   );
 };
