@@ -27,7 +27,7 @@ import {
 
 import { getClusterIcon } from "../../../constants/clusterIcon";
 import noImage from "../../../assets/images/noImage.svg";
-import DraggableDrawer from "../draggableDrawer";
+import Drawer from "../";
 import Poi, { PoiData } from "../../../models/poi";
 import {
   poiStatusTypeMessageKeys,
@@ -292,7 +292,8 @@ const ClusterDrawer: React.FC = () => {
   };
 
   return (
-    <DraggableDrawer
+    <Drawer
+      isDraggable={true}
       open={selected}
       onClose={handleDrawerDismiss}
       title={t("clusterDrawer.title", {
