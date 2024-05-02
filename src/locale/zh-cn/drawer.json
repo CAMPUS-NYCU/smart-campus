@@ -88,7 +88,21 @@
         "updatedAt": "更新于 {{updatedAt}}"
       }
     },
-    "title": "更新回报资讯"
+    "title": "{{name}}现有回报资讯",
+    "sorting": {
+      "time": {
+        "label": "时间",
+        "message": "以回报的最后更新时间由新到旧排序"
+      },
+      "distance": {
+        "label": "距离",
+        "message": "以回报位置与地图画面中心由近到远排序"
+      },
+      "name": {
+        "label": "名称",
+        "message": "以回报项目的名称排序"
+      }
+    }
   },
   "poiDrawer": {
     "content": {

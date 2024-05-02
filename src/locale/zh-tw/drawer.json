@@ -88,7 +88,21 @@
         "updatedAt": "更新於 {{updatedAt}}"
       }
     },
-    "title": "{{name}}現有回報資訊"
+    "title": "{{name}}現有回報資訊",
+    "sorting": {
+      "time": {
+        "label": "時間",
+        "message": "以回報的最後更新時間由新到舊排序"
+      },
+      "distance": {
+        "label": "距離",
+        "message": "以回報位置與地圖畫面中心由近到遠排序"
+      },
+      "name": {
+        "label": "名稱",
+        "message": "以回報項目的名稱排序"
+      }
+    }
   },
   "poiDrawer": {
     "content": {

@@ -2,31 +2,31 @@ export const sortingOptions = [
   {
     key: "time",
     value: "time",
-    label: "時間",
+    label: "clusterDrawer.sorting.time.label",
   },
   {
     key: "distance",
     value: "distance",
-    label: "距離",
+    label: "clusterDrawer.sorting.distance.label",
   },
   {
     key: "name",
     value: "name",
-    label: "名稱",
+    label: "clusterDrawer.sorting.name.label",
   },
 ];
 
 export const sortingMessages = [
   {
     key: "time",
-    message: "以回報的最後更新時間由新到舊排序",
+    message: "clusterDrawer.sorting.time.message",
   },
   {
     key: "distance",
-    message: "以回報位置與地圖畫面中心由近到遠排序",
+    message: "clusterDrawer.sorting.distance.message",
   },
   {
     key: "name",
-    message: "以回報項目的名稱排序",
+    message: "clusterDrawer.sorting.name.message",
   },
 ];

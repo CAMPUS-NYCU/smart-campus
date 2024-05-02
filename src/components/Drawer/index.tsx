@@ -83,7 +83,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
             <div className="flex flex-col">
               <div className="flex flex-row justify-between space-x-2">
                 <div className="flex flex-col justify-between">
-                  <h1 className="font-bold">{title}</h1>
+                  <h1 className="font-bold text-start">{title}</h1>
                   <p className="text-xs text-start">{description}</p>
                 </div>
                 <div className="flex flex-auto flex-col justify-center">

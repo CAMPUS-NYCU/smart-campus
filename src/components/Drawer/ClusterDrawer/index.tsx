@@ -326,17 +326,18 @@ const ClusterDrawer: React.FC = () => {
             innerWrapper: "pt-0",
             trigger: "py-0 h-7 min-h-fit bg-primary",
             base: "min-w-fit w-full border-0",
+            listboxWrapper: "min-w-fit",
           }}
           onChange={handleSelectionChange}
         >
           {sortingOptions.map((option) => (
             <SelectItem key={option.key} value={option.value}>
-              {option.label}
+              {t(option.label, { ns: ["drawer"] })}
             </SelectItem>
           ))}
         </Select>
       }
-      description={sortingMessage}
+      description={t(sortingMessage, { ns: ["drawer"] })}
     />
   );
 };
