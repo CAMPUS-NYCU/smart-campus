@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { getParamsFromDrawer } from "../../../../utils/routes/params";
 import { useGetClusterQuery } from "../../../../api/cluster";
 import { openModal } from "../../../../store/modal";
-import InputLlm from "../../../modal/InputLlm";
+import LlmInput from "../../../modal/LlmInput";
 
 const LlmFabs: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -15,7 +15,7 @@ const LlmFabs: React.FC = () => {
   const { data: cluster } = useGetClusterQuery(clusterId);
 
   const handleOpenInputLlmModal = () => {
-    dispatch(openModal("inputLlm"));
+    dispatch(openModal("llmInput"));
   };
 
   return cluster ? (
@@ -27,7 +27,7 @@ const LlmFabs: React.FC = () => {
         size="sm"
         onClick={() => handleOpenInputLlmModal()}
       />
-      <InputLlm />
+      <LlmInput />
     </>
   ) : null;
 };

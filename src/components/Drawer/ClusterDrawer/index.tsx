@@ -241,7 +241,7 @@ const ClusterDrawer: React.FC = () => {
 
   return (
     <Drawer
-      open={selected}
+      open={false}
       onClose={handleDrawerDismiss}
       title={t("clusterDrawer.title", {
         name: cluster?.data.name,

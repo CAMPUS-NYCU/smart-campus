@@ -10,7 +10,7 @@ import {
   Input,
 } from "@nextui-org/react";
 import { IRootState } from "../../../store";
-import { closeModal, toggleModal } from "../../../store/modal";
+import { closeModal, openModal, toggleModal } from "../../../store/modal";
 import {
   def_place_and_object,
   def_facility,
@@ -24,11 +24,11 @@ import { useSearchParams } from "react-router-dom";
 import { useGetPoisQuery } from "../../../api/poi";
 import { convertToContributionData } from "../../../constants/gpt";
 
-const InputLlm: React.FC = () => {
+const LlmInput: React.FC = () => {
   const [searchParams] = useSearchParams();
 
   const modalOpen = useSelector(
-    (state: IRootState) => state.modal.open["inputLlm"],
+    (state: IRootState) => state.modal.open["llmInput"],
   );
 
   const dispatch = useDispatch();
@@ -100,16 +100,17 @@ const InputLlm: React.FC = () => {
     gptFunction();
 
     setDescription("");
-    dispatch(closeModal("inputLlm"));
+    dispatch(closeModal("llmInput"));
+    dispatch(openModal("llmResult"));
   };
 
   const handleCloseModal = () => {
     setDescription("");
-    dispatch(closeModal("inputLlm"));
+    dispatch(closeModal("llmInput"));
   };
 
   const handleToggleModal = () => {
-    dispatch(toggleModal("inputLlm"));
+    dispatch(toggleModal("llmInput"));
   };
 
   const [description, setDescription] = React.useState<string>("");
@@ -143,4 +144,4 @@ const InputLlm: React.FC = () => {
   );
 };
 
-export default InputLlm;
+export default LlmInput;

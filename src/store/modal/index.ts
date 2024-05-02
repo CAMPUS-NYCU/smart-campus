@@ -10,7 +10,8 @@ const modal = {
   switchTheme: "switchTheme",
   reportCompletion: "reportCompletion",
   reportStart: "reportStart",
-  inputLlm: "inputLlm",
+  llmInput: "llmInput",
+  llmResult: "llmResult",
 };
 
 type Modal = keyof typeof modal;
