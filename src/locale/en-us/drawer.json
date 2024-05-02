@@ -80,7 +80,8 @@
   "clusterDrawer": {
     "buttons": {
       "add": "Add",
-      "edit": "Edit"
+      "edit": "Edit",
+      "openList": "Open List"
     },
     "content": {
       "texts": {

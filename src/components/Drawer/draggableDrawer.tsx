@@ -5,6 +5,7 @@ import { CloseIcon } from "../../utils/icons/drawer";
 
 import { draggableDrawerVariants } from "./animation";
 import { Button } from "@nextui-org/react";
+import { useTranslation } from "react-i18next";
 
 interface DraggableDrawerProps {
   children: React.ReactNode;
@@ -18,6 +19,8 @@ interface DraggableDrawerProps {
 
 const DraggableDrawer: React.FC<DraggableDrawerProps> = (props) => {
   const { children, open, onClose, title, primaryButton, description } = props;
+
+  const { t } = useTranslation();
 
   const [isListOpen, setIsListOpen] = React.useState(open);
 
@@ -36,9 +39,11 @@ const DraggableDrawer: React.FC<DraggableDrawerProps> = (props) => {
   };
 
   return (
-    <div className="relative overflow-hidden h-full">
+    <div className="overflow-hidden h-full">
       <div className={open ? "fixed left-2 bottom-2" : "hidden"}>
-        <Button onClick={toggleDrawer}>Toggle</Button>
+        <Button className="bg-primary" onClick={toggleDrawer}>
+          {t("clusterDrawer.buttons.openList", { ns: "drawer" })}
+        </Button>
       </div>
       <motion.div
         className="fixed bottom-0 left-0 w-screen \

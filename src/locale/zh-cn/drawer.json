@@ -80,7 +80,8 @@
   "clusterDrawer": {
     "buttons": {
       "add": "新增",
-      "edit": "更新"
+      "edit": "更新",
+      "openList": "开启清单"
     },
     "content": {
       "texts": {
