@@ -116,9 +116,6 @@ async function def_facility(location: string, item: string) {
   const itemPositions = Object.entries(markersPosition).find(([key]) =>
     key.startsWith(item),
   )?.[1];
-  console.log(item);
-  console.log(locationPosition);
-  console.log(itemPositions);
 
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
@@ -162,7 +159,6 @@ async function def_contribution(
     )?.[1] || {};
 
   const address = itemPositions?.[targetMarker]?.位址;
-  console.log(address);
 
   const currentTime = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Taipei",
@@ -176,13 +172,21 @@ async function def_contribution(
       {
         role: "system",
         content:
-          "你可以幫我根據這句話的物體、回報狀態、回報時間和位址，找到兩個最符合的回報點",
+          "你可以幫我根據這句話的物體、回報狀態、回報時間和位址，找到兩個最符合的不同回報點",
       },
       {
         role: "system",
         content: JSON.stringify(contributions),
       },
-      { role: "system", content: "【注意事項】：只要回答回報點的名稱。" },
+      {
+        role: "system",
+        content:
+          '【注意事項】：只要回答回報點的名稱。 像是 {\
+            "key1": "p02-S-A-LL-S-rp4",\
+            "key2": "p02-S-A-LL-S-rp6"\
+          }',
+      },
+      { role: "system", content: "【注意事項】：請以 Json 格式回覆我。" },
       {
         role: "user",
         content: `物體: ${targetMarker}, 回報狀態: ${statusEn}, 回報時間: ${currentTime}, 位址: ${address}\n結果:`,

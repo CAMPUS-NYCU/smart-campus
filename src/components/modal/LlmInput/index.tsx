@@ -23,6 +23,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { useGetPoisQuery } from "../../../api/poi";
 import { convertToContributionData } from "../../../constants/gpt";
+import { setRecommandContributions } from "../../../store/llm";
 
 const LlmInput: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -34,6 +35,7 @@ const LlmInput: React.FC = () => {
   const dispatch = useDispatch();
 
   const reportType = useSelector((state: IRootState) => state.report.type);
+
   const selected =
     !reportType && isCurrentDrawerParams("cluster", searchParams);
   const id = selected
@@ -41,13 +43,15 @@ const LlmInput: React.FC = () => {
     : null;
 
   const [gptFunctionExecuted, setGptFunctionExecuted] = useState(false);
+
   const { data: poiList } = useGetPoisQuery(id, {
     skip: !gptFunctionExecuted, // 只有當 gptFunction 已經執行時才執行這個查詢
   });
 
+  //  const [trigger, result, data] = useLazyGetPoisQuery();
+
   const [targetMarker, setTargetMarker] = useState<string | null>(null);
   const [status, setStatus] = useState<string>("");
-  // const [finalResult, setFinalResult] = useState<string | null>(null);
 
   async function gptFunction() {
     setGptFunctionExecuted(true);
@@ -57,14 +61,12 @@ const LlmInput: React.FC = () => {
     let item: string = "";
     let status: string = "";
     let targetMarker: string | null = "";
-    console.log("LLM1 Result", result);
     if (result) {
       locationName = result?.split("，")[1];
       item = result?.split("，")[2];
       status = result?.split("，")[3];
       targetMarker = await def_facility(locationName, item);
       if (targetMarker) {
-        console.log(targetMarker);
         setTargetMarker(targetMarker);
         setStatus(status);
       } else {
@@ -77,26 +79,35 @@ const LlmInput: React.FC = () => {
     }
   }
 
+  // it will only works once now
   useEffect(() => {
     async function fetchData() {
       if (poiList && targetMarker && status) {
-        console.log("LLM3", poiList, targetMarker, status);
+        console.log("LLM3 Inputs", poiList, targetMarker, status);
         const inputContributions = convertToContributionData(poiList);
-        console.log("Input", inputContributions);
         const recommandContribution = await def_contribution(
           inputContributions,
           targetMarker,
           status,
         );
-        console.log("Result", recommandContribution);
+        console.log("Pure LLM Feedback", recommandContribution);
+        if (recommandContribution) {
+          const recommandContributionArray: string[] = Object.values(
+            JSON.parse(recommandContribution),
+          );
+
+          console.log("LLM Results set to Redux", recommandContributionArray);
+          dispatch(setRecommandContributions(recommandContributionArray));
+        } else {
+          console.error("No recommands found.");
+        }
       }
     }
     fetchData();
-  }, [poiList, targetMarker, status]);
+  }, [poiList, targetMarker, status, dispatch]);
 
   const handleCommit = () => {
-    console.log("LLM Input", description);
-    // call gpt to classify the description
+    console.log("User Inputs", description);
     gptFunction();
 
     setDescription("");

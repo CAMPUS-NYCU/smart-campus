@@ -6,6 +6,7 @@ import { getParamsFromDrawer } from "../../../../utils/routes/params";
 import { useGetClusterQuery } from "../../../../api/cluster";
 import { openModal } from "../../../../store/modal";
 import LlmInput from "../../../modal/LlmInput";
+import llmFab from "../../../../assets/images/llmFab.svg";
 
 const LlmFabs: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -22,11 +23,15 @@ const LlmFabs: React.FC = () => {
     <>
       <Button
         key="LLM Fabs"
-        className="absolute top-40 right-4 w-10 h-10"
+        className="absolute top-32 right-4 w-10 h-10"
+        isIconOnly
         color="primary"
+        style={{ backgroundColor: "transparent", padding: 0 }}
         size="sm"
         onClick={() => handleOpenInputLlmModal()}
-      />
+      >
+        <img src={llmFab} alt="facilityMarkerFilter" />
+      </Button>
       <LlmInput />
     </>
   ) : null;

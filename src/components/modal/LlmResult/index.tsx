@@ -1,40 +1,79 @@
-import {
-  Button,
-  Modal,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-} from "@nextui-org/react";
+import { Button, Skeleton } from "@nextui-org/react";
 import { IRootState } from "../../../store";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal, toggleModal } from "../../../store/modal";
+import { closeModal, openModal } from "../../../store/modal";
+import { setRecommandContributions } from "../../../store/llm";
+import Drawer from "../../Drawer";
+import {
+  getParamsFromDrawer,
+  setupDrawerParams,
+} from "../../../utils/routes/params";
+import { useSearchParams } from "react-router-dom";
+import { useGetUserQuery } from "../../../api/user";
+import { addReport } from "../../../store/report";
 
 const LlmResult: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
+  const { data: user } = useGetUserQuery();
+
   const modalOpen = useSelector(
     (state: IRootState) => state.modal.open["llmResult"],
   );
 
+  const recommandContributions = useSelector(
+    (state: IRootState) => state.llm.recommandContributions,
+  );
+
+  // useGetPoisQuery(where id === recommandContributions)
+
+  console.log("LLM Result Page", recommandContributions);
+
   const dispatch = useDispatch();
 
   const handleCloseModal = () => {
+    dispatch(setRecommandContributions([]));
+    setupDrawerParams<"cluster">({ clusterId }, searchParams, setSearchParams);
     dispatch(closeModal("llmResult"));
   };
 
-  const handleToggleModal = () => {
-    dispatch(toggleModal("llmResult"));
+  const handlePoiEdit = () => {
+    if (!clusterId) {
+      throw new Error("ClusterDrawer: id is null");
+    } else if (!user?.id) {
+      dispatch(openModal("login"));
+    } else {
+      dispatch(addReport({ clusterId: clusterId, createdBy: user?.id }));
+      dispatch(closeModal("llmResult"));
+    }
   };
 
   return (
-    <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
-      <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">LlmResult</ModalHeader>
-        <ModalFooter>
-          <Button color="danger" variant="light" onPress={handleCloseModal}>
-            關閉
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+    <Drawer
+      open={modalOpen}
+      onClose={handleCloseModal}
+      title={"haha"}
+      children={
+        <div>
+          {recommandContributions.length > 0 ? (
+            recommandContributions.map((contribution, index) => (
+              <div key={index}>{contribution}</div>
+            ))
+          ) : (
+            <Skeleton className="w-full h-[30vh] rounded-md" />
+          )}
+        </div>
+      }
+      primaryButton={
+        <Button
+          radius="full"
+          className="bg-primary h-fit px-2 py-1.5"
+          onClick={handlePoiEdit}
+        >
+          新增回報
+        </Button>
+      }
+    />
   );
 };
 

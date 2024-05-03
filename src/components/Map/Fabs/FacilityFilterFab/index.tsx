@@ -11,7 +11,6 @@ import FacilityFilter from "../../../modal/FacilityFilter";
 const FacilityFilterFab: React.FC = () => {
   const [searchParams] = useSearchParams();
 
-  // const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const isCurrentSearchParamsCluster = isCurrentDrawerParams(
     "cluster",
     searchParams,
