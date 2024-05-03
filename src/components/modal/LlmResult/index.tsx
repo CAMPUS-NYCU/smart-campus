@@ -11,6 +11,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { useGetUserQuery } from "../../../api/user";
 import { addReport } from "../../../store/report";
+import { useEffect } from "react";
 
 const LlmResult: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,7 +28,9 @@ const LlmResult: React.FC = () => {
 
   // useGetPoisQuery(where id === recommandContributions)
 
-  console.log("LLM Result Page", recommandContributions);
+  useEffect(() => {
+    console.log("LLM Results Page", recommandContributions);
+  }, [recommandContributions]);
 
   const dispatch = useDispatch();
 

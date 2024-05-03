@@ -13,8 +13,8 @@ import { IRootState } from "../../../store";
 import { closeModal, openModal, toggleModal } from "../../../store/modal";
 import {
   def_place_and_object,
-  def_facility,
   def_contribution,
+  find_closest_facility,
 } from "../../../api/gpt";
 import {
   getParamsFromDrawer,
@@ -55,22 +55,22 @@ const LlmInput: React.FC = () => {
 
   async function gptFunction() {
     setGptFunctionExecuted(true);
-    // wait for def_place_and_object finish to get result
     const result = await def_place_and_object(description);
     let locationName: string = "";
     let item: string = "";
     let status: string = "";
-    let targetMarker: string | null = "";
     if (result) {
       locationName = result?.split("，")[1];
       item = result?.split("，")[2];
       status = result?.split("，")[3];
-      targetMarker = await def_facility(locationName, item);
+      const targetMarker = find_closest_facility(locationName, item);
+      console.log(targetMarker, status);
+
       if (targetMarker) {
         setTargetMarker(targetMarker);
         setStatus(status);
       } else {
-        console.error("LLM2 Error", targetMarker);
+        console.error("Target Marker get Error", targetMarker);
         return;
       }
     } else {
@@ -79,7 +79,10 @@ const LlmInput: React.FC = () => {
     }
   }
 
-  // it will only works once now
+  // [Bug 1] It will only works once, if user input the same(similiar) input. PoiList & targetMarker & status remains the same and useEffect not triggered
+  // And I clear the recommandContributions in LlmResult.tsx, so the Drawer will remain skeleton.
+  // [Bug 2] When i hot updated the page, this useEffect will be trigger again.
+
   useEffect(() => {
     async function fetchData() {
       if (poiList && targetMarker && status) {

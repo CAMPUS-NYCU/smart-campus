@@ -105,6 +105,47 @@ async function def_place_and_object(text: string) {
   return ans;
 }
 
+function find_closest_facility(location: string, item: string) {
+  console.log(location, item);
+  const locationPosition = (
+    referenceData as {
+      locationName: string;
+      coordinates: { latitude: number; longitude: number };
+    }[]
+  ).find((item) => item.locationName === location)?.coordinates;
+
+  const itemPositions = Object.entries(markersPosition).find(([key]) =>
+    key.startsWith(item),
+  )?.[1];
+
+  interface ItemPosition {
+    distance: number | undefined;
+    key: string;
+  }
+
+  const itemPosition = Object.entries(itemPositions ?? {}).reduce(
+    (acc: ItemPosition, [key, value]) => {
+      const distance = locationPosition
+        ? Math.sqrt(
+            Math.pow(value.位址[0] - locationPosition.latitude, 2) +
+              Math.pow(value.位址[1] - locationPosition.longitude, 2),
+          )
+        : undefined;
+      if (
+        acc.distance === undefined ||
+        (distance !== undefined && distance < acc.distance)
+      ) {
+        acc.distance = distance;
+        acc.key = key;
+      }
+      return acc;
+    },
+    { distance: undefined, key: "" },
+  );
+
+  return itemPosition.key;
+}
+
 async function def_facility(location: string, item: string) {
   const locationPosition = (
     referenceData as {
@@ -201,4 +242,9 @@ async function def_contribution(
   return ans;
 }
 
-export { def_place_and_object, def_facility, def_contribution };
+export {
+  def_place_and_object,
+  def_facility,
+  def_contribution,
+  find_closest_facility,
+};
