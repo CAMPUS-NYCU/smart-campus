@@ -246,7 +246,6 @@ const LlmResult: React.FC = () => {
       dispatch(closeModal("llmResult"));
     }
   };
-  console.log("Result infos", recommandPois);
 
   return (
     <Drawer

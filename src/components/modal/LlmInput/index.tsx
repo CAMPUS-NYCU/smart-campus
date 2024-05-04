@@ -76,7 +76,6 @@ const LlmInput: React.FC = () => {
   }
 
   const handleCommit = () => {
-    console.log("User Inputs", description);
     gptFunction();
 
     setDescription("");
