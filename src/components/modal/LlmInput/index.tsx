@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
@@ -21,7 +21,7 @@ import {
   isCurrentDrawerParams,
 } from "../../../utils/routes/params";
 import { useSearchParams } from "react-router-dom";
-import { useGetPoisQuery } from "../../../api/poi";
+import { useLazyGetPoisQuery } from "../../../api/poi";
 import { convertToContributionData } from "../../../constants/gpt";
 import { setRecommandContributions } from "../../../store/llm";
 
@@ -42,72 +42,38 @@ const LlmInput: React.FC = () => {
     ? getParamsFromDrawer("cluster", searchParams).clusterId
     : null;
 
-  const [gptFunctionExecuted, setGptFunctionExecuted] = useState(false);
-
-  const { data: poiList } = useGetPoisQuery(id, {
-    skip: !gptFunctionExecuted, // 只有當 gptFunction 已經執行時才執行這個查詢
-  });
-
-  //  const [trigger, result, data] = useLazyGetPoisQuery();
-
-  const [targetMarker, setTargetMarker] = useState<string | null>(null);
-  const [status, setStatus] = useState<string>("");
+  const [getPois] = useLazyGetPoisQuery();
 
   async function gptFunction() {
-    setGptFunctionExecuted(true);
-    const result = await def_place_and_object(description);
-    let locationName: string = "";
-    let item: string = "";
-    let status: string = "";
-    if (result) {
-      locationName = result?.split("，")[1];
-      item = result?.split("，")[2];
-      status = result?.split("，")[3];
-      const targetMarker = find_closest_facility(locationName, item);
-      console.log(targetMarker, status);
+    if (id) {
+      await Promise.all([
+        def_place_and_object(description),
+        getPois(id).unwrap(),
+      ])
+        .then((resAll) => {
+          if (resAll[0]) {
+            const locationName = resAll[0].split("，")[1];
+            const item = resAll[0].split("，")[2];
+            const status = resAll[0].split("，")[3];
 
-      if (targetMarker) {
-        setTargetMarker(targetMarker);
-        setStatus(status);
-      } else {
-        console.error("Target Marker get Error", targetMarker);
-        return;
-      }
+            const targetMarker = find_closest_facility(locationName, item);
+
+            const inputContributions = convertToContributionData(resAll[1]);
+            return def_contribution(inputContributions, targetMarker, status);
+          } else {
+            throw new Error("LLM1 Error");
+          }
+        })
+        .then((res) => {
+          const recommandContributionArray: string[] = Object.values(
+            JSON.parse(res),
+          );
+          dispatch(setRecommandContributions(recommandContributionArray));
+        });
     } else {
-      console.error("LLM1 Error", result);
-      return;
+      console.error("No id found");
     }
   }
-
-  // [Bug 1] It will only works once, if user input the same(similiar) input. PoiList & targetMarker & status remains the same and useEffect not triggered
-  // And I clear the recommandContributions in LlmResult.tsx, so the Drawer will remain skeleton.
-  // [Bug 2] When i hot updated the page, this useEffect will be trigger again.
-
-  useEffect(() => {
-    async function fetchData() {
-      if (poiList && targetMarker && status) {
-        console.log("LLM3 Inputs", poiList, targetMarker, status);
-        const inputContributions = convertToContributionData(poiList);
-        const recommandContribution = await def_contribution(
-          inputContributions,
-          targetMarker,
-          status,
-        );
-        console.log("Pure LLM Feedback", recommandContribution);
-        if (recommandContribution) {
-          const recommandContributionArray: string[] = Object.values(
-            JSON.parse(recommandContribution),
-          );
-
-          console.log("LLM Results set to Redux", recommandContributionArray);
-          dispatch(setRecommandContributions(recommandContributionArray));
-        } else {
-          console.error("No recommands found.");
-        }
-      }
-    }
-    fetchData();
-  }, [poiList, targetMarker, status, dispatch]);
 
   const handleCommit = () => {
     console.log("User Inputs", description);

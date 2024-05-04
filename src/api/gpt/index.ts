@@ -238,6 +238,9 @@ async function def_contribution(
     top_p: 0.01,
   });
   const ans = response.choices[0].message.content;
+  if (ans === null) {
+    throw new Error("No recommand found.");
+  }
 
   return ans;
 }

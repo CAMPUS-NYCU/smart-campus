@@ -136,6 +136,7 @@ export const {
   useGetPoisQuery,
   useLazyGetPoisQuery,
   useGetPoiQuery,
+  useLazyGetPoiQuery,
   useAddPoiMutation,
   useUpdatePoiMutation,
   useDeletePoiMutation,
