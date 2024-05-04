@@ -20,6 +20,20 @@ const PoiMarkers: React.FC = () => {
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: pois } = useGetPoisQuery(clusterId);
 
+  const recommandContributions = useSelector(
+    (state: IRootState) => state.llm.recommandContributions,
+  );
+
+  // visibility will not work due to `setHighlightId` will rewrite the whole pois
+  React.useEffect(() => {
+    if (recommandContributions.length > 0) {
+      markers.poi.toggleVisibilityIconNone();
+      markers.poi.toggleVisibilityIcon(recommandContributions);
+    } else {
+      markers.poi.toggleVisibilityIconAll();
+    }
+  }, [recommandContributions]);
+
   const dispatch = useDispatch();
 
   const handleClick = React.useCallback(

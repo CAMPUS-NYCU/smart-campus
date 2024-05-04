@@ -106,7 +106,6 @@ async function def_place_and_object(text: string) {
 }
 
 function find_closest_facility(location: string, item: string) {
-  console.log(location, item);
   const locationPosition = (
     referenceData as {
       locationName: string;
