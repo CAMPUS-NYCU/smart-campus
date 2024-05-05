@@ -7,8 +7,8 @@ function getClusterSerial(clusterName: string): string {
   if (clusterName !== "小木屋&校計中1" && clusterName !== "小木屋&校計中2") {
     const match = clusterName.split("-");
 
-    if (match.length === 3) {
-      return `${match[1]}-${match[2]}`;
+    if (match.length === 2) {
+      return `${match[1]}`;
     } else {
       console.error(`the cluster name is not valid: "${clusterName}"`);
       return "";
