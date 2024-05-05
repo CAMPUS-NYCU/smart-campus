@@ -60,6 +60,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
       dispatch(openModal("login"));
     } else {
       dispatch(editReport(poi));
+      dispatch(closeModal("llmResult"));
     }
   };
 
