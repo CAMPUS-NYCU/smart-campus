@@ -1,8 +1,9 @@
-import { SetURLSearchParams } from "react-router-dom";
+import { NavigateFunction, SetURLSearchParams } from "react-router-dom";
 
 const drawerParamKeysMap = {
   cluster: ["clusterId"],
   poi: ["poiId"],
+  recommend: ["recommend"],
 } as const;
 
 type DrawerParamKeysMap = {
@@ -74,5 +75,23 @@ export const setupDrawerParams = <T extends DrawerType>(
     paramsToUpdate,
     searchParams,
   );
+  setSearchParams(updatedSearchParams);
+};
+
+// https://localhost:4001/recommend/?clusterId=p12-M-C-HH-S
+export const setupDrawerSlug = <T extends DrawerType>(
+  paramsToUpdate: DrawerParams<T>,
+  searchParams: URLSearchParams,
+  setSearchParams: SetURLSearchParams,
+  navigate: NavigateFunction,
+) => {
+  const updatedSearchParams = getSetupDrawerParams(
+    paramsToUpdate,
+    searchParams,
+  );
+  // 更新路由
+  navigate("/recommend");
+
+  // 設置查詢參數
   setSearchParams(updatedSearchParams);
 };

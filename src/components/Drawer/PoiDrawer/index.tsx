@@ -60,13 +60,6 @@ const PoiDrawerStatus: React.FC<{
 const PoiDrawer: React.FC = () => {
   const { t } = useTranslation();
 
-  const highlightId = useSelector((state: IRootState) => state.poi.highlightId);
-  const recommandContributions = useSelector(
-    (state: IRootState) => state.llm.recommandContributions,
-  );
-  console.log(highlightId);
-  console.log(recommandContributions);
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   const reportType = useSelector((state: IRootState) => state.report.type);
@@ -113,8 +106,13 @@ const PoiDrawer: React.FC = () => {
         const urlPromises = poi.data.photoPaths.map((path) =>
           getDownloadURL(ref(storage, path)),
         );
-        const resolvedUrls = await Promise.all(urlPromises);
-        setUrls(resolvedUrls);
+        await Promise.all(urlPromises)
+          .then((res: React.SetStateAction<string[]>) => {
+            setUrls(res);
+          })
+          .catch((err) => {
+            console.error("Erro", err);
+          });
       };
 
       fetchUrls();

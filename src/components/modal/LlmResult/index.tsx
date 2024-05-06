@@ -13,6 +13,7 @@ import { setRecommandContributions } from "../../../store/llm";
 import Drawer from "../../Drawer";
 import {
   getParamsFromDrawer,
+  isCurrentDrawerParams,
   setupDrawerParams,
 } from "../../../utils/routes/params";
 import { useSearchParams } from "react-router-dom";
@@ -194,9 +195,9 @@ const LlmResult: React.FC = () => {
   const { data: user } = useGetUserQuery();
   const [getPoi] = useLazyGetPoiQuery();
 
-  const modalOpen = useSelector(
-    (state: IRootState) => state.modal.open["llmResult"],
-  );
+  const reportType = useSelector((state: IRootState) => state.report.type);
+  const selected =
+    !reportType && isCurrentDrawerParams("recommend", searchParams);
 
   const recommandContributions = useSelector(
     (state: IRootState) => state.llm.recommandContributions,
@@ -250,7 +251,7 @@ const LlmResult: React.FC = () => {
 
   return (
     <Drawer
-      open={modalOpen}
+      open={selected}
       onClose={handleCloseModal}
       title={"haha"}
       children={
@@ -263,7 +264,6 @@ const LlmResult: React.FC = () => {
                   poi={{ id: poi.id, data: poi.data }}
                 />
               );
-              // <div key={index}>{poi.data.clusterId}</div>
             })
           ) : (
             <Skeleton className="w-full h-[30vh] rounded-md" />

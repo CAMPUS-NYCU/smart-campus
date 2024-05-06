@@ -26,13 +26,15 @@ import { convertToContributionData } from "../../../constants/gpt";
 import { setRecommandContributions } from "../../../store/llm";
 
 const LlmInput: React.FC = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const modalOpen = useSelector(
     (state: IRootState) => state.modal.open["llmInput"],
   );
 
   const dispatch = useDispatch();
+
+  // const navigate = useNavigate();
 
   const reportType = useSelector((state: IRootState) => state.report.type);
 
@@ -81,6 +83,13 @@ const LlmInput: React.FC = () => {
     setDescription("");
     dispatch(closeModal("llmInput"));
     dispatch(openModal("llmResult"));
+    // setupDrawerSlug<"cluster">(
+    //   { clusterId: id ? id : "" },
+    //   searchParams,
+    //   setSearchParams,
+    //   navigate,
+    // );
+    setSearchParams({ clusterId: id ?? "", recommend: "true" });
   };
 
   const handleCloseModal = () => {
