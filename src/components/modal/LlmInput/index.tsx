@@ -24,6 +24,7 @@ import { useSearchParams } from "react-router-dom";
 import { useLazyGetPoisQuery } from "../../../api/poi";
 import { convertToContributionData } from "../../../constants/gpt";
 import { setRecommandContributions } from "../../../store/llm";
+import { getResourceGroupId } from "../../../utils/resources";
 
 const LlmInput: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -52,14 +53,27 @@ const LlmInput: React.FC = () => {
       ])
         .then((resAll) => {
           if (resAll[0]) {
+            const floor = resAll[0].split("，")[0];
             const locationName = resAll[0].split("，")[1];
             const item = resAll[0].split("，")[2];
             const status = resAll[0].split("，")[3];
+            const resourceGroupId = getResourceGroupId();
 
-            const targetMarker = find_closest_facility(locationName, item);
+            const { closestItemName: targetMarker, itemAddress } =
+              find_closest_facility(
+                resourceGroupId ? resourceGroupId : "",
+                floor,
+                locationName,
+                item,
+              );
 
             const inputContributions = convertToContributionData(resAll[1]);
-            return def_contribution(inputContributions, targetMarker, status);
+            return def_contribution(
+              inputContributions,
+              targetMarker,
+              itemAddress,
+              status,
+            );
           } else {
             throw new Error("LLM1 Error");
           }

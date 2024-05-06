@@ -2,6 +2,7 @@ import OpenAI from "openai";
 import env from "../../constants/env";
 import referenceData from "../../assets/data/gpt/reference.json";
 import markersPosition from "../../assets/data/gpt/markers-position.json";
+import multiFloorMarkersPosition from "../../assets/data/gpt/multi-floor-markers-position.json";
 import { PoisForGpt } from "../../models/poi";
 import { changeStatusToEnglish } from "../../constants/gpt";
 
@@ -105,7 +106,27 @@ async function def_place_and_object(text: string) {
   return ans;
 }
 
-function find_closest_facility(location: string, item: string) {
+function transFloorFromChineseToNumber(floor: string) {
+  switch (floor) {
+    case "一樓":
+      return 1;
+    case "二樓":
+      return 2;
+    case "三樓":
+      return 3;
+    case "四樓":
+      return 4;
+    default:
+      return 1;
+  }
+}
+
+function find_closest_facility(
+  id: string,
+  floor: string,
+  location: string,
+  item: string,
+) {
   const locationPosition = (
     referenceData as {
       locationName: string;
@@ -113,21 +134,47 @@ function find_closest_facility(location: string, item: string) {
     }[]
   ).find((item) => item.locationName === location)?.coordinates;
 
-  const itemPositions = Object.entries(markersPosition).find(([key]) =>
+  const floorNumber = transFloorFromChineseToNumber(floor);
+
+  const candidateMarkersPosition =
+    id === "m" ? multiFloorMarkersPosition : markersPosition;
+
+  const itemPositions = Object.entries(candidateMarkersPosition).find(([key]) =>
     key.startsWith(item),
   )?.[1];
 
-  interface ItemPosition {
+  const filteredItemPositions = Object.entries(itemPositions ?? {}).reduce(
+    (acc: { [key: string]: { 位址: number[] } }, [key, value]) => {
+      const tmpFloorNumber = parseInt(
+        key.split("-")[0].match(/\d+$/)?.[0] ?? "1",
+      );
+      if (tmpFloorNumber === floorNumber) {
+        acc[key] = value as { 位址: number[] };
+      }
+      return acc;
+    },
+    {},
+  );
+
+  interface ItemDistance {
     distance: number | undefined;
     key: string;
   }
 
-  const itemPosition = Object.entries(itemPositions ?? {}).reduce(
-    (acc: ItemPosition, [key, value]) => {
+  const closestItem = Object.entries(filteredItemPositions ?? {}).reduce(
+    (acc: ItemDistance, [key, value]) => {
       const distance = locationPosition
         ? Math.sqrt(
-            Math.pow(value.位址[0] - locationPosition.latitude, 2) +
-              Math.pow(value.位址[1] - locationPosition.longitude, 2),
+            Math.pow(
+              (value as { 位址: [number, number] }).位址[0] -
+                locationPosition.latitude,
+              2,
+            ) +
+              Math.pow(
+                (value as { 位址: [number, number] }).位址[1] -
+                  locationPosition.longitude,
+                2,
+              ),
           )
         : undefined;
       if (
@@ -142,7 +189,9 @@ function find_closest_facility(location: string, item: string) {
     { distance: undefined, key: "" },
   );
 
-  return itemPosition.key;
+  const itemAddress = filteredItemPositions[closestItem.key]?.位址;
+
+  return { closestItemName: closestItem.key, itemAddress };
 }
 
 async function def_facility(location: string, item: string) {
@@ -189,17 +238,9 @@ async function def_facility(location: string, item: string) {
 async function def_contribution(
   contributions: PoisForGpt,
   targetMarker: string,
+  targetAddress: number[],
   status: string,
 ) {
-  // get targetMarker position from markersPosition
-  const category = targetMarker.replace(/-\d+/, "").replace(/\d+$/, "");
-  const itemPositions: { [key: string]: { 位址: number[] } } =
-    Object.entries(markersPosition).find(([key]) =>
-      key.startsWith(category),
-    )?.[1] || {};
-
-  const address = itemPositions?.[targetMarker]?.位址;
-
   const currentTime = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Taipei",
   });
@@ -229,7 +270,7 @@ async function def_contribution(
       { role: "system", content: "【注意事項】：請以 Json 格式回覆我。" },
       {
         role: "user",
-        content: `物體: ${targetMarker}, 回報狀態: ${statusEn}, 回報時間: ${currentTime}, 位址: ${address}\n結果:`,
+        content: `物體: ${targetMarker}, 回報狀態: ${statusEn}, 回報時間: ${currentTime}, 位址: ${targetAddress}\n結果:`,
       },
     ],
     max_tokens: 100,
