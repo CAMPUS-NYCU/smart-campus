@@ -1,32 +1,37 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
-import { Button, Listbox, ListboxItem, Chip, Image } from "@nextui-org/react";
-
-import { useGetClusterQuery } from "../../../api/cluster";
-import { useGetUserQuery } from "../../../api/user";
-import { useGetPoisQuery } from "../../../api/poi";
+import {
+  Button,
+  Chip,
+  Image,
+  Listbox,
+  ListboxItem,
+  Skeleton,
+} from "@nextui-org/react";
 import { IRootState } from "../../../store";
-import { openModal } from "../../../store/modal";
-import { resetHightlightId, setHighlightId } from "../../../store/poi";
-import { addReport, editReport, resetReport } from "../../../store/report";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal, openModal } from "../../../store/modal";
+import { setRecommandContributions } from "../../../store/llm";
+import Drawer from "../../Drawer";
 import {
   getParamsFromDrawer,
-  isCurrentDrawerParams,
-  resetDrawerParams,
+  setupDrawerParams,
 } from "../../../utils/routes/params";
-
+import { useSearchParams } from "react-router-dom";
+import { useGetUserQuery } from "../../../api/user";
+import { addReport, editReport } from "../../../store/report";
+import { useCallback, useEffect, useState } from "react";
+import { useLazyGetPoiQuery } from "../../../api/poi";
+import Poi, { PoiData } from "../../../models/poi";
+import { useTranslation } from "react-i18next";
+import React from "react";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { firebaseApp } from "../../../utils/firebase";
+import { resetHightlightId, setHighlightId } from "../../../store/poi";
 import { getClusterIcon } from "../../../constants/clusterIcon";
 import noImage from "../../../assets/images/noImage.svg";
-import Drawer from "..";
-import Poi, { PoiData } from "../../../models/poi";
 import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { firebaseApp } from "../../../utils/firebase";
 
 interface PoiListItemProps {
   poi: {
@@ -55,6 +60,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
       dispatch(openModal("login"));
     } else {
       dispatch(editReport(poi));
+      dispatch(closeModal("llmResult"));
     }
   };
 
@@ -182,84 +188,85 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
   );
 };
 
-const ClusterDrawer: React.FC = () => {
-  const { t } = useTranslation();
-
+const LlmResult: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
+  const { data: user } = useGetUserQuery();
+  const [getPoi] = useLazyGetPoiQuery();
 
-  const reportType = useSelector((state: IRootState) => state.report.type);
+  const modalOpen = useSelector(
+    (state: IRootState) => state.modal.open["llmResult"],
+  );
+
+  const recommandContributions = useSelector(
+    (state: IRootState) => state.llm.recommandContributions,
+  );
+
+  const [recommandPois, setRecommandPois] = useState<Poi[]>([]);
+
+  const fetchData = useCallback(
+    async (recommandContributions: string[]) => {
+      const tasks = recommandContributions.map((contribution) => {
+        return getPoi(contribution)
+          .unwrap()
+          .then((res) => {
+            if (res === null) throw new Error("No recommand poi found.");
+            else {
+              return res;
+            }
+          });
+      });
+      const res = await Promise.all(tasks);
+      return res;
+    },
+    [getPoi],
+  );
+
+  useEffect(() => {
+    fetchData(recommandContributions).then((res) => {
+      setRecommandPois(res);
+    });
+  }, [fetchData, recommandContributions]);
 
   const dispatch = useDispatch();
 
-  const selected =
-    !reportType && isCurrentDrawerParams("cluster", searchParams);
-  const id = selected
-    ? getParamsFromDrawer("cluster", searchParams).clusterId
-    : null;
-
-  const { data: cluster } = useGetClusterQuery(id, {
-    skip: !selected,
-  });
-  const { data: user } = useGetUserQuery();
-
-  const { data: poiList } = useGetPoisQuery(id);
+  const handleCloseModal = () => {
+    // will also clear recommandPois
+    dispatch(setRecommandContributions([]));
+    setupDrawerParams<"cluster">({ clusterId }, searchParams, setSearchParams);
+    dispatch(closeModal("llmResult"));
+  };
 
   const handlePoiEdit = () => {
-    if (!id) {
+    if (!clusterId) {
       throw new Error("ClusterDrawer: id is null");
     } else if (!user?.id) {
       dispatch(openModal("login"));
     } else {
-      dispatch(addReport({ clusterId: id, createdBy: user?.id }));
+      dispatch(addReport({ clusterId: clusterId, createdBy: user?.id }));
+      dispatch(closeModal("llmResult"));
     }
   };
-
-  const handleDrawerDismiss = () => {
-    resetDrawerParams(searchParams, setSearchParams);
-  };
-
-  React.useEffect(() => {
-    if (!isCurrentDrawerParams("cluster", searchParams)) {
-      dispatch(resetReport());
-    }
-  }, [dispatch, searchParams]);
-
-  const orderedPoiList: Poi[] = useMemo(() => {
-    let result: Poi[] = [];
-
-    if (poiList) {
-      result = Object.entries(poiList).map(([id, data]) => ({
-        id,
-        data,
-      }));
-      // sort the poi list by the random order
-      result.sort(() => Math.random() - 0.5);
-    }
-
-    return result;
-  }, [poiList]);
 
   return (
     <Drawer
-      open={false}
-      onClose={handleDrawerDismiss}
-      title={t("clusterDrawer.title", {
-        name: cluster?.data.name,
-        ns: ["drawer"],
-      })}
+      open={modalOpen}
+      onClose={handleCloseModal}
+      title={"haha"}
       children={
         <div>
-          {poiList ? (
-            orderedPoiList.map((poi) => {
+          {recommandPois.length > 0 ? (
+            recommandPois.map((poi) => {
               return (
                 <PoiListItem
                   key={poi.id}
                   poi={{ id: poi.id, data: poi.data }}
                 />
               );
+              // <div key={index}>{poi.data.clusterId}</div>
             })
           ) : (
-            <></>
+            <Skeleton className="w-full h-[30vh] rounded-md" />
           )}
         </div>
       }
@@ -269,11 +276,11 @@ const ClusterDrawer: React.FC = () => {
           className="bg-primary h-fit px-2 py-1.5"
           onClick={handlePoiEdit}
         >
-          {t("clusterDrawer.buttons.add", { ns: ["drawer"] })}
+          新增回報
         </Button>
       }
     />
   );
 };
 
-export default ClusterDrawer;
+export default LlmResult;

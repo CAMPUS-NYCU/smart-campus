@@ -31,6 +31,15 @@ export interface PoiData {
   photoPaths: string[];
 }
 
+export interface PoisForGpt {
+  [key: string]: {
+    物體: string;
+    回報狀態: string;
+    回報時間: string;
+    位址: [number, number];
+  };
+}
+
 export type Pois = Record<string, PoiData>;
 
 export type PoiOrNull = Poi | null;

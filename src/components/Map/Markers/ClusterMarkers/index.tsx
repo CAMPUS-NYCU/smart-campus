@@ -30,8 +30,11 @@ const ClusterMarkers: React.FC = () => {
   );
   const [onClickedClusterName, setOnClickedClusterName] = React.useState("");
 
+  const dispatch = useDispatch();
+
   const handleClick = React.useCallback(
     (clusterId: string) => {
+      dispatch(openModal("reportStart"));
       setOnClickedClusterName(clusters![clusterId].name);
       setupDrawerParams<"cluster">(
         { clusterId },
@@ -39,25 +42,26 @@ const ClusterMarkers: React.FC = () => {
         setSearchParams,
       );
     },
-    [searchParams, setSearchParams, clusters],
+    [dispatch, clusters, searchParams, setSearchParams],
   );
 
-  const dispatch = useDispatch();
-
   React.useEffect(() => {
-    if (!isCurrentSearchParamsPoi && clusters) {
+    if (
+      !isCurrentSearchParamsPoi &&
+      !isCurrentSearchParamsCluster &&
+      clusters
+    ) {
       markers.cluster.setClusters(clusters);
       setOnClusterMarkerClick(handleClick);
     }
 
-    if (isCurrentSearchParamsCluster) {
+    if (isCurrentSearchParamsCluster && !isCurrentSearchParamsPoi) {
       const clusterCenter = getClusterCenter(onClickedClusterName)?.latlng;
       if (clusterCenter) {
         maps.panTo(clusterCenter.latitude, clusterCenter.longitude);
       }
       maps.setZoom(18);
       markers.cluster.clear();
-      dispatch(openModal("reportStart"));
     }
 
     return () => {

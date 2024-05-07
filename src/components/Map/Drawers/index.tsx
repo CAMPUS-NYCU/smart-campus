@@ -4,6 +4,7 @@ import AddReportDrawer from "../../Drawer/AddReportDrawer";
 import ClusterDrawer from "../../Drawer/ClusterDrawer";
 import EditReportDrawer from "../../Drawer/EditReportDrawer";
 import PoiDrawer from "../../Drawer/PoiDrawer";
+import LlmResult from "../../modal/LlmResult";
 
 const Drawers: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const Drawers: React.FC = () => {
       <ClusterDrawer />
       <EditReportDrawer />
       <PoiDrawer />
+      <LlmResult />
     </>
   );
 };

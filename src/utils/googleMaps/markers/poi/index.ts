@@ -52,3 +52,24 @@ export const toggleHighlightIcon = (
     markerRef.current[highlightedId].setIcon(getIcon(targetName));
   }
 };
+
+export const toggleVisibilityIcon = (recommandArray: string[]) => {
+  recommandArray.forEach((poiId) => {
+    if (!markerRef.current[poiId]) {
+      return;
+    }
+    markerRef.current[poiId].setVisible(true);
+  });
+};
+
+export const toggleVisibilityIconAll = () => {
+  Object.entries(markerRef.current).forEach(([, marker]) => {
+    marker.setVisible(true);
+  });
+};
+
+export const toggleVisibilityIconNone = () => {
+  Object.entries(markerRef.current).forEach(([, marker]) => {
+    marker.setVisible(false);
+  });
+};

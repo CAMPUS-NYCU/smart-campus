@@ -5,7 +5,8 @@ import { useSearchParams } from "react-router-dom";
 import { getParamsFromDrawer } from "../../../../utils/routes/params";
 import { useGetClusterQuery } from "../../../../api/cluster";
 import { openModal } from "../../../../store/modal";
-import InputLlm from "../../../modal/InputLlm";
+import LlmInput from "../../../modal/LlmInput";
+import llmFab from "../../../../assets/images/llmFab.svg";
 
 const LlmFabs: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -15,19 +16,23 @@ const LlmFabs: React.FC = () => {
   const { data: cluster } = useGetClusterQuery(clusterId);
 
   const handleOpenInputLlmModal = () => {
-    dispatch(openModal("inputLlm"));
+    dispatch(openModal("llmInput"));
   };
 
   return cluster ? (
     <>
       <Button
         key="LLM Fabs"
-        className="absolute top-40 right-4 w-10 h-10"
+        className="absolute top-32 right-4 w-10 h-10"
+        isIconOnly
         color="primary"
+        style={{ backgroundColor: "transparent", padding: 0 }}
         size="sm"
         onClick={() => handleOpenInputLlmModal()}
-      />
-      <InputLlm />
+      >
+        <img src={llmFab} alt="facilityMarkerFilter" />
+      </Button>
+      <LlmInput />
     </>
   ) : null;
 };

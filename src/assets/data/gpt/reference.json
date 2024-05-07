@@ -1,0 +1,86 @@
+[
+  {
+    "locationName": "管理二館",
+    "coordinates": {
+      "latitude": 24.785343540045126,
+      "longitude": 120.99859315916405
+    }
+  },
+  {
+    "locationName": "工程四館",
+    "coordinates": {
+      "latitude": 24.78718730976364,
+      "longitude": 120.99673965902348
+    }
+  },
+  {
+    "locationName": "工程五館",
+    "coordinates": {
+      "latitude": 24.78607450621745,
+      "longitude": 120.997316889253
+    }
+  },
+  {
+    "locationName": "人社一館",
+    "coordinates": {
+      "latitude": 24.787494459470995,
+      "longitude": 120.99859364706276
+    }
+  },
+  {
+    "locationName": "人社二館",
+    "coordinates": {
+      "latitude": 24.787044731617016,
+      "longitude": 121.00024674533265
+    }
+  },
+  {
+    "locationName": "人社三館",
+    "coordinates": {
+      "latitude": 24.786126802048347,
+      "longitude": 120.99994441425262
+    }
+  },
+  {
+    "locationName": "小木屋",
+    "coordinates": {
+      "latitude": 24.787733120498448,
+      "longitude": 120.99760107718288
+    }
+  },
+  {
+    "locationName": "LALA Kitchen",
+    "coordinates": {
+      "latitude": 24.786341160552997,
+      "longitude": 120.99968418846986
+    }
+  },
+  {
+    "locationName": "行政大樓",
+    "coordinates": {
+      "latitude": 24.78791627715981,
+      "longitude": 120.99912142471082
+    }
+  },
+  {
+    "locationName": "竹湖",
+    "coordinates": {
+      "latitude": 24.78829304514106,
+      "longitude": 120.99982061727584
+    }
+  },
+  {
+    "locationName": "科學一館",
+    "coordinates": {
+      "latitude": 24.78818926456861,
+      "longitude": 120.9968560602325
+    }
+  },
+  {
+    "locationName": "學生七舍",
+    "coordinates": {
+      "latitude": 24.78560691348059,
+      "longitude": 120.99947909749189
+    }
+  }
+]
