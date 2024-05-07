@@ -203,11 +203,15 @@ const LlmResult: React.FC = () => {
     (state: IRootState) => state.llm.recommandContributions,
   );
 
+  const refetchFlag = useSelector((state: IRootState) => state.llm.refetchFlag);
+
   const [recommandPois, setRecommandPois] = useState<Poi[]>([]);
 
   const fetchData = useCallback(
     async (recommandContributions: string[]) => {
       const tasks = recommandContributions.map((contribution) => {
+        // RTK seems like didn't provide forceRefetch
+        // The getPoi will not be trigger here, even though i update refetchFlag after update data, cache still exists
         return getPoi(contribution)
           .unwrap()
           .then((res) => {
@@ -218,6 +222,7 @@ const LlmResult: React.FC = () => {
           });
       });
       const res = await Promise.all(tasks);
+      console.log("fetch Data", res);
       return res;
     },
     [getPoi],
@@ -227,7 +232,7 @@ const LlmResult: React.FC = () => {
     fetchData(recommandContributions).then((res) => {
       setRecommandPois(res);
     });
-  }, [fetchData, recommandContributions]);
+  }, [fetchData, recommandContributions, refetchFlag]);
 
   const dispatch = useDispatch();
 
