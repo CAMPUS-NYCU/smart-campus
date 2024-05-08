@@ -15,6 +15,7 @@ import {
   def_place_and_object,
   def_contribution,
   find_closest_facility,
+  find_closest_facility_multi_location,
 } from "../../../api/gpt";
 import {
   getParamsFromDrawer,
@@ -52,20 +53,45 @@ const LlmInput: React.FC = () => {
         getPois(id).unwrap(),
       ])
         .then((resAll) => {
+          let targetMarker = "";
+          let itemAddress: number[] = [];
           if (resAll[0]) {
-            const floor = resAll[0].split("，")[0];
-            const locationName = resAll[0].split("，")[1];
-            const item = resAll[0].split("，")[2];
-            const status = resAll[0].split("，")[3];
+            const {
+              樓層: floor,
+              參照點: locationName,
+              物體: item,
+              物體狀態: status,
+            } = JSON.parse(resAll[0]);
             const resourceGroupId = getResourceGroupId();
 
-            const { closestItemName: targetMarker, itemAddress } =
-              find_closest_facility(
+            if (locationName.length > 1) {
+              const {
+                closestItemName: tmpTargetMarker,
+                itemAddress: tmpItemAddress,
+              } = find_closest_facility_multi_location(
                 resourceGroupId ? resourceGroupId : "",
                 floor,
-                locationName,
+                locationName[0],
+                locationName[1],
                 item,
               );
+
+              targetMarker = tmpTargetMarker;
+              itemAddress = tmpItemAddress;
+            } else {
+              const {
+                closestItemName: tmpTargetMarker,
+                itemAddress: tmpItemAddress,
+              } = find_closest_facility(
+                resourceGroupId ? resourceGroupId : "",
+                floor,
+                locationName[0],
+                item,
+              );
+
+              targetMarker = tmpTargetMarker;
+              itemAddress = tmpItemAddress;
+            }
 
             const inputContributions = convertToContributionData(resAll[1]);
             return def_contribution(
