@@ -4,16 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 
-import { useGetClusterQuery } from "../../../api/cluster";
 import { useAddPoiMutation } from "../../../api/poi";
 import { IRootState } from "../../../store";
 import { closeModal, openModal } from "../../../store/modal";
 import { resetReport, updateAddReportData } from "../../../store/report";
-import {
-  getParamsFromDrawer,
-  isCurrentDrawerParams,
-  setupDrawerParams,
-} from "../../../utils/routes/params";
+import { setupDrawerParams } from "../../../utils/routes/params";
 
 import Drawer from "..";
 import AddReportDrawerContent from "./AddReportDrawerContent";
@@ -43,13 +38,7 @@ const AddReportDrawer: React.FC = () => {
 
   const [addPoi] = useAddPoiMutation();
 
-  const selected =
-    reportType === "add" && isCurrentDrawerParams("cluster", searchParams);
-  const id = getParamsFromDrawer("cluster", searchParams).clusterId;
-
-  const { data: cluster } = useGetClusterQuery(id, {
-    skip: !selected,
-  });
+  const selected = reportType === "add";
 
   const handleSubmit = () => {
     addPoi({ data: reportData })
@@ -103,7 +92,6 @@ const AddReportDrawer: React.FC = () => {
         title={
           <span>
             {t("addReport.title", {
-              cluster: cluster?.data.name,
               ns: ["drawer"],
             })}
           </span>

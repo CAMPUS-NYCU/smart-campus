@@ -1,16 +1,5 @@
-import { GeoPoint, Timestamp } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore";
 import { PoiStatusType, PoiStatusValue } from "../../poi";
-
-export interface FirestoreCluster {
-  id: string;
-  data: FirestoreClusterData;
-}
-
-export interface FirestoreClusterData {
-  name: string;
-  resourceId: string;
-  latlng: GeoPoint;
-}
 
 export interface FirestorePoi {
   id: string;
@@ -18,7 +7,6 @@ export interface FirestorePoi {
 }
 
 export interface FirestorePoiData {
-  clusterId: string;
   floor: string;
   latlng: {
     latitude: number;

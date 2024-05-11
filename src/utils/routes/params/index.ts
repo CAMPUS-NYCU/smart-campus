@@ -1,7 +1,6 @@
 import { SetURLSearchParams } from "react-router-dom";
 
 const drawerParamKeysMap = {
-  cluster: ["clusterId"],
   poi: ["poiId"],
 } as const;
 

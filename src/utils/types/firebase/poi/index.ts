@@ -3,7 +3,6 @@ import { FirestorePoiData } from "../../../../models/firebase/firestore";
 import { PoiData } from "../../../../models/poi";
 
 export const toFirebasePoiDataByPoiData = (poi: PoiData): FirestorePoiData => ({
-  clusterId: poi.clusterId,
   floor: poi.floor,
   latlng: new GeoPoint(poi.latlng.latitude, poi.latlng.longitude),
   target: {
@@ -23,7 +22,6 @@ export const toFirebasePoiDataByPoiData = (poi: PoiData): FirestorePoiData => ({
 });
 
 export const toPoiDataByFirebasePoiData = (poi: FirestorePoiData): PoiData => ({
-  clusterId: poi.clusterId,
   floor: poi.floor,
   latlng: {
     latitude: poi.latlng.latitude,

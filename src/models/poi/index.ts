@@ -9,7 +9,6 @@ export type PoiStatusType = keyof typeof poiStatusType;
 export type PoiStatusValue = keyof typeof poiStatusValue;
 
 export interface PoiData {
-  clusterId: string; // 所屬 cluster Id
   floor: string; // e.g. 7F, B1
   latlng: {
     latitude: number;

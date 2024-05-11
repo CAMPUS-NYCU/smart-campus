@@ -7,7 +7,6 @@ interface ReportState extends Poi {
 }
 
 export const initialReportPoiData: PoiData = {
-  clusterId: "",
   floor: "",
   latlng: {
     latitude: 0,

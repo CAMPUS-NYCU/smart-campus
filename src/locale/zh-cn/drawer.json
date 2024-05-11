@@ -45,7 +45,7 @@
         }
       }
     },
-    "title": "新增位于 {{cluster}} 的回报"
+    "title": "新增回报"
   },
   "editReport": {
     "buttons": {
