@@ -32,7 +32,6 @@ const FloorSelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const floor = reportData.floor;
-  const floorOptions = floorSelctions;
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -71,7 +70,7 @@ const FloorSelect: React.FC = () => {
           base: "min-w-fit w-[50%]",
         }}
       >
-        {floorOptions.map((s) => {
+        {floorSelctions.map((s) => {
           return (
             <SelectItem key={s} value={s}>
               {s
@@ -93,7 +92,6 @@ const TargetCategorySelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetCategory = reportData.target.category;
-  const targetCategoryOptions = targetCategorySelections;
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -134,7 +132,7 @@ const TargetCategorySelect: React.FC = () => {
           base: "min-w-fit w-[50%]",
         }}
       >
-        {targetCategoryOptions.map((s) => {
+        {targetCategorySelections.map((s) => {
           return (
             <SelectItem key={s} value={s}>
               {s
@@ -156,11 +154,10 @@ const TargetNameSelect: React.FC = () => {
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetName = reportData.target.name;
-  const targetNameWithCategory = targetNameSelections;
   let targetNameOptions: string[]; // decided by targetCategory
 
   if (reportData.floor && reportData.target.category) {
-    targetNameOptions = targetNameWithCategory.find(
+    targetNameOptions = targetNameSelections.find(
       (n) => n.category === reportData.target.category,
     )?.name || [""];
   } else {
