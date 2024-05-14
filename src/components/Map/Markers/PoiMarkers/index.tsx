@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 import { useGetPoisQuery } from "../../../../api/poi";
+import { UIPoiData, UIPois } from "../../../../models/uiPoi";
+import { Pois } from "../../../../models/poi";
 import { IRootState } from "../../../../store";
 import { setHighlightId } from "../../../../store/poi";
 import { markers } from "../../../../utils/googleMaps";
@@ -18,7 +20,27 @@ const PoiMarkers: React.FC = () => {
   const prevHighlightId = React.useRef<string | null>("");
 
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
-  const { data: pois } = useGetPoisQuery(clusterId);
+  const { data: pois, isLoading: isPoisLoading } = useGetPoisQuery(clusterId);
+  const [resolvedPois, setResolvedPois] = React.useState<Pois>();
+
+  React.useEffect(() => {
+    if (!isPoisLoading && pois) {
+      setResolvedPois(pois);
+    }
+  }, [pois, isPoisLoading]);
+
+  const uiPois: UIPois | null = React.useMemo(() => {
+    if (resolvedPois) {
+      return Object.fromEntries(
+        Object.entries(resolvedPois).map(([poiId, poiData]) => [
+          poiId,
+          { ...poiData, isVisible: true } as UIPoiData,
+        ]),
+      );
+    } else {
+      return null;
+    }
+  }, [resolvedPois]);
 
   const recommandContributions = useSelector(
     (state: IRootState) => state.llm.recommandContributions,
@@ -47,19 +69,19 @@ const PoiMarkers: React.FC = () => {
   );
 
   React.useEffect(() => {
-    if (pois && Object.keys(pois).length !== 0) {
-      markers.poi.setPois(pois);
+    if (uiPois && Object.keys(uiPois).length !== 0) {
+      markers.poi.setPois(uiPois);
       setOnPoiMarkerClick(handleClick);
     }
 
     return () => {
       markers.poi.clear();
     };
-  }, [pois, handleClick]);
+  }, [uiPois, handleClick]);
 
   React.useEffect(() => {
-    if (highlightId && pois && pois[highlightId]) {
-      const { latitude, longitude } = pois[highlightId].latlng;
+    if (highlightId && uiPois && uiPois[highlightId]) {
+      const { latitude, longitude } = uiPois[highlightId].latlng;
       const north = maps.getBounds()?.getNorthEast().lat();
       const south = maps.getBounds()?.getSouthWest().lat();
       maps.panTo(
@@ -69,20 +91,20 @@ const PoiMarkers: React.FC = () => {
 
       markers.poi.toggleHighlightIcon(
         highlightId,
-        pois[highlightId].target.name,
+        uiPois[highlightId].target.name,
         true,
       );
       if (prevHighlightId.current) {
         markers.poi.toggleHighlightIcon(
           prevHighlightId.current,
-          pois[prevHighlightId.current].target.name,
+          uiPois[prevHighlightId.current].target.name,
           false,
         );
       }
     }
 
     prevHighlightId.current = highlightId;
-  }, [highlightId, pois]);
+  }, [highlightId, uiPois]);
   return <></>;
 };
 
