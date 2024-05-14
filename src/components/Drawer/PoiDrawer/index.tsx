@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { Chip, Image } from "@nextui-org/react";
+import { Button, Chip, Image } from "@nextui-org/react";
 
 import { useGetPoiQuery } from "../../../api/poi";
 import { useGetClusterQuery } from "../../../api/cluster";
@@ -26,6 +26,9 @@ import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
 
 import Drawer from "..";
+import { openModal } from "../../../store/modal";
+import { editReport } from "../../../store/report";
+import { useGetUserQuery } from "../../../api/user";
 
 const PoiDrawerStatus: React.FC<{
   statusType?: PoiStatusType | "";
@@ -68,6 +71,19 @@ const PoiDrawer: React.FC = () => {
     skip: !selected,
   });
   const { data: cluster } = useGetClusterQuery(poi?.data.clusterId || "");
+  const { data: user } = useGetUserQuery();
+
+  const dispatch = useDispatch();
+
+  const handlePoiEdit = () => {
+    if (!poi) {
+      throw new Error("ClusterDrawer: poi not found");
+    } else if (!user?.id) {
+      dispatch(openModal("login"));
+    } else {
+      dispatch(editReport(poi));
+    }
+  };
 
   const handleDrawerDismiss = () => {
     if (!poi) {
@@ -90,8 +106,13 @@ const PoiDrawer: React.FC = () => {
         const urlPromises = poi.data.photoPaths.map((path) =>
           getDownloadURL(ref(storage, path)),
         );
-        const resolvedUrls = await Promise.all(urlPromises);
-        setUrls(resolvedUrls);
+        await Promise.all(urlPromises)
+          .then((res: React.SetStateAction<string[]>) => {
+            setUrls(res);
+          })
+          .catch((err) => {
+            console.error("Erro", err);
+          });
       };
 
       fetchUrls();
@@ -182,6 +203,15 @@ const PoiDrawer: React.FC = () => {
             </div>
           </div>
         </div>
+      }
+      primaryButton={
+        <Button
+          radius="full"
+          className="bg-primary h-fit px-2 py-1.5"
+          onClick={handlePoiEdit}
+        >
+          {t("clusterDrawer.buttons.edit", { ns: ["drawer"] })}
+        </Button>
       }
     />
   );

@@ -13,6 +13,9 @@ import EditReportDrawerContent from "./EditReportDrawerContent";
 import EditReportDrawerConfirm from "./EditReportDrawerConfirm";
 import { closeModal, openModal } from "../../../store/modal";
 import { PoiData } from "../../../models/poi";
+import { toggleRefetchFlag } from "../../../store/llm";
+import { useSearchParams } from "react-router-dom";
+import { isCurrentDrawerParams } from "../../../utils/routes/params";
 
 const reportDataValidator = (reportData: PoiData) => {
   const { status } = reportData;
@@ -30,12 +33,15 @@ const EditReportDrawer: React.FC = () => {
   const reportData = useSelector((state: IRootState) => state.report.data);
 
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
 
   const [editPoi] = useUpdatePoiMutation();
 
   const selected = reportType === "edit";
 
   const { data: user } = useGetUserQuery();
+
+  const recommendState = isCurrentDrawerParams("recommend", searchParams);
 
   const [isStatusValueValid, setIsStatusValueValid] = React.useState(false);
   React.useEffect(() => {
@@ -55,6 +61,9 @@ const EditReportDrawer: React.FC = () => {
     })
       .unwrap()
       .then(() => {
+        if (recommendState) {
+          dispatch(toggleRefetchFlag());
+        }
         dispatch(resetReport());
         dispatch(closeModal("confirmEditReport"));
       });

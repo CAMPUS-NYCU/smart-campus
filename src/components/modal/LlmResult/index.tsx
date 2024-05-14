@@ -13,6 +13,7 @@ import { setRecommandContributions } from "../../../store/llm";
 import Drawer from "../../Drawer";
 import {
   getParamsFromDrawer,
+  isCurrentDrawerParams,
   setupDrawerParams,
 } from "../../../utils/routes/params";
 import { useSearchParams } from "react-router-dom";
@@ -194,19 +195,23 @@ const LlmResult: React.FC = () => {
   const { data: user } = useGetUserQuery();
   const [getPoi] = useLazyGetPoiQuery();
 
-  const modalOpen = useSelector(
-    (state: IRootState) => state.modal.open["llmResult"],
-  );
+  const reportType = useSelector((state: IRootState) => state.report.type);
+  const selected =
+    !reportType && isCurrentDrawerParams("recommend", searchParams);
 
   const recommandContributions = useSelector(
     (state: IRootState) => state.llm.recommandContributions,
   );
+
+  const refetchFlag = useSelector((state: IRootState) => state.llm.refetchFlag);
 
   const [recommandPois, setRecommandPois] = useState<Poi[]>([]);
 
   const fetchData = useCallback(
     async (recommandContributions: string[]) => {
       const tasks = recommandContributions.map((contribution) => {
+        // RTK seems like didn't provide forceRefetch
+        // The getPoi will not be trigger here, even though i update refetchFlag after update data, cache still exists
         return getPoi(contribution)
           .unwrap()
           .then((res) => {
@@ -217,6 +222,7 @@ const LlmResult: React.FC = () => {
           });
       });
       const res = await Promise.all(tasks);
+      console.log("fetch Data", res);
       return res;
     },
     [getPoi],
@@ -226,7 +232,7 @@ const LlmResult: React.FC = () => {
     fetchData(recommandContributions).then((res) => {
       setRecommandPois(res);
     });
-  }, [fetchData, recommandContributions]);
+  }, [fetchData, recommandContributions, refetchFlag]);
 
   const dispatch = useDispatch();
 
@@ -250,7 +256,7 @@ const LlmResult: React.FC = () => {
 
   return (
     <Drawer
-      open={modalOpen}
+      open={selected}
       onClose={handleCloseModal}
       title={"haha"}
       children={
@@ -263,7 +269,6 @@ const LlmResult: React.FC = () => {
                   poi={{ id: poi.id, data: poi.data }}
                 />
               );
-              // <div key={index}>{poi.data.clusterId}</div>
             })
           ) : (
             <Skeleton className="w-full h-[30vh] rounded-md" />
