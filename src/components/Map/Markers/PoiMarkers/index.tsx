@@ -29,32 +29,38 @@ const PoiMarkers: React.FC = () => {
     }
   }, [pois, isPoisLoading]);
 
+  const recommandContributions = useSelector(
+    (state: IRootState) => state.llm.recommandContributions,
+  );
+
   const uiPois: UIPois | null = React.useMemo(() => {
     if (resolvedPois) {
       return Object.fromEntries(
         Object.entries(resolvedPois).map(([poiId, poiData]) => [
           poiId,
-          { ...poiData, isVisible: true } as UIPoiData,
+          {
+            ...poiData,
+            isVisible:
+              recommandContributions.length > 0
+                ? recommandContributions.includes(poiId)
+                : true,
+          } as UIPoiData,
         ]),
       );
     } else {
       return null;
     }
-  }, [resolvedPois]);
-
-  const recommandContributions = useSelector(
-    (state: IRootState) => state.llm.recommandContributions,
-  );
+  }, [resolvedPois, recommandContributions]);
 
   // visibility will not work due to `setHighlightId` will rewrite the whole pois
-  React.useEffect(() => {
-    if (recommandContributions.length > 0) {
-      markers.poi.toggleVisibilityIconNone();
-      markers.poi.toggleVisibilityIcon(recommandContributions);
-    } else {
-      markers.poi.toggleVisibilityIconAll();
-    }
-  }, [recommandContributions]);
+  // React.useEffect(() => {
+  //   if (recommandContributions.length > 0) {
+  //     markers.poi.toggleVisibilityIconNone();
+  //     markers.poi.toggleVisibilityIcon(recommandContributions);
+  //   } else {
+  //     markers.poi.toggleVisibilityIconAll();
+  //   }
+  // }, [recommandContributions]);
 
   const dispatch = useDispatch();
 
