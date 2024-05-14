@@ -1,4 +1,4 @@
-import { PoiData, Pois } from "../../../../models/poi";
+import { UIPois, UIPoiData } from "../../../../models/uiPoi";
 
 import { maps } from "../..";
 import { getIcon, getHighlightedIcon } from "./icons";
@@ -7,7 +7,7 @@ export const markerRef = {
   current: {} as Record<string, google.maps.Marker>,
 };
 
-export const setPois = (pois: Pois): void => {
+export const setPois = (pois: UIPois): void => {
   if (!maps.mapRef.current) {
     return;
   }
@@ -22,6 +22,7 @@ export const setPois = (pois: Pois): void => {
           poiData.latlng.latitude,
           poiData.latlng.longitude,
         ),
+        visible: poiData.isVisible,
       }),
     ]),
   );
@@ -43,7 +44,7 @@ export const clear = (): void => {
 
 export const toggleHighlightIcon = (
   highlightedId: string,
-  targetName: PoiData["target"]["name"],
+  targetName: UIPoiData["target"]["name"],
   isHighlighted: boolean,
 ): void => {
   if (isHighlighted) {
