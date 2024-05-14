@@ -52,16 +52,6 @@ const PoiMarkers: React.FC = () => {
     }
   }, [resolvedPois, recommandContributions]);
 
-  // visibility will not work due to `setHighlightId` will rewrite the whole pois
-  // React.useEffect(() => {
-  //   if (recommandContributions.length > 0) {
-  //     markers.poi.toggleVisibilityIconNone();
-  //     markers.poi.toggleVisibilityIcon(recommandContributions);
-  //   } else {
-  //     markers.poi.toggleVisibilityIconAll();
-  //   }
-  // }, [recommandContributions]);
-
   const dispatch = useDispatch();
 
   const handleClick = React.useCallback(
