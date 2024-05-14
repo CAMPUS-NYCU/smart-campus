@@ -10,7 +10,10 @@ import { setHighlightId } from "../../../../store/poi";
 import { markers } from "../../../../utils/googleMaps";
 import { maps } from "../../../../utils/googleMaps";
 import { setOnPoiMarkerClick } from "../../../../utils/googleMaps/markers/poi";
-import { getParamsFromDrawer } from "../../../../utils/routes/params";
+import {
+  getParamsFromDrawer,
+  isCurrentDrawerParams,
+} from "../../../../utils/routes/params";
 
 const PoiMarkers: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -53,15 +56,18 @@ const PoiMarkers: React.FC = () => {
   }, [resolvedPois, recommandContributions]);
 
   const dispatch = useDispatch();
+  const recommendState = isCurrentDrawerParams("recommend", searchParams);
 
   const handleClick = React.useCallback(
     (poiId: string) => {
       if (poiId !== highlightId) {
-        setSearchParams({ clusterId, poiId });
+        if (recommendState)
+          setSearchParams({ clusterId: clusterId ?? "", recommend: "true" });
+        else setSearchParams({ clusterId, poiId });
         dispatch(setHighlightId(poiId));
       }
     },
-    [dispatch, setSearchParams, clusterId, highlightId],
+    [highlightId, recommendState, setSearchParams, clusterId, dispatch],
   );
 
   React.useEffect(() => {
