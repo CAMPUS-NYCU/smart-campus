@@ -45,7 +45,7 @@
         }
       }
     },
-    "title": "Add a report for {{cluster}}"
+    "title": "Add a report"
   },
   "editReport": {
     "buttons": {

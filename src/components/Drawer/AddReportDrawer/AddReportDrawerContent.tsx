@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Image, Input, Select, SelectItem, Skeleton } from "@nextui-org/react";
+import { Image, Input, Select, SelectItem } from "@nextui-org/react";
 
 import {
   poiObjectStatusTypeSelect,
@@ -10,12 +10,9 @@ import {
   poiStatusValueMessageKeys,
   poiStatusValueSelect,
 } from "../../../constants/model/poi";
-import Cluster from "../../../models/cluster/index";
-import { useGetClusterQuery } from "../../../api/cluster";
 import { PoiStatusType, PoiStatusValue } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
-import { getOptions } from "../../../constants/createOptions";
 import poiAddDrawerFloor from "../../../assets/images/poiAddDrawerFloor.svg";
 import poiAddDrawerImage from "../../../assets/images/poiAddDrawerImage.svg";
 import poiAddDrawerLocation from "../../../assets/images/poiAddDrawerLocation.svg";
@@ -25,13 +22,16 @@ import poiAddDrawerTargetCategory from "../../../assets/images/poiAddDrawerTarge
 import poiAddDrawerTargetName from "../../../assets/images/poiAddDrawerTargetName.svg";
 import poiAddDrawerUploadImages from "../../../assets/images/poiAddDrawerUploadImages.svg";
 
-const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
+import floorSelctions from "../../../assets/data/options/selections/floor.json";
+import targetCategorySelections from "../../../assets/data/options/selections/target-category.json";
+import targetNameSelections from "../../../assets/data/options/selections/target-name.json";
+
+const FloorSelect: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const floor = reportData.floor;
-  const floorOptions = getOptions(cluster?.data.name || "").floor;
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -70,7 +70,7 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
           base: "min-w-fit w-[50%]",
         }}
       >
-        {floorOptions.map((s) => {
+        {floorSelctions.map((s) => {
           return (
             <SelectItem key={s} value={s}>
               {s
@@ -86,25 +86,12 @@ const FloorSelect: React.FC<{ cluster: Cluster | null }> = ({ cluster }) => {
   );
 };
 
-const TargetCategorySelect: React.FC<{
-  cluster: Cluster | null;
-}> = ({ cluster }) => {
+const TargetCategorySelect: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetCategory = reportData.target.category;
-  let targetCategoryOptions: string[]; // decided by floor
-
-  if (reportData.floor) {
-    targetCategoryOptions = getOptions(
-      cluster?.data.name || "",
-    ).targetCategory.find((c) => c.floor === reportData.floor)?.category || [
-      "",
-    ];
-  } else {
-    targetCategoryOptions = [""];
-  }
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -145,7 +132,7 @@ const TargetCategorySelect: React.FC<{
           base: "min-w-fit w-[50%]",
         }}
       >
-        {targetCategoryOptions.map((s) => {
+        {targetCategorySelections.map((s) => {
           return (
             <SelectItem key={s} value={s}>
               {s
@@ -161,22 +148,17 @@ const TargetCategorySelect: React.FC<{
   );
 };
 
-const TargetNameSelect: React.FC<{ cluster: Cluster | null }> = ({
-  cluster,
-}) => {
+const TargetNameSelect: React.FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const reportData = useSelector((state: IRootState) => state.report.data);
   const targetName = reportData.target.name;
-
-  let targetNameOptions: string[]; // decided by floor and targetCategory
+  let targetNameOptions: string[]; // decided by targetCategory
 
   if (reportData.floor && reportData.target.category) {
-    targetNameOptions = getOptions(cluster?.data.name || "").targetName.find(
-      (n) =>
-        n.floor === reportData.floor &&
-        n.category === reportData.target.category,
+    targetNameOptions = targetNameSelections.find(
+      (n) => n.category === reportData.target.category,
     )?.name || [""];
   } else {
     targetNameOptions = [""];
@@ -461,106 +443,92 @@ const AddReportDrawerContentPhotos: React.FC = () => {
 const AddReportDrawerContent: React.FC = () => {
   const { t } = useTranslation();
 
-  const reportData = useSelector((state: IRootState) => state.report.data);
-  const { data: cluster, isLoading: clusterLoading } = useGetClusterQuery(
-    reportData.clusterId,
-  ); // if cluster is loading, load skelton
-
   return (
     <div className="flex flex-col max-h-[calc(50vh-80px)] mt-1">
-      {clusterLoading ? (
-        <Skeleton classNames={{ base: "bg-white overflow-y-scroll" }} />
-      ) : (
-        <>
-          {/* report location */}
-          <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12 px-1">
-              <Image radius="none" src={poiAddDrawerLocation} alt="location" />
-            </div>
-            <p className="basis-2/12 text-xs font-bold">
-              {t("addReport.content.text.setLocation", {
+      <>
+        {/* report location */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12 px-1">
+            <Image radius="none" src={poiAddDrawerLocation} alt="location" />
+          </div>
+          <div className="flex flex-row basis-11/12 pl-1.5 mb-2">
+            <p className="text-md font-bold text-newLocation">
+              {t("addReport.content.text.flagInsruction", {
                 ns: ["drawer"],
               })}
             </p>
-            <Input
-              aria-label="set location"
-              placeholder={cluster?.data.name}
-              variant="underlined"
-              classNames={{ base: "basis-6/12" }}
-              isReadOnly
+          </div>
+        </div>
+        {/* report floor */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image radius="none" src={poiAddDrawerFloor} alt="floor" />
+          </div>
+          <FloorSelect />
+        </div>
+        {/* report target category */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image
+              radius="none"
+              src={poiAddDrawerTargetCategory}
+              alt="target category"
             />
           </div>
-          {/* report floor */}
-          <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12">
-              <Image radius="none" src={poiAddDrawerFloor} alt="floor" />
-            </div>
-            <FloorSelect cluster={cluster!} />
+          <TargetCategorySelect />
+        </div>
+        {/* report target name */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image
+              radius="none"
+              src={poiAddDrawerTargetName}
+              alt="target name"
+            />
           </div>
-          {/* report target category */}
-          <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12">
-              <Image
-                radius="none"
-                src={poiAddDrawerTargetCategory}
-                alt="target category"
-              />
-            </div>
-            <TargetCategorySelect cluster={cluster!} />
+          <TargetNameSelect />
+        </div>
+        {/* report status type */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image
+              radius="none"
+              src={poiAddDrawerStatusType}
+              alt="status type"
+            />
           </div>
-          {/* report target name */}
-          <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12">
-              <Image
-                radius="none"
-                src={poiAddDrawerTargetName}
-                alt="target name"
-              />
-            </div>
-            <TargetNameSelect cluster={cluster!} />
+          <StatusTypeSelect />
+        </div>
+        {/* report status value */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image
+              radius="none"
+              src={poiAddDrawerStatusValue}
+              alt="status value"
+            />
           </div>
-          {/* report status type */}
-          <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12">
-              <Image
-                radius="none"
-                src={poiAddDrawerStatusType}
-                alt="status type"
-              />
-            </div>
-            <StatusTypeSelect />
+          <StatusValueSelect />
+        </div>
+        {/* report description */}
+        <div className="flex flex-row space-x-1 mt-1 items-center">
+          <div className="basis-0.5/12">
+            <Image
+              radius="none"
+              src={poiAddDrawerStatusValue}
+              alt="description"
+            />
           </div>
-          {/* report status value */}
-          <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12">
-              <Image
-                radius="none"
-                src={poiAddDrawerStatusValue}
-                alt="status value"
-              />
-            </div>
-            <StatusValueSelect />
+          <StatusDescriptionAdd />
+        </div>
+        {/* report images */}
+        <div className="flex flex-row space-x-1 mt-1 items-center whitespace-normal">
+          <div className="basis-0.5/12 shrink-0">
+            <Image radius="none" src={poiAddDrawerImage} alt="image" />
           </div>
-          {/* report description */}
-          <div className="flex flex-row space-x-1 mt-1 items-center">
-            <div className="basis-0.5/12">
-              <Image
-                radius="none"
-                src={poiAddDrawerStatusValue}
-                alt="description"
-              />
-            </div>
-            <StatusDescriptionAdd />
-          </div>
-          {/* report images */}
-          <div className="flex flex-row space-x-1 mt-1 items-center whitespace-normal">
-            <div className="basis-0.5/12 shrink-0">
-              <Image radius="none" src={poiAddDrawerImage} alt="image" />
-            </div>
-            <AddReportDrawerContentPhotos />
-          </div>
-        </>
-      )}
+          <AddReportDrawerContentPhotos />
+        </div>
+      </>
     </div>
   );
 };
