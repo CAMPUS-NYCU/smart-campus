@@ -13,9 +13,10 @@ import { IRootState } from "../../../store";
 import { closeModal, openModal, toggleModal } from "../../../store/modal";
 import {
   def_place_and_object,
-  def_contribution,
   find_closest_facility,
   find_closest_facility_multi_location,
+  def_contribution_improve,
+  formatJsonData,
 } from "../../../api/gpt";
 import {
   getParamsFromDrawer,
@@ -94,9 +95,8 @@ const LlmInput: React.FC = () => {
               targetMarker = tmpTargetMarker;
               itemAddress = tmpItemAddress;
             }
-
             const inputContributions = convertToContributionData(resAll[1]);
-            return def_contribution(
+            return def_contribution_improve(
               inputContributions,
               targetMarker,
               itemAddress,
@@ -108,7 +108,7 @@ const LlmInput: React.FC = () => {
         })
         .then((res) => {
           const recommandContributionArray: string[] = Object.values(
-            JSON.parse(res),
+            JSON.parse(formatJsonData(res)),
           );
           dispatch(setRecommandContributions(recommandContributionArray));
         });
