@@ -191,7 +191,7 @@ const PoiDrawer: React.FC = () => {
             />
 
             {/* the fourth row：updatedBy &updatedAt */}
-            <div className="fixed bottom-1 right-3 flex w-full flex-row mt-1 items-center justify-end">
+            <div className="flex w-full flex-row mt-1 mb-1 items-center justify-end">
               <p className="text-xs text-secondary">
                 {t("poiDrawer.content.texts.updatedAt", {
                   updatedAt: poi?.data.updatedAt
