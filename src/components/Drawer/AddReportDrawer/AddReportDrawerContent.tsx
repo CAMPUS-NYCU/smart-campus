@@ -453,7 +453,7 @@ const AddReportDrawerContent: React.FC = () => {
           </div>
           <div className="flex flex-row basis-11/12 pl-1.5 mb-2">
             <p className="text-md font-bold text-newLocation">
-              {t("addReport.content.text.flagInsruction", {
+              {t("addReport.content.text.flagInstruction", {
                 ns: ["drawer"],
               })}
             </p>

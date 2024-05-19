@@ -24,7 +24,8 @@
       },
       "text": {
         "setLocation": "回报地点",
-        "setDescription": "回报叙述"
+        "setDescription": "回报叙述",
+        "flagInstruction": "拖曳地图将上方黄色标签移到欲回报位置"
       },
       "select": {
         "placeHolder": "请选择",

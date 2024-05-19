@@ -24,7 +24,8 @@
       },
       "text": {
         "setLocation": "Location",
-        "setDescription": "Description"
+        "setDescription": "Description",
+        "flagInstruction": "Drag the map to move the yellow label above to the location you want to report"
       },
       "select": {
         "placeHolder": "Select a value",
