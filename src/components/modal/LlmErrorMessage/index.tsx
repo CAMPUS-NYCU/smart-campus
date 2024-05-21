@@ -19,6 +19,10 @@ const LlmErrorMessage: React.FC = () => {
     (state: IRootState) => state.modal.open["llmErrorMessage"],
   );
 
+  const errorMessage = useSelector(
+    (state: IRootState) => state.llm.errorMessage,
+  );
+
   const dispatch = useDispatch();
 
   const handleToggleModal = () => {
@@ -35,11 +39,13 @@ const LlmErrorMessage: React.FC = () => {
       }}
     >
       <ModalContent>
-        <ModalHeader />
-        <ModalBody className="items-center justify-center">
+        <ModalHeader>
           <p className="text-xl font-bold">
-            {t("llmErrorMessage.text", { ns: ["modal"] })}
+            {t("llmErrorMessage.title", { ns: ["modal"] })}
           </p>
+        </ModalHeader>
+        <ModalBody className="items-center justify-center">
+          <p className="text-sm">{errorMessage}</p>
         </ModalBody>
         <ModalFooter />
       </ModalContent>

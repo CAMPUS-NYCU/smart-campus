@@ -73,6 +73,6 @@
     }
   },
   "llmErrorMessage": {
-    "text": "Please provide more detailed report information"
+    "title": "Please provide more detailed report information"
   }
 }

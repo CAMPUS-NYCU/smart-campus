@@ -27,7 +27,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { useLazyGetPoisQuery } from "../../../api/poi";
 import { convertToContributionData } from "../../../constants/gpt";
-import { setRecommandContributions } from "../../../store/llm";
+import { setErrorMessage, setRecommandContributions } from "../../../store/llm";
 import { getResourceGroupId } from "../../../utils/resources";
 
 const LlmInput: React.FC = () => {
@@ -66,6 +66,7 @@ const LlmInput: React.FC = () => {
             console.log(resAll[0]);
             if (!isJsonString(resAll[0])) {
               dispatch(openModal("llmErrorMessage"));
+              dispatch(setErrorMessage(resAll[0]));
               console.error("resAll[0] is not a valid JSON string");
               throw new Error("LLM1 Error");
             } else {
