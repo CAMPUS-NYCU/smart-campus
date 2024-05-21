@@ -14,7 +14,7 @@ function convertToContributionData(docs: Pois): PoisForGpt {
     contributionData[id] = {
       物體: data.target.serial,
       回報狀態: data.status.type,
-      回報時間: data.createdAt,
+      回報時間: data.createdAt.split(" ")[0],
       位址: [data.latlng.latitude, data.latlng.longitude],
     };
   });

@@ -11,161 +11,87 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-const prompt = `
-        #指定楼层
-        如果用戶未指定樓層，則默認為「一樓」，樓層選項：一樓、二樓、三樓、四樓
+const prompt_lite = `
+      # 指定樓層
+      如果用戶未指定樓層，則默認為「一樓」。樓層選項包括一樓至四樓。
 
-        #指定參照點
-        - 管理二館
-        - 工程五館
-        - 工程四館
-        - 人社一館
-        - 人社二館
-        - 人社三館
-        - 小木屋
-        - LALA Kitchen
-        - 行政大樓
-        - 竹湖
-        - 科學一館
-        - 如果用戶提到的參照點沒有以上名稱，請從上述參照點中挑選最符合的
+      # 指定參照點
+      包括管理二館、工程四館、工程五館、人社館系列（一至三館）、小木屋、LALA Kitchen、行政大樓、竹湖及科學一館。若用戶提及的參照點未列出，請選擇最接近的選項。
 
-        #回報狀態
-        根據不同情況使用以下標籤描述物體狀態，物體狀態：
-        - 當判斷物體是否在保養，使用"保養"。
-        - 當判斷物體的功能性，使用"功能"。
-        - 當判斷物體的外觀是否有損壞，使用"外觀"。
-        - 當判斷物體是否被使用，使用"佔用"。
-        - 當判斷物體的使用體驗，使用"體驗"。
-        - 當判斷物體是否預約，使用"預約"。
-        - 當判斷物體是否乾淨，使用 "清潔"。
-        - 當判斷物體是否還有位子，使用"空位"。
-        - 當判斷物體時候很多人聚集在旁邊，使用"人潮"。
-        - 當判斷物體的聲音吵雜程度，使用"噪音"。
-        - 當判斷物體的是否有異味，使用"氣味"
-        - 如果都不是以上情況，請從上述回報狀態中挑選最符合的。
+      # 物體狀態
+      描述物體狀態時，使用以下標籤：
+      - "保養"：物體正在維護
+      - "功能"：物體的功能性
+      - "外觀"：物體外觀損壞情況
+      - "佔用"：物體是否被使用
+      - "體驗"：用戶使用體驗
+      - "預約"：物體是否需要預約
+      - "清潔"：物體的清潔狀態
+      - "空位"：是否還有空位
+      - "人潮"：周圍是否聚集很多人
+      - "噪音"：物體發出的聲音大小
+      - "氣味"：是否有異味
 
+      # 使用範例
+      範例一:
+      用戶：我想要回報人社1館面向竹湖中間的一般座位區太吵了。
+      回答：
+      {
+          "樓層": "一樓",
+          "參照點": ["竹湖"],
+          "物體": "一般座位區",
+          "物體狀態": "噪音"
+      }
 
-        #使用範例:
-        ##範例一
-        用戶：我想要回報人設1管面向竹湖中間的一般座位區太吵了。
-        回答：
-        {
-            "樓層": "一樓",
-            "參照點": ["竹湖"],
-            "物體": "一般座位區",
-            "物體狀態": "噪音"
-        }
+      範例二:
+      用戶：工程五館附近的飲水機水槽有污漬。
+      回答：
+      {
+          "樓層": "一樓",
+          "參照點": ["工程五館"],
+          "物體": "飲水機",
+          "物體狀態": "清潔"
+      }
 
-        ##範例二
-        用戶：工程五館附近的飲水機水槽有污漬
-        回答：
-        {
-            "樓層": "一樓",
-            "參照點": ["工程五館"],
-            "物體": "飲水機",
-            "物體狀態": "清潔"
-        }
+      範例三:
+      用戶：離人社一館最近的販賣機有飲料打翻。
+      回答：
+      {
+          "樓層": "一樓",
+          "參照點": ["人社一館"],
+          "物體": "販賣機",
+          "物體狀態": "清潔"
+      }
 
-        ##範例三
-        用戶：離人社一館最近的販賣機有飲料打翻
-        回答：
-        {
-            "樓層": "一樓",
-            "參照點": ["人社一館"],
-            "物體": "販賣機",
-            "物體狀態": "清潔"
-        }
+      範例四:
+      用戶：圖書館二樓最靠近lala kitchen和最靠近工程五管的飲水機壞了
+      回答：
+      {
+          "樓層": "二樓",
+          "參照點": ["LALA Kitchen","工程五館"],
+          "物體": "飲水機",
+          "物體狀態": "功能"
+      }
+`;
 
-        ##範例四
-        用戶：最靠近工程五館的一般座位區周遭有人在大聲喧嘩
-        回答：
-        {
-            "樓層": "一樓",
-            "參照點": ["工程五館"],
-            "物體": "一般座位區",
-            "物體狀態": "噪音"
-        }
-
-        ##範例五
-        用戶：圖書館一樓最靠近 LALA Kitchen 的高腳椅區有些髒亂
-        回答：
-        {
-            "樓層": "一樓",
-            "參照點": ["LALA Kitchen"],
-            "物體": "高腳椅區",
-            "物體狀態": "清潔"
-        }
-
-        ##範例六
-        用戶：圖書館二樓最靠近竹湖和行政大樓的公用印表機，目前無法正常運作
-        回答：
-        {
-            "樓層": "二樓",
-            "參照點": ["竹湖","行政大樓"],
-            "物體": "公用印表機",
-            "物體狀態": "功能"
-        }
-
-        ##範例七
-        用戶：我想要回報行政大樓三樓面向管二中間的高腳椅壞掉了
-        回答：
-        {
-            "樓層": "三樓",
-            "參照點": ["管理二館"],
-            "物體": "高腳椅區",
-            "物體狀態": "功能"
-        }
-
-        ##範例八
-        用戶：回報工程3管靠近科一的跑步機太髒
-        回答：
-        {
-            "樓層": "一樓",
-            "參照點": ["科學一館"],
-            "物體": "跑步機",
-            "物體狀態": "清潔"
-        }
-
-        ##範例九
-        用戶：圖書館二樓最靠近lala kitchen和最靠近工程五管的飲水機壞了
-        回答：
-        {
-            "樓層": "二樓",
-            "參照點": ["LALA Kitchen","工程五館"],
-            "物體": "飲水機",
-            "物體狀態": "功能"
-        }
-
-        ##範例十
-        用戶：圖書館2樓最靠近管理二館&小木屋的跑步機壞了
-        回答：
-        {
-            "樓層": "二樓",
-            "參照點": ["管理二館","小木屋"],
-            "物體": "跑步機",
-            "物體狀態": "功能"
-        }
-
-        ##範例十一
-        用戶：圖書館2樓最靠近管理二館和餐廳的跑步機壞了
-        回答：
-        {
-            "樓層": "二樓",
-            "參照點": ["LALA Kitchen"],
-            "物體": "跑步機",
-            "物體狀態": "功能"
-        }
-
-        ##範例十二
-        用戶：圖書館2樓最靠近鬆餅店的跑步機壞了
-        回答：
-        {
-            "樓層": "二樓",
-            "參照點": ["小木屋"],
-            "物體": "跑步機",
-            "物體狀態": "功能"
-        }
-      `;
+const prompt2_lite = `
+  # Instructions:
+  1. "物體"計算方式：
+    - 物體滿相似度分數滿分為40
+    - 物體和樓層或編號完全相同時，得到全分100%（40）。
+    - 物體類型相同但"樓層和編號"不同時，得到半分50%（20）。
+    - 物體類型不同但"樓層和編號"皆相同時，得到半分50%（20）。
+    - 物體類型和樓層編號都不同，得分0。
+  2. "回報狀態"計算方式：
+    - 回報狀態分數滿分為20
+    - 當狀態一樣則得全部20，否則0。
+  3. "回報時間"計算方式：
+    - 請根據時間的接近程度，使用你的認知給出一個最高20分，最低0分的相似度分數。
+  4. "位址"計算方式：
+    - 請根據地理位置的接近程度，使用你的認知給出一個最高20分，最低0分的相似度分數，使用常識來判斷距離的影響。
+  5. 總相似度分數：
+    - 總分 = 物體相似度分數 + 回報狀態相似度分數 + 回報時間相似度分數 + 位址相似度分數
+`;
 
 async function def_place_and_object(text: string) {
   const response = await openai.chat.completions.create({
@@ -173,7 +99,7 @@ async function def_place_and_object(text: string) {
     messages: [
       {
         role: "system",
-        content: prompt,
+        content: prompt_lite,
       },
       { role: "user", content: text },
     ],
@@ -182,6 +108,7 @@ async function def_place_and_object(text: string) {
     top_p: 0.01,
   });
   const ans = response.choices[0].message.content;
+  console.log(`LLM1 Used tokens: ${response.usage?.total_tokens}`);
 
   return ans;
 }
@@ -199,6 +126,30 @@ function transFloorFromChineseToNumber(floor: string) {
     default:
       return 1;
   }
+}
+
+function haversineDistance(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number,
+) {
+  function toRad(x: number) {
+    return (x * Math.PI) / 180;
+  }
+
+  const R = 6371000; // 地球半徑，單位為米
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) *
+      Math.cos(toRad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c;
+  return d;
 }
 
 function find_closest_facility(
@@ -244,17 +195,11 @@ function find_closest_facility(
   const closestItem = Object.entries(filteredItemPositions ?? {}).reduce(
     (acc: ItemDistance, [key, value]) => {
       const distance = locationPosition
-        ? Math.sqrt(
-            Math.pow(
-              (value as { 位址: [number, number] }).位址[0] -
-                locationPosition.latitude,
-              2,
-            ) +
-              Math.pow(
-                (value as { 位址: [number, number] }).位址[1] -
-                  locationPosition.longitude,
-                2,
-              ),
+        ? haversineDistance(
+            locationPosition.latitude,
+            locationPosition.longitude,
+            (value as { 位址: [number, number] }).位址[0],
+            (value as { 位址: [number, number] }).位址[1],
           )
         : undefined;
       if (
@@ -326,15 +271,19 @@ function find_closest_facility_multi_location(
     (acc: ItemDistance, [key, value]) => {
       const itemPosition = (value as { 位址: [number, number] }).位址;
       const distance1 = location1Position
-        ? Math.sqrt(
-            Math.pow(itemPosition[0] - location1Position.latitude, 2) +
-              Math.pow(itemPosition[1] - location1Position.longitude, 2),
+        ? haversineDistance(
+            itemPosition[0],
+            itemPosition[1],
+            location1Position.latitude,
+            location1Position.longitude,
           )
         : undefined;
       const distance2 = location2Position
-        ? Math.sqrt(
-            Math.pow(itemPosition[0] - location2Position.latitude, 2) +
-              Math.pow(itemPosition[1] - location2Position.longitude, 2),
+        ? haversineDistance(
+            itemPosition[0],
+            itemPosition[1],
+            location2Position.latitude,
+            location2Position.longitude,
           )
         : undefined;
       const distanceSum = (distance1 ?? 0) + (distance2 ?? 0);
@@ -446,10 +395,77 @@ async function def_contribution(
   return ans;
 }
 
+async function def_contribution_improve(
+  contributions: PoisForGpt,
+  targetMarker: string,
+  targetAddress: number[],
+  status: string,
+) {
+  const currentTime = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Taipei",
+  });
+
+  const statusEn = changeStatusToEnglish(status);
+
+  const response = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "system",
+        content:
+          "分析提供的物體、回報狀態、回報時間和位址資訊，並與資料庫中的每個項目進行比較。由高到低返回所有總分超過60分的項目ID，並以JSON格式返回，其中keys為連續數字，值為ID。",
+      },
+      {
+        role: "system",
+        content: prompt2_lite,
+      },
+      {
+        role: "system",
+        content: "資料庫：\n" + JSON.stringify(contributions),
+      },
+      {
+        role: "user",
+        content: `物體: ${targetMarker}, 回報狀態: ${statusEn}, 回報時間: ${currentTime}, 位址: ${targetAddress}\n結果:`,
+      },
+    ],
+    max_tokens: 500,
+    temperature: 0,
+    top_p: 0.01,
+  });
+  const ans = response.choices[0].message.content;
+  console.log(`LLM3 Used tokens: ${response.usage?.total_tokens}`);
+  if (ans === null) {
+    throw new Error("No recommand found.");
+  }
+
+  return ans;
+}
+
+function formatJsonData(input: string): string {
+  // Check if the input matches the pattern
+  if (input.match(/```json\n([\s\S]*?)\n```/)) {
+    // Extract JSON from the input using a regular expression
+    const jsonMatch = input.match(/```json\n([\s\S]*?)\n```/);
+    if (jsonMatch && jsonMatch[1]) {
+      // Format the extracted JSON string into a TypeScript constant
+      const formattedJson = jsonMatch[1];
+      return formattedJson;
+    } else {
+      console.error("No JSON data found");
+      return "";
+    }
+  } else {
+    // If the input does not match the pattern, return it as is
+    return input;
+  }
+}
+
 export {
   def_place_and_object,
   def_facility,
   def_contribution,
+  def_contribution_improve,
   find_closest_facility,
   find_closest_facility_multi_location,
+  formatJsonData,
 };
