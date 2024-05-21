@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
@@ -35,6 +36,8 @@ const LlmInput: React.FC = () => {
   const modalOpen = useSelector(
     (state: IRootState) => state.modal.open["llmInput"],
   );
+
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
@@ -160,21 +163,23 @@ const LlmInput: React.FC = () => {
   return (
     <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
       <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">InputLlm</ModalHeader>
+        <ModalHeader className="flex flex-col gap-1">
+          {t("llmInput.title", { ns: ["modal"] })}
+        </ModalHeader>
         <ModalBody className="items-center">
           <Input
             aria-label="set description"
-            placeholder="set description"
+            placeholder={t("llmInput.content.placeHolder", { ns: ["modal"] })}
             value={description}
             onChange={handleInputChange}
           />
         </ModalBody>
         <ModalFooter>
           <Button color="danger" variant="light" onPress={handleCloseModal}>
-            關閉
+            {t("llmInput.buttons.close", { ns: ["modal"] })}
           </Button>
           <Button color="danger" variant="light" onPress={handleCommit}>
-            送出
+            {t("llmInput.buttons.submit", { ns: ["modal"] })}
           </Button>
         </ModalFooter>
       </ModalContent>
