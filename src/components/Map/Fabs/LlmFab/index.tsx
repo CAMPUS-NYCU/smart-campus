@@ -7,6 +7,7 @@ import { useGetClusterQuery } from "../../../../api/cluster";
 import { openModal } from "../../../../store/modal";
 import LlmInput from "../../../modal/LlmInput";
 import llmFab from "../../../../assets/images/llmFab.svg";
+import LlmErrorMessage from "../../../modal/LlmErrorMessage";
 
 const LlmFabs: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -33,6 +34,7 @@ const LlmFabs: React.FC = () => {
         <img src={llmFab} alt="facilityMarkerFilter" />
       </Button>
       <LlmInput />
+      <LlmErrorMessage />
     </>
   ) : null;
 };

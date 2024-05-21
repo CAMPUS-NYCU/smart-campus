@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
@@ -17,6 +18,7 @@ import {
   find_closest_facility_multi_location,
   def_contribution_improve,
   formatJsonData,
+  isJsonString,
 } from "../../../api/gpt";
 import {
   getParamsFromDrawer,
@@ -25,7 +27,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { useLazyGetPoisQuery } from "../../../api/poi";
 import { convertToContributionData } from "../../../constants/gpt";
-import { setRecommandContributions } from "../../../store/llm";
+import { setErrorMessage, setRecommandContributions } from "../../../store/llm";
 import { getResourceGroupId } from "../../../utils/resources";
 
 const LlmInput: React.FC = () => {
@@ -34,6 +36,8 @@ const LlmInput: React.FC = () => {
   const modalOpen = useSelector(
     (state: IRootState) => state.modal.open["llmInput"],
   );
+
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
@@ -59,6 +63,18 @@ const LlmInput: React.FC = () => {
           let targetMarker = "";
           let itemAddress: number[] = [];
           if (resAll[0]) {
+            console.log(resAll[0]);
+            if (!isJsonString(resAll[0])) {
+              dispatch(openModal("llmErrorMessage"));
+              dispatch(setErrorMessage(resAll[0]));
+              console.error("resAll[0] is not a valid JSON string");
+              throw new Error("LLM1 Error");
+            } else {
+              console.log("resAll[0] is a valid JSON string");
+              dispatch(closeModal("llmInput"));
+              dispatch(openModal("llmResult"));
+              setSearchParams({ clusterId: id ?? "", recommend: "true" });
+            }
             const {
               樓層: floor,
               參照點: locationName,
@@ -121,15 +137,14 @@ const LlmInput: React.FC = () => {
     gptFunction();
 
     setDescription("");
-    dispatch(closeModal("llmInput"));
-    dispatch(openModal("llmResult"));
+    // dispatch(closeModal("llmInput"));
+    // dispatch(openModal("llmResult"));
     // setupDrawerSlug<"cluster">(
     //   { clusterId: id ? id : "" },
     //   searchParams,
     //   setSearchParams,
     //   navigate,
     // );
-    setSearchParams({ clusterId: id ?? "", recommend: "true" });
   };
 
   const handleCloseModal = () => {
@@ -150,21 +165,23 @@ const LlmInput: React.FC = () => {
   return (
     <Modal isOpen={modalOpen} onOpenChange={handleToggleModal}>
       <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">InputLlm</ModalHeader>
+        <ModalHeader className="flex flex-col gap-1">
+          {t("llmInput.title", { ns: ["modal"] })}
+        </ModalHeader>
         <ModalBody className="items-center">
           <Input
             aria-label="set description"
-            placeholder="set description"
+            placeholder={t("llmInput.content.placeHolder", { ns: ["modal"] })}
             value={description}
             onChange={handleInputChange}
           />
         </ModalBody>
         <ModalFooter>
           <Button color="danger" variant="light" onPress={handleCloseModal}>
-            關閉
+            {t("llmInput.buttons.close", { ns: ["modal"] })}
           </Button>
           <Button color="danger" variant="light" onPress={handleCommit}>
-            送出
+            {t("llmInput.buttons.submit", { ns: ["modal"] })}
           </Button>
         </ModalFooter>
       </ModalContent>

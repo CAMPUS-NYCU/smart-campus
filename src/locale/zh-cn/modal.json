@@ -61,5 +61,18 @@
   },
   "reportStart": {
     "text": "请开始执行任务"
+  },
+  "llmInput": {
+    "title": "请输入你要寻找的回报资讯",
+    "buttons": {
+      "submit": "送出",
+      "close": "关闭"
+    },
+    "content": {
+      "placeHolder": "输入回报资讯"
+    }
+  },
+  "llmErrorMessage": {
+    "title": "请提供更详细的回报资讯"
   }
 }

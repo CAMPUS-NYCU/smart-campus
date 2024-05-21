@@ -56,7 +56,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
 
   const handlePoiEdit = () => {
     if (!poi) {
-      throw new Error("ClusterDrawer: poi not found");
+      throw new Error("LlmResult: poi not found");
     } else if (!user?.id) {
       dispatch(openModal("login"));
     } else {
@@ -154,7 +154,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
               </div>
             </div>
             <div className="flex flex-row space-x-1 text-xs">
-              {t("clusterDrawer.content.texts.updatedAt", {
+              {t("llmResult.content.texts.updatedAt", {
                 updatedAt: poi?.data.updatedAt
                   ? poi.data.updatedAt
                   : poi.data.createdAt,
@@ -171,7 +171,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
               className="bg-primary min-w-fit h-fit px-2 py-1"
               onClick={handlePoiEdit}
             >
-              {t("clusterDrawer.buttons.edit", { ns: ["drawer"] })}
+              {t("llmResult.buttons.edit", { ns: ["drawer"] })}
             </Button>
           </div>
 
@@ -194,6 +194,8 @@ const LlmResult: React.FC = () => {
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: user } = useGetUserQuery();
   const [getPoi] = useLazyGetPoiQuery();
+
+  const { t } = useTranslation();
 
   const reportType = useSelector((state: IRootState) => state.report.type);
   const selected =
@@ -245,7 +247,7 @@ const LlmResult: React.FC = () => {
 
   const handlePoiEdit = () => {
     if (!clusterId) {
-      throw new Error("ClusterDrawer: id is null");
+      throw new Error("LlmResult: id is null");
     } else if (!user?.id) {
       dispatch(openModal("login"));
     } else {
@@ -258,7 +260,7 @@ const LlmResult: React.FC = () => {
     <Drawer
       open={selected}
       onClose={handleCloseModal}
-      title={"haha"}
+      title={t("llmResult.title", { ns: ["drawer"] })}
       children={
         <div>
           {recommandPois.length > 0 ? (
@@ -281,7 +283,7 @@ const LlmResult: React.FC = () => {
           className="bg-primary h-fit px-2 py-1.5"
           onClick={handlePoiEdit}
         >
-          新增回報
+          {t("llmResult.buttons.add", { ns: ["drawer"] })}
         </Button>
       }
     />

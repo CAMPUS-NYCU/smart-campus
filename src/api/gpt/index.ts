@@ -460,6 +460,15 @@ function formatJsonData(input: string): string {
   }
 }
 
+function isJsonString(str: string): boolean {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+
 export {
   def_place_and_object,
   def_facility,
@@ -468,4 +477,5 @@ export {
   find_closest_facility,
   find_closest_facility_multi_location,
   formatJsonData,
+  isJsonString,
 };
