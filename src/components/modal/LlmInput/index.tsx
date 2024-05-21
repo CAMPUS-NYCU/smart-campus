@@ -19,6 +19,9 @@ import {
   def_contribution_improve,
   formatJsonData,
   isJsonString,
+  handleMultipleLocations,
+  handleItem,
+  handleStatus,
 } from "../../../api/gpt";
 import {
   getParamsFromDrawer,
@@ -70,29 +73,35 @@ const LlmInput: React.FC = () => {
               console.error("resAll[0] is not a valid JSON string");
               throw new Error("LLM1 Error");
             } else {
-              console.log("resAll[0] is a valid JSON string");
               dispatch(closeModal("llmInput"));
               dispatch(openModal("llmResult"));
               setSearchParams({ clusterId: id ?? "", recommend: "true" });
             }
+
             const {
               樓層: floor,
               參照點: locationName,
               物體: item,
               物體狀態: status,
             } = JSON.parse(resAll[0]);
+
+            // handle edge case of user input
+            const location_input = handleMultipleLocations(locationName);
+            const item_input = handleItem(item);
+            const status_input = handleStatus(status);
+
             const resourceGroupId = getResourceGroupId();
 
-            if (locationName.length > 1) {
+            if (location_input.length > 1) {
               const {
                 closestItemName: tmpTargetMarker,
                 itemAddress: tmpItemAddress,
               } = find_closest_facility_multi_location(
                 resourceGroupId ? resourceGroupId : "",
                 floor,
-                locationName[0],
-                locationName[1],
-                item,
+                location_input[0],
+                location_input[1],
+                item_input,
               );
 
               targetMarker = tmpTargetMarker;
@@ -104,19 +113,20 @@ const LlmInput: React.FC = () => {
               } = find_closest_facility(
                 resourceGroupId ? resourceGroupId : "",
                 floor,
-                locationName[0],
-                item,
+                location_input[0],
+                item_input,
               );
 
               targetMarker = tmpTargetMarker;
               itemAddress = tmpItemAddress;
             }
+
             const inputContributions = convertToContributionData(resAll[1]);
             return def_contribution_improve(
               inputContributions,
               targetMarker,
               itemAddress,
-              status,
+              status_input,
             );
           } else {
             throw new Error("LLM1 Error");
@@ -137,8 +147,6 @@ const LlmInput: React.FC = () => {
     gptFunction();
 
     setDescription("");
-    // dispatch(closeModal("llmInput"));
-    // dispatch(openModal("llmResult"));
     // setupDrawerSlug<"cluster">(
     //   { clusterId: id ? id : "" },
     //   searchParams,

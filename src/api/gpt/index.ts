@@ -93,6 +93,45 @@ const prompt2_lite = `
     - 總分 = 物體相似度分數 + 回報狀態相似度分數 + 回報時間相似度分數 + 位址相似度分數
 `;
 
+const location_candidate = [
+  "管理二館",
+  "工程四館",
+  "工程五館",
+  "人社一館",
+  "人社二館",
+  "人社三館",
+  "小木屋",
+  "LALA Kitchen",
+  "行政大樓",
+  "竹湖",
+  "科學一館",
+];
+
+const item_candidate = [
+  "公用印表機",
+  "飲水機",
+  "跑步機",
+  "公用電腦",
+  "高腳椅區",
+  "置物櫃",
+  "沙發區",
+  "一般座位區",
+];
+
+const status_candidate = [
+  "保養",
+  "功能",
+  "外觀",
+  "佔用",
+  "體驗",
+  "預約",
+  "清潔",
+  "空位",
+  "人潮",
+  "噪音",
+  "氣味",
+];
+
 async function def_place_and_object(text: string) {
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
@@ -469,6 +508,51 @@ function isJsonString(str: string): boolean {
   return true;
 }
 
+function random_array(array: string[]): string {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+function handleMultipleLocations(location: string[]): string[] {
+  if (location.length > 1) {
+    let location1 = location[0];
+    let location2 = location[1];
+
+    if (!location_candidate.includes(location1)) {
+      location1 = random_array(location_candidate);
+    }
+
+    if (!location_candidate.includes(location2)) {
+      location2 = random_array(location_candidate);
+    }
+
+    return [location1, location2];
+  } else {
+    let location1 = location[0];
+
+    if (!location_candidate.includes(location1)) {
+      location1 = random_array(location_candidate);
+    }
+
+    return [location1];
+  }
+}
+
+function handleItem(item: string): string {
+  if (item_candidate.includes(item)) {
+    return item;
+  } else {
+    return random_array(item_candidate);
+  }
+}
+
+function handleStatus(status: string): string {
+  if (status_candidate.includes(status)) {
+    return status;
+  } else {
+    return random_array(status_candidate);
+  }
+}
+
 export {
   def_place_and_object,
   def_facility,
@@ -478,4 +562,7 @@ export {
   find_closest_facility_multi_location,
   formatJsonData,
   isJsonString,
+  handleMultipleLocations,
+  handleItem,
+  handleStatus,
 };
