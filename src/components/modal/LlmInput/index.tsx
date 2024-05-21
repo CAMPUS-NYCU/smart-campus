@@ -17,6 +17,7 @@ import {
   find_closest_facility_multi_location,
   def_contribution_improve,
   formatJsonData,
+  isJsonString,
 } from "../../../api/gpt";
 import {
   getParamsFromDrawer,
@@ -59,6 +60,16 @@ const LlmInput: React.FC = () => {
           let targetMarker = "";
           let itemAddress: number[] = [];
           if (resAll[0]) {
+            console.log(resAll[0]);
+            if (!isJsonString(resAll[0])) {
+              console.error("resAll[0] is not a valid JSON string");
+              throw new Error("LLM1 Error");
+            } else {
+              console.log("resAll[0] is a valid JSON string");
+              dispatch(closeModal("llmInput"));
+              dispatch(openModal("llmResult"));
+              setSearchParams({ clusterId: id ?? "", recommend: "true" });
+            }
             const {
               樓層: floor,
               參照點: locationName,
@@ -121,15 +132,14 @@ const LlmInput: React.FC = () => {
     gptFunction();
 
     setDescription("");
-    dispatch(closeModal("llmInput"));
-    dispatch(openModal("llmResult"));
+    // dispatch(closeModal("llmInput"));
+    // dispatch(openModal("llmResult"));
     // setupDrawerSlug<"cluster">(
     //   { clusterId: id ? id : "" },
     //   searchParams,
     //   setSearchParams,
     //   navigate,
     // );
-    setSearchParams({ clusterId: id ?? "", recommend: "true" });
   };
 
   const handleCloseModal = () => {
