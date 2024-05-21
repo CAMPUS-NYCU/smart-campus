@@ -65,6 +65,7 @@ const LlmInput: React.FC = () => {
           if (resAll[0]) {
             console.log(resAll[0]);
             if (!isJsonString(resAll[0])) {
+              dispatch(openModal("llmErrorMessage"));
               console.error("resAll[0] is not a valid JSON string");
               throw new Error("LLM1 Error");
             } else {

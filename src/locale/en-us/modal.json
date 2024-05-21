@@ -61,7 +61,7 @@
   },
   "reportStart": {
     "text": "You may start carrying out the task."
-},
+  },
   "llmInput": {
     "title": "Type the report information you are looking for",
     "buttons": {
@@ -71,5 +71,8 @@
     "content": {
       "placeHolder": "Type information here"
     }
+  },
+  "llmErrorMessage": {
+    "text": "Please provide more detailed report information"
   }
 }

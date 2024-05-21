@@ -71,5 +71,8 @@
     "content": {
       "placeHolder": "输入回报资讯"
     }
+  },
+  "llmErrorMessage": {
+    "text": "请提供更详细的回报资讯"
   }
 }

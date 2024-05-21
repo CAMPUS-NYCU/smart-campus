@@ -71,5 +71,8 @@
     "content": {
       "placeHolder": "輸入回報資訊"
     }
+  },
+  "llmErrorMessage": {
+    "text": "請提供更詳細的回報資訊"
   }
 }
