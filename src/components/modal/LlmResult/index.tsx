@@ -224,7 +224,6 @@ const LlmResult: React.FC = () => {
           });
       });
       const res = await Promise.all(tasks);
-      console.log("fetch Data", res);
       return res;
     },
     [getPoi],

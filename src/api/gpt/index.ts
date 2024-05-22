@@ -16,7 +16,7 @@ const prompt_lite = `
       如果用戶未指定樓層，則默認為「一樓」。樓層選項包括一樓至四樓。
 
       # 指定參照點
-      包括管理二館、工程四館、工程五館、人社館系列（一至三館）、小木屋、LALA Kitchen、行政大樓、竹湖及科學一館。若用戶提及的參照點未列出，請選擇最接近的選項。
+      包括管理二館、工程四館、工程五館、人社館系列（一至三館）、小木屋、LALA Kitchen、行政大樓、竹湖及科學一館。如果用戶提到的參照點沒有以上名稱，請從上述參照點中挑選最符合的
 
       # 物體狀態
       描述物體狀態時，使用以下標籤：
@@ -147,7 +147,7 @@ async function def_place_and_object(text: string) {
     top_p: 0.01,
   });
   const ans = response.choices[0].message.content;
-  console.log(`LLM1 Used tokens: ${response.usage?.total_tokens}`);
+  // console.log(`LLM1 Used tokens: ${response.usage?.total_tokens}`);
 
   return ans;
 }
@@ -472,7 +472,7 @@ async function def_contribution_improve(
     top_p: 0.01,
   });
   const ans = response.choices[0].message.content;
-  console.log(`LLM3 Used tokens: ${response.usage?.total_tokens}`);
+  // console.log(`LLM3 Used tokens: ${response.usage?.total_tokens}`);
   if (ans === null) {
     throw new Error("No recommand found.");
   }
