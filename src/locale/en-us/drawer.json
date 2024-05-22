@@ -112,5 +112,17 @@
       }
     },
     "title": "{{name}}"
+  },
+  "llmResult": {
+    "title": "Recommended similar reports by gpt",
+    "buttons": {
+      "add": "Add Report",
+      "edit": "Edit"
+    },
+    "content": {
+      "texts": {
+        "updatedAt": "Updated at {{updatedAt}}"
+      }
+    }
   }
 }

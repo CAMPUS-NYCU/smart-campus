@@ -134,7 +134,9 @@ const poiApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetPoisQuery,
+  useLazyGetPoisQuery,
   useGetPoiQuery,
+  useLazyGetPoiQuery,
   useAddPoiMutation,
   useUpdatePoiMutation,
   useDeletePoiMutation,

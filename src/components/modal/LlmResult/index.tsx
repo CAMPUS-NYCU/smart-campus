@@ -1,50 +1,38 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
 import {
   Button,
-  Listbox,
-  ListboxItem,
   Chip,
   Image,
-  Select,
-  SelectItem,
+  Listbox,
+  ListboxItem,
+  Skeleton,
 } from "@nextui-org/react";
-
-import { useGetClusterQuery } from "../../../api/cluster";
-import { useGetUserQuery } from "../../../api/user";
-import { useGetPoisQuery } from "../../../api/poi";
 import { IRootState } from "../../../store";
-import { openModal } from "../../../store/modal";
-import { resetHightlightId, setHighlightId } from "../../../store/poi";
-import { editReport, resetReport } from "../../../store/report";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal, openModal } from "../../../store/modal";
+import { setRecommandContributions } from "../../../store/llm";
+import Drawer from "../../Drawer";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
-  resetDrawerParams,
+  setupDrawerParams,
 } from "../../../utils/routes/params";
-
+import { useSearchParams } from "react-router-dom";
+import { useGetUserQuery } from "../../../api/user";
+import { addReport, editReport } from "../../../store/report";
+import { useCallback, useEffect, useState } from "react";
+import { useLazyGetPoiQuery } from "../../../api/poi";
+import Poi, { PoiData } from "../../../models/poi";
+import { useTranslation } from "react-i18next";
+import React from "react";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { firebaseApp } from "../../../utils/firebase";
+import { resetHightlightId, setHighlightId } from "../../../store/poi";
 import { getClusterIcon } from "../../../constants/clusterIcon";
 import noImage from "../../../assets/images/noImage.svg";
-import Drawer from "..";
-import Poi, { PoiData } from "../../../models/poi";
 import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { firebaseApp } from "../../../utils/firebase";
-import { maps } from "../../../utils/googleMaps";
-import {
-  calculateDistance,
-  compareByUpdatedTime,
-  compareByTargetSerial,
-} from "../../../constants/map";
-import {
-  sortingOptions,
-  sortingMessages,
-} from "../../../constants/sortingOptions";
 
 interface PoiListItemProps {
   poi: {
@@ -68,11 +56,12 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
 
   const handlePoiEdit = () => {
     if (!poi) {
-      throw new Error("ClusterDrawer: poi not found");
+      throw new Error("LlmResult: poi not found");
     } else if (!user?.id) {
       dispatch(openModal("login"));
     } else {
       dispatch(editReport(poi));
+      dispatch(closeModal("llmResult"));
     }
   };
 
@@ -123,16 +112,12 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
             highlightId === poi.id
               ? "border-3 border-primary bg-primary/50"
               : "border-1 border-secondary/50"
-            // 42px is the height of the header and footer
-            // 4 is the number of items in each row
-            // 8 is the margin between items
-            // so the total height is 50vh - 42px - 4 * 8 = 50vh - 74px
-          }  h-[calc((50vh-74px)/4)] py-0 px-1.5`,
+          }  h-[calc((50vh-100px)/4)] py-0 px-1.5`,
         }}
       >
         <div
           ref={containerRef}
-          className="container flex flex-row py-0 h-[calc((50vh-74px)/4)]"
+          className="container flex flex-row py-0 h-[calc((50vh-100px)/4)]"
         >
           {/* the main information of the report */}
           <div className="flex flex-col shrink-0 justify-around basis-8/12">
@@ -169,7 +154,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
               </div>
             </div>
             <div className="flex flex-row space-x-1 text-xs">
-              {t("clusterDrawer.content.texts.updatedAt", {
+              {t("llmResult.content.texts.updatedAt", {
                 updatedAt: poi?.data.updatedAt
                   ? poi.data.updatedAt
                   : poi.data.createdAt,
@@ -186,7 +171,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
               className="bg-primary min-w-fit h-fit px-2 py-1"
               onClick={handlePoiEdit}
             >
-              {t("clusterDrawer.buttons.edit", { ns: ["drawer"] })}
+              {t("llmResult.buttons.edit", { ns: ["drawer"] })}
             </Button>
           </div>
 
@@ -204,108 +189,86 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
   );
 };
 
-const ClusterDrawer: React.FC = () => {
+const LlmResult: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
+  const { data: user } = useGetUserQuery();
+  const [getPoi] = useLazyGetPoiQuery();
+
   const { t } = useTranslation();
 
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const reportType = useSelector((state: IRootState) => state.report.type);
+  const selected =
+    !reportType && isCurrentDrawerParams("recommend", searchParams);
+  console.log("selected", selected);
+
+  const recommandContributions = useSelector(
+    (state: IRootState) => state.llm.recommandContributions,
+  );
+  console.log("recommandContributions", recommandContributions);
+
+  const refetchFlag = useSelector((state: IRootState) => state.llm.refetchFlag);
+  console.log("refetchFlag", refetchFlag);
+
+  const [recommandPois, setRecommandPois] = useState<Poi[]>([]);
+
+  const fetchData = useCallback(
+    async (recommandContributions: string[]) => {
+      const tasks = recommandContributions.map((contribution) => {
+        // RTK seems like didn't provide forceRefetch
+        // The getPoi will not be trigger here, even though i update refetchFlag after update data, cache still exists
+        return getPoi(contribution)
+          .unwrap()
+          .then((res) => {
+            if (res === null) throw new Error("No recommand poi found.");
+            else {
+              return res;
+            }
+          });
+      });
+      const res = await Promise.all(tasks);
+      console.log("fetch Data", res);
+      return res;
+    },
+    [getPoi],
+  );
+
+  useEffect(() => {
+    console.log("fetch recommand pois");
+    fetchData(recommandContributions).then((res) => {
+      setRecommandPois(res);
+    });
+  }, [fetchData, recommandContributions, refetchFlag]);
 
   const dispatch = useDispatch();
 
-  const selected =
-    !reportType &&
-    isCurrentDrawerParams("cluster", searchParams) &&
-    !isCurrentDrawerParams("recommend", searchParams);
-  const id = selected
-    ? getParamsFromDrawer("cluster", searchParams).clusterId
-    : null;
-
-  const { data: cluster } = useGetClusterQuery(id, {
-    skip: !selected,
-  });
-
-  const { data: poiList } = useGetPoisQuery(id);
-
-  const handleDrawerDismiss = () => {
-    resetDrawerParams(searchParams, setSearchParams);
+  const handleCloseModal = () => {
+    // will also clear recommandPois
+    dispatch(setRecommandContributions([]));
+    setupDrawerParams<"cluster">({ clusterId }, searchParams, setSearchParams);
+    dispatch(closeModal("llmResult"));
   };
 
-  const [sortingMethod, setSortingMethod] = useState(sortingOptions[0].key);
-  const [sortingMessage, setSortingMessage] = useState(
-    sortingMessages[0].message,
-  );
-
-  React.useEffect(() => {
-    if (!isCurrentDrawerParams("cluster", searchParams)) {
-      dispatch(resetReport());
-    }
-  }, [dispatch, searchParams]);
-
-  const orderedPoiList: Poi[] = useMemo(() => {
-    let result: Poi[] = [];
-
-    if (poiList) {
-      result = Object.entries(poiList).map(([id, data]) => ({
-        id,
-        data,
-      }));
-
-      if (sortingMethod === "time") {
-        result.sort(compareByUpdatedTime);
-      } else if (sortingMethod === "distance") {
-        const mapCenter = maps.getCenter();
-        const calCenter = {
-          latlng: {
-            latitude: mapCenter?.lat() || 0,
-            longitude: mapCenter?.lng() || 0,
-          },
-        };
-
-        result.sort((poi1: Poi, poi2: Poi) => {
-          const distance1 = calculateDistance(
-            calCenter.latlng,
-            poi1.data.latlng,
-          );
-          const distance2 = calculateDistance(
-            calCenter.latlng,
-            poi2.data.latlng,
-          );
-          return distance1 - distance2;
-        });
-      } else if (sortingMethod === "name") {
-        result.sort(compareByTargetSerial);
-      } else {
-        console.error("sorting method not found");
-      }
-    }
-
-    return result;
-  }, [poiList, sortingMethod]);
-
-  const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value) {
-      setSortingMethod(e.target.value as string);
-      setSortingMessage(
-        sortingMessages.find((msg) => msg.key === e.target.value)?.message ??
-          sortingMessages[0].message,
-      );
+  const handlePoiEdit = () => {
+    if (!clusterId) {
+      throw new Error("LlmResult: id is null");
+    } else if (!user?.id) {
+      dispatch(openModal("login"));
+    } else {
+      dispatch(addReport({ clusterId: clusterId, createdBy: user?.id }));
+      dispatch(closeModal("llmResult"));
     }
   };
 
   return (
     <Drawer
-      isDraggable={true}
       open={selected}
-      onClose={handleDrawerDismiss}
-      title={t("clusterDrawer.title", {
-        name: cluster?.data.name,
-        ns: ["drawer"],
-      })}
+      onClose={handleCloseModal}
+      title={t("llmResult.title", { ns: ["drawer"] })}
       children={
         <div>
-          {poiList ? (
-            orderedPoiList.map((poi) => {
+          {recommandPois.length > 0 ? (
+            recommandPois.map((poi) => {
               return (
                 <PoiListItem
                   key={poi.id}
@@ -314,34 +277,21 @@ const ClusterDrawer: React.FC = () => {
               );
             })
           ) : (
-            <></>
+            <Skeleton className="w-full h-[30vh] rounded-md" />
           )}
         </div>
       }
       primaryButton={
-        <Select
-          aria-label="Sorting Method"
-          variant="bordered"
-          selectedKeys={[sortingMethod]}
-          classNames={{
-            value: "text-xs",
-            innerWrapper: "pt-0",
-            trigger: "py-0 h-7 min-h-fit bg-primary",
-            base: "min-w-fit w-full border-0",
-            listboxWrapper: "min-w-fit",
-          }}
-          onChange={handleSelectionChange}
+        <Button
+          radius="full"
+          className="bg-primary h-fit px-2 py-1.5"
+          onClick={handlePoiEdit}
         >
-          {sortingOptions.map((option) => (
-            <SelectItem key={option.key} value={option.value}>
-              {t(option.label, { ns: ["drawer"] })}
-            </SelectItem>
-          ))}
-        </Select>
+          {t("llmResult.buttons.add", { ns: ["drawer"] })}
+        </Button>
       }
-      description={t(sortingMessage, { ns: ["drawer"] })}
     />
   );
 };
 
-export default ClusterDrawer;
+export default LlmResult;

@@ -12,6 +12,7 @@ const modal = {
   reportStart: "reportStart",
   llmInput: "llmInput",
   llmResult: "llmResult",
+  llmErrorMessage: "llmErrorMessage",
   facilityFilter: "facilityFilter",
 };
 
