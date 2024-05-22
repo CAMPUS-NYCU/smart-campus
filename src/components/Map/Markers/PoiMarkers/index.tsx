@@ -28,18 +28,28 @@ const PoiMarkers: React.FC = () => {
     }
   }, [pois, isPoisLoading]);
 
+  const recommandContributions = useSelector(
+    (state: IRootState) => state.llm.recommandContributions,
+  );
+
   const uiPois: UIPois | null = React.useMemo(() => {
     if (resolvedPois) {
       return Object.fromEntries(
         Object.entries(resolvedPois).map(([poiId, poiData]) => [
           poiId,
-          { ...poiData, isVisible: true } as UIPoiData,
+          {
+            ...poiData,
+            isVisible:
+              recommandContributions.length > 0
+                ? recommandContributions.includes(poiId)
+                : true,
+          } as UIPoiData,
         ]),
       );
     } else {
       return null;
     }
-  }, [resolvedPois]);
+  }, [resolvedPois, recommandContributions]);
 
   const poiId = getParamsFromDrawer("poi", searchParams).poiId;
   const { data: poi, isLoading: isPoiLoading } = useGetPoiQuery(poiId);
