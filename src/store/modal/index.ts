@@ -10,6 +10,8 @@ const modal = {
   switchTheme: "switchTheme",
   reportCompletion: "reportCompletion",
   reportStart: "reportStart",
+  llmInput: "llmInput",
+  llmResult: "llmResult",
   facilityFilter: "facilityFilter",
 };
 

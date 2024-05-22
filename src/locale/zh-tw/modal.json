@@ -61,5 +61,18 @@
   },
   "reportStart": {
     "text": "請開始執行任務"
+  },
+  "llmInput": {
+    "title": "請輸入你要尋找的回報資訊",
+    "buttons": {
+      "submit": "送出",
+      "close": "關閉"
+    },
+    "content": {
+      "placeHolder": "輸入回報資訊"
+    }
+  },
+  "llmErrorMessage": {
+    "title": "請提供更詳細的回報資訊"
   }
 }
