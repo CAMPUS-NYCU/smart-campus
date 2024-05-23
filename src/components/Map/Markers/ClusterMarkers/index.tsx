@@ -11,7 +11,6 @@ import {
 } from "../../../../utils/routes/params";
 import { maps } from "../../../../utils/googleMaps";
 import { useDispatch } from "react-redux";
-import { openModal } from "../../../../store/modal";
 import ReportStart from "../../../modal/ReportStart";
 import { getClusterCenter } from "../../../../constants/clusterCenter";
 
@@ -57,7 +56,6 @@ const ClusterMarkers: React.FC = () => {
       }
       maps.setZoom(18);
       markers.cluster.clear();
-      dispatch(openModal("reportStart"));
     }
 
     return () => {

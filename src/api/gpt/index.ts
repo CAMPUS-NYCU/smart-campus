@@ -147,7 +147,7 @@ async function def_place_and_object(text: string) {
     top_p: 0.01,
   });
   const ans = response.choices[0].message.content;
-  console.log(`LLM1 Used tokens: ${response.usage?.total_tokens}`);
+  // console.log(`LLM1 Used tokens: ${response.usage?.total_tokens}`);
 
   return ans;
 }
@@ -472,7 +472,7 @@ async function def_contribution_improve(
     top_p: 0.01,
   });
   const ans = response.choices[0].message.content;
-  console.log(`LLM3 Used tokens: ${response.usage?.total_tokens}`);
+  // console.log(`LLM3 Used tokens: ${response.usage?.total_tokens}`);
   if (ans === null) {
     throw new Error("No recommand found.");
   }

@@ -66,7 +66,6 @@ const LlmInput: React.FC = () => {
           let targetMarker = "";
           let itemAddress: number[] = [];
           if (resAll[0]) {
-            console.log(resAll[0]);
             if (!isJsonString(resAll[0])) {
               dispatch(openModal("llmErrorMessage"));
               dispatch(setErrorMessage(resAll[0]));
@@ -74,7 +73,6 @@ const LlmInput: React.FC = () => {
               throw new Error("LLM1 Error");
             } else {
               dispatch(closeModal("llmInput"));
-              console.log("open result modal");
               dispatch(openModal("llmResult"));
               setSearchParams({ clusterId: id ?? "", recommend: "true" });
             }

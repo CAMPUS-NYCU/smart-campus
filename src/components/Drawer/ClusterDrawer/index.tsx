@@ -240,6 +240,12 @@ const ClusterDrawer: React.FC = () => {
     if (!isCurrentDrawerParams("cluster", searchParams)) {
       dispatch(resetReport());
     }
+    if (
+      isCurrentDrawerParams("cluster", searchParams) &&
+      !isCurrentDrawerParams("recommend", searchParams)
+    ) {
+      dispatch(openModal("reportStart"));
+    }
   }, [dispatch, searchParams]);
 
   const orderedPoiList: Poi[] = useMemo(() => {

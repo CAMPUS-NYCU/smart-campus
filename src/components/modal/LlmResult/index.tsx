@@ -200,15 +200,12 @@ const LlmResult: React.FC = () => {
   const reportType = useSelector((state: IRootState) => state.report.type);
   const selected =
     !reportType && isCurrentDrawerParams("recommend", searchParams);
-  console.log("selected", selected);
 
   const recommandContributions = useSelector(
     (state: IRootState) => state.llm.recommandContributions,
   );
-  console.log("recommandContributions", recommandContributions);
 
   const refetchFlag = useSelector((state: IRootState) => state.llm.refetchFlag);
-  console.log("refetchFlag", refetchFlag);
 
   const [recommandPois, setRecommandPois] = useState<Poi[]>([]);
 
@@ -227,14 +224,12 @@ const LlmResult: React.FC = () => {
           });
       });
       const res = await Promise.all(tasks);
-      console.log("fetch Data", res);
       return res;
     },
     [getPoi],
   );
 
   useEffect(() => {
-    console.log("fetch recommand pois");
     fetchData(recommandContributions).then((res) => {
       setRecommandPois(res);
     });
