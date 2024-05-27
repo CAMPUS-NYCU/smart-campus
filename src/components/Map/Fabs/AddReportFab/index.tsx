@@ -26,6 +26,7 @@ const AddReportFab: React.FC = () => {
       className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
       isIconOnly
       size="lg"
+      style={{ backgroundColor: "transparent", padding: 0 }}
       onClick={() => {
         handleAddReportClick();
       }}

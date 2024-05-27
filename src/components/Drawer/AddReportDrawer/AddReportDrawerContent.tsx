@@ -379,7 +379,7 @@ const StatusDescriptionAdd: React.FC = () => {
         })}
       </p>
       <Textarea
-        minRows={1}
+        minRows={3}
         aria-label="set description"
         placeholder={t("addReport.content.inputs.description.placeholder", {
           ns: ["drawer"],
@@ -415,8 +415,11 @@ const AddReportDrawerContentPhotos: React.FC = () => {
   return (
     <>
       <div className="flex flex-col basis-10/12">
-        <div className="flex flex-row">
-          <label className="bg-textBtn rounded-lg min-w-fit h-fit px-2 py-1 items-center hover:bg-textBtnHover cursor-pointer">
+        <div className="flex flex-row items-center">
+          <label
+            className="bg-textBtn rounded-lg min-w-fit h-fit px-2 py-1 items-center hover:bg-textBtnHover cursor-pointer ml-[-12px]"
+            style={{ transform: "scale(0.65)" }}
+          >
             <input
               type="file"
               multiple

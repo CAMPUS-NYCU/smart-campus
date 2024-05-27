@@ -93,7 +93,7 @@ const StatusDescriptionEdit: React.FC = () => {
         })}
       </p>
       <Textarea
-        minRows={1}
+        minRows={3}
         aria-label="set description"
         placeholder={t("addReport.content.inputs.description.placeholder", {
           ns: ["drawer"],
