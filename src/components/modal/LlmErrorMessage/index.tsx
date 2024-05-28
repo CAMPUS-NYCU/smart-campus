@@ -10,10 +10,15 @@ import {
 } from "@nextui-org/react";
 
 import { IRootState } from "../../../store";
-import { toggleModal } from "../../../store/modal";
+import { openModal, toggleModal } from "../../../store/modal";
+import { useSearchParams } from "react-router-dom";
+import { getParamsFromDrawer } from "../../../utils/routes/params";
 
 const LlmErrorMessage: React.FC = () => {
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
 
   const modalOpen = useSelector(
     (state: IRootState) => state.modal.open["llmErrorMessage"],
@@ -27,6 +32,8 @@ const LlmErrorMessage: React.FC = () => {
 
   const handleToggleModal = () => {
     dispatch(toggleModal("llmErrorMessage"));
+    dispatch(openModal("llmInput"));
+    setSearchParams({ clusterId });
   };
 
   return (
