@@ -71,10 +71,6 @@ const LlmInput: React.FC = () => {
               dispatch(setErrorMessage(resAll[0]));
               console.error("resAll[0] is not a valid JSON string");
               throw new Error("LLM1 Error");
-            } else {
-              dispatch(closeModal("llmInput"));
-              dispatch(openModal("llmResult"));
-              setSearchParams({ clusterId: id ?? "", recommend: "true" });
             }
 
             const {
@@ -144,14 +140,11 @@ const LlmInput: React.FC = () => {
 
   const handleCommit = () => {
     gptFunction();
-
     setDescription("");
-    // setupDrawerSlug<"cluster">(
-    //   { clusterId: id ? id : "" },
-    //   searchParams,
-    //   setSearchParams,
-    //   navigate,
-    // );
+    // change to llmResult when waiting for response
+    dispatch(closeModal("llmInput"));
+    dispatch(openModal("llmResult"));
+    setSearchParams({ clusterId: id ?? "", recommend: "true" });
   };
 
   const handleCloseModal = () => {
