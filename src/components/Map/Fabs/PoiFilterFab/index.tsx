@@ -1,5 +1,12 @@
 import React from "react";
-import { Select, SelectItem } from "@nextui-org/react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
+import { Selection } from "@react-types/shared";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { getParamsFromDrawer } from "../../../../utils/routes/params";
@@ -24,100 +31,155 @@ const PoiFilterFabs: React.FC = () => {
     ? getPoiFilterOptions(cluster.data.name).status
     : [];
 
+  const [floor, setFloor] = React.useState<Set<string>>(new Set([]));
+  const [targetName, setTargetName] = React.useState<Set<string>>(new Set([]));
+  const [status, setStatus] = React.useState<Set<string>>(new Set([]));
+
+  const handleFloorChange = (selection: Selection) => {
+    let selectedItems = new Set<string>();
+    if (selection && typeof selection === "object") {
+      selectedItems = new Set(Array.from(selection as Set<string>));
+    } else if (typeof selection === "string") {
+      selectedItems = new Set([selection]);
+    }
+
+    setFloor(selectedItems);
+  };
+  const handleTargetNameChange = (selection: Selection) => {
+    let selectedItems = new Set<string>();
+    if (selection && typeof selection === "object") {
+      selectedItems = new Set(Array.from(selection as Set<string>));
+    } else if (typeof selection === "string") {
+      selectedItems = new Set([selection]);
+    }
+
+    setTargetName(selectedItems);
+  };
+  const handleStatausChange = (selection: Selection) => {
+    let selectedItems = new Set<string>();
+    if (selection && typeof selection === "object") {
+      selectedItems = new Set(Array.from(selection as Set<string>));
+    } else if (typeof selection === "string") {
+      selectedItems = new Set([selection]);
+    }
+
+    setStatus(selectedItems);
+  };
+
   return (
     <div className="absolute inset-0 w-3/4 h-9 top-8 left-4 overflow-x-auto scrollbar-hide">
-      <div className="flex gap-0.5 items-center justify-left">
+      <div className="flex gap-2 items-center justify-left">
         {cluster && (
           <>
-            <Select
-              aria-label="filter floor"
-              placeholder="樓層"
-              classNames={{
-                value: "text-xs",
-                innerWrapper: "pt-0",
-                trigger: "px-2 py-0 h-7 min-h-fit bg-primary",
-                base: "min-w-fit w-7/12 border-0",
-                listboxWrapper: "min-w-fit",
-              }}
-              size="sm"
-            >
-              {floorOptions.map((floor, index) => (
-                <SelectItem
-                  key={floor + index}
-                  value={floor}
-                  textValue="樓層"
-                  onClick={() => console.log("click", floor)}
-                  classNames={{
-                    base: "px-1 gap-0 min-w-fit",
-                  }}
+            <Dropdown>
+              <DropdownTrigger>
+                <Button
+                  variant="bordered"
+                  className={`shrink-0 \
+                    bg-zinc-50 dark:bg-zinc-800 \
+                      text-black dark:text-white \
+                      border border-zinc-400 dark:border-zinc-900 \
+                      shadow-sm shadow-zinc-300 dark:shadow-zinc-800 py-0 h-8 min-h-fit
+                      ${
+                        floor.size > 0
+                          ? "bg-primary dark:bg-textBtnHover dark:text-white"
+                          : ""
+                      }
+                      `}
                 >
-                  {floor}
-                </SelectItem>
-              ))}
-            </Select>
-            <Select
-              aria-label="filter floor"
-              placeholder="回報項目"
-              classNames={{
-                value: "text-xs",
-                innerWrapper: "pt-0",
-                trigger: "px-2 py-0 h-7 min-h-fit bg-primary",
-                base: "min-w-fit border-0",
-                listboxWrapper: "min-w-fit",
-                // listbox: "rounded-none",
-              }}
-              size="sm"
-            >
-              {targetNameOptions.map((targetName, index) => (
-                <SelectItem
-                  key={targetName + index}
-                  value={targetName}
-                  textValue="回報項目"
-                  onClick={() => console.log("click", targetName)}
-                  classNames={{
-                    base: "px-1 gap-0 min-w-fit",
-                  }}
+                  樓層
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label="Floor filter actions"
+                closeOnSelect={false}
+                selectionMode="multiple"
+                disallowEmptySelection={false}
+                selectedKeys={floor}
+                onSelectionChange={handleFloorChange}
+                classNames={{
+                  list: "max-h-60 overflow-y-auto",
+                }}
+              >
+                {floorOptions.map((fOption) => (
+                  <DropdownItem key={fOption}>{fOption}</DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button
+                  variant="bordered"
+                  className={`shrink-0 \
+                    bg-zinc-50 dark:bg-zinc-800 \
+                      text-black dark:text-white \
+                      border border-zinc-400 dark:border-zinc-900 \
+                      shadow-sm shadow-zinc-300 dark:shadow-zinc-800 py-0 h-8 min-h-fit
+                      ${
+                        targetName.size > 0
+                          ? "bg-primary dark:bg-textBtnHover dark:text-white"
+                          : ""
+                      }
+                      `}
                 >
-                  {targetName}
-                </SelectItem>
-              ))}
-            </Select>
-            <Select
-              aria-label="filter floor"
-              placeholder="回報狀態"
-              classNames={{
-                value: "text-xs",
-                innerWrapper: "pt-0",
-                trigger: "px-2 py-0 h-7 min-h-fit bg-primary",
-                base: "min-w-fit w-3/4 border-0",
-                listboxWrapper: "min-w-fit",
-              }}
-              size="sm"
-            >
-              {statusOptions.map((status, index) => (
-                <SelectItem
-                  key={status + index}
-                  textValue="回報狀態"
-                  value={status}
-                  onClick={() =>
-                    console.log(
-                      "click",
-                      status,
-                      t(poiStatusTypeMessageKeys[status], {
-                        ns: ["model"],
-                      }),
-                    )
-                  }
-                  classNames={{
-                    base: "px-1 gap-0 min-w-fit",
-                  }}
+                  回報項目
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label="TargetName filter actions"
+                closeOnSelect={false}
+                selectionMode="multiple"
+                disallowEmptySelection={false}
+                selectedKeys={targetName}
+                onSelectionChange={handleTargetNameChange}
+                classNames={{
+                  list: "max-h-60 overflow-y-auto",
+                }}
+              >
+                {targetNameOptions.map((tOption) => (
+                  <DropdownItem key={tOption}>{tOption}</DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button
+                  variant="bordered"
+                  className={`shrink-0 \
+                    bg-zinc-50 dark:bg-zinc-800 \
+                      text-black dark:text-white \
+                      border border-zinc-400 dark:border-zinc-900 \
+                      shadow-sm shadow-zinc-300 dark:shadow-zinc-800 py-0 h-8 min-h-fit
+                      ${
+                        status.size > 0
+                          ? "bg-primary dark:bg-textBtnHover dark:text-white"
+                          : ""
+                      }
+                      `}
                 >
-                  {t(poiStatusTypeMessageKeys[status], {
-                    ns: ["model"],
-                  })}
-                </SelectItem>
-              ))}
-            </Select>
+                  回報狀態
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label="Status filter actions"
+                closeOnSelect={false}
+                selectionMode="multiple"
+                disallowEmptySelection={false}
+                selectedKeys={status}
+                onSelectionChange={handleStatausChange}
+                classNames={{
+                  list: "max-h-60 overflow-y-auto",
+                }}
+              >
+                {statusOptions.map((sOption) => (
+                  <DropdownItem key={sOption}>
+                    {t(poiStatusTypeMessageKeys[sOption], {
+                      ns: ["model"],
+                    })}
+                  </DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
           </>
         )}
       </div>
