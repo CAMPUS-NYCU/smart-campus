@@ -28,7 +28,7 @@ import {
 import { getClusterIcon } from "../../../constants/clusterIcon";
 import noImage from "../../../assets/images/noImage.svg";
 import Drawer from "..";
-import Poi, { PoiData } from "../../../models/poi";
+import Poi, { PoiData, Pois } from "../../../models/poi";
 import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
@@ -45,6 +45,12 @@ import {
   sortingOptions,
   sortingMessages,
 } from "../../../constants/sortingOptions";
+import UIPoi, { UIPoiData, UIPois } from "../../../models/uiPoi";
+import {
+  resetFilterPoiFloors,
+  resetFilterPoiStatuses,
+  resetFilterPoiTargetNames,
+} from "../../../store/filter";
 
 interface PoiListItemProps {
   poi: {
@@ -223,10 +229,52 @@ const ClusterDrawer: React.FC = () => {
     skip: !selected,
   });
 
-  const { data: poiList } = useGetPoisQuery(id);
+  const filteredFloors = useSelector((state: IRootState) => {
+    return state.filter.filterPoiFloors;
+  });
+
+  const filteredTargetNames = useSelector((state: IRootState) => {
+    return state.filter.filterPoiTargetNames;
+  });
+
+  const filteredStatuses = useSelector((state: IRootState) => {
+    return state.filter.filterPoiStatuses;
+  });
+
+  const { data: poiList, isLoading: isPoiListLoading } = useGetPoisQuery(id);
+  const [queriedPoiList, setQueriedPoiList] = React.useState<Pois>();
+
+  React.useEffect(() => {
+    if (!isPoiListLoading && poiList) {
+      setQueriedPoiList(poiList);
+    }
+  }, [isPoiListLoading, poiList]);
+
+  const uiPoiList: UIPois | null = React.useMemo(() => {
+    if (queriedPoiList) {
+      return Object.fromEntries(
+        Object.entries(queriedPoiList).map(([poiId, poiData]) => {
+          const isVisible =
+            (filteredFloors.length === 0 ||
+              filteredFloors.includes(poiData.floor)) &&
+            (filteredTargetNames.length === 0 ||
+              filteredTargetNames.includes(poiData.target.name)) &&
+            (filteredStatuses.length === 0 ||
+              filteredStatuses.includes(poiData.status.type));
+
+          return [poiId, { ...poiData, isVisible } as UIPoiData];
+        }),
+      );
+    } else {
+      return null;
+    }
+  }, [filteredFloors, filteredStatuses, filteredTargetNames, queriedPoiList]);
 
   const handleDrawerDismiss = () => {
     resetDrawerParams(searchParams, setSearchParams);
+    dispatch(resetFilterPoiFloors());
+    dispatch(resetFilterPoiTargetNames());
+    dispatch(resetFilterPoiStatuses());
   };
 
   const [sortingMethod, setSortingMethod] = useState(sortingOptions[0].key);
@@ -240,11 +288,11 @@ const ClusterDrawer: React.FC = () => {
     }
   }, [dispatch, searchParams]);
 
-  const orderedPoiList: Poi[] = useMemo(() => {
-    let result: Poi[] = [];
+  const orderedPoiList: UIPoi[] = useMemo(() => {
+    let result: UIPoi[] = [];
 
-    if (poiList) {
-      result = Object.entries(poiList).map(([id, data]) => ({
+    if (uiPoiList) {
+      result = Object.entries(uiPoiList).map(([id, data]) => ({
         id,
         data,
       }));
@@ -279,7 +327,7 @@ const ClusterDrawer: React.FC = () => {
     }
 
     return result;
-  }, [poiList, sortingMethod]);
+  }, [uiPoiList, sortingMethod]);
 
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -302,14 +350,18 @@ const ClusterDrawer: React.FC = () => {
       })}
       children={
         <div>
-          {poiList ? (
+          {uiPoiList ? (
             orderedPoiList.map((poi) => {
-              return (
-                <PoiListItem
-                  key={poi.id}
-                  poi={{ id: poi.id, data: poi.data }}
-                />
-              );
+              if (poi.data.isVisible) {
+                return (
+                  <PoiListItem
+                    key={poi.id}
+                    poi={{ id: poi.id, data: poi.data }}
+                  />
+                );
+              } else {
+                return <div key={poi.id} className="hidden"></div>;
+              }
             })
           ) : (
             <></>
