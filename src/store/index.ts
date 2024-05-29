@@ -6,6 +6,7 @@ import llm from "./llm";
 import modal from "./modal";
 import poi from "./poi";
 import report from "./report";
+import filter from "./filter";
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     modal,
     poi,
     report,
+    filter,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),

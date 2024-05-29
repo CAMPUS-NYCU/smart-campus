@@ -7,12 +7,18 @@ import {
   Button,
 } from "@nextui-org/react";
 import { Selection } from "@react-types/shared";
+import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { getParamsFromDrawer } from "../../../../utils/routes/params";
 import { useGetClusterQuery } from "../../../../api/cluster";
 import { getPoiFilterOptions } from "../../../../constants/poiFilterOptions";
 import { poiStatusTypeMessageKeys } from "../../../../constants/model/poi";
+import {
+  setFilterPoiFloors,
+  setFilterPoiTargetNames,
+  setFilterPoiStatuses,
+} from "../../../../store/filter";
 
 const PoiFilterFabs: React.FC = () => {
   const { t } = useTranslation();
@@ -20,6 +26,8 @@ const PoiFilterFabs: React.FC = () => {
 
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: cluster } = useGetClusterQuery(clusterId);
+
+  const dispatch = useDispatch();
 
   const floorOptions = cluster
     ? getPoiFilterOptions(cluster.data.name).floor
@@ -44,6 +52,7 @@ const PoiFilterFabs: React.FC = () => {
     }
 
     setFloor(selectedItems);
+    dispatch(setFilterPoiFloors(Array.from(selectedItems)));
   };
   const handleTargetNameChange = (selection: Selection) => {
     let selectedItems = new Set<string>();
@@ -54,6 +63,7 @@ const PoiFilterFabs: React.FC = () => {
     }
 
     setTargetName(selectedItems);
+    dispatch(setFilterPoiTargetNames(Array.from(selectedItems)));
   };
   const handleStatausChange = (selection: Selection) => {
     let selectedItems = new Set<string>();
@@ -64,6 +74,7 @@ const PoiFilterFabs: React.FC = () => {
     }
 
     setStatus(selectedItems);
+    dispatch(setFilterPoiStatuses(Array.from(selectedItems)));
   };
 
   return (
