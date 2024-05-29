@@ -18,53 +18,79 @@ const PoiMarkers: React.FC = () => {
   const highlightId = useSelector((state: IRootState) => state.poi.highlightId);
   const prevHighlightId = React.useRef<string | null>("");
 
+  const filteredFloors = useSelector((state: IRootState) => {
+    return state.filter.filterPoiFloors;
+  });
+
+  const filteredTargetNames = useSelector((state: IRootState) => {
+    return state.filter.filterPoiTargetNames;
+  });
+
+  const filteredStatuses = useSelector((state: IRootState) => {
+    return state.filter.filterPoiStatuses;
+  });
+
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: pois, isLoading: isPoisLoading } = useGetPoisQuery(clusterId);
-  const [resolvedPois, setResolvedPois] = React.useState<Pois>();
+  const [queriedPois, setQueriedPois] = React.useState<Pois>();
 
   React.useEffect(() => {
     if (!isPoisLoading && pois) {
-      setResolvedPois(pois);
+      setQueriedPois(pois);
     }
   }, [pois, isPoisLoading]);
 
   const uiPois: UIPois | null = React.useMemo(() => {
-    if (resolvedPois) {
+    if (queriedPois) {
       return Object.fromEntries(
-        Object.entries(resolvedPois).map(([poiId, poiData]) => [
-          poiId,
-          { ...poiData, isVisible: true } as UIPoiData,
-        ]),
+        Object.entries(queriedPois).map(([poiId, poiData]) => {
+          const isVisible =
+            (filteredFloors.length === 0 ||
+              filteredFloors.includes(poiData.floor)) &&
+            (filteredTargetNames.length === 0 ||
+              filteredTargetNames.includes(poiData.target.name)) &&
+            (filteredStatuses.length === 0 ||
+              filteredStatuses.includes(poiData.status.type));
+
+          return [poiId, { ...poiData, isVisible } as UIPoiData];
+        }),
       );
     } else {
       return null;
     }
-  }, [resolvedPois]);
+  }, [filteredFloors, filteredStatuses, filteredTargetNames, queriedPois]);
 
   const poiId = getParamsFromDrawer("poi", searchParams).poiId;
   const { data: poi, isLoading: isPoiLoading } = useGetPoiQuery(poiId);
-  const [resolvedPoi, setResolvedPoi] = React.useState<Poi>();
+  const [queriedPoi, setQueriedPoi] = React.useState<Poi>();
 
   React.useEffect(() => {
     if (!isPoiLoading && poi) {
-      setResolvedPoi(poi);
+      setQueriedPoi(poi);
     }
   }, [poi, isPoiLoading]);
 
   const uiPoi: UIPoi | null = React.useMemo(() => {
-    if (resolvedPoi) {
+    if (queriedPoi) {
       const newData: UIPoiData = {
-        ...resolvedPoi.data,
-        isVisible: true,
+        ...queriedPoi.data,
+        isVisible:
+          (filteredFloors.length === 0 ||
+            filteredFloors.includes(queriedPoi.data.floor)) &&
+          (filteredTargetNames.length === 0 ||
+            filteredTargetNames.includes(queriedPoi.data.target.name)) &&
+          (filteredStatuses.length === 0 ||
+            filteredStatuses.includes(queriedPoi.data.status.type)),
       };
+
       return {
-        id: resolvedPoi.id,
+        id: queriedPoi.id,
         data: newData,
       } as UIPoi;
     } else {
       return null;
     }
-  }, [resolvedPoi]);
+  }, [filteredFloors, filteredStatuses, filteredTargetNames, queriedPoi]);
 
   const dispatch = useDispatch();
 

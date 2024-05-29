@@ -4,6 +4,7 @@ import UserFab from "./UserFab";
 import UserLocationFab from "./UserLocationFab";
 import FacilityFilterFabs from "./FacilityFilterFab";
 import AddReportFab from "./AddReportFab";
+import PoiFilterFabs from "./PoiFilterFab";
 
 const Fabs: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const Fabs: React.FC = () => {
       <UserLocationFab />
       <FacilityFilterFabs />
       <AddReportFab />
+      <PoiFilterFabs />
     </>
   );
 };

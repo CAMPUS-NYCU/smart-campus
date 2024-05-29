@@ -302,3 +302,23 @@ export const poiSpaceStatusTypeSelect = [
   poiStatusType.odor,
   poiStatusType.cleanliness,
 ];
+
+export const poiAllStatusTypeSelect = [
+  poiStatusType.maintenance,
+  poiStatusType.function,
+  poiStatusType.appearance,
+  poiStatusType.occupation,
+  poiStatusType.presence,
+  poiStatusType.availability,
+  poiStatusType.experience,
+  poiStatusType.reservation,
+  poiStatusType.space,
+  poiStatusType.crowd,
+  poiStatusType.noise,
+  poiStatusType.temperature,
+  poiStatusType.humidity,
+  poiStatusType.ventilation,
+  poiStatusType.lighting,
+  poiStatusType.odor,
+  poiStatusType.cleanliness,
+];
