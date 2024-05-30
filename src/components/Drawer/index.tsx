@@ -33,11 +33,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
 
   const controls = useDragControls();
 
-  const [isListOpen, setIsListOpen] = React.useState(open);
-
-  React.useEffect(() => {
-    setIsListOpen(open);
-  }, [open]);
+  const [isListOpen, setIsListOpen] = React.useState(false);
 
   const toggleDrawer = () => {
     if (isListOpen) {
@@ -57,9 +53,13 @@ const Drawer: React.FC<DrawerProps> = (props) => {
             </Button>
           </div>
           <motion.div
-            className="fixed bottom-0 left-0 w-screen \
+            className={
+              open
+                ? "fixed bottom-0 left-0 w-screen \
                  rounded-t-3xl px-4 py-1 z-10 \
                bg-white dark:bg-slate-800 h-[50vh]"
+                : "hidden"
+            }
             variants={draggableDrawerVariants}
             animate={isListOpen ? "open" : "closed"}
             initial="closed"
@@ -92,7 +92,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
                 <div className="flex flex-none">
                   <button
                     onClick={() => {
-                      onClose();
+                      // onClose();
                       setIsListOpen(false);
                     }}
                   >
