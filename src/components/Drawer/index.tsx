@@ -33,13 +33,13 @@ const Drawer: React.FC<DrawerProps> = (props) => {
 
   const controls = useDragControls();
 
-  const [isListOpen, setIsListOpen] = React.useState(false);
+  const [isListShown, setIsListShown] = React.useState(false);
 
   const toggleDrawer = () => {
-    if (isListOpen) {
-      setIsListOpen(false);
+    if (isListShown) {
+      setIsListShown(false);
     } else {
-      setIsListOpen(true);
+      setIsListShown(true);
     }
   };
 
@@ -61,7 +61,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
                 : "hidden"
             }
             variants={draggableDrawerVariants}
-            animate={isListOpen ? "open" : "closed"}
+            animate={isListShown ? "open" : "closed"}
             initial="closed"
             exit="closed"
             drag="y"
@@ -76,7 +76,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
             }}
             onDragEnd={(_event, info) => {
               if (info.offset.y > 100) {
-                setIsListOpen(false);
+                setIsListShown(false);
               }
             }}
           >
@@ -92,8 +92,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
                 <div className="flex flex-none">
                   <button
                     onClick={() => {
-                      // onClose();
-                      setIsListOpen(false);
+                      setIsListShown(false);
                     }}
                   >
                     <CloseIcon />
