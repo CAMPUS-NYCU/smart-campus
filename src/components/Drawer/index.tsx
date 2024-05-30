@@ -119,23 +119,20 @@ const Drawer: React.FC<DrawerProps> = (props) => {
           initial="closed"
           exit="closed"
         >
-          <div className="flex flex-col">
+          <div className="relative flex flex-col h-full">
             <div className="flex justify-between">
               <h1 className="font-bold">{title}</h1>
               <button onClick={onClose}>
                 <CloseIcon />
               </button>
             </div>
-            <div
-              className="max-h-[calc(50vh-64px)] 
-          overflow-y-auto" /** 64px is the height of the header and footer */
-            >
+            <div className="max-h-[calc(50vh-64px)] overflow-y-auto">
               {children}
             </div>
             <div
               className={
                 primaryButton
-                  ? "fixed bottom-0 left-0 right-0 flex w-full z-10 px-4 py-1 rounded items-center bg-white"
+                  ? "absolute bottom-0 left-0 right-0 flex w-full z-10 px-4 pb-1 pt-0.5 rounded items-center bg-white"
                   : "hidden"
               }
             >
