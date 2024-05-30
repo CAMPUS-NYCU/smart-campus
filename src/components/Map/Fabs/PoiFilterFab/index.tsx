@@ -77,6 +77,14 @@ const PoiFilterFabs: React.FC = () => {
     dispatch(setFilterPoiStatuses(Array.from(selectedItems)));
   };
 
+  React.useEffect(() => {
+    return () => {
+      setFloor(new Set([]));
+      setTargetName(new Set([]));
+      setStatus(new Set([]));
+    };
+  }, [cluster]);
+
   return (
     <div className="absolute inset-0 w-3/4 h-9 top-8 left-4 overflow-x-auto scrollbar-hide">
       <div className="flex gap-2 items-center justify-left">

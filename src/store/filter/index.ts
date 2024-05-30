@@ -25,14 +25,25 @@ const filterSlice = createSlice({
     setFilterPoiStatuses: (state, action: PayloadAction<string[]>) => {
       state.filterPoiStatuses = action.payload;
     },
+    resetFilterPoiFloors: (state) => {
+      state.filterPoiFloors = [];
+    },
+    resetFilterPoiTargetNames: (state) => {
+      state.filterPoiTargetNames = [];
+    },
+    resetFilterPoiStatuses: (state) => {
+      state.filterPoiStatuses = [];
+    },
   },
-  // clear state
 });
 
 export const {
   setFilterPoiFloors,
   setFilterPoiTargetNames,
   setFilterPoiStatuses,
+  resetFilterPoiFloors,
+  resetFilterPoiTargetNames,
+  resetFilterPoiStatuses,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

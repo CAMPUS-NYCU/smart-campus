@@ -45,6 +45,11 @@ import {
   sortingOptions,
   sortingMessages,
 } from "../../../constants/sortingOptions";
+import {
+  resetFilterPoiFloors,
+  resetFilterPoiStatuses,
+  resetFilterPoiTargetNames,
+} from "../../../store/filter";
 
 interface PoiListItemProps {
   poi: {
@@ -229,6 +234,9 @@ const ClusterDrawer: React.FC = () => {
 
   const handleDrawerDismiss = () => {
     resetDrawerParams(searchParams, setSearchParams);
+    dispatch(resetFilterPoiFloors());
+    dispatch(resetFilterPoiTargetNames());
+    dispatch(resetFilterPoiStatuses());
   };
 
   const [sortingMethod, setSortingMethod] = useState(sortingOptions[0].key);
