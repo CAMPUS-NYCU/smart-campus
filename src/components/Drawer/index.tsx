@@ -119,7 +119,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
           initial="closed"
           exit="closed"
         >
-          <div className="flex flex-col">
+          <div className="relative flex flex-col h-full">
             <div className="flex justify-between">
               <h1 className="font-bold">{title}</h1>
               <button onClick={onClose}>
@@ -135,7 +135,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
             <div
               className={
                 primaryButton
-                  ? "fixed bottom-0 left-0 right-0 flex w-full z-10 px-4 py-1 rounded items-center bg-white"
+                  ? "absolute bottom-0 left-0 right-0 flex w-full z-10 px-4 pb-1 pt-0.5 rounded items-center bg-white"
                   : "hidden"
               }
             >
