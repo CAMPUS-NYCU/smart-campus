@@ -98,7 +98,7 @@ const PoiFilterFabs: React.FC = () => {
   return (
     <div className="absolute inset-0 w-3/4 h-9 top-8 left-4 overflow-x-auto scrollbar-hide">
       <div className="flex gap-2 items-center justify-left">
-        {cluster && (
+        {cluster && !isRecommended && (
           <>
             <Dropdown>
               <DropdownTrigger>
