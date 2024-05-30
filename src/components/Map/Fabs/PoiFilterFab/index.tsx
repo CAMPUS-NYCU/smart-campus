@@ -7,10 +7,13 @@ import {
   Button,
 } from "@nextui-org/react";
 import { Selection } from "@react-types/shared";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { getParamsFromDrawer } from "../../../../utils/routes/params";
+import {
+  getParamsFromDrawer,
+  isCurrentDrawerParams,
+} from "../../../../utils/routes/params";
 import { useGetClusterQuery } from "../../../../api/cluster";
 import { getPoiFilterOptions } from "../../../../constants/poiFilterOptions";
 import { poiStatusTypeMessageKeys } from "../../../../constants/model/poi";
@@ -19,12 +22,18 @@ import {
   setFilterPoiTargetNames,
   setFilterPoiStatuses,
 } from "../../../../store/filter";
+import { IRootState } from "../../../../store";
 
 const PoiFilterFabs: React.FC = () => {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
 
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
+
+  const reportType = useSelector((state: IRootState) => state.report.type);
+  const isRecommended =
+    !reportType && isCurrentDrawerParams("recommend", searchParams);
+
   const { data: cluster } = useGetClusterQuery(clusterId);
 
   const dispatch = useDispatch();
@@ -82,8 +91,9 @@ const PoiFilterFabs: React.FC = () => {
       setFloor(new Set([]));
       setTargetName(new Set([]));
       setStatus(new Set([]));
+      console.log("clean up filter poi");
     };
-  }, [cluster]);
+  }, [cluster, isRecommended]);
 
   return (
     <div className="absolute inset-0 w-3/4 h-9 top-8 left-4 overflow-x-auto scrollbar-hide">

@@ -33,6 +33,11 @@ import {
   poiStatusTypeMessageKeys,
   poiStatusValueMessageKeys,
 } from "../../../constants/model/poi";
+import {
+  resetFilterPoiFloors,
+  resetFilterPoiTargetNames,
+  resetFilterPoiStatuses,
+} from "../../../store/filter";
 
 interface PoiListItemProps {
   poi: {
@@ -254,6 +259,14 @@ const LlmResult: React.FC = () => {
       dispatch(closeModal("llmResult"));
     }
   };
+
+  React.useEffect(() => {
+    if (selected) {
+      dispatch(resetFilterPoiFloors());
+      dispatch(resetFilterPoiTargetNames());
+      dispatch(resetFilterPoiStatuses());
+    }
+  }, [dispatch, selected]);
 
   return (
     <Drawer
