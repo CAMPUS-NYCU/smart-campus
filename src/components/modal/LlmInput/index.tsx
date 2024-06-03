@@ -32,12 +32,9 @@ import { useLazyGetPoisQuery } from "../../../api/poi";
 import { convertToContributionData } from "../../../constants/gpt";
 import { setErrorMessage, setRecommandContributions } from "../../../store/llm";
 import { getResourceGroupId } from "../../../utils/resources";
-import env from "../../../constants/env";
 
 const LlmInput: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log("OPENAI_API_KEY is set: ", !!env.OPENAI_API_KEY);
-  console.log("OPENAI_API_KEY is: ", env.OPENAI_API_KEY?.substring(0, 10));
 
   const modalOpen = useSelector(
     (state: IRootState) => state.modal.open["llmInput"],
