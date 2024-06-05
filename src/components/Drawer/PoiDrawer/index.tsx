@@ -29,6 +29,7 @@ import Drawer from "..";
 import { openModal } from "../../../store/modal";
 import { editReport } from "../../../store/report";
 import { useGetUserQuery } from "../../../api/user";
+import { resetHightlightId } from "../../../store/poi";
 
 const PoiDrawerStatus: React.FC<{
   statusType?: PoiStatusType | "";
@@ -94,6 +95,7 @@ const PoiDrawer: React.FC = () => {
         searchParams,
         setSearchParams,
       );
+      dispatch(resetHightlightId());
     }
   };
 
