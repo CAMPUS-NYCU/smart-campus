@@ -1,16 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Image, Input, Select, SelectItem } from "@nextui-org/react";
+import { Image, Select, SelectItem, Textarea } from "@nextui-org/react";
 
 import {
   poiObjectStatusTypeSelect,
   poiSpaceStatusTypeSelect,
   poiStatusTypeMessageKeys,
-  poiStatusValueMessageKeys,
-  poiStatusValueSelect,
 } from "../../../constants/model/poi";
-import { PoiStatusType, PoiStatusValue } from "../../../models/poi";
+import { PoiStatusType } from "../../../models/poi";
 import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
 import poiAddDrawerFloor from "../../../assets/images/poiAddDrawerFloor.svg";
@@ -291,69 +289,6 @@ const StatusTypeSelect: React.FC = () => {
   );
 };
 
-const StatusValueSelect: React.FC = () => {
-  const { t } = useTranslation();
-
-  const dispatch = useDispatch();
-  const reportData = useSelector((state: IRootState) => state.report.data);
-  const statusValue = reportData.status.value;
-  const statusValueOption = poiStatusValueSelect[reportData.status.type]; // decided by statusType, and can only be selectable when statusType is set
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value) {
-      dispatch(
-        updateAddReportData({
-          status: {
-            ...reportData.status,
-            value: e.target.value as PoiStatusValue,
-          },
-        }),
-      );
-    }
-  };
-
-  return (
-    <>
-      <p className="basis-2/12 text-xs font-bold">
-        {t("addReport.content.select.setStatusValue.label", {
-          ns: ["drawer"],
-        })}
-      </p>
-      <Select
-        aria-label="set status value"
-        selectedKeys={new Set([statusValue])}
-        onChange={handleSelectChange}
-        isDisabled={
-          reportData.floor &&
-          reportData.target.name &&
-          reportData.target.category &&
-          reportData.status.type !== ""
-            ? false
-            : true
-        }
-        classNames={{
-          value: "text-xs",
-          innerWrapper: "pt-0",
-          trigger: "py-0 h-7 min-h-fit bg-primary",
-          base: "min-w-fit w-[50%]",
-        }}
-      >
-        {statusValueOption?.map((s) => (
-          <SelectItem key={s} value={s}>
-            {s === ""
-              ? t("addReport.content.select.placeHolder", {
-                  ns: ["drawer"],
-                })
-              : t(poiStatusValueMessageKeys[s] || "", {
-                  ns: ["model"],
-                })}
-          </SelectItem>
-        ))}
-      </Select>
-    </>
-  );
-};
-
 const StatusDescriptionAdd: React.FC = () => {
   const { t } = useTranslation();
 
@@ -373,21 +308,24 @@ const StatusDescriptionAdd: React.FC = () => {
 
   return (
     <>
-      <p className="basis-2/12 text-xs font-bold">
-        {t("addReport.content.text.setDescription", {
-          ns: ["drawer"],
-        })}
-      </p>
-      <Input
-        aria-label="set description"
-        placeholder={t("addReport.content.inputs.description.placeholder", {
-          ns: ["drawer"],
-        })}
-        variant="underlined"
-        value={reportData.target.description || ""}
-        onChange={handleInputChange}
-        classNames={{ base: "basis-6/12" }}
-      />
+      <div className="flex flex-col">
+        <p className="basis-2/12 text-xs font-bold text-left pl-1.5">
+          {t("addReport.content.text.setDescription", {
+            ns: ["drawer"],
+          })}
+        </p>
+        <Textarea
+          minRows={3}
+          aria-label="set description"
+          placeholder={t("addReport.content.inputs.description.placeholder", {
+            ns: ["drawer"],
+          })}
+          variant="flat"
+          value={reportData.target.description || ""}
+          onChange={handleInputChange}
+          className="basis-10/12 pl-1 w-60"
+        />
+      </div>
     </>
   );
 };
@@ -422,8 +360,8 @@ const AddReportDrawerContentPhotos: React.FC = () => {
               onChange={handleUpload}
               className="hidden"
             />
-            <div className="flex flex-row">
-              <Image src={poiAddDrawerUploadImages} />
+            <div className="flex flex-row items-center">
+              <Image src={poiAddDrawerUploadImages} className="w-3 h-3" />
               <p className="text-xs font-bold pt-0.5 ml-0.5">上傳圖片</p>
             </div>
           </label>
@@ -453,7 +391,7 @@ const AddReportDrawerContent: React.FC = () => {
           </div>
           <div className="flex flex-row basis-11/12 pl-1.5 mb-2">
             <p className="text-md font-bold text-newLocation">
-              {t("addReport.content.text.flagInsruction", {
+              {t("addReport.content.text.flagInstruction", {
                 ns: ["drawer"],
               })}
             </p>
@@ -499,19 +437,8 @@ const AddReportDrawerContent: React.FC = () => {
           </div>
           <StatusTypeSelect />
         </div>
-        {/* report status value */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
-          <div className="basis-0.5/12">
-            <Image
-              radius="none"
-              src={poiAddDrawerStatusValue}
-              alt="status value"
-            />
-          </div>
-          <StatusValueSelect />
-        </div>
         {/* report description */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
+        <div className="flex flex-row space-x-1 mt-1">
           <div className="basis-0.5/12">
             <Image
               radius="none"

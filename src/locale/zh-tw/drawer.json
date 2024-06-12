@@ -24,8 +24,8 @@
       },
       "text": {
         "setLocation": "回報地點",
-        "setDescription": "回報敘述",
-        "flagInstruction": "拖曳地圖將上方紅色標籤移到欲回報位置"
+        "setDescription": "狀態敘述",
+        "flagInstruction": "拖曳地圖將上方黃色標籤移到欲回報位置"
       },
       "select": {
         "placeHolder": "請選擇",
