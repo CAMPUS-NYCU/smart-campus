@@ -114,7 +114,7 @@
     "title": "{{name}}"
   },
   "llmResult": {
-    "title": "以下是 gpt 所推荐的相似回报",
+    "title": "以下是机器人小助手所推荐的相似回报",
     "buttons": {
       "add": "新增回报",
       "edit": "更新"

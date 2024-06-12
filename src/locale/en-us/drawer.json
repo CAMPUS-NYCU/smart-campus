@@ -114,7 +114,7 @@
     "title": "{{name}}"
   },
   "llmResult": {
-    "title": "Recommended similar reports by gpt",
+    "title": "Here are the similar reports recommended by the robot assistant",
     "buttons": {
       "add": "Add Report",
       "edit": "Edit"
