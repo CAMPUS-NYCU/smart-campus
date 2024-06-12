@@ -99,7 +99,7 @@
     "title": "{{name}}"
   },
   "llmResult": {
-    "title": "以下是 gpt 所推薦的相似回報",
+    "title": "以下是機器人小幫手所推薦的相似回報",
     "buttons": {
       "add": "新增回報",
       "edit": "更新"
