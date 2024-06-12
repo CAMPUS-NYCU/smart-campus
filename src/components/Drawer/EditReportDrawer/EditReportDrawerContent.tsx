@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Image, Select, SelectItem, Chip, Textarea } from "@nextui-org/react";
+import { Image, Chip, Textarea } from "@nextui-org/react";
 
-import {
-  poiStatusValueSelect,
-  poiStatusTypeMessageKeys,
-  poiStatusValueMessageKeys,
-} from "../../../constants/model/poi";
-import { PoiStatusValue } from "../../../models/poi";
+import { poiStatusTypeMessageKeys } from "../../../constants/model/poi";
 import { IRootState } from "../../../store";
 import { updateAddReportData } from "../../../store/report";
 import noImage from "../../../assets/images/noImage.svg";
@@ -18,55 +13,6 @@ import poiEditDrawerStatusValue from "../../../assets/images/poiEditDrawerStatus
 import { statusColor } from "../../../constants/statusStyle";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firebaseApp } from "../../../utils/firebase";
-
-const StatusValueSelect: React.FC = () => {
-  const { t } = useTranslation();
-
-  const dispatch = useDispatch();
-  const reportData = useSelector((state: IRootState) => state.report.data);
-  const statusValue = reportData.status.value;
-  const statusValueOption = poiStatusValueSelect[reportData.status.type];
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value) {
-      dispatch(
-        updateAddReportData({
-          status: {
-            ...reportData.status,
-            value: e.target.value as PoiStatusValue,
-          },
-        }),
-      );
-    }
-  };
-
-  return (
-    <Select
-      selectedKeys={new Set([statusValue])}
-      onChange={handleSelectChange}
-      radius="sm"
-      aria-label="select status value"
-      classNames={{
-        value: "text-xs",
-        innerWrapper: "pt-0",
-        trigger: "py-0 h-7 min-h-fit bg-primary",
-        base: "min-w-fit w-[50%]",
-      }}
-    >
-      {statusValueOption.map((s) => (
-        <SelectItem key={s} value={s}>
-          {s === ""
-            ? t("editReport.content.select.placeHolder", {
-                ns: ["drawer"],
-              })
-            : t(poiStatusValueMessageKeys[s] || "", {
-                ns: ["model"],
-              })}
-        </SelectItem>
-      ))}
-    </Select>
-  );
-};
 
 const StatusDescriptionEdit: React.FC = () => {
   const { t } = useTranslation();
@@ -87,22 +33,24 @@ const StatusDescriptionEdit: React.FC = () => {
 
   return (
     <>
-      <p className="text-xs font-bold">
-        {t("addReport.content.text.setDescription", {
-          ns: ["drawer"],
-        })}
-      </p>
-      <Textarea
-        minRows={3}
-        aria-label="set description"
-        placeholder={t("addReport.content.inputs.description.placeholder", {
-          ns: ["drawer"],
-        })}
-        variant="underlined"
-        value={reportData.target.description || ""}
-        onChange={handleInputChange}
-        classNames={{ base: "basis-6/12" }}
-      />
+      <div className="flex flex-col">
+        <p className="text-xs font-bold text-left">
+          {t("addReport.content.text.setDescription", {
+            ns: ["drawer"],
+          })}
+        </p>
+        <Textarea
+          minRows={3}
+          aria-label="set description"
+          placeholder={t("addReport.content.inputs.description.placeholder", {
+            ns: ["drawer"],
+          })}
+          variant="flat"
+          value={reportData.target.description || ""}
+          onChange={handleInputChange}
+          className="basis-10/12 w-60"
+        />
+      </div>
     </>
   );
 };
@@ -205,24 +153,8 @@ const EditReportDrawerContent: React.FC = () => {
             })}
           </Chip>
         </div>
-        {/* report status value */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
-          <div className="basis-0.5/12">
-            <Image
-              radius="none"
-              src={poiEditDrawerStatusValue}
-              alt="status value"
-            />
-          </div>
-          <p className="text-xs font-bold">
-            {t("editReport.content.select.setStatusValue.label", {
-              ns: ["drawer"],
-            })}
-          </p>
-          <StatusValueSelect />
-        </div>
         {/* report description */}
-        <div className="flex flex-row space-x-1 mt-1 items-center">
+        <div className="flex flex-row space-x-1 mt-1">
           <div className="basis-0.5/12">
             <Image
               radius="none"
