@@ -3,6 +3,7 @@ import env from "../../constants/env";
 import referenceData from "../../assets/data/gpt/reference.json";
 import markersPosition from "../../assets/data/gpt/markers-position.json";
 import multiFloorMarkersPosition from "../../assets/data/gpt/multi-floor-markers-position.json";
+import warmUpMarkersPosition from "../../assets/data/gpt/warmup-markers-position.json";
 import { PoisForGpt } from "../../models/poi";
 import { changeStatusToEnglish } from "../../constants/gpt";
 
@@ -196,6 +197,7 @@ function find_closest_facility(
   floor: string,
   location: string,
   item: string,
+  clusterId: string,
 ) {
   const locationPosition = (
     referenceData as {
@@ -206,8 +208,13 @@ function find_closest_facility(
 
   const floorNumber = transFloorFromChineseToNumber(floor);
 
-  const candidateMarkersPosition =
+  const warmUpRegex = /TEST/;
+
+  const markersPositionToUse =
     id === "m" ? multiFloorMarkersPosition : markersPosition;
+  const candidateMarkersPosition = warmUpRegex.test(clusterId)
+    ? warmUpMarkersPosition
+    : markersPositionToUse;
 
   const itemPositions = Object.entries(candidateMarkersPosition).find(([key]) =>
     key.startsWith(item),
