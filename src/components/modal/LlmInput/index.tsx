@@ -110,6 +110,7 @@ const LlmInput: React.FC = () => {
                 floor,
                 location_input[0],
                 item_input,
+                id ?? "",
               );
 
               targetMarker = tmpTargetMarker;
