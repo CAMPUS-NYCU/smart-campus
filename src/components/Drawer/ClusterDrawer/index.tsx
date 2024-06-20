@@ -22,7 +22,6 @@ import { editReport, resetReport } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
-  resetDrawerParams,
 } from "../../../utils/routes/params";
 
 import { getClusterIcon } from "../../../constants/clusterIcon";
@@ -46,11 +45,6 @@ import {
   sortingMessages,
 } from "../../../constants/sortingOptions";
 import UIPoi, { UIPoiData, UIPois } from "../../../models/uiPoi";
-import {
-  resetFilterPoiFloors,
-  resetFilterPoiStatuses,
-  resetFilterPoiTargetNames,
-} from "../../../store/filter";
 
 interface PoiListItemProps {
   poi: {
@@ -213,7 +207,7 @@ const PoiListItem: React.FC<PoiListItemProps> = (props) => {
 const ClusterDrawer: React.FC = () => {
   const { t } = useTranslation();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const reportType = useSelector((state: IRootState) => state.report.type);
 
@@ -271,13 +265,6 @@ const ClusterDrawer: React.FC = () => {
       return null;
     }
   }, [filteredFloors, filteredStatuses, filteredTargetNames, queriedPoiList]);
-
-  const handleDrawerDismiss = () => {
-    resetDrawerParams(searchParams, setSearchParams);
-    dispatch(resetFilterPoiFloors());
-    dispatch(resetFilterPoiTargetNames());
-    dispatch(resetFilterPoiStatuses());
-  };
 
   const [sortingMethod, setSortingMethod] = useState(sortingOptions[0].key);
   const [sortingMessage, setSortingMessage] = useState(
@@ -345,7 +332,6 @@ const ClusterDrawer: React.FC = () => {
     <Drawer
       isDraggable={true}
       open={selected}
-      onClose={handleDrawerDismiss}
       title={t("clusterDrawer.title", {
         name: cluster?.data.name,
         ns: ["drawer"],
