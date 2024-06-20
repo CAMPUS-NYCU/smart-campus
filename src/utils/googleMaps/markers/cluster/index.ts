@@ -4,7 +4,7 @@ import { maps } from "../..";
 import { getIcon } from "./icons";
 
 function getClusterSerial(clusterName: string): string {
-  if (clusterName !== "小木屋&校計中1" && clusterName !== "小木屋&校計中2") {
+  if (clusterName.includes("小木屋＆校計中")) {
     const match = clusterName.split("-");
 
     if (match.length === 2) {
