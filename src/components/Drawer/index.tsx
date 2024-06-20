@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 interface DrawerProps {
   children: React.ReactNode;
   open: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   title: React.ReactNode;
   primaryButton?: React.ReactNode;
   secondaryButton?: React.ReactNode;
