@@ -274,6 +274,8 @@ const ClusterDrawer: React.FC = () => {
   React.useEffect(() => {
     if (!isCurrentDrawerParams("cluster", searchParams)) {
       dispatch(resetReport());
+      setSortingMethod(sortingOptions[0].key);
+      setSortingMessage(sortingMessages[0].message);
     }
   }, [dispatch, searchParams]);
 
