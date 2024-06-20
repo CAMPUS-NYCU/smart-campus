@@ -6,6 +6,8 @@ import { CloseIcon } from "../../utils/icons/drawer";
 import { drawerVariants, draggableDrawerVariants } from "./animation";
 import { Button } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
+import { isCurrentDrawerParams } from "../../utils/routes/params";
+import { useSearchParams } from "react-router-dom";
 
 interface DrawerProps {
   children: React.ReactNode;
@@ -42,6 +44,16 @@ const Drawer: React.FC<DrawerProps> = (props) => {
       setIsListShown(true);
     }
   };
+
+  const [searchParams] = useSearchParams();
+
+  React.useEffect(() => {
+    if (!isCurrentDrawerParams("cluster", searchParams)) {
+      if (isListShown) {
+        setIsListShown(false);
+      }
+    }
+  }, [isListShown, searchParams]);
 
   return (
     <>
