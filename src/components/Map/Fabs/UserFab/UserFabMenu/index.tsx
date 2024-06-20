@@ -16,6 +16,11 @@ import {
 import { openModal } from "../../../../../store/modal";
 import { useSearchParams } from "react-router-dom";
 import { resetDrawerParams } from "../../../../../utils/routes/params";
+import {
+  resetFilterPoiFloors,
+  resetFilterPoiStatuses,
+  resetFilterPoiTargetNames,
+} from "../../../../../store/filter";
 
 const MenuItemUser: React.FC = () => {
   const { data: user } = useGetUserQuery();
@@ -65,6 +70,9 @@ const UserFabMenu: React.FC = () => {
 
   const handleBackToHome = () => {
     resetDrawerParams(searchParams, setSearchParams);
+    dispatch(resetFilterPoiFloors());
+    dispatch(resetFilterPoiTargetNames());
+    dispatch(resetFilterPoiStatuses());
   };
 
   return (

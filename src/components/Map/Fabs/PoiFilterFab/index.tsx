@@ -91,7 +91,6 @@ const PoiFilterFabs: React.FC = () => {
       setFloor(new Set([]));
       setTargetName(new Set([]));
       setStatus(new Set([]));
-      console.log("clean up filter poi");
     };
   }, [cluster, isRecommended]);
 
