@@ -3,7 +3,7 @@ import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 const apiSlice = createApi({
   reducerPath: "firebase-api",
   baseQuery: fakeBaseQuery(),
-  tagTypes: ["Poi", "Resource", "ResourceGroup", "User"],
+  tagTypes: ["Poi", "User"],
   endpoints: () => ({}),
 });
 
