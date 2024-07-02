@@ -47,10 +47,6 @@ const UserFabMenu: React.FC = () => {
     dispatch(openModal("switchLanguage"));
   };
 
-  const handleOpenSwitchResourceModal = () => {
-    dispatch(openModal("switchResource"));
-  };
-
   const handleOpenSwitchThemeModal = () => {
     dispatch(openModal("switchTheme"));
   };
@@ -106,13 +102,6 @@ const UserFabMenu: React.FC = () => {
           onPress={handleOpenSwitchLanguageModal}
         >
           {t("fabs.user.menu.options.language", { ns: ["map"] })}
-        </DropdownItem>
-        <DropdownItem
-          key="resource"
-          textValue="Resource"
-          onPress={handleOpenSwitchResourceModal}
-        >
-          {t("fabs.user.menu.options.resource", { ns: ["map"] })}
         </DropdownItem>
         <DropdownItem
           key="theme"

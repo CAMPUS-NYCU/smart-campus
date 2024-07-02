@@ -29,8 +29,6 @@ export const firebaseEmulatorConfig = {
 export const firestoreConfig = {
   collection: {
     poi: "Poi",
-    resource: "Resource",
-    resourceGroup: "ResourceGroup",
     user: "User",
   },
 };
