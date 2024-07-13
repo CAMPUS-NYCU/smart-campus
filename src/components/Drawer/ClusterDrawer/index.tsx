@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
@@ -268,6 +268,7 @@ const ClusterDrawer: React.FC = () => {
   const [sortingMessage, setSortingMessage] = useState(
     sortingMessages[0].message,
   );
+  const [orderedPoiList, setOrderedPoiList] = useState<UIPoi[]>([]);
 
   React.useEffect(() => {
     if (!isCurrentDrawerParams("cluster", searchParams)) {
@@ -277,46 +278,47 @@ const ClusterDrawer: React.FC = () => {
     }
   }, [dispatch, searchParams]);
 
-  const orderedPoiList: UIPoi[] = useMemo(() => {
-    let result: UIPoi[] = [];
+  const sortPoiList = (list: UIPoi[], method: string): UIPoi[] => {
+    const result = [...list];
 
-    if (uiPoiList) {
-      result = Object.entries(uiPoiList).map(([id, data]) => ({
-        id,
-        data,
-      }));
+    if (method === "time") {
+      result.sort(compareByUpdatedTime);
+    } else if (method === "distance") {
+      const mapCenter = maps.getCenter();
+      const calCenter = {
+        latlng: {
+          latitude: mapCenter?.lat() || 0,
+          longitude: mapCenter?.lng() || 0,
+        },
+      };
 
-      if (sortingMethod === "time") {
-        result.sort(compareByUpdatedTime);
-      } else if (sortingMethod === "distance") {
-        const mapCenter = maps.getCenter();
-        const calCenter = {
-          latlng: {
-            latitude: mapCenter?.lat() || 0,
-            longitude: mapCenter?.lng() || 0,
-          },
-        };
-
-        result.sort((poi1: Poi, poi2: Poi) => {
-          const distance1 = calculateDistance(
-            calCenter.latlng,
-            poi1.data.latlng,
-          );
-          const distance2 = calculateDistance(
-            calCenter.latlng,
-            poi2.data.latlng,
-          );
-          return distance1 - distance2;
-        });
-      } else if (sortingMethod === "name") {
-        result.sort(compareByTargetSerial);
-      } else {
-        console.error("sorting method not found");
-      }
+      result.sort((poi1: Poi, poi2: Poi) => {
+        const distance1 = calculateDistance(calCenter.latlng, poi1.data.latlng);
+        const distance2 = calculateDistance(calCenter.latlng, poi2.data.latlng);
+        return distance1 - distance2;
+      });
+    } else if (method === "name") {
+      result.sort(compareByTargetSerial);
+    } else {
+      console.error("sorting method not found");
     }
 
     return result;
+  };
+
+  const updateOrderedPoiList = useCallback(() => {
+    if (uiPoiList) {
+      const poiArray = Object.entries(uiPoiList).map(([id, data]) => ({
+        id,
+        data,
+      }));
+      setOrderedPoiList(sortPoiList(poiArray, sortingMethod));
+    }
   }, [uiPoiList, sortingMethod]);
+
+  React.useEffect(() => {
+    updateOrderedPoiList();
+  }, [uiPoiList, sortingMethod, updateOrderedPoiList]);
 
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
@@ -326,6 +328,7 @@ const ClusterDrawer: React.FC = () => {
           sortingMessages[0].message,
       );
     }
+    updateOrderedPoiList();
   };
 
   return (
