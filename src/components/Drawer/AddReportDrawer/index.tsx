@@ -12,6 +12,7 @@ import { resetReport, updateAddReportData } from "../../../store/report";
 import {
   getParamsFromDrawer,
   isCurrentDrawerParams,
+  setupDrawerParams,
 } from "../../../utils/routes/params";
 
 import Drawer from "..";
@@ -21,6 +22,7 @@ import CreatingFlag from "./CreatingFlag";
 import { getDrawerTitle } from "../../../constants/drawerTitle";
 import { PoiData } from "../../../models/poi";
 import { maps } from "../../../utils/googleMaps";
+import { setRecommandContributions } from "../../../store/llm";
 
 const reportDataValidator = (reportData: PoiData) => {
   const { target, status } = reportData;
@@ -38,7 +40,7 @@ const reportDataValidator = (reportData: PoiData) => {
 const AddReportDrawer: React.FC = () => {
   const { t } = useTranslation();
 
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const reportType = useSelector((state: IRootState) => state.report.type);
   const reportData = useSelector((state: IRootState) => state.report.data);
@@ -55,12 +57,24 @@ const AddReportDrawer: React.FC = () => {
     skip: !selected,
   });
 
+  const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
+
   const handleSubmit = () => {
     addPoi({ data: reportData })
       .unwrap()
       .then(() => {
         dispatch(resetReport());
         dispatch(closeModal("confirmAddReport"));
+        // when add report from recommend list, go back to cluster
+        if (isCurrentDrawerParams("recommend", searchParams)) {
+          dispatch(setRecommandContributions([]));
+          setupDrawerParams<"cluster">(
+            { clusterId },
+            searchParams,
+            setSearchParams,
+          );
+          dispatch(closeModal("llmResult"));
+        }
       });
   };
 
