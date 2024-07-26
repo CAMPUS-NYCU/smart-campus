@@ -129,6 +129,18 @@ const LlmInput: React.FC = () => {
           }
         })
         .then((res) => {
+          // Handle error case of no recommandation
+          if (!isJsonString(res)) {
+            dispatch(openModal("llmErrorMessage"));
+            dispatch(
+              setErrorMessage(
+                "小幫手好像沒有找到可以推薦的回報。若想再次嘗試，請試著提供更多資訊細節。",
+              ),
+            );
+            console.error("LLM3 res is not a valid JSON string");
+            throw new Error("LLM3 Error");
+          }
+
           const recommandContributionArray: string[] = Object.values(
             JSON.parse(formatJsonData(res)),
           );
