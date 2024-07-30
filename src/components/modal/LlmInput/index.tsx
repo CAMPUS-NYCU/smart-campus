@@ -144,6 +144,7 @@ const LlmInput: React.FC = () => {
           const recommandContributionArray: string[] = Object.values(
             JSON.parse(formatJsonData(res)),
           );
+          setDescription("");
           dispatch(setRecommandContributions(recommandContributionArray));
         });
     } else {
@@ -153,7 +154,6 @@ const LlmInput: React.FC = () => {
 
   const handleCommit = () => {
     gptFunction();
-    setDescription("");
     // change to llmResult when waiting for response
     dispatch(closeModal("llmInput"));
     dispatch(openModal("llmResult"));
