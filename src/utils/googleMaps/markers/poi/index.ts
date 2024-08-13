@@ -54,8 +54,8 @@ export const toggleHighlightIcon = (
   }
 };
 
-export const toggleVisibilityIcon = (recommandArray: string[]) => {
-  recommandArray.forEach((poiId) => {
+export const toggleVisibilityIcon = (recommendArray: string[]) => {
+  recommendArray.forEach((poiId) => {
     if (!markerRef.current[poiId]) {
       return;
     }

@@ -32,8 +32,8 @@ const PoiMarkers: React.FC = () => {
     }
   }, [pois, isPoisLoading]);
 
-  const recommandContributions = useSelector(
-    (state: IRootState) => state.llm.recommandContributions,
+  const recommendContributions = useSelector(
+    (state: IRootState) => state.llm.recommendContributions,
   );
 
   const uiPois: UIPois | null = React.useMemo(() => {
@@ -44,8 +44,8 @@ const PoiMarkers: React.FC = () => {
           {
             ...poiData,
             isVisible:
-              recommandContributions.length > 0
-                ? recommandContributions.includes(poiId)
+              recommendContributions.length > 0
+                ? recommendContributions.includes(poiId)
                 : true,
           } as UIPoiData,
         ]),
@@ -53,7 +53,7 @@ const PoiMarkers: React.FC = () => {
     } else {
       return null;
     }
-  }, [resolvedPois, recommandContributions]);
+  }, [resolvedPois, recommendContributions]);
 
   const dispatch = useDispatch();
   const recommendState = isCurrentDrawerParams("recommend", searchParams);
