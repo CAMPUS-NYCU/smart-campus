@@ -1,23 +1,23 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface RecommandState {
-  recommandContributions: string[];
+interface RecommendState {
+  recommendContributions: string[];
   refetchFlag: boolean;
   errorMessage: string;
 }
 
-const initialState: RecommandState = {
-  recommandContributions: [],
+const initialState: RecommendState = {
+  recommendContributions: [],
   refetchFlag: false,
   errorMessage: "",
 };
 
-const recommandSlice = createSlice({
+const recommendSlice = createSlice({
   name: "facility",
   initialState,
   reducers: {
-    setRecommandContributions: (state, action: PayloadAction<string[]>) => {
-      state.recommandContributions = action.payload;
+    setRecommendContributions: (state, action: PayloadAction<string[]>) => {
+      state.recommendContributions = action.payload;
     },
     toggleRefetchFlag: (state) => {
       state.refetchFlag = !state.refetchFlag;
@@ -28,7 +28,7 @@ const recommandSlice = createSlice({
   },
 });
 
-export const { setRecommandContributions, toggleRefetchFlag, setErrorMessage } =
-  recommandSlice.actions;
+export const { setRecommendContributions, toggleRefetchFlag, setErrorMessage } =
+  recommendSlice.actions;
 
-export default recommandSlice.reducer;
+export default recommendSlice.reducer;

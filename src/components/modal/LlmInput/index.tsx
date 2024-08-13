@@ -30,7 +30,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { useLazyGetPoisQuery } from "../../../api/poi";
 import { convertToContributionData } from "../../../constants/gpt";
-import { setErrorMessage, setRecommandContributions } from "../../../store/llm";
+import { setErrorMessage, setRecommendContributions } from "../../../store/llm";
 import { getResourceGroupId } from "../../../utils/resources";
 
 const LlmInput: React.FC = () => {
@@ -129,7 +129,7 @@ const LlmInput: React.FC = () => {
           }
         })
         .then((res) => {
-          // Handle error case of no recommandation
+          // Handle error case of no recommendation
           if (!isJsonString(res)) {
             dispatch(openModal("llmErrorMessage"));
             dispatch(
@@ -141,11 +141,11 @@ const LlmInput: React.FC = () => {
             throw new Error("LLM3 Error");
           }
 
-          const recommandContributionArray: string[] = Object.values(
+          const recommendContributionArray: string[] = Object.values(
             JSON.parse(formatJsonData(res)),
           );
           setDescription("");
-          dispatch(setRecommandContributions(recommandContributionArray));
+          dispatch(setRecommendContributions(recommendContributionArray));
         });
     } else {
       console.error("No id found");
