@@ -216,9 +216,9 @@ const LlmResult: React.FC = () => {
 
   const fetchData = useCallback(
     async (recommandContributions: string[]) => {
-      const tasks = recommandContributions.map((contribution) => {
-        // RTK seems like didn't provide forceRefetch
-        // The getPoi will not be trigger here, even though i update refetchFlag after update data, cache still exists
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      const tasks = recommandContributions.map(async (contribution) => {
         return getPoi(contribution)
           .unwrap()
           .then((res) => {
