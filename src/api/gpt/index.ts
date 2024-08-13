@@ -435,7 +435,7 @@ async function def_contribution(
   });
   const ans = response.choices[0].message.content;
   if (ans === null) {
-    throw new Error("No recommand found.");
+    throw new Error("No recommend found.");
   }
 
   return ans;
@@ -481,7 +481,7 @@ async function def_contribution_improve(
   const ans = response.choices[0].message.content;
   // console.log(`LLM3 Used tokens: ${response.usage?.total_tokens}`);
   if (ans === null) {
-    throw new Error("No recommand found.");
+    throw new Error("No recommend found.");
   }
 
   return ans;

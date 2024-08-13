@@ -22,7 +22,7 @@ import CreatingFlag from "./CreatingFlag";
 import { getDrawerTitle } from "../../../constants/drawerTitle";
 import { PoiData } from "../../../models/poi";
 import { maps } from "../../../utils/googleMaps";
-import { setRecommandContributions } from "../../../store/llm";
+import { setRecommendContributions } from "../../../store/llm";
 
 const reportDataValidator = (reportData: PoiData) => {
   const { target, status } = reportData;
@@ -67,7 +67,7 @@ const AddReportDrawer: React.FC = () => {
         dispatch(closeModal("confirmAddReport"));
         // when add report from recommend list, go back to cluster
         if (isCurrentDrawerParams("recommend", searchParams)) {
-          dispatch(setRecommandContributions([]));
+          dispatch(setRecommendContributions([]));
           setupDrawerParams<"cluster">(
             { clusterId },
             searchParams,

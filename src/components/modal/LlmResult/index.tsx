@@ -9,7 +9,7 @@ import {
 import { IRootState } from "../../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal, openModal } from "../../../store/modal";
-import { setRecommandContributions } from "../../../store/llm";
+import { setRecommendContributions } from "../../../store/llm";
 import Drawer from "../../Drawer";
 import {
   getParamsFromDrawer,
@@ -206,23 +206,23 @@ const LlmResult: React.FC = () => {
   const selected =
     !reportType && isCurrentDrawerParams("recommend", searchParams);
 
-  const recommandContributions = useSelector(
-    (state: IRootState) => state.llm.recommandContributions,
+  const recommendContributions = useSelector(
+    (state: IRootState) => state.llm.recommendContributions,
   );
 
   const refetchFlag = useSelector((state: IRootState) => state.llm.refetchFlag);
 
-  const [recommandPois, setRecommandPois] = useState<Poi[]>([]);
+  const [recommendPois, setRecommendPois] = useState<Poi[]>([]);
 
   const fetchData = useCallback(
-    async (recommandContributions: string[]) => {
+    async (recommendContributions: string[]) => {
       await new Promise((resolve) => setTimeout(resolve, 500));
 
-      const tasks = recommandContributions.map(async (contribution) => {
+      const tasks = recommendContributions.map(async (contribution) => {
         return getPoi(contribution)
           .unwrap()
           .then((res) => {
-            if (res === null) throw new Error("No recommand poi found.");
+            if (res === null) throw new Error("No recommend poi found.");
             else {
               return res;
             }
@@ -235,16 +235,16 @@ const LlmResult: React.FC = () => {
   );
 
   useEffect(() => {
-    fetchData(recommandContributions).then((res) => {
-      setRecommandPois(res);
+    fetchData(recommendContributions).then((res) => {
+      setRecommendPois(res);
     });
-  }, [fetchData, recommandContributions, refetchFlag]);
+  }, [fetchData, recommendContributions, refetchFlag]);
 
   const dispatch = useDispatch();
 
   const handleCloseModal = () => {
-    // will also clear recommandPois
-    dispatch(setRecommandContributions([]));
+    // will also clear recommendPois
+    dispatch(setRecommendContributions([]));
     setupDrawerParams<"cluster">({ clusterId }, searchParams, setSearchParams);
     dispatch(closeModal("llmResult"));
   };
@@ -275,8 +275,8 @@ const LlmResult: React.FC = () => {
       title={t("llmResult.title", { ns: ["drawer"] })}
       children={
         <div>
-          {recommandPois.length > 0 ? (
-            recommandPois.map((poi) => {
+          {recommendPois.length > 0 ? (
+            recommendPois.map((poi) => {
               return (
                 <PoiListItem
                   key={poi.id}
