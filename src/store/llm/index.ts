@@ -2,13 +2,13 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface RecommendState {
   recommendContributions: string[];
-  refetchFlag: boolean;
+  recommendLoading: boolean;
   errorMessage: string;
 }
 
 const initialState: RecommendState = {
   recommendContributions: [],
-  refetchFlag: false,
+  recommendLoading: false,
   errorMessage: "",
 };
 
@@ -19,8 +19,8 @@ const recommendSlice = createSlice({
     setRecommendContributions: (state, action: PayloadAction<string[]>) => {
       state.recommendContributions = action.payload;
     },
-    toggleRefetchFlag: (state) => {
-      state.refetchFlag = !state.refetchFlag;
+    setRecommendLoading: (state, action: PayloadAction<boolean>) => {
+      state.recommendLoading = action.payload;
     },
     setErrorMessage: (state, action: PayloadAction<string>) => {
       state.errorMessage = action.payload;
@@ -28,7 +28,10 @@ const recommendSlice = createSlice({
   },
 });
 
-export const { setRecommendContributions, toggleRefetchFlag, setErrorMessage } =
-  recommendSlice.actions;
+export const {
+  setRecommendContributions,
+  setRecommendLoading,
+  setErrorMessage,
+} = recommendSlice.actions;
 
 export default recommendSlice.reducer;

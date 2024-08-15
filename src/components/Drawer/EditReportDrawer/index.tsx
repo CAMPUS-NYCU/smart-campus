@@ -13,9 +13,7 @@ import EditReportDrawerContent from "./EditReportDrawerContent";
 import EditReportDrawerConfirm from "./EditReportDrawerConfirm";
 import { closeModal, openModal } from "../../../store/modal";
 import { PoiData } from "../../../models/poi";
-import { toggleRefetchFlag } from "../../../store/llm";
-import { useSearchParams } from "react-router-dom";
-import { isCurrentDrawerParams } from "../../../utils/routes/params";
+import { setRecommendLoading } from "../../../store/llm";
 
 const reportDataValidator = (reportData: PoiData) => {
   const { status } = reportData;
@@ -33,17 +31,15 @@ const EditReportDrawer: React.FC = () => {
   const reportData = useSelector((state: IRootState) => state.report.data);
 
   const dispatch = useDispatch();
-  const [searchParams] = useSearchParams();
 
-  const [editPoi] = useUpdatePoiMutation();
+  const [editPoi, { isLoading: isEditingPoi }] = useUpdatePoiMutation();
 
   const selected = reportType === "edit";
 
   const { data: user } = useGetUserQuery();
 
-  const recommendState = isCurrentDrawerParams("recommend", searchParams);
-
   const [isStatusValueValid, setIsStatusValueValid] = React.useState(false);
+
   React.useEffect(() => {
     setIsStatusValueValid(reportDataValidator(reportData));
   }, [reportData]);
@@ -55,19 +51,24 @@ const EditReportDrawer: React.FC = () => {
       );
     }
 
+    dispatch(setRecommendLoading(true));
+
     editPoi({
       id: reportId,
       data: { ...reportData, updatedBy: user.id },
     })
       .unwrap()
       .then(() => {
-        if (recommendState) {
-          dispatch(toggleRefetchFlag());
-        }
         dispatch(resetReport());
         dispatch(closeModal("confirmEditReport"));
       });
   };
+
+  React.useEffect(() => {
+    if (!isEditingPoi) {
+      dispatch(setRecommendLoading(false));
+    }
+  }, [isEditingPoi, dispatch]);
 
   const handleDrawerConfirm = () => {
     dispatch(openModal("confirmEditReport"));

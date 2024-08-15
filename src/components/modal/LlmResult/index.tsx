@@ -205,16 +205,17 @@ const LlmResult: React.FC = () => {
     (state: IRootState) => state.llm.recommendContributions,
   );
 
-  const refetchFlag = useSelector((state: IRootState) => state.llm.refetchFlag);
+  const recommendState = isCurrentDrawerParams("recommend", searchParams);
+  const recommendLoading = useSelector(
+    (state: IRootState) => state.llm.recommendLoading,
+  );
 
   const [recommendPois, setRecommendPois] = useState<Poi[]>([]);
 
   const fetchData = useCallback(
     async (recommendContributions: string[]) => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
       const tasks = recommendContributions.map(async (contribution) => {
-        return getPoi(contribution)
+        return getPoi(contribution, true)
           .unwrap()
           .then((res) => {
             if (res === null) throw new Error("No recommend poi found.");
@@ -230,10 +231,12 @@ const LlmResult: React.FC = () => {
   );
 
   useEffect(() => {
-    fetchData(recommendContributions).then((res) => {
-      setRecommendPois(res);
-    });
-  }, [fetchData, recommendContributions, refetchFlag]);
+    if (!recommendLoading && recommendState) {
+      fetchData(recommendContributions).then((res) => {
+        setRecommendPois(res);
+      });
+    }
+  }, [fetchData, recommendContributions, recommendLoading, recommendState]);
 
   const dispatch = useDispatch();
 
