@@ -19,8 +19,8 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { useGetUserQuery } from "../../../api/user";
 import { addReport, editReport } from "../../../store/report";
-import { useCallback, useEffect, useState } from "react";
-import { useLazyGetPoiQuery } from "../../../api/poi";
+import { useEffect, useState } from "react";
+import { useGetSelectedPoisQuery } from "../../../api/poi";
 import Poi, { PoiData } from "../../../models/poi";
 import { useTranslation } from "react-i18next";
 import React from "react";
@@ -193,7 +193,6 @@ const LlmResult: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const clusterId = getParamsFromDrawer("cluster", searchParams).clusterId;
   const { data: user } = useGetUserQuery();
-  const [getPoi] = useLazyGetPoiQuery();
 
   const { t } = useTranslation();
 
@@ -205,41 +204,25 @@ const LlmResult: React.FC = () => {
     (state: IRootState) => state.llm.recommendContributions,
   );
 
-  const refetchFlag = useSelector((state: IRootState) => state.llm.refetchFlag);
-
   const [recommendPois, setRecommendPois] = useState<Poi[]>([]);
 
-  const fetchData = useCallback(
-    async (recommendContributions: string[]) => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      const tasks = recommendContributions.map(async (contribution) => {
-        return getPoi(contribution)
-          .unwrap()
-          .then((res) => {
-            if (res === null) throw new Error("No recommend poi found.");
-            else {
-              return res;
-            }
-          });
-      });
-      const res = await Promise.all(tasks);
-      return res;
-    },
-    [getPoi],
-  );
+  const { data: selectedPoiList, isLoading: isPoiListLoading } =
+    useGetSelectedPoisQuery(recommendContributions, {
+      skip: recommendContributions.length === 0,
+    });
 
   useEffect(() => {
-    fetchData(recommendContributions).then((res) => {
-      setRecommendPois(res);
-    });
-  }, [fetchData, recommendContributions, refetchFlag]);
+    if (!isPoiListLoading && selectedPoiList && selectedPoiList.length > 0) {
+      setRecommendPois(selectedPoiList);
+    }
+  }, [selectedPoiList, isPoiListLoading]);
 
   const dispatch = useDispatch();
 
   const handleCloseModal = () => {
     // will also clear recommendPois
     dispatch(setRecommendContributions([]));
+    setRecommendPois([]);
     setupDrawerParams<"cluster">({ clusterId }, searchParams, setSearchParams);
     dispatch(closeModal("llmResult"));
   };
