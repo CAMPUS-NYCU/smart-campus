@@ -13,7 +13,6 @@ import EditReportDrawerContent from "./EditReportDrawerContent";
 import EditReportDrawerConfirm from "./EditReportDrawerConfirm";
 import { closeModal, openModal } from "../../../store/modal";
 import { PoiData } from "../../../models/poi";
-import { setRecommendLoading } from "../../../store/llm";
 
 const reportDataValidator = (reportData: PoiData) => {
   const { status } = reportData;
@@ -32,7 +31,7 @@ const EditReportDrawer: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const [editPoi, { isLoading: isEditingPoi }] = useUpdatePoiMutation();
+  const [editPoi] = useUpdatePoiMutation();
 
   const selected = reportType === "edit";
 
@@ -51,8 +50,6 @@ const EditReportDrawer: React.FC = () => {
       );
     }
 
-    dispatch(setRecommendLoading(true));
-
     editPoi({
       id: reportId,
       data: { ...reportData, updatedBy: user.id },
@@ -63,12 +60,6 @@ const EditReportDrawer: React.FC = () => {
         dispatch(closeModal("confirmEditReport"));
       });
   };
-
-  React.useEffect(() => {
-    if (!isEditingPoi) {
-      dispatch(setRecommendLoading(false));
-    }
-  }, [isEditingPoi, dispatch]);
 
   const handleDrawerConfirm = () => {
     dispatch(openModal("confirmEditReport"));
