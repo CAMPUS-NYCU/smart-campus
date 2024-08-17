@@ -77,6 +77,35 @@ const poiApiSlice = apiSlice.injectEndpoints({
       },
       providesTags: ["Poi"],
     }),
+    getSelectedPois: builder.query<Poi[], string[]>({
+      queryFn: async (ids) => {
+        if (!ids || ids.length === 0) {
+          return { data: [] };
+        }
+
+        const poiPromises = ids.map((id) =>
+          getDoc(doc(firestore, firestoreConfig.collection.poi, id)).then(
+            (snapshot) => {
+              if (snapshot.exists()) {
+                const data = snapshot.data() as FirestorePoiData;
+                return {
+                  id: snapshot.id,
+                  data: toPoiDataByFirebasePoiData(data),
+                } as Poi;
+              }
+              return null;
+            },
+          ),
+        );
+
+        const pois = (await Promise.all(poiPromises)).filter(
+          (poi): poi is Poi => poi !== null,
+        ) as Poi[];
+
+        return { data: pois };
+      },
+      providesTags: ["Poi"],
+    }),
     addPoi: builder.mutation<string, { data: PoiData }>({
       queryFn: async (arg) => {
         const uploadPromises = arg.data.photoPaths.map((url) =>
@@ -137,6 +166,8 @@ export const {
   useLazyGetPoisQuery,
   useGetPoiQuery,
   useLazyGetPoiQuery,
+  useGetSelectedPoisQuery,
+  useLazyGetSelectedPoisQuery,
   useAddPoiMutation,
   useUpdatePoiMutation,
   useDeletePoiMutation,
